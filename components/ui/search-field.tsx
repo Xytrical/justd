@@ -7,10 +7,10 @@ import {
   type ValidationResult,
 } from "react-aria-components"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { Button } from "./button"
 import { Description, FieldError, FieldGroup, Input, Label } from "./field"
 import { Loader } from "./loader"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface SearchFieldProps extends SearchFieldPrimitiveProps {
   label?: string

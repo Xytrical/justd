@@ -15,6 +15,7 @@ type RegistryType =
   | "registry:file"
   | "registry:style"
   | "registry:theme"
+
 type RegistryJsonItem = {
   name: string
   extends?: "none"
@@ -40,7 +41,7 @@ const registryBaseStyle = {
     "tailwindcss-react-aria-components",
     "react-aria-components",
   ],
-  registryDependencies: [],
+  registryDependencies: [`${registryUrl}/r/lib-primitive.json`], // Assuming lib-primitive is a key generated from lib/primitive.ts/x
   cssVars: {
     theme: {
       "font-sans":
@@ -242,7 +243,6 @@ const extractInternalDependencyPaths = (
     if (foundPath) {
       resolvedPaths.add(foundPath)
     } else {
-      // Optionally warn if an internal import couldn't be resolved
       // console.warn(`Could not resolve internal import '${rawImport}' from ${currentFilePath}`);
     }
   }
@@ -256,12 +256,15 @@ const generateComponentRegistry = () => {
   const registryJsonPath = "registry.json"
   const projectRoot = process.cwd()
 
+  // Define the source directories and their corresponding types
   const sources = [
     { type: "ui", path: "components/ui" },
     { type: "block", path: "components/blocks" },
-    // Only include ui components for now
+    { type: "lib", path: "lib" },
+    { type: "hook", path: "hooks" },
   ]
 
+  // Recursively get all relevant files (.ts and .tsx) from a directory
   const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []): string[] => {
     if (!fs.existsSync(dirPath)) {
       // console.warn(`Directory not found: ${dirPath}`)
@@ -272,15 +275,16 @@ const generateComponentRegistry = () => {
       const fullPath = path.join(dirPath, file)
       if (fs.statSync(fullPath).isDirectory()) {
         getAllFiles(fullPath, arrayOfFiles)
-      } else if (file.endsWith(".tsx")) {
+      } else if (file.endsWith(".tsx") || file.endsWith(".ts")) {
+        // Include both .tsx and .ts files
         arrayOfFiles.push(path.resolve(fullPath)) // Store absolute paths
       }
     }
     return arrayOfFiles
   }
 
-  // --- Pass 1: Gather component info and raw imports --- //
-  console.info("Scanning components (Pass 1)...")
+  // --- Pass 1: Gather component/lib info and raw imports --- //
+  console.info("Scanning components and libraries (Pass 1)...")
   const intermediateData: Map<string, IntermediateRegistryItem> = new Map()
   const filePathToKeyMap: Map<string, string> = new Map()
 
@@ -289,18 +293,21 @@ const generateComponentRegistry = () => {
     const componentFiles = getAllFiles(absoluteSourcePath)
 
     for (const absoluteFilePath of componentFiles) {
-      const componentBaseName = path.basename(absoluteFilePath, ".tsx")
+      // Get base name without any extension (.ts or .tsx)
+      const componentBaseName = path.basename(absoluteFilePath, path.extname(absoluteFilePath))
       const fileContent = fs.readFileSync(absoluteFilePath, "utf-8")
 
-      const relativePathFromRoot = path.relative(projectRoot, absoluteFilePath).replace(/\\/g, "/") // Use correct regex for backslashes
-      const relativeKey = path.relative(absoluteSourcePath, absoluteFilePath).replace(/\\/g, "/") // Use correct regex for backslashes
+      // Use forward slashes for consistency
+      const relativePathFromRoot = path.relative(projectRoot, absoluteFilePath).replace(/\\/g, "/")
+      const relativeKey = path.relative(absoluteSourcePath, absoluteFilePath).replace(/\\/g, "/")
 
-      // Generate key: relative path within source dir, remove .tsx, remove /index
+      // Generate key: type-relative/path/to/file (without extension or /index)
       const nameKey = `${type}-${relativeKey
-        .replace(/\.tsx$/, "") // Correct regex
-        .replace(/\/index$/, "") // Correct regex
+        .replace(/\.(tsx|ts)$/, "") // Remove .tsx or .ts extension
+        .replace(/\/index$/, "") // Remove trailing /index
         // Handle case where index removal leaves empty string (e.g., src/index.tsx)
         .replace(/^$/, componentBaseName)}`
+
       if (!nameKey) {
         console.warn(`Could not generate key for ${absoluteFilePath}`)
         continue
@@ -317,6 +324,7 @@ const generateComponentRegistry = () => {
         projectRoot,
       )
 
+      // Determine the registry type based on the generated key prefix
       let whatType: IntermediateRegistryItem["type"]
       switch (true) {
         case nameKey.startsWith("ui-"):
@@ -331,32 +339,25 @@ const generateComponentRegistry = () => {
         case nameKey.startsWith("hook-"):
           whatType = "registry:hook"
           break
-        case nameKey.startsWith("ui/"):
-          whatType = "registry:ui"
-          break
-        case nameKey.startsWith("page-"):
-          whatType = "registry:page"
-          break
-        case nameKey.startsWith("file-"):
-          whatType = "registry:file"
-          break
-        case nameKey.startsWith("style-"):
-          whatType = "registry:style"
-          break
-        case nameKey.startsWith("theme-"):
-          whatType = "registry:theme"
-          break
+        // case nameKey.startsWith("page-"):
+        //   whatType = "registry:page";
+        //   break;
         default:
-          whatType = "registry:component"
+          // Default or fallback type if no prefix matches clearly
+          // Adjust this default based on your project structure
+          console.warn(`Unknown type prefix for key: ${nameKey}. Defaulting based on source type.`)
+          if (type === "ui") whatType = "registry:component"
+          else if (type === "block") whatType = "registry:block"
+          else if (type === "lib") whatType = "registry:lib"
+          else whatType = "registry:file" // Generic fallback
       }
 
-      // console.log(whatType)
       const item: IntermediateRegistryItem = {
         filePath: absoluteFilePath,
         name: nameKey,
         type: whatType,
         title: capitalize(componentBaseName.replace(/-/g, " ")),
-        description: "",
+        description: "", // Add logic to extract description if available (e.g., from JSDoc)
         dependencies: externalDeps,
         files: [{ path: relativePathFromRoot, type: whatType }],
         internalImportPaths: internalDepPaths,
@@ -381,7 +382,6 @@ const generateComponentRegistry = () => {
       }
     }
     // Ensure registryDependencies exists before assignment
-    // This check might be overly cautious if initialized correctly, but safe
     if (item.registryDependencies) {
       item.registryDependencies = Array.from(resolvedRegistryDeps).sort()
     }

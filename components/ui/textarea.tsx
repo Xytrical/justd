@@ -9,8 +9,8 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { composeTailwindRenderProps, focusStyles } from "@/lib/primitive"
 import { Description, FieldError, Label } from "./field"
-import { composeTailwindRenderProps, focusStyles } from "./primitive"
 
 const textareaStyles = tv({
   extend: focusStyles,

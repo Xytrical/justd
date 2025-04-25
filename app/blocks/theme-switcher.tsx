@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { composeTailwindRenderProps } from "@/components/ui/primitive"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconDeviceDesktop2, IconMoon, IconSun } from "@intentui/icons"
 import { useTheme } from "next-themes"
 

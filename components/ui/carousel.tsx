@@ -13,10 +13,10 @@ import {
   type ListBoxSectionProps,
 } from "react-aria-components"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twJoin, twMerge } from "tailwind-merge"
 import type { ButtonProps } from "./button"
 import { Button } from "./button"
-import { composeTailwindRenderProps } from "./primitive"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>

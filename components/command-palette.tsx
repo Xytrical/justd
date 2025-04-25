@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 
 import { CommandMenu } from "@/components/ui/command-menu"
 
-import { useMediaQuery } from "@/utils/use-media-query"
+import { useMediaQuery } from "@/hooks/use-media-query"
 import {
   IconColorSwatch,
   IconColors,

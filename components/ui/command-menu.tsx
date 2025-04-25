@@ -1,5 +1,6 @@
 "use client"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconSearch } from "@intentui/icons"
 import { createContext, use, useEffect } from "react"
 import type {
@@ -31,7 +32,6 @@ import { twMerge } from "tailwind-merge"
 import { DropdownKeyboard } from "./dropdown"
 import { Loader } from "./loader"
 import { Menu, type MenuSectionProps } from "./menu"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface CommandMenuProviderProps {
   isPending?: boolean

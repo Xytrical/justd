@@ -6,11 +6,11 @@ import type {
 } from "react-aria-components"
 import { ColorField as ColorFieldPrimitive } from "react-aria-components"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twJoin } from "tailwind-merge"
 import { ColorPicker } from "./color-picker"
 import { ColorSwatch } from "./color-swatch"
 import { Description, FieldError, FieldGroup, Input, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface ColorFieldProps extends ColorFieldPrimitiveProps {
   label?: string
