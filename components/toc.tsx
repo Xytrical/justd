@@ -1,7 +1,7 @@
 "use client"
 
+import { useMediaQuery } from "@/hooks/use-media-query"
 import { useScrollPosition } from "@/resources/hooks/use-scroll-position"
-import { useMediaQuery } from "@/utils/use-media-query"
 import { IconAlignmentLeft } from "@intentui/icons"
 import type { TOCItemType, TableOfContents } from "fumadocs-core/server"
 import React, { Suspense, useEffect, useState } from "react"

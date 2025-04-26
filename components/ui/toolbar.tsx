@@ -5,8 +5,8 @@ import { createContext, useContext } from "react"
 import type { GroupProps, SeparatorProps, ToolbarProps } from "react-aria-components"
 import { Group, Toolbar as ToolbarPrimitive, composeRenderProps } from "react-aria-components"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
-import { composeTailwindRenderProps } from "./primitive"
 import { Separator } from "./separator"
 import { Toggle, type ToggleProps } from "./toggle"
 

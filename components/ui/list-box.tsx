@@ -11,7 +11,7 @@ import {
   composeRenderProps,
 } from "react-aria-components"
 
-import { composeTailwindRenderProps } from "@/components/ui/primitive"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
 import { DropdownItemDetails, DropdownLabel, DropdownSection, dropdownItemStyles } from "./dropdown"
 

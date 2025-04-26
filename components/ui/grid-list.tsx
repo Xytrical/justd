@@ -10,9 +10,9 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
 import { Checkbox } from "./checkbox"
-import { composeTailwindRenderProps } from "./primitive"
 
 const GridList = <T extends object>({ children, className, ...props }: GridListProps<T>) => (
   <GridListPrimitive

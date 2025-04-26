@@ -7,8 +7,8 @@ import {
   type MeterProps as MeterPrimitiveProps,
 } from "react-aria-components"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface MeterProps extends MeterPrimitiveProps {
   label?: string

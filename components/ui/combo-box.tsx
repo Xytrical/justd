@@ -2,6 +2,7 @@
 
 import React from "react"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconChevronLgDown, IconX } from "@intentui/icons"
 import type {
   ComboBoxProps as ComboboxPrimitiveProps,
@@ -21,7 +22,6 @@ import { DropdownItem, DropdownLabel, DropdownSection } from "./dropdown"
 import { Description, FieldError, FieldGroup, Input, Label } from "./field"
 import { ListBox } from "./list-box"
 import { PopoverContent, type PopoverContentProps } from "./popover"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface ComboBoxProps<T extends object> extends Omit<ComboboxPrimitiveProps<T>, "children"> {
   label?: string

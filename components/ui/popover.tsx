@@ -18,7 +18,7 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
-import { useMediaQuery } from "@/utils/use-media-query"
+import { useMediaQuery } from "@/hooks/use-media-query"
 import { twMerge } from "tailwind-merge"
 import type {
   DialogBodyProps,
