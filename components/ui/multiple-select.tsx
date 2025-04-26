@@ -12,20 +12,13 @@ import {
 } from "react"
 import type { ComboBoxProps, GroupProps, Key, ListBoxProps, Selection } from "react-aria-components"
 import { Button, ComboBox, Group } from "react-aria-components"
-
-import { DropdownItem, DropdownLabel, DropdownSection } from "@/components/ui/dropdown"
-import { ListBox } from "@/components/ui/list-box"
-import { composeTailwindRenderProps } from "@/components/ui/primitive"
-import {
-  type RestrictedIntent,
-  Tag,
-  TagGroup,
-  type TagGroupProps,
-  TagList,
-} from "@/components/ui/tag-group"
 import { twMerge } from "tailwind-merge"
+import { DropdownItem, DropdownLabel, DropdownSection } from "./dropdown"
 import { Description, FieldGroup, type FieldProps, Input, Label } from "./field"
+import { ListBox } from "./list-box"
 import { PopoverContent } from "./popover"
+import { composeTailwindRenderProps } from "./primitive"
+import { type RestrictedIntent, Tag, TagGroup, type TagGroupProps, TagList } from "./tag-group"
 
 interface MultipleSelectProps<T>
   extends Omit<ListBoxProps<T>, "renderEmptyState">,

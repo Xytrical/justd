@@ -57,16 +57,19 @@ When the component is disabled, it prevents the user from adding or removing tag
 ## Props
 Here's the fixed table:
 
-| Prop           | Type                        | Default   | Description                                  |
-|----------------|-----------------------------|-----------|----------------------------------------------|
-| label          | string                      | -         | The label of the tag field                   |
-| description    | string                      | -         | The description of the tag field             |
-| placeholder    | string                      | -         | The placeholder of the tag field             |
-| className      | string                      | -         | The class name of the tag field              |
-| name           | string                      | -         | The name of the tag field                    |
-| list           | ListData                    | -         | The list of tags                             |
-| onItemInserted | (tag: TagItemProps) => void | -         | The callback function when a tag is inserted |
-| onItemCleared  | (tag: TagItemProps) => void | -         | The callback function when a tag is cleared  |
-| isDisabled     | boolean                     | -         | The disabled state of the tag field          |
-| intent         | string                      | 'primary' | 'primary', 'secondary'                       |
-| shape          | string                      | 'square'  | 'square', 'circle'                           |
+| Prop              | Type             | Default   | Description                                  |
+|-------------------|------------------|-----------|----------------------------------------------|
+| label             | string           | -         | The label of the multiple select             |
+| description       | string           | -         | The description of the multiple select       |
+| placeholder       | string           | -         | The placeholder of the multiple select       |
+| className         | string           | -         | The class name of the multiple select        |
+| name              | string           | -         | The name of the  multiple select             |
+| items             | array of objects | -         | The list of multiple select items (options)  |
+| selectedKeys      | Selection        | -         | The selected keys of the multiple select     |
+| onSelectionChange | function         | -         | The callback function for selection          |
+| maxItems          | number           | -         | The max number of items that can be selected |
+| isDisabled        | boolean          | -         | The disabled state of the multiple select    |
+| isInvalid         | boolean          | -         | The invalid state of the multiple select     |
+| errorMessage      | string           | -         | The error message if invalid                 |
+| intent            | string           | 'primary' | 'primary', 'secondary'                       |
+| shape             | string           | 'square'  | 'square', 'circle'                           |
