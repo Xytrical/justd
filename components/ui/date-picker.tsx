@@ -1,5 +1,6 @@
 "use client"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconCalendarDays } from "@intentui/icons"
 import type { DateDuration } from "@internationalized/date"
 import {
@@ -16,7 +17,6 @@ import { Calendar } from "./calendar"
 import { DateInput } from "./date-field"
 import { Description, FieldError, FieldGroup, Label } from "./field"
 import { Popover } from "./popover"
-import { composeTailwindRenderProps } from "./primitive"
 import { RangeCalendar } from "./range-calendar"
 
 interface DatePickerOverlayProps

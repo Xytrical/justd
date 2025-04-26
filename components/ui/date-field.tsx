@@ -1,5 +1,6 @@
 "use client"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import {
   DateField as DateFieldPrimitive,
   type DateFieldProps as DateFieldPrimitiveProps,
@@ -11,7 +12,6 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 import { Description, FieldError, FieldGroup, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface DateFieldProps<T extends DateValue> extends DateFieldPrimitiveProps<T> {
   label?: string

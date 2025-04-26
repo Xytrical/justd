@@ -9,8 +9,8 @@ import { Keyboard } from "@/components/ui/keyboard"
 import { Link } from "@/components/ui/link"
 import { Menu } from "@/components/ui/menu"
 import { Separator } from "@/components/ui/separator"
+import { useMediaQuery } from "@/hooks/use-media-query"
 import { siteConfig } from "@/resources/config/site"
-import { useMediaQuery } from "@/utils/use-media-query"
 import {
   IconBrandAdobe,
   IconBrandDiscord,

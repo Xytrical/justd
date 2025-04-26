@@ -5,9 +5,9 @@ import { GridList, GridListItem, composeRenderProps } from "react-aria-component
 import type { VariantProps } from "tailwind-variants"
 import { tv } from "tailwind-variants"
 
+import { focusStyles } from "@/lib/primitive"
 import { Checkbox } from "./checkbox"
 import { Description, Label } from "./field"
-import { focusStyles } from "./primitive"
 
 const choiceboxStyles = tv({
   base: "grid",

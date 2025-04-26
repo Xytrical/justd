@@ -5,7 +5,7 @@ import {
   type SwitchProps as SwitchPrimitiveProps,
 } from "react-aria-components"
 
-import { composeTailwindRenderProps } from "./primitive"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 
 interface SwitchProps extends SwitchPrimitiveProps {
   ref?: React.RefObject<HTMLLabelElement>

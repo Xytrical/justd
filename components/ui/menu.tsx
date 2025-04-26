@@ -2,6 +2,7 @@
 
 import { createContext, use } from "react"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconBulletFill, IconCheck, IconChevronLgRight } from "@intentui/icons"
 import type {
   ButtonProps,
@@ -33,7 +34,6 @@ import {
   dropdownSectionStyles,
 } from "./dropdown"
 import { PopoverContent } from "./popover"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface MenuContextProps {
   respectScreen: boolean

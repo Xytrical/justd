@@ -7,12 +7,12 @@ import {
   type ValidationResult,
 } from "react-aria-components"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import type { DateDuration } from "@internationalized/date"
 import type { Placement } from "@react-types/overlays"
 import { DateInput } from "./date-field"
 import { DatePickerIcon, DatePickerOverlay } from "./date-picker"
 import { Description, FieldError, FieldGroup, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface DateRangePickerProps<T extends DateValue> extends DateRangePickerPrimitiveProps<T> {
   label?: string

@@ -14,7 +14,7 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
-import { composeTailwindRenderProps } from "@/components/ui/primitive"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twJoin, twMerge } from "tailwind-merge"
 import { Description, Label } from "./field"
 import { Tooltip } from "./tooltip"

@@ -2,6 +2,7 @@
 
 import React from "react"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconX } from "@intentui/icons"
 import type {
   TagGroupProps as TagGroupPrimitiveProps,
@@ -19,7 +20,6 @@ import { twJoin, twMerge } from "tailwind-merge"
 import { tv } from "tailwind-variants"
 import { badgeIntents, badgeShapes, badgeStyles } from "./badge"
 import { Description, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
 
 const intents = {
   primary: {

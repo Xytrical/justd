@@ -8,7 +8,7 @@ import type { Key, ListBoxProps, Selection } from "react-aria-components"
 
 import { Description, Input, Label } from "@/components/ui/field"
 import { PopoverContent } from "@/components/ui/popover"
-import { composeTailwindRenderProps } from "@/components/ui/primitive"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconChevronsY, IconSearch } from "@intentui/icons"
 import { useListData } from "react-stately"
 import { twMerge } from "tailwind-merge"

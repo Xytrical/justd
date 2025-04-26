@@ -1,4 +1,5 @@
 "use client"
+import { composeTailwindRenderProps, focusStyles } from "@/lib/primitive"
 import { IconChevronLgDown } from "@intentui/icons"
 import type {
   ListBoxProps,
@@ -23,7 +24,6 @@ import {
 import { Description, FieldError, Label } from "./field"
 import { ListBox } from "./list-box"
 import { PopoverContent, type PopoverContentProps } from "./popover"
-import { composeTailwindRenderProps, focusStyles } from "./primitive"
 
 const selectTriggerStyles = tv({
   extend: focusStyles,
