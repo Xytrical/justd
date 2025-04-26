@@ -17,8 +17,8 @@ import { DropdownItem, DropdownLabel, DropdownSection } from "./dropdown"
 import { Description, FieldGroup, type FieldProps, Input, Label } from "./field"
 import { ListBox } from "./list-box"
 import { PopoverContent } from "./popover"
-import { composeTailwindRenderProps } from "./primitive"
 import { type RestrictedIntent, Tag, TagGroup, type TagGroupProps, TagList } from "./tag-group"
+import {composeTailwindRenderProps} from "@/lib/primitive";
 
 interface MultipleSelectProps<T>
   extends Omit<ListBoxProps<T>, "renderEmptyState">,
