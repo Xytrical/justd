@@ -1,5 +1,6 @@
 "use client"
 
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconChevronLgDown } from "@intentui/icons"
 import {
   Children,
@@ -18,7 +19,6 @@ import { Description, FieldGroup, type FieldProps, Input, Label } from "./field"
 import { ListBox } from "./list-box"
 import { PopoverContent } from "./popover"
 import { type RestrictedIntent, Tag, TagGroup, type TagGroupProps, TagList } from "./tag-group"
-import {composeTailwindRenderProps} from "@/lib/primitive";
 
 interface MultipleSelectProps<T>
   extends Omit<ListBoxProps<T>, "renderEmptyState">,
@@ -117,7 +117,7 @@ const MultipleSelect = <T extends object>({
     <Group
       isDisabled={props.isDisabled}
       isInvalid={props.isInvalid}
-      className={composeTailwindRenderProps(className, "group flex h-fit flex-col gap-y-1.5")}
+      className={composeTailwindRenderProps(className, "group flex h-fit flex-col gap-y-1")}
     >
       {({ isInvalid, isDisabled }) => (
         <>
