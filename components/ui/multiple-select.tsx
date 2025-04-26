@@ -188,14 +188,16 @@ const MultipleSelect = <T extends object>({
               </div>
               <PopoverContent
                 showArrow={false}
+                respectScreen={false}
+                triggerRef={triggerRef}
+                className="min-w-(--trigger-width) overflow-hidden"
                 style={{
                   minWidth: triggerRef.current?.offsetWidth,
                   width: triggerRef.current?.offsetWidth,
                 }}
-                triggerRef={triggerRef}
               >
                 <ListBox
-                  className="border-0 shadow-0"
+                  className="max-h-80 border-0 shadow-0"
                   renderEmptyState={() =>
                     renderEmptyState ? (
                       renderEmptyState(inputValue)

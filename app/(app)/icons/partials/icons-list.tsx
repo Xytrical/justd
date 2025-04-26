@@ -136,7 +136,7 @@ const downloadSvg = (IconComponent: React.ComponentType, fileName: string) => {
   link.download = `${fileName}.svg`
   document.body.appendChild(link)
   link.click()
-  document.body.removeChild(link)
+  document.body?.removeChild(link)
 
   URL.revokeObjectURL(url)
 }
