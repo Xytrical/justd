@@ -13,8 +13,8 @@ const tags = [
   { id: 5, name: "Photography" },
 ]
 
-export default function MultipleSelectControlledDemo() {
-  const [selectedItems, setSelectedItems] = useState<Selection>(new Set([2, 4]))
+export default function MultipleSelectMaxItemsDemo() {
+  const [selectedItems, setSelectedItems] = useState<Selection>(new Set([]))
 
   return (
     <>
@@ -24,6 +24,7 @@ export default function MultipleSelectControlledDemo() {
         selectedKeys={selectedItems}
         onSelectionChange={setSelectedItems}
         items={tags}
+        maxItems={2}
       >
         {(item) => {
           return (

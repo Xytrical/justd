@@ -1,27 +1,15 @@
 "use client"
 
 import { MultipleSelect } from "@/components/ui/multiple-select"
-import type { SelectedKey } from "@/components/ui/multiple-select"
-import { useListData } from "react-stately"
 
 export default function MultipleSelectDisabledDemo() {
-  const selectedItems = useListData<SelectedKey>({
-    initialItems: [],
-  })
   return (
-    <MultipleSelect
-      isDisabled
-      className="max-w-xs"
-      label="Fruits"
-      selectedItems={selectedItems}
-      items={fruits}
-      tag={(item) => <MultipleSelect.Tag textValue={item.name}>{item.name}</MultipleSelect.Tag>}
-    >
+    <MultipleSelect isDisabled className="max-w-xs" label="Fruits" items={fruits}>
       {(item) => {
-        return <MultipleSelect.Option textValue={item.name}>{item.name}</MultipleSelect.Option>
+        return <MultipleSelect.Item textValue={item.name}>{item.name}</MultipleSelect.Item>
       }}
     </MultipleSelect>
   )
 }
 
-const fruits: SelectedKey[] = [{ id: 1, name: "Apple" }]
+const fruits = [{ id: 1, name: "Apple" }]
