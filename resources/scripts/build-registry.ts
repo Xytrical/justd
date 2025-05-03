@@ -9,6 +9,34 @@ import { skyDark, skyLight } from "./styles/sky"
 
 const registryUrl = process.env.VERCEL_URL ? "https://intentui.com" : "http://localhost:3000"
 
+const customCSS = {
+  "@layer base": {
+    "*, ::after, ::before, ::backdrop, ::file-selector-button": {
+      "border-color": "var(--border, currentColor)",
+    },
+    "*": {
+      "scrollbar-width": "thin",
+      "scrollbar-color": "var(--border) transparent",
+    },
+    html: {
+      "font-feature-settings": '"cv02", "cv03", "cv04", "cv11"',
+      "font-variation-settings": "normal",
+      "scroll-behavior": "smooth",
+      height: "100%",
+      "-webkit-font-smoothing": "antialiased",
+      "-moz-osx-font-smoothing": "grayscale",
+      "-webkit-tap-highlight-color": "transparent",
+    },
+    body: { "background-color": "var(--bg)", color: "var(--fg)" },
+    "::-webkit-scrollbar": { width: "4px" },
+    "::-webkit-scrollbar-track": { background: "transparent" },
+    "::-webkit-scrollbar-thumb": {
+      background: "var(--border)",
+      "border-radius": "4px",
+    },
+  },
+}
+
 type RegistryType =
   | "registry:block"
   | "registry:component"
@@ -29,7 +57,9 @@ type RegistryJsonItem = {
   description: string
   dependencies: string[]
   registryDependencies: string[]
+  css: Record<string, any>
   files: {
+    content?: string
     path: string
     type: RegistryType
   }[]
@@ -47,13 +77,14 @@ const registryBaseStyle = {
     "react-aria-components",
   ],
   registryDependencies: [`${registryUrl}/r/lib-primitive.json`],
+  files: [],
+  description: "",
+  css: customCSS,
   cssVars: {
     theme: baseTheme,
     light: defaultLight,
     dark: defaultDark,
   },
-  files: [],
-  description: "",
 } satisfies RegistryJsonItem
 
 const registryBlueStyle = {
