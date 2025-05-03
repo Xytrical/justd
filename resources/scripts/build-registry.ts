@@ -1,9 +1,13 @@
 import fs from "node:fs"
 import path from "node:path"
+import { baseTheme } from "./styles/base-theme"
+import { blueDark, blueLight } from "./styles/blue"
+import { defaultDark, defaultLight } from "./styles/default"
+import { emeraldDark, emeraldLight } from "./styles/emerald"
+import { indigoDark, indigoLight } from "./styles/indigo"
+import { skyDark, skyLight } from "./styles/sky"
 
-const registryUrl = process.env.VERCEL_URL
-  ? 'https://intentui.com'
-  : "http://localhost:3000"
+const registryUrl = process.env.VERCEL_URL ? "https://intentui.com" : "http://localhost:3000"
 
 type RegistryType =
   | "registry:block"
@@ -35,139 +39,74 @@ const registryBaseStyle = {
   extends: "none",
   name: "default",
   type: "registry:style",
+  title: "Base style",
   dependencies: [
     "tw-animate-css",
     "@intentui/icons",
     "tailwindcss-react-aria-components",
     "react-aria-components",
   ],
-  registryDependencies: [`${registryUrl}/r/lib-primitive.json`], // Assuming lib-primitive is a key generated from lib/primitive.ts/x
+  registryDependencies: [`${registryUrl}/r/lib-primitive.json`],
   cssVars: {
-    theme: {
-      "font-sans":
-        '"Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-      "font-mono":
-        "\"Geist Mono\", 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '\"Liberation Mono\"', '\"Courier New\"', 'monospace'",
-      "color-border": "var(--border)",
-      "color-input": "var(--input)",
-      "color-ring": "var(--ring)",
-      "color-bg": "var(--bg)",
-      "color-fg": "var(--fg)",
-      "color-primary": "var(--primary)",
-      "color-primary-fg": "var(--primary-fg)",
-      "color-secondary": "var(--secondary)",
-      "color-secondary-fg": "var(--secondary-fg)",
-      "color-accent": "var(--accent)",
-      "color-accent-fg": "var(--accent-fg)",
-      "color-success": "var(--success)",
-      "color-success-fg": "var(--success-fg)",
-      "color-danger": "var(--danger)",
-      "color-danger-fg": "var(--danger-fg)",
-      "color-warning": "var(--warning)",
-      "color-warning-fg": "var(--warning-fg)",
-      "color-muted": "var(--muted)",
-      "color-muted-fg": "var(--muted-fg)",
-      "color-overlay": "var(--overlay)",
-      "color-overlay-fg": "var(--overlay-fg)",
-      "color-navbar": "var(--navbar)",
-      "color-navbar-fg": "var(--navbar-fg)",
-      "color-sidebar": "var(--sidebar)",
-      "color-sidebar-fg": "var(--sidebar-fg)",
-      "color-chart-1": "var(--chart-1)",
-      "color-chart-2": "var(--chart-2)",
-      "color-chart-3": "var(--chart-3)",
-      "color-chart-4": "var(--chart-4)",
-      "color-chart-5": "var(--chart-5)",
-    },
-    light: {
-      bg: "var(--color-white)",
-      fg: "var(--color-gray-950)",
-      primary: "var(--color-blue-600)",
-      "primary-fg": "var(--color-white)",
-      secondary: "var(--color-gray-100)",
-      "secondary-fg": "var(--color-gray-950)",
-      overlay: "var(--color-white)",
-      "overlay-fg": "var(--color-gray-950)",
-      accent: "var(--color-blue-600)",
-      "accent-fg": "var(--color-white)",
-      muted: "var(--color-gray-100)",
-      "muted-fg": "var(--color-gray-600)",
-      success: "var(--color-emerald-600)",
-      "success-fg": "var(--color-white)",
-      warning: "var(--color-amber-400)",
-      "warning-fg": "var(--color-amber-950)",
-      danger: "var(--color-red-600)",
-      "danger-fg": "var(--color-red-50)",
-      border: "var(--color-gray-200)",
-      input: "var(--color-gray-300)",
-      ring: "var(--color-blue-600)",
-      navbar: "var(--color-gray-50)",
-      "navbar-fg": "var(--color-gray-950)",
-      sidebar: "var(--color-gray-50)",
-      "sidebar-fg": "var(--color-gray-950)",
-      "chart-1": "var(--color-blue-600)",
-      "chart-2": "var(--color-blue-400)",
-      "chart-3": "var(--color-blue-300)",
-      "chart-4": "var(--color-blue-200)",
-      "chart-5": "var(--color-blue-100)",
-      "radius-lg": "0.5rem",
-      "radius-xs": "calc(var(--radius-lg) * 0.5)",
-      "radius-sm": "calc(var(--radius-lg) * 0.75)",
-      "radius-md": "calc(var(--radius-lg) * 0.9)",
-      "radius-xl": "calc(var(--radius-lg) * 1.25)",
-      "radius-2xl": "calc(var(--radius-lg) * 1.5)",
-      "radius-3xl": "calc(var(--radius-lg) * 2)",
-      "radius-4xl": "calc(var(--radius-lg) * 3)",
-    },
-    dark: {
-      bg: "var(--color-gray-950)",
-      fg: "var(--color-gray-50)",
-      primary: "var(--color-blue-600)",
-      "primary-fg": "var(--color-white)",
-      secondary: "oklch(0.248 0.033 256.848)",
-      "secondary-fg": "var(--color-gray-50)",
-      accent: "var(--color-blue-600)",
-      "accent-fg": "var(--color-white)",
-      muted: "var(--color-gray-900)",
-      "muted-fg": "var(--color-gray-400)",
-      overlay: "oklch(0.170 0.034 264.665)",
-      "overlay-fg": "var(--color-gray-50)",
-      success: "var(--color-emerald-600)",
-      "success-fg": "var(--color-white)",
-      warning: "var(--color-amber-400)",
-      "warning-fg": "var(--color-amber-950)",
-      danger: "var(--color-red-600)",
-      "danger-fg": "var(--color-red-50)",
-      border: "oklch(0.273 0.034 259.733)",
-      input: "oklch(0.293 0.034 259.733)",
-      ring: "var(--color-blue-600)",
-      navbar: "oklch(0.170 0.034 264.665)",
-      "navbar-fg": "var(--color-gray-50)",
-      sidebar: "oklch(0.160 0.034 264.665)",
-      "sidebar-fg": "var(--color-gray-50)",
-      "chart-1": "var(--color-blue-700)",
-      "chart-2": "var(--color-blue-500)",
-      "chart-3": "var(--color-blue-400)",
-      "chart-4": "var(--color-blue-300)",
-      "chart-5": "var(--color-blue-200)",
-    },
+    theme: baseTheme,
+    light: defaultLight,
+    dark: defaultDark,
   },
   files: [],
-  title: "Base style",
   description: "",
 } satisfies RegistryJsonItem
 
-// Helper type for intermediate data
+const registryBlueStyle = {
+  ...registryBaseStyle,
+  name: "blue",
+  cssVars: {
+    theme: baseTheme,
+    light: blueLight,
+    dark: blueDark,
+  },
+  title: "Blue style",
+} satisfies RegistryJsonItem
+
+const registrySkyStyle = {
+  ...registryBaseStyle,
+  name: "sky",
+  title: "Sky style",
+  cssVars: {
+    theme: baseTheme,
+    light: skyLight,
+    dark: skyDark,
+  },
+} satisfies RegistryJsonItem
+
+const registryIndigoStyle = {
+  ...registryBaseStyle,
+  name: "indigo",
+  title: "Indigo style",
+  cssVars: {
+    theme: baseTheme,
+    light: indigoLight,
+    dark: indigoDark,
+  },
+} satisfies RegistryJsonItem
+
+const registryEmeraldStyle = {
+  ...registryBaseStyle,
+  name: "emerald",
+  title: "Emerald style",
+  cssVars: {
+    theme: baseTheme,
+    light: emeraldLight,
+    dark: emeraldDark,
+  },
+} satisfies RegistryJsonItem
+
 type IntermediateRegistryItem = Partial<RegistryJsonItem> & {
   filePath: string
-  internalImportPaths?: string[] // Store resolved absolute paths of internal imports
+  internalImportPaths?: string[]
 }
-
-// --- Helper Functions --- //
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
-// Function to extract external dependencies (modified to exclude internal/aliased)
 const extractExternalDependencies = (content: string): string[] => {
   const importRegex = /import(?: | .* from )['"]([^'"]+)['"]/g
   const dependencies = new Set<string>()
@@ -197,7 +136,6 @@ const extractExternalDependencies = (content: string): string[] => {
   return Array.from(dependencies).sort()
 }
 
-// Function to extract internal dependencies (aliased imports)
 const extractInternalDependencyPaths = (
   content: string,
   currentFilePath: string,
@@ -232,9 +170,8 @@ const extractInternalDependencyPaths = (
     let foundPath: string | null = null
     for (const p of potentialPaths) {
       if (fs.existsSync(p)) {
-        // Ensure we don't add a dependency on the file itself
         if (path.resolve(p) !== path.resolve(currentFilePath)) {
-          foundPath = path.resolve(p) // Resolve to absolute path
+          foundPath = path.resolve(p)
           break
         }
       }
@@ -250,13 +187,10 @@ const extractInternalDependencyPaths = (
   return Array.from(resolvedPaths)
 }
 
-// --- Main Generation Logic --- //
-
 const generateComponentRegistry = () => {
   const registryJsonPath = "registry.json"
   const projectRoot = process.cwd()
 
-  // Define the source directories and their corresponding types
   const sources = [
     { type: "ui", path: "components/ui" },
     { type: "block", path: "components/blocks" },
@@ -264,10 +198,8 @@ const generateComponentRegistry = () => {
     { type: "hook", path: "hooks" },
   ]
 
-  // Recursively get all relevant files (.ts and .tsx) from a directory
   const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []): string[] => {
     if (!fs.existsSync(dirPath)) {
-      // console.warn(`Directory not found: ${dirPath}`)
       return []
     }
     const files = fs.readdirSync(dirPath)
@@ -276,14 +208,12 @@ const generateComponentRegistry = () => {
       if (fs.statSync(fullPath).isDirectory()) {
         getAllFiles(fullPath, arrayOfFiles)
       } else if (file.endsWith(".tsx") || file.endsWith(".ts")) {
-        // Include both .tsx and .ts files
-        arrayOfFiles.push(path.resolve(fullPath)) // Store absolute paths
+        arrayOfFiles.push(path.resolve(fullPath))
       }
     }
     return arrayOfFiles
   }
 
-  // --- Pass 1: Gather component/lib info and raw imports --- //
   console.info("Scanning components and libraries (Pass 1)...")
   const intermediateData: Map<string, IntermediateRegistryItem> = new Map()
   const filePathToKeyMap: Map<string, string> = new Map()
@@ -293,19 +223,15 @@ const generateComponentRegistry = () => {
     const componentFiles = getAllFiles(absoluteSourcePath)
 
     for (const absoluteFilePath of componentFiles) {
-      // Get base name without any extension (.ts or .tsx)
       const componentBaseName = path.basename(absoluteFilePath, path.extname(absoluteFilePath))
       const fileContent = fs.readFileSync(absoluteFilePath, "utf-8")
 
-      // Use forward slashes for consistency
       const relativePathFromRoot = path.relative(projectRoot, absoluteFilePath).replace(/\\/g, "/")
       const relativeKey = path.relative(absoluteSourcePath, absoluteFilePath).replace(/\\/g, "/")
 
-      // Generate key: type-relative/path/to/file (without extension or /index)
       const nameKey = `${type}-${relativeKey
         .replace(/\.(tsx|ts)$/, "") // Remove .tsx or .ts extension
         .replace(/\/index$/, "") // Remove trailing /index
-        // Handle case where index removal leaves empty string (e.g., src/index.tsx)
         .replace(/^$/, componentBaseName)}`
 
       if (!nameKey) {
@@ -313,10 +239,8 @@ const generateComponentRegistry = () => {
         continue
       }
 
-      // Store filePath -> key mapping
       filePathToKeyMap.set(absoluteFilePath, nameKey)
 
-      // Extract dependencies
       const externalDeps = extractExternalDependencies(fileContent)
       const internalDepPaths = extractInternalDependencyPaths(
         fileContent,
@@ -324,7 +248,6 @@ const generateComponentRegistry = () => {
         projectRoot,
       )
 
-      // Determine the registry type based on the generated key prefix
       let whatType: IntermediateRegistryItem["type"]
       switch (true) {
         case nameKey.startsWith("ui-"):
@@ -343,8 +266,6 @@ const generateComponentRegistry = () => {
         //   whatType = "registry:page";
         //   break;
         default:
-          // Default or fallback type if no prefix matches clearly
-          // Adjust this default based on your project structure
           console.warn(`Unknown type prefix for key: ${nameKey}. Defaulting based on source type.`)
           if (type === "ui") whatType = "registry:component"
           else if (type === "block") whatType = "registry:block"
@@ -357,57 +278,58 @@ const generateComponentRegistry = () => {
         name: nameKey,
         type: whatType,
         title: capitalize(componentBaseName.replace(/-/g, " ")),
-        description: "", // Add logic to extract description if available (e.g., from JSDoc)
+        description: "",
         dependencies: externalDeps,
         files: [{ path: relativePathFromRoot, type: whatType }],
         internalImportPaths: internalDepPaths,
-        registryDependencies: [], // Initialize registryDependencies
+        registryDependencies: [],
       }
 
       intermediateData.set(nameKey, item)
     }
   }
 
-  // --- Pass 2: Resolve registry dependencies --- //
   console.info("Resolving registry dependencies (Pass 2)...")
   for (const item of intermediateData.values()) {
     const resolvedRegistryDeps = new Set<string>()
     if (item.internalImportPaths) {
       for (const importPath of item.internalImportPaths) {
         const dependencyKey = filePathToKeyMap.get(importPath)
-        // Ensure a key was found and it's not the component itself
         if (dependencyKey && dependencyKey !== item.name) {
           resolvedRegistryDeps.add(`${registryUrl}/r/${dependencyKey}.json`)
         }
       }
     }
-    // Ensure registryDependencies exists before assignment
     if (item.registryDependencies) {
       item.registryDependencies = Array.from(resolvedRegistryDeps).sort()
     }
   }
 
-  // --- Final Construction --- //
+  const themes: RegistryJsonItem[] = [
+    registryBaseStyle,
+    registryBlueStyle,
+    registrySkyStyle,
+    registryIndigoStyle,
+    registryEmeraldStyle,
+  ]
+
   console.info("Constructing final registry...")
   const finalRegistryItems: RegistryJsonItem[] = [
-    registryBaseStyle,
+    ...themes,
     ...Array.from(intermediateData.values()).map((item) => {
-      // Remove temporary properties
       const { filePath, internalImportPaths, ...rest } = item
-      // Ensure the rest object conforms to RegistryJsonItem
       return {
-        name: rest.name || "", // Provide default empty string
-        type: item.type, // Keep consistent type
-        title: rest.title || "", // Provide default
-        description: rest.description || "", // Provide default
-        dependencies: rest.dependencies || [], // Default to empty array
-        registryDependencies: rest.registryDependencies || [], // Default to empty array
-        files: rest.files || [], // Default to empty array
-      } as RegistryJsonItem // Assert type after ensuring all fields are present
+        name: rest.name || "",
+        type: item.type,
+        title: rest.title || "",
+        description: rest.description || "",
+        dependencies: rest.dependencies || [],
+        registryDependencies: rest.registryDependencies || [],
+        files: rest.files || [],
+      } as RegistryJsonItem
     }),
   ]
 
-  // Sort final items by name
   finalRegistryItems.sort((a, b) => a.name.localeCompare(b.name))
 
   const registryJsonObject = {
