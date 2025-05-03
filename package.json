@@ -22,7 +22,13 @@
     "start": "next start",
     "preview": "bun run build && next start",
     "ic": "bun run resources/scripts/identify-color.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postinstall": "husky"
+  },
+  "lint-staged": {
+    "./**/*.{ts,tsx}": [
+      "biome lint --fix && biome check --write"
+    ]
   },
   "dependencies": {
     "@intentui/icons": "^1.10.34",
@@ -58,6 +64,10 @@
     "usemods": "^1.13.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "19.8.0",
+    "@commitlint/cz-commitlint": "^19.8.0",
+    "cz-conventional-changelog": "^3.3.0",
     "@biomejs/biome": "^1.9.4",
     "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/typography": "^0.5.16",
@@ -77,6 +87,11 @@
     "tailwind-variants": "^1.0.0",
     "tailwindcss": "^4.1.5",
     "typescript": "^5.8.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   },
   "repository": {
     "type": "git",
