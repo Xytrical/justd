@@ -177,7 +177,7 @@ interface CloseButtonIndicatorProps extends Omit<ButtonProps, "children"> {
   isDismissable?: boolean | undefined
 }
 
-const DialogCloseIndicator = ({ className, ...props }: CloseButtonIndicatorProps) => {
+const DialogCloseIcon = ({ className, ...props }: CloseButtonIndicatorProps) => {
   const isMobile = useMediaQuery("(max-width: 600px)")
   const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -219,5 +219,5 @@ export {
   DialogDescription,
   DialogBody,
   DialogFooter,
-  DialogCloseIndicator,
+  DialogCloseIcon,
 }
