@@ -1,5 +1,5 @@
+import { source } from "@/lib/source"
 import { siteConfig } from "@/resources/config/site"
-import { source } from "@/utils/source"
 import type { MetadataRoute } from "next"
 
 export default function sitemap(): MetadataRoute.Sitemap {

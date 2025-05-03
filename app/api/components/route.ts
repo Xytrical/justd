@@ -1,4 +1,4 @@
-import { source } from "@/utils/source"
+import { source } from "@/lib/source"
 
 const sources = source.getPageTree()
 

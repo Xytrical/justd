@@ -3,7 +3,7 @@
 import { Heading } from "@/components/ui/heading"
 import { Link, type LinkProps } from "@/components/ui/link"
 import { Separator } from "@/components/ui/separator"
-import { source } from "@/utils/source"
+import { source } from "@/lib/source"
 import type { PageTree } from "fumadocs-core/server"
 import { usePathname } from "next/navigation"
 import React from "react"
