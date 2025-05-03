@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 
 const registryUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+  ? 'https://intentui.com'
   : "http://localhost:3000"
 
 type RegistryType =
