@@ -23,16 +23,20 @@ interface CheckboxGroupProps extends CheckboxGroupPrimitiveProps {
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
-const CheckboxGroup = ({ className, ...props }: CheckboxGroupProps) => {
+const CheckboxGroup = ({ className, children, ...props }: CheckboxGroupProps) => {
   return (
     <CheckboxGroupPrimitive
       {...props}
       className={composeTailwindRenderProps(className, "flex flex-col gap-y-2")}
     >
-      {props.label && <Label>{props.label}</Label>}
-      {props.children as React.ReactNode}
-      {props.description && <Description className="block">{props.description}</Description>}
-      <FieldError>{props.errorMessage}</FieldError>
+      {(values) => (
+        <>
+          {props.label && <Label>{props.label}</Label>}
+          {typeof children === "function" ? children(values) : children}
+          {props.description && <Description className="block">{props.description}</Description>}
+          <FieldError>{props.errorMessage}</FieldError>
+        </>
+      )}
     </CheckboxGroupPrimitive>
   )
 }
@@ -73,7 +77,7 @@ interface CheckboxProps extends CheckboxPrimitiveProps {
   label?: string
 }
 
-const Checkbox = ({ className, ...props }: CheckboxProps) => {
+const Checkbox = ({ className, children, description, label, ...props }: CheckboxProps) => {
   return (
     <CheckboxPrimitive
       {...props}
@@ -82,9 +86,7 @@ const Checkbox = ({ className, ...props }: CheckboxProps) => {
       )}
     >
       {({ isSelected, isIndeterminate, ...renderProps }) => (
-        <div
-          className={twMerge("flex gap-x-2", props.description ? "items-start" : "items-center")}
-        >
+        <div className={twMerge("flex gap-x-2", description ? "items-start" : "items-center")}>
           <div
             className={boxStyles({
               ...renderProps,
@@ -96,14 +98,12 @@ const Checkbox = ({ className, ...props }: CheckboxProps) => {
 
           <div className="flex flex-col gap-1">
             <>
-              {props.label ? (
-                <Label className={twMerge(props.description && "font-normal text-sm/4")}>
-                  {props.label}
-                </Label>
+              {label ? (
+                <Label className={twMerge(description && "font-normal text-sm/4")}>{label}</Label>
               ) : (
-                (props.children as React.ReactNode)
+                children
               )}
-              {props.description && <Description>{props.description}</Description>}
+              {description && <Description>{description}</Description>}
             </>
           </div>
         </div>
@@ -113,4 +113,4 @@ const Checkbox = ({ className, ...props }: CheckboxProps) => {
 }
 
 export type { CheckboxGroupProps, CheckboxProps }
-export { Checkbox, CheckboxGroup }
+export { CheckboxGroup, Checkbox }

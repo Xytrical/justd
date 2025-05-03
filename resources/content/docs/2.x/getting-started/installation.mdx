@@ -154,7 +154,7 @@ After installing the required packages, you can copy the CSS below into your glo
 <CodeBlock
     source={{
         'app/globals.css': 'installation/main.css',
-        'ui/primitive.tsx': 'installation/primitive.tsx',
+        'lib/primitive.ts': 'installation/primitive.ts',
     }} />
 
 ### Classes and Hooks
@@ -163,7 +163,7 @@ Hooks are only used in specific components like the **Navbar**, **Sidebar**, **P
 
 <CodeBlock
     source={{
-        'utils/use-media-query.ts': 'utils/use-media-query.ts',
+        'hooks/use-media-query.ts': 'hooks/use-media-query.ts',
     }} />
 
 
@@ -171,7 +171,6 @@ Hooks are only used in specific components like the **Navbar**, **Sidebar**, **P
 Indeed, it's efficient because the `index.ts` file in your UI folder serves as a hub. Even if the button and badge components are in separate files, you can import them together easily. First, create a `ui/index.ts` file:
 
 ```ts title="ui/index.ts"
-export * from "./primitive";
 export * from "./sidebar";
 export * from "./navbar";
 export * from "./tree";

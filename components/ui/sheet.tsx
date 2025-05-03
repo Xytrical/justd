@@ -4,7 +4,16 @@ import type { DialogProps, DialogTriggerProps, ModalOverlayProps } from "react-a
 import { DialogTrigger, Modal, ModalOverlay, composeRenderProps } from "react-aria-components"
 import { type VariantProps, tv } from "tailwind-variants"
 
-import { Dialog } from "./dialog"
+import {
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogCloseIcon,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "./dialog"
 
 const overlayStyles = tv({
   base: [
@@ -126,10 +135,7 @@ const SheetContent = ({
             <>
               {typeof children === "function" ? children(values) : children}
               {closeButton && (
-                <Dialog.CloseIndicator
-                  className="top-2.5 right-2.5"
-                  isDismissable={_isDismissable}
-                />
+                <DialogCloseIcon className="top-2.5 right-2.5" isDismissable={_isDismissable} />
               )}
             </>
           </Dialog>
@@ -139,13 +145,13 @@ const SheetContent = ({
   )
 }
 
-const SheetTrigger = Dialog.Trigger
-const SheetFooter = Dialog.Footer
-const SheetHeader = Dialog.Header
-const SheetTitle = Dialog.Title
-const SheetDescription = Dialog.Description
-const SheetBody = Dialog.Body
-const SheetClose = Dialog.Close
+const SheetTrigger = DialogTrigger
+const SheetFooter = DialogFooter
+const SheetHeader = DialogHeader
+const SheetTitle = DialogTitle
+const SheetDescription = DialogDescription
+const SheetBody = DialogBody
+const SheetClose = DialogClose
 
 Sheet.Trigger = SheetTrigger
 Sheet.Footer = SheetFooter

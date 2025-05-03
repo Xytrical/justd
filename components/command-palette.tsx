@@ -15,7 +15,7 @@ import {
 } from "@intentui/icons"
 import { usePathname, useRouter } from "next/navigation"
 
-import { source } from "@/utils/source"
+import { source } from "@/lib/source"
 import { useDocsSearch } from "fumadocs-core/search/client"
 import type { PageTree } from "fumadocs-core/server"
 import { useDebouncedCallback } from "use-debounce"

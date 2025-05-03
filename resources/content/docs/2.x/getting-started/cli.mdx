@@ -96,4 +96,20 @@ When running the `init` command, the CLI checks whether your project is clean. I
 If you’re unsure about the next steps, you can always refer to the `help` command for guidance:
 <Installation options={{isExecutor: true}} command='npx @intentui/cli@latest help' items={['']} />
 
-## Schema
+## Shadcn CLI
+You might notice that we provide our own CLI, but if you prefer using the ShadCN CLI, that's totally fine. To get started, initialize your application with the following command:
+
+```
+bunx shadcn@latest init https://intentui.com/r/style/default
+```
+
+Once initialized, you can add components by running:
+
+```
+npx shadcn@latest add https://intentui.com/r/ui/<component>
+```
+
+Let’s say you want to add a card component. Just replace `<component>` with `card`, like this:
+```
+npx shadcn@latest add https://intentui.com/r/ui/card
+```
