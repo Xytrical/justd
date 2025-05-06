@@ -9,7 +9,7 @@ import { Header } from "react-aria-components"
 export function Hero() {
   return (
     <>
-      <div className="-mt-18 bg-gradient-to-b from-blue-50 to-bg py-4 sm:py-8 lg:pt-32 lg:pb-16 dark:from-muted">
+      <div className="-mt-20 bg-gradient-to-b from-blue-50 to-bg pb-8 pt-20 lg:pt-32 lg:pb-16 dark:from-muted">
         <PageContainer>
           <Header className="text-left">
             <h1 className="mt-4 mb-4 max-w-6xl pb-1 font-semibold text-3xl text-fg tracking-tight lg:mb-6 lg:text-6xl">

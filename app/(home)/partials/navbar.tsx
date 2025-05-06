@@ -7,14 +7,15 @@ import { Menu } from "@/components/ui/menu"
 import { Separator } from "@/components/ui/separator"
 import { siteConfig } from "@/resources/config/site"
 import {
+  IconArrowUp,
   IconArrowUpRight,
   IconBrandDiscord,
   IconBrandGithub,
   IconBrandIntentui,
-  IconBrandX,
+  IconBrandX, IconColorPalette, IconColors, IconCube,
   IconHamburger,
-  IconHome,
-  IconSearch,
+  IconHome, IconNotes, IconPackage,
+  IconSearch, IconWindow, IconWindowVisit,
 } from "@intentui/icons"
 import { useState } from "react"
 import { Button } from "react-aria-components"
@@ -88,7 +89,7 @@ export function Navbar() {
               >
                 <IconHamburger className="size-5" />
               </Button>
-              <Menu.Content placement="bottom" className="min-w-64">
+              <Menu.Content respectScreen={false} placement="bottom" className="min-w-56">
                 <Menu.Item href="/">
                   <IconHome />
                   <Menu.Label>Home</Menu.Label>
@@ -99,6 +100,7 @@ export function Navbar() {
                     href={menu.href}
                     target={menu.external ? "_blank" : undefined}
                   >
+                    {menu.icon && <menu.icon/>}
                     <Menu.Label>{menu.label}</Menu.Label>
                     {menu.external && <IconArrowUpRight />}
                   </Menu.Item>
@@ -122,16 +124,17 @@ function NavLink({ ...props }: React.ComponentProps<typeof Link>) {
 }
 
 export const menus = [
-  { href: "/docs/2.x/getting-started/introduction", label: "Docs" },
-  { href: "/components", label: "Components" },
-  { href: "/themes", label: "Themes" },
-  { href: "/icons", label: "Icons" },
-  { href: "/colors", label: "Colors" },
-  { href: "/blocks", label: "Blocks" },
+  { href: "/docs/2.x/getting-started/introduction", label: "Docs", icon: IconNotes },
+  { href: "/components", label: "Components", icon: IconPackage },
+  { href: "/themes", label: "Themes", icon:IconColors },
+  { href: "/icons", label: "Icons", icon:IconArrowUp },
+  { href: "/colors", label: "Colors", icon:IconColorPalette },
+  { href: "/blocks", label: "Blocks", icon: IconWindow },
   {
     href: "https://blocks.intentui.com",
     label: "Premium blocks",
+    icon: IconBrandIntentui,
     external: true,
   },
-  { href: "https://blocks.intentui.com/templates", label: "Templates", external: true },
+  { href: "https://blocks.intentui.com/templates", label: "Templates", icon: IconWindowVisit, external: true },
 ]
