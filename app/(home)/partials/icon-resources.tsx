@@ -94,12 +94,12 @@ export function IconResources() {
               Intent Icons is a powerful open-source SVG icon library with over{" "}
               <strong className="text-fg">1,191 symbols</strong>, and more added with every release.
               Designed to seamlessly integrate into any project, they work perfectly whether or not
-              you use Intent components.
+              you use <strong className="text-fg">Intent UI</strong> components.
             </p>
             <InstallIcon />
           </div>
           <div>
-            <div className="grid flex-1 items-start gap-2 **:data-[slot=icon]:size-5 md:grid-cols-2">
+            <div className="grid flex-1 items-start gap-2 **:data-[slot=icon]:size-5 **:data-[slot=icon]:text-muted-fg **:data-[slot=icon]:hover:text-fg md:grid-cols-2">
               <div className="flex flex-wrap gap-6 rounded-lg border p-6">
                 <IconCheck />
                 <IconShoppingBag />
@@ -166,7 +166,7 @@ export function IconResources() {
               </div>
             </div>
             <div className="mt-4 flex justify-end">
-              <Link className={buttonStyles} href="/icons">
+              <Link className={buttonStyles({ intent: "outline" })} href="/icons">
                 View all icons <IconArrowRight />
               </Link>
             </div>

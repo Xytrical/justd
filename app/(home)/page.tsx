@@ -8,13 +8,12 @@ import { Resources } from "./partials/resources"
 
 export default function Page() {
   return (
-    <div className="relative flex min-h-svh flex-col bg-bg">
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-blue-700 to-black">
+    <div className="relative flex min-h-svh flex-col">
+      <div className="relative isolate overflow-hidden">
         <Navbar />
         <Hero />
       </div>
-      <div className="h-96 bg-linear-to-b from-black via-70% via-bg to-bg" />
-      <div className="-mt-90 sm:-mt-80 space-y-8 pb-6 sm:space-y-16 lg:pt-0">
+      <div className="space-y-8 pb-6 sm:space-y-16 lg:pt-0">
         <Blocks />
         <IconResources />
         <Resources />

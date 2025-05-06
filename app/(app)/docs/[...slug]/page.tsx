@@ -3,7 +3,6 @@ import { Mdx } from "@/components/mdx"
 import { Pager } from "@/components/pager"
 import { Toc } from "@/components/toc"
 import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
 import { Link } from "@/components/ui/link"
 import { source } from "@/lib/source"
 import { siteConfig } from "@/resources/config/site"
@@ -141,23 +140,20 @@ export default async function Page(props: DocPageProps) {
           <Toc className="mt-4 block sm:mt-8 xl:hidden" items={page.data.toc} />
           <Mdx code={page.data.body} />
           <Link
+            className="not-prose my-6 flex rounded-lg border border-fg/10 bg-overlay p-2 transition duration-200 hover:border-fg/20"
+            href="https://blocks.intentui.com"
             target="_blank"
-            className="not-prose group relative my-6 flex min-h-48 overflow-hidden rounded-xl bg-[url(https://blocks.intentui.com/opengraph-image.jpg?v=2)] bg-blue-500/10 bg-center bg-no-repeat ring ring-blue-300/30 transition [background-size:100%] hover:ring-blue-300/70 sm:min-h-110 sm:bg-cover"
-            href="https://blocks.intentui.com?ref=intentui.com"
           >
-            <div className="absolute bottom-0 flex w-full items-start gap-x-3 bg-linear-to-t from-black via-black/90 p-4 sm:p-6">
-              <div className="inset-ring inset-ring-fg/10 grid size-10 shrink-0 place-content-center rounded-sm bg-blue-500/20">
-                <IconBrandIntentui className="size-8" />
-              </div>
-              <Card.Header className="p-0">
-                <Card.Title className="text-white sm:text-base/6">Get premium Blocks</Card.Title>
-                <Card.Description className="max-w-md text-zinc-400">
-                  Create stunning, professional-grade layouts that not only save time but also
-                  elevate the quality of your projects.
-                </Card.Description>
-              </Card.Header>
+            <IconBrandIntentui className="mr-3 size-10 shrink-0" />
+            <div className="flex flex-col">
+              <strong className="font-medium text-fg">Get premium blocks</strong>
+              <span className="text-muted-fg text-sm">
+                Create stunning, professional-grade layouts that not only save time but also elevate
+                the quality of your projects.
+              </span>
             </div>
           </Link>
+
           <Pager className="pt-3" tree={source.pageTree} url={page.url} />
         </main>
       </div>

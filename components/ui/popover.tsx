@@ -20,19 +20,21 @@ import { tv } from "tailwind-variants"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { twMerge } from "tailwind-merge"
+import type {
+  DialogBodyProps,
+  DialogFooterProps,
+  DialogHeaderProps,
+  DialogTitleProps,
+} from "./dialog"
 import {
+  Dialog,
   DialogBody,
-  type DialogBodyProps,
   DialogClose,
   DialogDescription,
   DialogFooter,
-  type DialogFooterProps,
   DialogHeader,
-  type DialogHeaderProps,
   DialogTitle,
-  type DialogTitleProps,
 } from "./dialog"
-import { Dialog } from "./dialog"
 
 type PopoverProps = DialogTriggerProps
 const Popover = (props: PopoverProps) => {

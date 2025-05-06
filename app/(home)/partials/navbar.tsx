@@ -24,7 +24,7 @@ export function Navbar() {
   return (
     <>
       <CommandPalette setOpen={setOpen} openCmd={open} />
-      <PageContainer className="flex items-center justify-between py-4 sm:py-6">
+      <PageContainer className="flex items-center justify-between py-4">
         <div className="flex items-center">
           <Link href="/" className="mr-4 p-2" aria-label="Goto homepage">
             <IconBrandIntentui className="size-5 text-white" />
@@ -45,26 +45,26 @@ export function Navbar() {
           <Button
             onPress={() => setOpen(true)}
             aria-label="Search docs"
-            className="p-2 text-blue-200 outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <IconSearch />
           </Button>
           <Link
-            className="p-2 text-blue-200 outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
             href="https://blocks.intentui.com"
             target="_blank"
           >
             <IconBrandIntentui />
           </Link>
           <Link
-            className="p-2 text-blue-200 outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
             href={siteConfig.links.twitter}
             target="_blank"
           >
             <IconBrandX />
           </Link>
           <Link
-            className="p-2 text-blue-200 outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
             href={siteConfig.discord}
             target="_blank"
           >
@@ -84,7 +84,7 @@ export function Navbar() {
             <Menu>
               <Button
                 aria-label="Search docs"
-                className="-ml-2 p-2 text-blue-200 outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="-ml-2 p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <IconHamburger className="size-5" />
               </Button>
@@ -115,7 +115,7 @@ export function Navbar() {
 function NavLink({ ...props }: React.ComponentProps<typeof Link>) {
   return (
     <Link
-      className="flex items-center gap-x-2 rounded-full px-2.5 py-1 text-blue-100 text-sm tracking-tight outline-hidden transition duration-200 hover:bg-blue-600 hover:text-white hover:shadow-xs focus-visible:ring-2 focus-visible:ring-blue-500"
+      className="flex items-center gap-x-2 rounded-full px-2.5 py-1 text-muted-fg text-sm tracking-tight outline-hidden transition duration-200 hover:text-white hover:shadow-xs focus-visible:ring-2"
       {...props}
     />
   )

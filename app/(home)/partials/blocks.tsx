@@ -1,114 +1,177 @@
 "use client"
-
-import { Buttons } from "@/components/blocks/buttons"
-import { CheckRadioBlock } from "@/components/blocks/check-radio-block"
-import { LoginForm } from "@/components/blocks/login-form"
-import { Menus } from "@/components/blocks/menus"
-import { ModalOverlays, PopoverOverlays } from "@/components/blocks/overlays"
-import { ToolbarBlock } from "@/components/blocks/toolbar-block"
-import ColorPickerCombinationDemo from "@/components/docs/colors/color-picker/color-picker-combination-demo"
-import SwitchDemo from "@/components/docs/controls/switch/switch-demo"
-import RangeCalendarControlledDemo from "@/components/docs/date-and-time/calendar/range-calendar-controlled-demo"
-import TagFieldDemo from "@/components/docs/forms/tag-field/tag-field-demo"
 import ComboBoxAvatarDemo from "@/components/docs/pickers/combo-box/combo-box-avatar-demo"
-import MultipleSelectDemo from "@/components/docs/pickers/multiple-select/multiple-select-demo"
-import { IconArrowRight, IconPackage } from "@intentui/icons"
 
+import { products } from "@/components/docs/collections/table/table-demo"
+import TagGroupDemo from "@/components/docs/collections/tag-group/tag-group-demo"
+import DatePickerDemo from "@/components/docs/date-and-time/date-picker/date-picker-demo"
+import DateRangePickerDemo from "@/components/docs/date-and-time/date-range-picker/date-range-picker-demo"
+import TextFieldDemo from "@/components/docs/forms/text-field/text-field-demo"
+import TextareaDemo from "@/components/docs/forms/textarea/textarea-demo"
+import PaginationDemo from "@/components/docs/navigation/pagination/pagination-demo"
+import ModalDemo from "@/components/docs/overlays/modal/modal-demo"
+import PopoverDemo from "@/components/docs/overlays/popover/popover-demo"
+import SheetDemo from "@/components/docs/overlays/sheet/sheet-demo"
+import SelectDemo from "@/components/docs/pickers/select/select-demo"
+import SelectSearchableDemo from "@/components/docs/pickers/select/select-searchable-demo"
 import { PageContainer } from "@/components/page-container"
 import { buttonStyles } from "@/components/ui/button"
-import { DatePicker } from "@/components/ui/date-picker"
-import { DateRangePicker } from "@/components/ui/date-range-picker"
-import { Heading } from "@/components/ui/heading"
+import { Card } from "@/components/ui/card"
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"
 import { Link } from "@/components/ui/link"
-import { Note } from "@/components/ui/note"
-import { Wrapper } from "./resources"
+import { Menu } from "@/components/ui/menu"
+import { Radio, RadioGroup } from "@/components/ui/radio"
+import { Table } from "@/components/ui/table"
+import { TimeField } from "@/components/ui/time-field"
+import { IconDotsVertical, IconPackage } from "@intentui/icons"
+import { Time } from "@internationalized/date"
+import { NumberFormatter } from "@internationalized/number"
+import { useState } from "react"
 
 export function Blocks() {
+  const [selectedRadio, setSelectedRadio] = useState("highSecurity")
   return (
     <PageContainer>
-      <section
-        id="blocks"
-        className="relative overflow-hidden rounded-2xl border bg-overlay p-0.5 pb-6 **:data-[slot=wrapper-card]:grid **:data-[slot=wrapper-card]:place-content-center sm:mb-12 sm:p-4 sm:pb-8"
-      >
-        <div className="absolute bottom-0 z-20 h-70 w-full bg-linear-to-t from-bg via-bg" />
-        <div className="flex items-center justify-between px-4 py-1.5 sm:mb-2 sm:p-0">
-          <Heading level={2} className="sm:text-lg">
-            At a Glance
-          </Heading>
-          <Link
-            href="/docs/2.x/components/buttons/button"
-            className={buttonStyles({
-              size: "small",
-              intent: "outline",
-              className: "-mr-3 sm:mr-0",
-            })}
-          >
-            Show More <IconArrowRight />
-          </Link>
-        </div>
-        <div className="space-y-1">
-          <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3">
-            <Wrapper>
-              <TagFieldDemo />
-            </Wrapper>
-            <Wrapper>
-              <ComboBoxAvatarDemo />
-            </Wrapper>
-            <Wrapper>
-              <MultipleSelectDemo />
-            </Wrapper>
-            <LoginForm />
-            <CheckRadioBlock />
-            <Wrapper>
-              <RangeCalendarControlledDemo />
-            </Wrapper>
-          </div>
-          <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="flex flex-col gap-y-1 lg:gap-y-1">
-              <ToolbarBlock />
-
-              <Wrapper>
-                <ColorPickerCombinationDemo />
-              </Wrapper>
-              <Buttons />
-              <Menus />
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Card className="[--card-spacing:theme(spacing.4)]">
+          <Card.Header title="Input" />
+          <Card.Content>
+            <div className="flex flex-col gap-y-4">
+              <TextFieldDemo />
+              <TextareaDemo />
+              <TagGroupDemo />
             </div>
-
-            <div>
-              <div className="grid grid-cols-1 gap-1">
-                <Wrapper className="grid gap-6 lg:px-0 lg:py-9">
-                  <DateRangePicker className="w-full sm:min-w-2xs" label="Reservations date" />
-                  <DatePicker className="w-full" label="Event date" />
-                </Wrapper>
-                <Wrapper className="p-4 py-2 sm:p-4 lg:p-5">
-                  <div className="space-y-2">
-                    <Note intent="danger">
-                      Complete your profile to get personalized recommendations.
-                    </Note>
-                    <Note intent="warning">
-                      Heads up! We'll be doing system maintenance this Sunday at 2 AM.
-                    </Note>
-                  </div>
-                </Wrapper>
+          </Card.Content>
+        </Card>
+        <Card className="[--card-spacing:theme(spacing.4)]">
+          <Card.Header title="Pickers" />
+          <Card.Content>
+            <div className="flex flex-col gap-y-4">
+              <SelectDemo />
+              <SelectSearchableDemo />
+              <ComboBoxAvatarDemo />
+            </div>
+          </Card.Content>
+        </Card>
+        <Card className="[--card-spacing:theme(spacing.4)]">
+          <Card.Header title="Date and Time" />
+          <Card.Content>
+            <div className="flex flex-col gap-y-4">
+              <DatePickerDemo />
+              <DateRangePickerDemo />
+              <div className="grid grid-cols-2 gap-4">
+                <TimeField defaultValue={new Time()} label="Start time" />
+                <TimeField defaultValue={new Time()} label="End time" />
               </div>
             </div>
-
-            <div className="grid grid-cols-1 gap-1">
-              <PopoverOverlays />
-              <Wrapper>
-                <SwitchDemo />
-              </Wrapper>
-              <ModalOverlays />
-            </div>
-          </div>
+          </Card.Content>
+        </Card>
+        <div className="flex flex-col gap-y-4">
+          <Card className="[--card-spacing:theme(spacing.4)]">
+            <Card.Header title="Dialog" />
+            <Card.Content>
+              <div className="flex flex-col gap-y-4">
+                <ModalDemo />
+                <SheetDemo />
+                <PopoverDemo />
+              </div>
+            </Card.Content>
+          </Card>
+          <Card className="[--card-spacing:theme(spacing.4)]">
+            {/*<Card.Header title="Control" />*/}
+            <Card.Content>
+              <RadioGroup
+                aria-labelledby="security-settings"
+                value={selectedRadio}
+                onChange={setSelectedRadio}
+              >
+                <h2 id="security-settings" className="sr-only">
+                  Security Settings
+                </h2>
+                <Radio value="highSecurity" description="Set security settings to high.">
+                  High Security
+                </Radio>
+                <CheckboxGroup
+                  aria-labelledby="notifications-preferences"
+                  defaultValue={["email"]}
+                  className="ml-4"
+                  isDisabled={selectedRadio !== "highSecurity"}
+                >
+                  <h2 id="notifications-preferences" className="sr-only">
+                    Notification Preferences
+                  </h2>
+                  <Checkbox value="email" description="Receive updates via email." isReadOnly>
+                    Email Notifications
+                  </Checkbox>
+                  <Checkbox value="sms" description="Receive updates via SMS.">
+                    SMS Notifications
+                  </Checkbox>
+                </CheckboxGroup>
+                <Radio value="allNotifications" description="Receive all notifications.">
+                  All Notifications
+                </Radio>
+                <Radio value="noNotifications" description="Do not receive any notifications." />
+              </RadioGroup>
+            </Card.Content>
+          </Card>
         </div>
-
-        <div className="-mt-10 relative z-30 flex items-center justify-center">
-          <Link className={buttonStyles()} href="/components">
-            <IconPackage /> Show More
-          </Link>
+        <div className="md:col-span-2">
+          <Card className="gap-y-0 [--card-spacing:theme(spacing.4)]">
+            <Card.Header className="pb-2" title="Table" />
+            <Card.Content>
+              <Table aria-label="Products">
+                <Table.Header>
+                  <Table.Column className="w-0">#</Table.Column>
+                  <Table.Column isRowHeader>Name</Table.Column>
+                  <Table.Column>Category</Table.Column>
+                  <Table.Column>Price</Table.Column>
+                  <Table.Column>Stock</Table.Column>
+                  <Table.Column />
+                </Table.Header>
+                <Table.Body items={products}>
+                  {(item) => (
+                    <Table.Row id={item.id}>
+                      <Table.Cell>{item.id}</Table.Cell>
+                      <Table.Cell>{item.name}</Table.Cell>
+                      <Table.Cell>{item.category}</Table.Cell>
+                      <Table.Cell>
+                        {new NumberFormatter("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        }).format(item.price)}
+                      </Table.Cell>
+                      <Table.Cell>{item.stock}</Table.Cell>
+                      <Table.Cell>
+                        <div className="flex justify-end">
+                          <Menu>
+                            <Menu.Trigger>
+                              <IconDotsVertical />
+                            </Menu.Trigger>
+                            <Menu.Content aria-label="Actions" placement="left top">
+                              <Menu.Item>View</Menu.Item>
+                              <Menu.Item>Edit</Menu.Item>
+                              <Menu.Separator />
+                              <Menu.Item isDanger>Delete</Menu.Item>
+                            </Menu.Content>
+                          </Menu>
+                        </div>
+                      </Table.Cell>
+                    </Table.Row>
+                  )}
+                </Table.Body>
+              </Table>
+            </Card.Content>
+            <Card.Footer>
+              <PaginationDemo />
+            </Card.Footer>
+          </Card>
         </div>
-      </section>
+      </div>
+
+      <div className="relative z-30 mt-10 flex items-center justify-center">
+        <Link className={buttonStyles({ intent: "outline" })} href="/components">
+          <IconPackage /> Show More
+        </Link>
+      </div>
     </PageContainer>
   )
 }

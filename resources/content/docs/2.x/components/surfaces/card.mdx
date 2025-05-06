@@ -40,3 +40,11 @@ Sometimes, you may only need a card header without wrapping container itself. Of
 ```
 
 For table docs, check out the [Table](/docs/components/collections/table) docs.
+
+## Adjust Padding
+
+The padding for all sections of the card—header, content, and footer—is controlled by a CSS variable defined on the card’s parent container. To update the padding for the entire card, simply set the variable via a class on the parent like this:
+
+```
+<Card className='[--card-spacing:theme(spacing.4)]'>
+```

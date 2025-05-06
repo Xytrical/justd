@@ -6,7 +6,7 @@ import { Popover } from "@/components/ui/popover"
 export default function PopoverDemo() {
   return (
     <Popover>
-      <Button>Forgot Password</Button>
+      <Button intent="outline">Forgot Password</Button>
       <Popover.Content className="sm:max-w-72">
         <Popover.Header>
           <Popover.Title>Email</Popover.Title>

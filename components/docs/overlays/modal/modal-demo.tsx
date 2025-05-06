@@ -8,7 +8,7 @@ import { TextField } from "@/components/ui/text-field"
 export default function ModalDemo() {
   return (
     <Modal>
-      <Button>Turn on 2FA</Button>
+      <Button intent="outline">Turn on 2FA</Button>
       <Modal.Content>
         <Modal.Header>
           <Modal.Title>Nice! Let's beef up your account.</Modal.Title>
