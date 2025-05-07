@@ -1,11 +1,15 @@
 import fs from "node:fs"
 import path from "node:path"
+import { makeRegistry } from "./make-registry"
 import { baseTheme } from "./styles/base-theme"
 import { blueDark, blueLight } from "./styles/blue"
 import { defaultDark, defaultLight } from "./styles/default"
 import { emeraldDark, emeraldLight } from "./styles/emerald"
 import { indigoDark, indigoLight } from "./styles/indigo"
 import { skyDark, skyLight } from "./styles/sky"
+
+// Make the registry to __registry__/generated.ts
+makeRegistry() // internal only
 
 const registryUrl = process.env.VERCEL_URL ? "https://intentui.com" : "http://localhost:3000"
 
@@ -212,13 +216,35 @@ const extractInternalDependencyPaths = (
 const generateComponentRegistry = () => {
   const registryJsonPath = "registry.json"
   const projectRoot = process.cwd()
+  const docsPath = "components/docs"
+
+  const blockSources = fs.readdirSync(docsPath, { withFileTypes: true }).flatMap((entry) =>
+    entry.isDirectory()
+      ? fs
+          .readdirSync(path.join(docsPath, entry.name), { withFileTypes: true })
+          .filter((dirent) => dirent.isDirectory())
+          .map((dirent) => ({
+            type: "block",
+            path: path.join(docsPath, entry.name, dirent.name),
+          }))
+      : [],
+  )
 
   const sources = [
+    ...blockSources,
+    { type: "block", path: "components/anatomies" },
     { type: "ui", path: "components/ui" },
-    { type: "block", path: "components/blocks" },
     { type: "lib", path: "lib" },
     { type: "hook", path: "hooks" },
   ]
+
+  // const sources = [
+  //   { type: "block", path: "components/docs/buttons/button" },
+  //   { type: "block", path: "components/docs/buttons/button" },
+  //   { type: "ui", path: "components/ui" },
+  //   { type: "lib", path: "lib" },
+  //   { type: "hook", path: "hooks" },
+  // ]
 
   const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []): string[] => {
     if (!fs.existsSync(dirPath)) {

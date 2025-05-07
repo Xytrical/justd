@@ -23,7 +23,7 @@ type SourceCodeProps = {
   ext?: string
 }
 
-const fetchRegistryFile = createFetchRegistryFile("/registry/ui")
+const fetchRegistryFile = createFetchRegistryFile("/r")
 
 export const SourceCode = ({ toShow, ...props }: SourceCodeProps) => {
   const [rawSourceCode, setRawSourceCode] = useState<string | null>(null)
@@ -46,7 +46,7 @@ export const SourceCode = ({ toShow, ...props }: SourceCodeProps) => {
   }, [rawSourceCode])
 
   React.useEffect(() => {
-    fetchRegistryFile(toShow).then(setRawSourceCode)
+    fetchRegistryFile(`ui-${toShow}`).then(setRawSourceCode)
   }, [toShow])
 
   if (!Component) {
