@@ -142,7 +142,6 @@ const extractExternalDependencies = (content: string): string[] => {
   const importRegex = /import(?: | .* from )['"]([^'"]+)['"]/g
   const dependencies = new Set<string>()
   let match: RegExpExecArray | null
-
   while (true) {
     match = importRegex.exec(content)
     if (match === null) {
@@ -172,46 +171,38 @@ const extractInternalDependencyPaths = (
   currentFilePath: string,
   projectRoot: string,
 ): string[] => {
-  const importRegex = /import .* from ['"](@\/[^'"]+)['"]/g
+  const importRegex = /import .* from ['"]([^'"]+)['"]/g
   const internalImportsRaw = new Set<string>()
   let match: RegExpExecArray | null
 
-  while (true) {
-    match = importRegex.exec(content)
-    if (match === null) {
-      break
-    }
-    const rawImport = match[1] // e.g., @/components/ui/button
-    if (typeof rawImport === "string") {
+  // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+  while ((match = importRegex.exec(content)) !== null) {
+    const rawImport = match[1]
+    if (rawImport?.startsWith("@/") || rawImport?.startsWith(".")) {
       internalImportsRaw.add(rawImport)
     }
   }
 
   const resolvedPaths = new Set<string>()
   for (const rawImport of internalImportsRaw) {
-    // Assuming @/ maps to project root
-    const relativeToRoot = rawImport.replace(/^@\//, "")
+    const basePath = rawImport.startsWith("@/")
+      ? path.resolve(projectRoot, rawImport.replace(/^@\//, ""))
+      : path.resolve(path.dirname(currentFilePath), rawImport)
+
     const potentialPaths = [
-      path.resolve(projectRoot, `${relativeToRoot}.ts`),
-      path.resolve(projectRoot, `${relativeToRoot}.tsx`),
-      path.resolve(projectRoot, `${relativeToRoot}/index.ts`),
-      path.resolve(projectRoot, `${relativeToRoot}/index.tsx`),
+      `${basePath}.ts`,
+      `${basePath}.tsx`,
+      path.join(basePath, "index.ts"),
+      path.join(basePath, "index.tsx"),
     ]
 
-    let foundPath: string | null = null
     for (const p of potentialPaths) {
       if (fs.existsSync(p)) {
         if (path.resolve(p) !== path.resolve(currentFilePath)) {
-          foundPath = path.resolve(p)
+          resolvedPaths.add(path.resolve(p))
           break
         }
       }
-    }
-
-    if (foundPath) {
-      resolvedPaths.add(foundPath)
-    } else {
-      // console.warn(`Could not resolve internal import '${rawImport}' from ${currentFilePath}`);
     }
   }
 
@@ -261,8 +252,8 @@ const generateComponentRegistry = () => {
       const relativeKey = path.relative(absoluteSourcePath, absoluteFilePath).replace(/\\/g, "/")
 
       const nameKey = `${type}-${relativeKey
-        .replace(/\.(tsx|ts)$/, "") // Remove .tsx or .ts extension
-        .replace(/\/index$/, "") // Remove trailing /index
+        .replace(/\.(tsx|ts)$/, "")
+        .replace(/\/index$/, "")
         .replace(/^$/, componentBaseName)}`
 
       if (!nameKey) {
@@ -278,7 +269,6 @@ const generateComponentRegistry = () => {
         absoluteFilePath,
         projectRoot,
       )
-
       let whatType: IntermediateRegistryItem["type"]
       switch (true) {
         case nameKey.startsWith("ui-"):
@@ -301,9 +291,8 @@ const generateComponentRegistry = () => {
           if (type === "ui") whatType = "registry:component"
           else if (type === "block") whatType = "registry:block"
           else if (type === "lib") whatType = "registry:lib"
-          else whatType = "registry:file" // Generic fallback
+          else whatType = "registry:file"
       }
-
       const item: IntermediateRegistryItem = {
         filePath: absoluteFilePath,
         name: nameKey,
