@@ -56,7 +56,7 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
               <SidebarLabel>Blog</SidebarLabel>
             </SidebarItem>
           </SidebarSection>
-          <SidebarSection title="Last 5 Articles">
+          <SidebarSection label="Last 5 Articles">
             {articles.map((item) => (
               <SidebarItem key={item.href}>
                 {({ isCollapsed }) => (
