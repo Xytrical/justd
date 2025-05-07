@@ -65,7 +65,7 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
       </SidebarHeader>
       <SidebarContent>
         <SidebarSectionGroup>
-          <SidebarSection title="Overview">
+          <SidebarSection label="Overview">
             <SidebarItem tooltip="Overview" isCurrent href="#">
               <IconDashboard />
               <SidebarLabel>Overview</SidebarLabel>

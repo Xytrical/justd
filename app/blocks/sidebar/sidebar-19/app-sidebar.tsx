@@ -55,7 +55,7 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
           </SidebarItem>
         </SidebarSection>
         <SidebarSeparator />
-        <SidebarSection title="You">
+        <SidebarSection label="You">
           <SidebarItem>
             <IconRotate2Left /> <SidebarLabel>History</SidebarLabel>
           </SidebarItem>

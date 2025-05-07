@@ -376,10 +376,13 @@ const SidebarSectionGroup = ({ className, ...props }: React.ComponentProps<"sect
   )
 }
 
+interface SidebarSectionProps extends React.ComponentProps<"div"> {
+  label?: string
+}
 const SidebarSection = ({
   className,
   ...props
-}: React.ComponentProps<"div"> & { title?: string }) => {
+}: SidebarSectionProps) => {
   const { state } = useSidebar()
   return (
     <div
@@ -391,9 +394,9 @@ const SidebarSection = ({
       )}
       {...props}
     >
-      {state !== "collapsed" && "title" in props && (
+      {state !== "collapsed" && "label" in props && (
         <Header className="group-data-[sidebar-collapsible=dock]/sidebar-container:-mt-8 mb-1 flex shrink-0 items-center rounded-md px-2.5 font-medium text-sidebar-fg/70 text-xs outline-none ring-sidebar-ring transition-[margin,opa] duration-200 ease-linear focus-visible:ring-2 *:data-[slot=icon]:size-4 *:data-[slot=icon]:shrink-0 group-data-[sidebar-collapsible=dock]/sidebar-container:opacity-0">
-          {props.title}
+          {props.label}
         </Header>
       )}
       <div className="grid grid-cols-[auto_1fr] gap-y-0.5">{props.children}</div>
@@ -762,6 +765,7 @@ const SidebarNav = ({ isSticky = false, className, ...props }: SidebarNavProps) 
 export type {
   SidebarProviderProps,
   SidebarProps,
+  SidebarSectionProps,
   SidebarItemProps,
   SidebarNavProps,
   SidebarDisclosureGroupProps,
