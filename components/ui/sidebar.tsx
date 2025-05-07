@@ -379,10 +379,7 @@ const SidebarSectionGroup = ({ className, ...props }: React.ComponentProps<"sect
 interface SidebarSectionProps extends React.ComponentProps<"div"> {
   label?: string
 }
-const SidebarSection = ({
-  className,
-  ...props
-}: SidebarSectionProps) => {
+const SidebarSection = ({ className, ...props }: SidebarSectionProps) => {
   const { state } = useSidebar()
   return (
     <div

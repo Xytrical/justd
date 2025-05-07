@@ -46,7 +46,11 @@ import { twMerge } from "tailwind-merge"
 
 const registry = generated as Record<string, RegistryItem>
 interface FolderStructure {
-  [key: string]: string | FolderStructure
+  components: {
+    ui?: Record<string, string>
+    [key: string]: any
+  }
+  [key: string]: any
 }
 
 type Props = {
@@ -70,7 +74,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
 
   useEffect(() => {
     if (!registryKey) return
-    fetchCode(registryKey).then((fetchedCode) => {
+    fetchCode(registryKey, folders).then((fetchedCode) => {
       const updatedCode = fetchedCode
         .replace(
           /import\s+AppSidebarNav\s+from\s+["']..\/app-sidebar-nav["']/g,
@@ -90,7 +94,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
         )
       setCode(updatedCode)
     })
-  }, [registryKey])
+  }, [registryKey, folders])
 
   const renderTree = useCallback(
     (tree: FolderStructure, nestedLevel = 1) =>
@@ -322,8 +326,11 @@ const ToggleDevice = (props: React.ComponentProps<typeof Toggle>) => {
   )
 }
 
-const fetchCode = cache(async (registryKey: string) => {
-  const response = await fetch(`/registry/${registryKey}.json`)
+const fetchCode = cache(async (registryKey: string, folders: FolderStructure) => {
+  const uiValues = Object.values(folders.components?.ui ?? {})
+  const isUI = uiValues.includes(registryKey)
+
+  const response = await fetch(`${isUI ? "/r" : "/registry"}/${registryKey}.json`)
   const registryEntry = await response.json()
   return registryEntry?.files?.[0]?.content || ""
 })
@@ -332,7 +339,6 @@ const IframeComponent = ({ style, src, ...props }: React.ComponentPropsWithoutRe
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [isInView, setIsInView] = useState(false)
   const [height, setHeight] = useState("0px")
-
   useLayoutEffect(() => {
     const iframe = iframeRef.current
     if (!iframe) return

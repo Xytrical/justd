@@ -12,7 +12,7 @@ type RegistryItem = {
   componentPath: string
 }
 
-const generateComponentRegistry = () => {
+export const makeRegistry = () => {
   const outputBaseDir = "public/registry"
   const generatedFilePath = "__registry__/generated.ts"
 
@@ -77,12 +77,14 @@ const generateComponentRegistry = () => {
         componentPath: relativePath,
       }
 
-      const jsonOutputPath = path.join(outputBaseDir, `${key}.json`)
-      const jsonDir = path.dirname(jsonOutputPath)
-      if (!fs.existsSync(jsonDir)) {
-        fs.mkdirSync(jsonDir, { recursive: true })
+      if (!["demo", "ui"].includes(type)) {
+        const jsonOutputPath = path.join(outputBaseDir, `${key}.json`)
+        const jsonDir = path.dirname(jsonOutputPath)
+        if (!fs.existsSync(jsonDir)) {
+          fs.mkdirSync(jsonDir, { recursive: true })
+        }
+        fs.writeFileSync(jsonOutputPath, JSON.stringify(registryItem, null, 2))
       }
-      fs.writeFileSync(jsonOutputPath, JSON.stringify(registryItem, null, 2))
 
       if (type !== "anatomies") {
         registryEntries.push(`
@@ -132,5 +134,3 @@ export default registry;
 
   console.info("Registry generation complete.")
 }
-
-generateComponentRegistry()

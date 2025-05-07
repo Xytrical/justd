@@ -5,7 +5,7 @@ import Image from "next/image"
 
 export default function CarouselDemo() {
   return (
-    <Carousel className="w-full max-w-xs **:data-[slot=card]:flex **:data-[slot=card]:h-56 **:data-[slot=card]:flex-col **:data-[slot=card]:overflow-hidden">
+    <Carousel className="w-full max-w-xs">
       <Carousel.Content>
         <Carousel.Item className="basis-1/2">
           <Image

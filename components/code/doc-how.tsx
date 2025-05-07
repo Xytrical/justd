@@ -25,7 +25,7 @@ type HowProps = {
   src?: string
 }
 
-const fetchRegistryFile = createFetchRegistryFile("/registry/demo")
+const fetchRegistryFile = createFetchRegistryFile("/r")
 
 export const DocHow = ({
   toUse,
@@ -64,7 +64,8 @@ export const DocHow = ({
   }, [rawSourceCode])
 
   React.useEffect(() => {
-    fetchRegistryFile(toUse).then(setRawSourceCode)
+    const name = `block-${toUse?.split("/").pop()}`
+    fetchRegistryFile(name).then(setRawSourceCode)
   }, [toUse])
 
   if (!Component) {
