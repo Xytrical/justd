@@ -12,10 +12,16 @@ import {
   IconBrandDiscord,
   IconBrandGithub,
   IconBrandIntentui,
-  IconBrandX, IconColorPalette, IconColors, IconCube,
+  IconBrandX,
+  IconColorPalette,
+  IconColors,
   IconHamburger,
-  IconHome, IconNotes, IconPackage,
-  IconSearch, IconWindow, IconWindowVisit,
+  IconHome,
+  IconNotes,
+  IconPackage,
+  IconSearch,
+  IconWindow,
+  IconWindowVisit,
 } from "@intentui/icons"
 import { useState } from "react"
 import { Button } from "react-aria-components"
@@ -100,7 +106,7 @@ export function Navbar() {
                     href={menu.href}
                     target={menu.external ? "_blank" : undefined}
                   >
-                    {menu.icon && <menu.icon/>}
+                    {menu.icon && <menu.icon />}
                     <Menu.Label>{menu.label}</Menu.Label>
                     {menu.external && <IconArrowUpRight />}
                   </Menu.Item>
@@ -126,9 +132,9 @@ function NavLink({ ...props }: React.ComponentProps<typeof Link>) {
 export const menus = [
   { href: "/docs/2.x/getting-started/introduction", label: "Docs", icon: IconNotes },
   { href: "/components", label: "Components", icon: IconPackage },
-  { href: "/themes", label: "Themes", icon:IconColors },
-  { href: "/icons", label: "Icons", icon:IconArrowUp },
-  { href: "/colors", label: "Colors", icon:IconColorPalette },
+  { href: "/themes", label: "Themes", icon: IconColors },
+  { href: "/icons", label: "Icons", icon: IconArrowUp },
+  { href: "/colors", label: "Colors", icon: IconColorPalette },
   { href: "/blocks", label: "Blocks", icon: IconWindow },
   {
     href: "https://blocks.intentui.com",
@@ -136,5 +142,10 @@ export const menus = [
     icon: IconBrandIntentui,
     external: true,
   },
-  { href: "https://blocks.intentui.com/templates", label: "Templates", icon: IconWindowVisit, external: true },
+  {
+    href: "https://blocks.intentui.com/templates",
+    label: "Templates",
+    icon: IconWindowVisit,
+    external: true,
+  },
 ]

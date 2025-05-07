@@ -22,7 +22,7 @@ import { Menu } from "@/components/ui/menu"
 import { Radio, RadioGroup } from "@/components/ui/radio"
 import { Table } from "@/components/ui/table"
 import { TimeField } from "@/components/ui/time-field"
-import { IconDotsVertical, IconPackage } from "@intentui/icons"
+import { IconArrowRight, IconArrowUpRight, IconDotsVertical, IconPackage } from "@intentui/icons"
 import { Time } from "@internationalized/date"
 import { NumberFormatter } from "@internationalized/number"
 import { useState } from "react"
@@ -31,7 +31,7 @@ export function Blocks() {
   const [selectedRadio, setSelectedRadio] = useState("highSecurity")
   return (
     <PageContainer>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid mask-b-from-100% md:mask-b-from-60% lg:mask-b-from-70% grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card className="[--card-spacing:theme(spacing.4)]">
           <Card.Header title="Input" />
           <Card.Content>
@@ -167,9 +167,10 @@ export function Blocks() {
         </div>
       </div>
 
-      <div className="relative z-30 mt-10 flex items-center justify-center">
-        <Link className={buttonStyles({ intent: "outline" })} href="/components">
-          <IconPackage /> Show More
+      <div className="relative z-30 mt-10 md:-mt-10 flex items-center justify-center">
+        <Link className={buttonStyles({ intent: "outline", className: 'backdrop-blur-2xl' })} href="/components">
+          Show More
+          <IconArrowUpRight/>
         </Link>
       </div>
     </PageContainer>
