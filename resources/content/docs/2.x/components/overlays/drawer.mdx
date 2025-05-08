@@ -6,37 +6,48 @@ published: true
 references: ["https://react-spectrum.adobe.com/react-aria/Modal.html#props", "https://motion.dev/animate-presence"]
 ---
 
-
 ## Basic
-A slide-in overlay for extra content or options, anchored to the screen edge for quick access! Originally coded by **Devon Govett**. Check out his [tweet](https://x.com/devongovett/status/1674470185783402496) for more details. Want to improve it, like making the drawer's height adapt to the content? Feel free to drop a [PR](https://github.com/irsyadadl/intentui).
+A slide-in overlay for additional content or actions, anchored to the screen edge for quick access. Originally built by **Devon Govett** — check out [his tweet](https://x.com/devongovett/status/1674470185783402496) for more insights.
+Want to enhance it, like making the drawer height adapt to its content? Contributions are welcome — send a [PR](https://github.com/irsyadadl/intentui)!
+
 <How toUse="overlays/drawer/drawer-basic-demo" />
 
 ## Installation
-<Installation options={{ isComponent: true }} items={['drawer']}/>
 
+<Installation options={{ isComponent: true }} items={['drawer']} />
 
 ## Composed Components
-<Composed components={['button', 'dialog']}/>
+
+<Composed components={['button', 'dialog']} />
 
 ## Manual Installation
-<Installation options={{ isManual: true }} items={['react-aria-components', 'motion']}/>
-<SourceCode toShow='drawer'/>
+
+<Installation options={{ isManual: true }} items={['react-aria-components', 'motion']} />
+<SourceCode toShow="drawer" />
 
 ## Anatomy
-<Anatomy show='drawer-anatomy'/>
+<Anatomy show="drawer-anatomy" />
 
-## Drawer Controlled
-You can control the drawer's state programmatically.
+## Side
+Use the `side` prop to change where the drawer appears. The default is `left`, but you can also use `right`, `top`, or `bottom`.
+<How toUse="overlays/drawer/drawer-side-demo" />
+
+## Float
+To make the drawer float with spacing around it, set the `isFloat` prop to `true`. The default value is `false`.
+<How toUse="overlays/drawer/drawer-float-demo" />
+
+## Controlled
+Manage the drawer’s open and close state programmatically.
 <How toUse="overlays/drawer/drawer-controlled-demo" />
 
 ## Without Notch
-Disable the notch on the drawer by setting the `withNotch` prop to `false`.
+Remove the default notch styling by setting the `notch` prop to `false`.
 <How toUse="overlays/drawer/drawer-without-notch-demo" />
 
-## Drawer Sticky
-The drawer also supports long content. Try it out!
+## Sticky
+The drawer handles long content gracefully. Try scrolling within it.
 <How toUse="overlays/drawer/drawer-sticky-demo" />
 
-## Nested Drawer
-You can nest drawers inside each other. Try it out!
+## Nested
+Drawers can be nested inside each other for advanced layouts.
 <How toUse="overlays/drawer/drawer-nested-demo" />

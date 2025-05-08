@@ -123,7 +123,7 @@ export function Navbar() {
 function NavLink({ ...props }: React.ComponentProps<typeof Link>) {
   return (
     <Link
-      className="flex items-center gap-x-2 rounded-full px-2.5 py-1 text-muted-fg text-sm tracking-tight outline-hidden transition duration-200 hover:text-white hover:shadow-xs focus-visible:ring-2"
+      className="flex items-center gap-x-2 rounded-full px-2.5 py-1 text-muted-fg text-sm tracking-tight outline-hidden transition duration-200 hover:text-fg focus-visible:ring-2"
       {...props}
     />
   )
