@@ -87,11 +87,11 @@ export function EditorText({ source }: Props) {
                 <Tab
                   className={(values) =>
                     twMerge(
-                      "flex cursor-pointer items-center gap-x-1.5 whitespace-nowrap p-3 font-mono text-muted-fg text-xs tracking-tight",
+                      "flex cursor-pointer items-center gap-x-1.5 whitespace-nowrap px-2 py-2.5 font-mono text-muted-fg text-xs tracking-tight",
                       "**:data-[slot=icon]:-ml-0.5 border-transparent border-x outline-hidden first:border-l-0 **:data-[slot=icon]:size-4 **:data-[slot=icon]:shrink-0",
                       (values.isSelected || values.isFocused || values.isFocusVisible) &&
-                        "border-input bg-secondary text-secondary-fg dark:bg-muted",
-                      values.isHovered && "bg-secondary text-secondary-fg dark:bg-muted",
+                        "border-input bg-secondary/50 text-secondary-fg dark:bg-muted",
+                      values.isHovered && "bg-secondary/70 text-secondary-fg dark:bg-muted",
                     )
                   }
                   key={key}

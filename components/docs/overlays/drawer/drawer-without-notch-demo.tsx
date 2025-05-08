@@ -1,13 +1,13 @@
 "use client"
 
-import { buttonStyles } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Drawer } from "@/components/ui/drawer"
 
 export default function DrawerWithoutNotchDemo() {
   return (
     <Drawer>
-      <Drawer.Trigger className={buttonStyles({ intent: "outline" })}>Open</Drawer.Trigger>
-      <Drawer.Content withNotch={false}>
+      <Button intent="outline">Open</Button>
+      <Drawer.Content notch={false}>
         <Drawer.Header>
           <Drawer.Title>The Beatles</Drawer.Title>
           <Drawer.Description>

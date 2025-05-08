@@ -22,27 +22,27 @@ import {
 import { twJoin, twMerge } from "tailwind-merge"
 import { Button, type ButtonProps } from "./button"
 
-const Modal = motion.create(ModalPrimitive)
-const Overlay = motion.create(ModalOverlay)
+const DrawerRoot = motion.create(ModalPrimitive)
+const DrawerOverlay = motion.create(ModalOverlay)
 
 const Drawer = (props: DialogTriggerProps) => <DialogTrigger {...props} />
 
 interface DrawerContentProps
   extends Omit<ModalOverlayProps, "className" | "children" | "isDismissable">,
     Pick<DialogProps, "aria-label" | "aria-labelledby" | "role" | "children" | "className"> {
-  isFloating?: boolean
+  isFloat?: boolean
   isBlurred?: boolean
   className?: string
   style?: React.CSSProperties
   side?: "top" | "bottom" | "left" | "right"
-  withNotch?: boolean
+  notch?: boolean
 }
 
 const DrawerContent = ({
   side = "bottom",
-  isFloating = false,
+  isFloat = false,
   isBlurred = true,
-  withNotch = true,
+  notch = true,
   children,
   className,
   ...props
@@ -52,53 +52,41 @@ const DrawerContent = ({
   return (
     <AnimatePresence>
       {(props?.isOpen || state?.isOpen) && (
-        <Overlay
+        <DrawerOverlay
           isDismissable
           isOpen={props?.isOpen || state?.isOpen}
           onOpenChange={props?.onOpenChange || state?.setOpen}
-          initial={{ backgroundColor: "rgba(0, 0, 0, 0)", backdropFilter: "blur(0px)" }}
-          animate={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            backdropFilter: isBlurred ? "blur(4px)" : "blur(0px)",
-          }}
-          exit={{ backgroundColor: "rgba(0, 0, 0, 0)", backdropFilter: "blur(0px)" }}
+          animate={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+          exit={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
           className="fixed inset-0 z-50 will-change-auto [--visual-viewport-vertical-padding:32px]"
         >
           {({ state }) => (
-            <Modal
+            <DrawerRoot
               className={twJoin(
-                "fixed max-h-full touch-none overflow-hidden bg-bg align-middle text-fg shadow-sm will-change-transform",
+                "fixed max-h-full touch-none overflow-hidden bg-bg align-middle text-fg ring ring-input will-change-transform",
                 side === "top" &&
-                  `${
-                    isFloating
-                      ? "inset-x-2 top-2 rounded-lg border"
-                      : "inset-x-0 top-0 rounded-b-2xl border-b"
-                  }`,
+                  (isFloat ? "inset-x-2 top-2 rounded-lg" : "inset-x-0 top-0 rounded-b-2xl"),
                 side === "right" &&
-                  `w-full max-w-xs overflow-y-auto **:[[slot=header]]:text-left ${
-                    isFloating
-                      ? "inset-y-2 right-2 rounded-lg border"
-                      : "inset-y-0 right-0 h-auto border-l"
-                  }`,
+                  [
+                    "w-full max-w-xs overflow-y-auto",
+                    "**:[[slot=header]]:text-left",
+                    isFloat ? "inset-y-2 right-2 rounded-lg" : "inset-y-0 right-0 h-auto",
+                  ].join(" "),
                 side === "bottom" &&
-                  `${
-                    isFloating
-                      ? "inset-x-2 bottom-2 rounded-lg border"
-                      : "inset-x-0 bottom-0 rounded-t-2xl border-t"
-                  }`,
+                  (isFloat ? "inset-x-2 bottom-2 rounded-lg" : "inset-x-0 bottom-0 rounded-t-2xl"),
                 side === "left" &&
-                  `w-full max-w-xs overflow-y-auto **:[[slot=header]]:text-left ${
-                    isFloating
-                      ? "inset-y-2 left-2 rounded-lg border"
-                      : "inset-y-0 left-0 h-auto border-r"
-                  }`,
+                  [
+                    "w-full max-w-xs overflow-y-auto",
+                    "**:[[slot=header]]:text-left",
+                    isFloat ? "inset-y-2 left-2 rounded-lg" : "inset-y-0 left-0 h-auto",
+                  ].join(" "),
                 className,
               )}
+              animate={{ x: 0, y: 0 }}
               initial={{
                 x: side === "left" ? "-100%" : side === "right" ? "100%" : 0,
                 y: side === "top" ? "-100%" : side === "bottom" ? "100%" : 0,
               }}
-              animate={{ x: 0, y: 0 }}
               exit={{
                 x: side === "left" ? "-100%" : side === "right" ? "100%" : 0,
                 y: side === "top" ? "-100%" : side === "bottom" ? "100%" : 0,
@@ -140,17 +128,17 @@ const DrawerContent = ({
                     : "h-full",
                 )}
               >
-                {withNotch && side === "bottom" && (
+                {notch && side === "bottom" && (
                   <div className="notch sticky top-0 mx-auto mt-2.5 h-1.5 w-10 shrink-0 touch-pan-y rounded-full bg-fg/20" />
                 )}
                 {children as React.ReactNode}
-                {withNotch && side === "top" && (
+                {notch && side === "top" && (
                   <div className="notch sticky bottom-0 mx-auto mb-2.5 h-1.5 w-10 shrink-0 touch-pan-y rounded-full bg-fg/20" />
                 )}
               </Dialog>
-            </Modal>
+            </DrawerRoot>
           )}
-        </Overlay>
+        </DrawerOverlay>
       )}
     </AnimatePresence>
   )
