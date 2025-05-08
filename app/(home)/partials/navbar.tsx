@@ -52,26 +52,26 @@ export function Navbar() {
           <Button
             onPress={() => setOpen(true)}
             aria-label="Search docs"
-            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <IconSearch />
           </Button>
           <Link
-            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
             href="https://blocks.intentui.com"
             target="_blank"
           >
             <IconBrandIntentui />
           </Link>
           <Link
-            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
             href={siteConfig.links.twitter}
             target="_blank"
           >
             <IconBrandX />
           </Link>
           <Link
-            className="p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="p-2 text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
             href={siteConfig.discord}
             target="_blank"
           >
@@ -91,7 +91,7 @@ export function Navbar() {
             <Menu>
               <Button
                 aria-label="Search docs"
-                className="-ml-2 p-2 text-muted-fg outline-hidden hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="-ml-2 p-2 text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <IconHamburger className="size-5" />
               </Button>
