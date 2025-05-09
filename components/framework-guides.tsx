@@ -99,11 +99,12 @@ export function FrameworkGuides() {
         <Choicebox.Item
           href={item.href}
           id={item.name}
-          icon={item.logo}
           textValue={item.name}
-          description={item.description}
-          title={item.name}
-        />
+        >
+          <item.logo/>
+          <Choicebox.Label>{item.name}</Choicebox.Label>
+          <Choicebox.Description>{item.description}</Choicebox.Description>
+        </Choicebox.Item>
       )}
     </Choicebox>
   )

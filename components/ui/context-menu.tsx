@@ -96,7 +96,7 @@ const ContextMenuContent = <T extends object>(props: ContextMenuContentProps<T>)
 
 const ContextMenuItem = Menu.Item
 const ContextMenuSeparator = Menu.Separator
-const ContextMenuItemDetails = Menu.ItemDetails
+const ContextMenuDescription = Menu.Description
 const ContextMenuSection = Menu.Section
 const ContextMenuHeader = Menu.Header
 const ContextMenuKeyboard = Menu.Keyboard
@@ -107,7 +107,7 @@ ContextMenu.Content = ContextMenuContent
 ContextMenu.Item = ContextMenuItem
 ContextMenu.Label = ContextMenuLabel
 ContextMenu.Separator = ContextMenuSeparator
-ContextMenu.ItemDetails = ContextMenuItemDetails
+ContextMenu.Description = ContextMenuDescription
 ContextMenu.Section = ContextMenuSection
 ContextMenu.Header = ContextMenuHeader
 ContextMenu.Keyboard = ContextMenuKeyboard

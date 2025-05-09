@@ -11,7 +11,8 @@ export default function ContextMenuItemDetailsDemo() {
       <ContextMenu.Content items={roles}>
         {(item) => (
           <ContextMenu.Item id={item.id} textValue={item.name}>
-            <ContextMenu.ItemDetails label={item.name} description={item.description} />
+            <ContextMenu.Label>{item.name}</ContextMenu.Label>
+            <ContextMenu.Description>{item.description}</ContextMenu.Description>
           </ContextMenu.Item>
         )}
       </ContextMenu.Content>

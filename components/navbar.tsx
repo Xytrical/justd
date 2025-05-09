@@ -102,7 +102,7 @@ export function Navbar() {
                           <div className="grid size-8 shrink-0 place-content-center rounded-md bg-secondary/40 ring-1 ring-fg/10">
                             {item.icon}
                           </div>
-                          <Menu.ItemDetails>
+                          <div className='flex flex-col'>
                             <span className="font-medium sm:text-sm">
                               {item.label}{" "}
                               {item.badge && (
@@ -118,7 +118,7 @@ export function Navbar() {
                             <span className="-mt-0.5 block text-muted-fg text-xs">
                               {item.description}
                             </span>
-                          </Menu.ItemDetails>
+                          </div>
                         </Menu.Item>
                       )}
                     </Menu.Content>
