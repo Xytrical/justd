@@ -5,6 +5,9 @@ published: 2025-05-10
 author: irsyadadl
 ---
 
+## Checkbox Icon
+The checkbox icon now uses `size-3.5` instead of `size-4`, and includes a new `data-slot="checkbox-indicator"` attribute to clearly identify the indicator element.
+
 
 ## Choicebox Revamp
 Previously, you might have defined your items like this:
@@ -38,6 +41,7 @@ You can still use `label` and `description` directly like before. But with this 
   <Choicebox.Description>{item.description}</Choicebox.Description>
 </Choicebox.Item>
 ```
+Another design improvement is that Choicebox now uses `grid-cols-subgrid` to ensure content alignment when `columns={1}` is set.
 
 ## Dropdown Description
 
@@ -45,7 +49,7 @@ A new child component has been added to `Dropdown` called `DropdownDescription`.
 
 We introduced this to make it easier to customize the dropdown content. For example, you can now include icons or any other elements alongside the description.
 
-```tsx
+```
 import { IconMinus } from "@intentui/icons"
 
 <DropdownItem>
