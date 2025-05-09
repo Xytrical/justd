@@ -1,19 +1,20 @@
 "use client"
 
-import type { GridListItemProps, GridListProps } from "react-aria-components"
-import { GridList, GridListItem, composeRenderProps } from "react-aria-components"
+import type { GridListItemProps, GridListProps, TextProps } from "react-aria-components"
+import { GridList, GridListItem, Text, composeRenderProps } from "react-aria-components"
 import type { VariantProps } from "tailwind-variants"
 import { tv } from "tailwind-variants"
 
 import { focusStyles } from "@/lib/primitive"
+import { createContext, use } from "react"
+import { twJoin, twMerge } from "tailwind-merge"
 import { Checkbox } from "./checkbox"
-import { Description, Label } from "./field"
 
 const choiceboxStyles = tv({
   base: "grid",
   variants: {
     columns: {
-      1: "sm:grid-cols-1",
+      1: "col-span-full grid-cols-[auto_1fr]",
       2: "sm:grid-cols-2",
       3: "sm:grid-cols-3",
       4: "sm:grid-cols-4",
@@ -41,6 +42,10 @@ const choiceboxStyles = tv({
   ],
 })
 
+const ChoiceboxContext = createContext<{ columns?: number; gap?: number }>({})
+
+const useChoiceboxContext = () => use(ChoiceboxContext)
+
 interface ChoiceboxProps<T extends object>
   extends GridListProps<T>,
     VariantProps<typeof choiceboxStyles> {
@@ -55,52 +60,59 @@ const Choicebox = <T extends object>({
   ...props
 }: ChoiceboxProps<T>) => {
   return (
-    <GridList
-      layout={columns === 1 ? "stack" : "grid"}
-      selectionMode={selectionMode}
-      className={choiceboxStyles({
-        columns,
-        gap,
-        className,
-      })}
-      {...props}
-    />
+    <ChoiceboxContext.Provider value={{ columns, gap }}>
+      <GridList
+        layout={columns === 1 ? "stack" : "grid"}
+        selectionMode={selectionMode}
+        className={choiceboxStyles({
+          columns,
+          gap,
+          className,
+        })}
+        {...props}
+      />
+    </ChoiceboxContext.Provider>
   )
 }
 
 const choiceboxItemStyles = tv({
   extend: focusStyles,
   base: [
-    "bg-bg [--choicebox-fg:var(--color-primary)] [--choicebox:color-mix(in_oklab,var(--color-primary)_4%,white_96%)]",
+    "group/choicebox-item relative bg-bg text-sm [--choicebox-fg:var(--color-primary)] [--choicebox:color-mix(in_oklab,var(--color-primary)_4%,white_96%)]",
     "[--choicebox-selected-hovered:color-mix(in_oklab,var(--color-primary)_15%,white_85%)]",
     "dark:[--choicebox-selected-hovered:color-mix(in_oklab,var(--color-primary)_25%,black_75%)]",
     "dark:[--choicebox-fg:color-mix(in_oklab,var(--color-primary)_45%,white_55%)] dark:[--choicebox:color-mix(in_oklab,var(--color-primary)_20%,black_70%)]",
-    "inset-ring inset-ring-border cursor-pointer rounded-lg p-4 [&_[slot=title]]:font-medium",
-    "**:data-[slot=choicebox-icon]:size-5 **:data-[slot=choicebox-icon]:shrink-0 **:data-[slot=choicebox-icon]:text-current/60 selected:**:data-[slot=choicebox-icon]:text-current/90",
+    "inset-ring inset-ring-border cursor-pointer rounded-lg p-4 **:data-[slot=label]:font-medium",
+    "**:data-[slot=avatar]:*:mr-2 **:data-[slot=avatar]:*:size-5 **:data-[slot=avatar]:size-5 **:data-[slot=avatar]:shrink-0",
+    "**:data-[slot=icon]:mr-2 **:data-[slot=icon]:size-4 **:data-[slot=icon]:shrink-0",
+    "grid grid-cols-[auto_1fr_1.5rem_0.5rem_auto] supports-[grid-template-columns:subgrid]:grid-cols-subgrid",
   ],
   variants: {
+    isOneColumn: {
+      true: "col-span-full",
+    },
     init: {
       true: [
         "bg-(--choicebox) text-(--choicebox-fg)",
         "inset-ring-ring/70 z-20 hover:bg-(--choicebox-selected-hovered)",
-        "[&_[slot=title]]:text-(--choicebox-fg)",
-        "[&_[slot=description]]:text-(--choicebox-fg)",
+        "**:data-[slot=label]:text-(--choicebox-fg)",
+        "**:[[slot=description]]:text-(--choicebox-fg)",
       ],
     },
     isDisabled: {
-      true: "z-10 cursor-default opacity-50 forced-colors:text-[GrayText] [&_[slot=description]]:text-muted-fg/70 [&_[slot=title]]:text-muted-fg",
+      true: "z-10 cursor-default opacity-50 **:data-[slot=label]:text-muted-fg forced-colors:text-[GrayText] **:[[slot=description]]:text-muted-fg/70",
     },
   },
 })
 
 interface ChoiceboxItemProps extends GridListItemProps, VariantProps<typeof choiceboxItemStyles> {
-  title?: string
+  label?: string
   description?: string
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
 }
 
-const ChoiceboxItem = ({ icon: Icon, className, ...props }: ChoiceboxItemProps) => {
-  const textValue = props.title ?? props.textValue
+const ChoiceboxItem = ({ className, children, ...props }: ChoiceboxItemProps) => {
+  const textValue = props.textValue || (typeof children === "string" ? children : undefined)
+  const { columns } = useChoiceboxContext()
   return (
     <GridListItem
       textValue={textValue}
@@ -109,26 +121,26 @@ const ChoiceboxItem = ({ icon: Icon, className, ...props }: ChoiceboxItemProps) 
       className={composeRenderProps(className, (className, renderProps) =>
         choiceboxItemStyles({
           ...renderProps,
+          isOneColumn: columns === 1,
           init: renderProps.isSelected || renderProps.isHovered || renderProps.isFocusVisible,
           className,
         }),
       )}
     >
       {(values) => (
-        <div className="flex w-full items-center justify-between gap-2">
-          <div className="flex gap-x-2.5">
-            {Icon && <Icon data-slot="choicebox-icon" />}
-            <div className="flex flex-col gap-y-1 pr-8">
-              <Label slot="title" className="text-sm/4" htmlFor={textValue}>
-                {props.title}
-              </Label>
-              {props.description && (
-                <Description className="text-sm/5">{props.description}</Description>
-              )}
-            </div>
-          </div>
+        <div
+          className={twJoin(
+            "col-span-full grid",
+            columns === 1 ? "grid-cols-subgrid" : "grid-cols-[auto_1fr]",
+          )}
+        >
+          {props.label && <ChoiceboxLabel>{props.label}</ChoiceboxLabel>}
+          {props.description && <ChoiceboxDescription>{props.description}</ChoiceboxDescription>}
+          {typeof children === "function" ? children(values) : children}
           {values.selectionMode === "multiple" && values.selectionBehavior === "toggle" && (
-            <Checkbox slot="selection" />
+            <div className="absolute top-0 right-0 px-2 pt-4">
+              <Checkbox slot="selection" />
+            </div>
           )}
         </div>
       )}
@@ -136,7 +148,41 @@ const ChoiceboxItem = ({ icon: Icon, className, ...props }: ChoiceboxItemProps) 
   )
 }
 
+interface ChoiceboxLabelProps extends TextProps {
+  ref?: React.Ref<HTMLDivElement>
+}
+
+const ChoiceboxLabel = ({ className, ref, ...props }: ChoiceboxLabelProps) => {
+  return (
+    <Text
+      data-slot="label"
+      ref={ref}
+      className={twMerge(
+        "col-start-2 group-has-data-[slot=icon]/choicebox-item:text-sm/3",
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+
+type ChoiceboxDescriptionProps = ChoiceboxLabelProps
+
+const ChoiceboxDescription = ({ className, ref, ...props }: ChoiceboxDescriptionProps) => {
+  const { columns } = useChoiceboxContext()
+  return (
+    <Text
+      slot="description"
+      ref={ref}
+      className={twMerge("col-start-2 text-muted-fg", className)}
+      {...props}
+    />
+  )
+}
+
 Choicebox.Item = ChoiceboxItem
+Choicebox.Label = ChoiceboxLabel
+Choicebox.Description = ChoiceboxDescription
 
 export type { ChoiceboxProps, ChoiceboxItemProps }
 export { Choicebox }

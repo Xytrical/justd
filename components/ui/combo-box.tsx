@@ -18,7 +18,7 @@ import {
   useSlottedContext,
 } from "react-aria-components"
 import { Button } from "./button"
-import { DropdownItem, DropdownLabel, DropdownSection } from "./dropdown"
+import { DropdownDescription, DropdownItem, DropdownLabel, DropdownSection } from "./dropdown"
 import { Description, FieldError, FieldGroup, Input, Label } from "./field"
 import { ListBox } from "./list-box"
 import { PopoverContent, type PopoverContentProps } from "./popover"
@@ -123,14 +123,16 @@ const ComboBoxClearButton = () => {
   )
 }
 
+const ComboBoxSection = DropdownSection
 const ComboBoxOption = DropdownItem
 const ComboBoxLabel = DropdownLabel
-const ComboBoxSection = DropdownSection
+const ComboBoxDescription = DropdownDescription
 
 ComboBox.Input = ComboBoxInput
 ComboBox.List = ComboBoxList
 ComboBox.Option = ComboBoxOption
 ComboBox.Label = ComboBoxLabel
+ComboBox.Description = ComboBoxDescription
 ComboBox.Section = ComboBoxSection
 
 export type { ComboBoxProps, ComboBoxListProps }

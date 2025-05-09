@@ -19,7 +19,7 @@ export default function ChoiceboxNoGapDemo() {
 }
 
 const prices = [
-  { id: 1, title: "Basic", description: "Essentials, get started" },
-  { id: 2, title: "Standard", description: "More features, support" },
-  { id: 3, title: "Premium", description: "Advanced, growing needs" },
+  { id: 1, label: "Basic", description: "Essentials, get started" },
+  { id: 2, label: "Standard", description: "More features, support" },
+  { id: 3, label: "Premium", description: "Advanced, growing needs" },
 ]

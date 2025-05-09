@@ -1,22 +1,16 @@
 "use client"
 
-import type { HTMLAttributes } from "react"
 import { createContext, use, useCallback, useEffect, useState } from "react"
 
 import { IconChevronLgLeft, IconChevronLgRight } from "@intentui/icons"
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react"
-import {
-  ListBox,
-  ListBoxItem,
-  type ListBoxItemProps,
-  ListBoxSection,
-  type ListBoxSectionProps,
-} from "react-aria-components"
+import { ListBox, ListBoxItem, ListBoxSection } from "react-aria-components"
+
+import type { ListBoxItemProps, ListBoxSectionProps } from "react-aria-components"
 
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twJoin, twMerge } from "tailwind-merge"
-import type { ButtonProps } from "./button"
-import { Button } from "./button"
+import { Button, type ButtonProps } from "./button"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -51,7 +45,7 @@ interface CarouselRootProps {
   CarouselButton?: typeof CarouselButton
 }
 
-interface CarouselProps extends HTMLAttributes<HTMLDivElement>, CarouselRootProps {
+interface CarouselProps extends React.HTMLAttributes<HTMLDivElement>, CarouselRootProps {
   opts?: CarouselOptions
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"

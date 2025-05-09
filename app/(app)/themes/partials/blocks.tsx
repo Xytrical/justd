@@ -8,7 +8,7 @@ import RangeCalendarControlledDemo from "@/components/docs/date-and-time/calenda
 import ModalDemo from "@/components/docs/overlays/modal/modal-demo"
 import PopoverDemo from "@/components/docs/overlays/popover/popover-demo"
 import { users } from "@/components/docs/pickers/combo-box/combo-box-avatar-demo"
-import { roles } from "@/components/docs/pickers/select/select-item-details-demo"
+import { roles } from "@/components/docs/pickers/select/select-details-description-demo"
 import { Avatar } from "@/components/ui/avatar"
 import { Button, buttonStyles } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -87,7 +87,8 @@ export function Blocks() {
               <Select.List items={roles}>
                 {(item) => (
                   <Select.Option id={item.id} textValue={item.name}>
-                    <Select.OptionDetails label={item.name} description={item.description} />
+                    <Select.Label>{item.name}</Select.Label>
+                    <Select.Description>{item.description}</Select.Description>
                   </Select.Option>
                 )}
               </Select.List>
@@ -145,13 +146,13 @@ export function Blocks() {
           >
             <Choicebox.Item
               id="standard"
-              title="Standard"
+              label="Standard"
               description="Perfect for growing your team."
             />
-            <Choicebox.Item id="pro" title="Pro" description="Includes all advanced tools." />
+            <Choicebox.Item id="pro" label="Pro" description="Includes all advanced tools." />
             <Choicebox.Item
               id="enterprise"
-              title="Enterprise"
+              label="Enterprise"
               description="Custom solutions for large organizations."
             />
           </Choicebox>

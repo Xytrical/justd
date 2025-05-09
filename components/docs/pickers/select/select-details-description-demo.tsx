@@ -2,14 +2,15 @@
 
 import { Select } from "@/components/ui/select"
 
-export default function SelectItemDetailsDemo() {
+export default function SelectDetailsDescriptionDemo() {
   return (
     <Select label="Roles" placeholder="Select a role">
       <Select.Trigger />
-      <Select.List items={roles}>
+      <Select.List className="max-w-(--trigger-width)" items={roles}>
         {(item) => (
           <Select.Option id={item.id} textValue={item.name}>
-            <Select.OptionDetails label={item.name} description={item.description} />
+            <Select.Label>{item.name}</Select.Label>
+            <Select.Description>{item.description}</Select.Description>
           </Select.Option>
         )}
       </Select.List>

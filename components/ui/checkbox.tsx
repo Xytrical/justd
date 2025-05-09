@@ -93,7 +93,11 @@ const Checkbox = ({ className, children, description, label, ...props }: Checkbo
               isSelected: isSelected || isIndeterminate,
             })}
           >
-            {isIndeterminate ? <IconMinus /> : isSelected ? <IconCheck /> : null}
+            {isIndeterminate ? (
+              <IconMinus className="size-3.5" data-slot="checkbox-indicator" />
+            ) : isSelected ? (
+              <IconCheck className="size-3.5" data-slot="checkbox-indicator" />
+            ) : null}
           </div>
 
           <div className="flex flex-col gap-1">

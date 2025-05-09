@@ -13,7 +13,11 @@ export default function ChoiceboxIconDemo() {
       items={frameworks}
     >
       {(item) => (
-        <Choicebox.Item title={item.title} icon={item.icon} description={item.description} />
+        <Choicebox.Item textValue={item.id}>
+          <item.icon />
+          <Choicebox.Label>{item.label}</Choicebox.Label>
+          <Choicebox.Description>{item.description}</Choicebox.Description>
+        </Choicebox.Item>
       )}
     </Choicebox>
   )
@@ -21,20 +25,20 @@ export default function ChoiceboxIconDemo() {
 
 const frameworks = [
   {
-    key: "laravel",
-    title: "Laravel",
+    id: "laravel",
+    label: "Laravel",
     description: "Laravel is a web application framework with expressive, elegant syntax.",
     icon: IconBrandLaravel,
   },
   {
-    key: "react",
-    title: "React",
+    id: "react",
+    label: "React",
     description: "React is a JavaScript library for building user interfaces.",
     icon: IconBrandReactjs,
   },
   {
-    key: "ts",
-    title: "Typescript",
+    id: "ts",
+    label: "Typescript",
     description: "Typescript is a typed superset of JavaScript that compiles to plain JavaScript.",
     icon: IconBrandTypescript,
   },

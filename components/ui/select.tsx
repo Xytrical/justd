@@ -15,8 +15,8 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 import {
+  DropdownDescription,
   DropdownItem,
-  DropdownItemDetails,
   DropdownLabel,
   DropdownSection,
   DropdownSeparator,
@@ -136,10 +136,10 @@ const SelectTrigger = ({ className, ...props }: SelectTriggerProps) => {
 const SelectSection = DropdownSection
 const SelectSeparator = DropdownSeparator
 const SelectLabel = DropdownLabel
-const SelectOptionDetails = DropdownItemDetails
+const SelectDescription = DropdownDescription
 const SelectOption = DropdownItem
 
-Select.OptionDetails = SelectOptionDetails
+Select.Description = SelectDescription
 Select.Option = SelectOption
 Select.Label = SelectLabel
 Select.Separator = SelectSeparator

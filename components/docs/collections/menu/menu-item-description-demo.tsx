@@ -3,14 +3,15 @@
 import { Button } from "@/components/ui/button"
 import { Menu } from "@/components/ui/menu"
 
-export default function MenuItemDetailsDemo() {
+export default function MenuItemDescriptionDemo() {
   return (
     <Menu>
       <Button intent="outline">Open</Button>
-      <Menu.Content placement="bottom" items={roles}>
+      <Menu.Content className="sm:min-w-60 sm:max-w-min" placement="bottom" items={roles}>
         {(item) => (
           <Menu.Item id={item.id} textValue={item.name}>
-            <Menu.ItemDetails label={item.name} description={item.description} />
+            <Menu.Label>{item.name}</Menu.Label>
+            <Menu.Description>{item.description}</Menu.Description>
           </Menu.Item>
         )}
       </Menu.Content>

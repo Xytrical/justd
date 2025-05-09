@@ -13,7 +13,7 @@ import {
 
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
-import { DropdownItemDetails, DropdownLabel, DropdownSection, dropdownItemStyles } from "./dropdown"
+import { DropdownDescription, DropdownLabel, DropdownSection, dropdownItemStyles } from "./dropdown"
 
 const ListBox = <T extends object>({ className, ...props }: ListBoxProps<T>) => (
   <ListBoxPrimitive
@@ -83,11 +83,13 @@ const ListBoxSection = ({ className, ...props }: ListBoxSectionProps) => {
   )
 }
 
-const ListBoxItemDetails = DropdownItemDetails
+const ListBoxLabel = DropdownLabel
+const ListBoxDescription = DropdownDescription
 
 ListBox.Section = ListBoxSection
-ListBox.ItemDetails = ListBoxItemDetails
+ListBox.Label = ListBoxLabel
+ListBox.Description = ListBoxDescription
 ListBox.Item = ListBoxItem
 
 export type { ListBoxItemProps, ListBoxSectionProps }
-export { ListBox, ListBoxSection, ListBoxItem }
+export { ListBox, ListBoxSection, ListBoxItem, ListBoxLabel, ListBoxDescription }
