@@ -7,7 +7,7 @@ import type {
   PopoverProps as PopoverPrimitiveProps,
 } from "react-aria-components"
 import {
-  DialogTrigger,
+  DialogTrigger as DialogTriggerPrimitive,
   Modal,
   ModalOverlay,
   OverlayArrow,
@@ -20,6 +20,7 @@ import { tv } from "tailwind-variants"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { twMerge } from "tailwind-merge"
+import { DialogTrigger } from "./dialog"
 import type {
   DialogBodyProps,
   DialogFooterProps,
@@ -38,7 +39,7 @@ import {
 
 type PopoverProps = DialogTriggerProps
 const Popover = (props: PopoverProps) => {
-  return <DialogTrigger {...props} />
+  return <DialogTriggerPrimitive {...props} />
 }
 
 const PopoverTitle = ({ level = 2, className, ...props }: DialogTitleProps) => (
