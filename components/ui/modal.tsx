@@ -2,7 +2,7 @@
 
 import type { DialogProps, DialogTriggerProps, ModalOverlayProps } from "react-aria-components"
 import {
-  DialogTrigger,
+  DialogTrigger as DialogTriggerPrimitive,
   ModalOverlay,
   Modal as ModalPrimitive,
   composeRenderProps,
@@ -18,10 +18,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "./dialog"
 
 const Modal = (props: DialogTriggerProps) => {
-  return <DialogTrigger {...props} />
+  return <DialogTriggerPrimitive {...props} />
 }
 
 const modalOverlayStyles = tv({
