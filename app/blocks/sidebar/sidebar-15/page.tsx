@@ -8,11 +8,7 @@ export default function Page() {
   return (
     <>
       <Heading>Users</Heading>
-      <Table
-        aria-label="Users"
-        bleed
-        className="[--gutter:--spacing(4)] sm:[--gutter:--spacing(6)]"
-      >
+      <Table aria-label="Users" bleed className="[--gutter:var(--layout-padding)]">
         <Table.Header>
           <Table.Column>ID</Table.Column>
           <Table.Column isRowHeader>Name</Table.Column>
