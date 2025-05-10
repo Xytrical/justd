@@ -67,7 +67,7 @@ const content = tv({
   ],
   variants: {
     isPicker: {
-      true: "max-h-72 min-w-(--trigger-width) overflow-y-auto",
+      true: "min-w-(--trigger-width)",
       false: "min-w-80",
     },
     isMenu: {

@@ -1,38 +1,34 @@
 "use client"
-
-import { Card } from "@/components/ui/card"
 import { Table } from "@/components/ui/table"
 
 export default function TableResizeDemo() {
   return (
-    <Card className="py-0">
-      <Table allowResize aria-label="Vocalists">
-        <Table.Header>
-          <Table.Column className="max-w-10">ID</Table.Column>
-          <Table.Column isRowHeader isResizable>
-            Name
-          </Table.Column>
-          <Table.Column isResizable>Email</Table.Column>
-          <Table.Column>Age</Table.Column>
-          <Table.Column>Role</Table.Column>
-          <Table.Column isResizable>Band</Table.Column>
-          <Table.Column>Status</Table.Column>
-        </Table.Header>
-        <Table.Body items={items}>
-          {(item) => (
-            <Table.Row id={item.id}>
-              <Table.Cell>{item.id}</Table.Cell>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.email}</Table.Cell>
-              <Table.Cell>{item.age}</Table.Cell>
-              <Table.Cell>{item.role}</Table.Cell>
-              <Table.Cell>{item.band}</Table.Cell>
-              <Table.Cell>{item.status}</Table.Cell>
-            </Table.Row>
-          )}
-        </Table.Body>
-      </Table>
-    </Card>
+    <Table allowResize aria-label="Vocalists">
+      <Table.Header>
+        <Table.Column className="max-w-10">ID</Table.Column>
+        <Table.Column isRowHeader isResizable>
+          Name
+        </Table.Column>
+        <Table.Column isResizable>Email</Table.Column>
+        <Table.Column>Age</Table.Column>
+        <Table.Column>Role</Table.Column>
+        <Table.Column isResizable>Band</Table.Column>
+        <Table.Column>Status</Table.Column>
+      </Table.Header>
+      <Table.Body items={items}>
+        {(item) => (
+          <Table.Row id={item.id}>
+            <Table.Cell>{item.id}</Table.Cell>
+            <Table.Cell>{item.name}</Table.Cell>
+            <Table.Cell>{item.email}</Table.Cell>
+            <Table.Cell>{item.age}</Table.Cell>
+            <Table.Cell>{item.role}</Table.Cell>
+            <Table.Cell>{item.band}</Table.Cell>
+            <Table.Cell>{item.status}</Table.Cell>
+          </Table.Row>
+        )}
+      </Table.Body>
+    </Table>
   )
 }
 

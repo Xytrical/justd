@@ -1,43 +1,39 @@
 "use client"
 
-import { useState } from "react"
-
-import { Card } from "@/components/ui/card"
 import { Description } from "@/components/ui/field"
 import { Table } from "@/components/ui/table"
+import { useState } from "react"
 import type { Selection } from "react-aria-components"
 
 export default function TableBulkDemo() {
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set())
   return (
     <>
-      <Card className="py-0">
-        <Table
-          aria-label="Books"
-          selectionMode="multiple"
-          selectedKeys={selectedKeys}
-          onSelectionChange={setSelectedKeys}
-        >
-          <Table.Header>
-            <Table.Column className="w-0">#</Table.Column>
-            <Table.Column isRowHeader>Title</Table.Column>
-            <Table.Column>Author</Table.Column>
-            <Table.Column>Genre</Table.Column>
-            <Table.Column>Published</Table.Column>
-          </Table.Header>
-          <Table.Body items={books}>
-            {(item) => (
-              <Table.Row>
-                <Table.Cell>{item.id}</Table.Cell>
-                <Table.Cell className="whitespace-nowrap">{item.title}</Table.Cell>
-                <Table.Cell className="whitespace-nowrap">{item.author}</Table.Cell>
-                <Table.Cell>{item.genre}</Table.Cell>
-                <Table.Cell>{item.publishedYear}</Table.Cell>
-              </Table.Row>
-            )}
-          </Table.Body>
-        </Table>
-      </Card>
+      <Table
+        aria-label="Books"
+        selectionMode="multiple"
+        selectedKeys={selectedKeys}
+        onSelectionChange={setSelectedKeys}
+      >
+        <Table.Header>
+          <Table.Column className="w-0">#</Table.Column>
+          <Table.Column isRowHeader>Title</Table.Column>
+          <Table.Column>Author</Table.Column>
+          <Table.Column>Genre</Table.Column>
+          <Table.Column>Published</Table.Column>
+        </Table.Header>
+        <Table.Body items={books}>
+          {(item) => (
+            <Table.Row>
+              <Table.Cell>{item.id}</Table.Cell>
+              <Table.Cell className="whitespace-nowrap">{item.title}</Table.Cell>
+              <Table.Cell className="whitespace-nowrap">{item.author}</Table.Cell>
+              <Table.Cell>{item.genre}</Table.Cell>
+              <Table.Cell>{item.publishedYear}</Table.Cell>
+            </Table.Row>
+          )}
+        </Table.Body>
+      </Table>
       <Description className="mt-2 block text-muted-fg [&>strong]:text-fg">
         {Array.from(selectedKeys).length > 0 ? (
           <>

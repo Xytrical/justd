@@ -14,9 +14,9 @@ export default function CardTableDemo() {
         <Card.Description>Manage users, groups, and roles.</Card.Description>
       </Card.Header>
       <Card.Content>
-        <Table aria-label="Users">
+        <Table aria-label="Users" className="[--bleed:1]">
           <Table.Header>
-            <Table.Column>#</Table.Column>
+            <Table.Column className="w-0">#</Table.Column>
             <Table.Column isRowHeader>Name</Table.Column>
             <Table.Column>Gender</Table.Column>
             <Table.Column>Age</Table.Column>
@@ -31,7 +31,7 @@ export default function CardTableDemo() {
                 <Table.Cell>{item.gender}</Table.Cell>
                 <Table.Cell>{item.age}</Table.Cell>
                 <Table.Cell>{item.occupation}</Table.Cell>
-                <Table.Cell className="flex justify-end">
+                <Table.Cell className="text-end last:pr-2.5">
                   <Menu>
                     <Menu.Trigger>
                       <IconDotsVertical />
