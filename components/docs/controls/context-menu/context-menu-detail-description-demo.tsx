@@ -2,7 +2,7 @@
 
 import { ContextMenu } from "@/components/ui/context-menu"
 
-export default function ContextMenuItemDetailsDemo() {
+export default function ContextMenuDetailDescriptionDemo() {
   return (
     <ContextMenu>
       <ContextMenu.Trigger className="grid h-28 w-56 place-content-center rounded-lg border-2 border-dashed">
