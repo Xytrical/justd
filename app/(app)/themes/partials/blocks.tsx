@@ -1,4 +1,3 @@
-import AppNavbar from "@/app/blocks/navbar/navbar-00/app-navbar"
 import AreaChartGradientDemo from "@/components/docs/charts/area/area-chart-gradient-demo"
 import BarChartMultipleDemo from "@/components/docs/charts/bar/bar-chart-multiple-demo"
 import PieChartDonutWithTextDemo from "@/components/docs/charts/pie/pie-chart-donut-with-text-demo"
@@ -12,15 +11,12 @@ import { roles } from "@/components/docs/pickers/select/select-details-descripti
 import { Avatar } from "@/components/ui/avatar"
 import { Button, buttonStyles } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import { CheckboxGroup } from "@/components/ui/checkbox"
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"
 import { Choicebox } from "@/components/ui/choicebox"
 import { ComboBox } from "@/components/ui/combo-box"
 import { Link } from "@/components/ui/link"
-import { Radio } from "@/components/ui/radio"
-import { RadioGroup } from "@/components/ui/radio"
+import { Radio, RadioGroup } from "@/components/ui/radio"
 import { Select } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 import { TextField } from "@/components/ui/text-field"
 import { IconDashboard } from "@intentui/icons"
@@ -28,19 +24,8 @@ import { IconDashboard } from "@intentui/icons"
 export function Blocks() {
   return (
     <div className="grid gap-1 **:data-[slot=card]:rounded-md">
-      <div className="-mx-4">
-        <AppNavbar className="-mt-1 *:data-navbar-nav:rounded-md" intent="floating" />
-      </div>
-      <div className="grid gap-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="mt-1 grid gap-1 sm:grid-cols-2 md:grid-cols-3">
         <Card className="flex flex-col items-center justify-center gap-y-6 p-6">
-          <div className="grid grid-cols-2 gap-2">
-            {Object.keys(buttonStyles.variants.intent).map((intent) => (
-              <Button key={intent} intent={intent as keyof typeof buttonStyles.variants.intent}>
-                <IconDashboard /> Label
-              </Button>
-            ))}
-          </div>
-          <Separator className="mx-auto max-w-[16rem]" />
           <div className="grid grid-cols-2 gap-2">
             {Object.keys(buttonStyles.variants.intent).map((intent) => (
               <Button key={intent} intent={intent as keyof typeof buttonStyles.variants.intent}>

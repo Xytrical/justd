@@ -62,7 +62,7 @@ const boxStyles = tv({
     },
     isFocused: {
       true: [
-        "border-primary ring-4 ring-primary/20",
+        "border-primary ring-4 ring-ring/20",
         "group-invalid:border-danger/70 group-invalid:text-danger-fg group-invalid:ring-danger/20",
       ],
     },

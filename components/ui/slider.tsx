@@ -183,7 +183,7 @@ const thumbStyles = tv({
   ],
   variants: {
     isFocusVisible: {
-      true: "border-primary outline-hidden ring-primary/20",
+      true: "border-primary outline-hidden ring-ring/20",
     },
     isDragging: {
       true: "size-[1.35rem] cursor-grabbing border-primary",

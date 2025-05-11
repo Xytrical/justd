@@ -20,7 +20,7 @@ import {
 
 export default function AppNavbar() {
   return (
-    <Navbar intent="floating">
+    <Navbar intent="float">
       <Navbar.Nav>
         <Navbar.Logo
           aria-label="Goto documenation of Navbar"
