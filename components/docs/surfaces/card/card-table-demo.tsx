@@ -14,7 +14,7 @@ export default function CardTableDemo() {
         <Card.Description>Manage users, groups, and roles.</Card.Description>
       </Card.Header>
       <Card.Content>
-        <Table aria-label="Users" className="[--bleed:1]">
+        <Table aria-label="Users">
           <Table.Header>
             <Table.Column className="w-0">#</Table.Column>
             <Table.Column isRowHeader>Name</Table.Column>
