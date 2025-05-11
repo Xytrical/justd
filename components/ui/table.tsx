@@ -210,10 +210,6 @@ const TableRow = <T extends object>({
       )}
       {selectionBehavior === "toggle" && (
         <TableCell>
-          <span
-            aria-hidden
-            className="absolute inset-y-0 left-0 hidden h-full w-0.5 bg-primary group-selected:block"
-          />
           <Checkbox slot="selection" />
         </TableCell>
       )}

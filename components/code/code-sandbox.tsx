@@ -12,6 +12,7 @@ import type { RegistryItem } from "@/resources/types"
 import { IconBrandCss, IconBrandReactjs, IconFile, IconWindowVisitFill } from "@intentui/icons"
 import { Tab } from "react-aria-components"
 import { twMerge } from "tailwind-merge"
+import { PullRegistry } from "@/components/code/pull-registry";
 
 interface Props {
   source: Record<string, string>
@@ -139,10 +140,12 @@ export function CodeSandbox({ isIframe = true, classNames, source, src }: Props)
 interface TabListProps {
   src?: string
   code?: string
+  hasRegistry?: boolean
+  blockDemo?: string
   copyButton?: boolean
 }
 
-export const TabsList = ({ src, code, copyButton }: TabListProps) => {
+export const TabsList = ({ hasRegistry, src, code, blockDemo, copyButton }: TabListProps) => {
   return (
     <div className="group relative">
       <Tabs.List>
@@ -155,6 +158,13 @@ export const TabsList = ({ src, code, copyButton }: TabListProps) => {
           </Tabs.Tab>
         )}
       </Tabs.List>
+      {hasRegistry && (
+        <PullRegistry
+          className='-top-0.5 absolute right-0'
+          processedSourceCode={code as string}
+          blockDemo={blockDemo as string}
+        />
+      )}
       {copyButton && <CopyMotionButton text={code!} />}
     </div>
   )
