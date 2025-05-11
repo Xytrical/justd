@@ -13,9 +13,9 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { Description, FieldError, Label } from "@/components/ui/field"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
-import { Description, FieldError, Label } from "./field"
 
 interface CheckboxGroupProps extends CheckboxGroupPrimitiveProps {
   label?: string
@@ -62,7 +62,7 @@ const boxStyles = tv({
     },
     isFocused: {
       true: [
-        "border-primary ring-4 ring-primary/20",
+        "border-primary ring-4 ring-ring/20",
         "group-invalid:border-danger/70 group-invalid:text-danger-fg group-invalid:ring-danger/20",
       ],
     },
@@ -93,7 +93,11 @@ const Checkbox = ({ className, children, description, label, ...props }: Checkbo
               isSelected: isSelected || isIndeterminate,
             })}
           >
-            {isIndeterminate ? <IconMinus /> : isSelected ? <IconCheck /> : null}
+            {isIndeterminate ? (
+              <IconMinus className="size-3.5" data-slot="checkbox-indicator" />
+            ) : isSelected ? (
+              <IconCheck className="size-3.5" data-slot="checkbox-indicator" />
+            ) : null}
           </div>
 
           <div className="flex flex-col gap-1">

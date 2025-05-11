@@ -96,14 +96,11 @@ export function FrameworkGuides() {
   return (
     <Choicebox selectionMode="single" aria-label="Framework guides" items={frameworks}>
       {(item) => (
-        <Choicebox.Item
-          href={item.href}
-          id={item.name}
-          icon={item.logo}
-          textValue={item.name}
-          description={item.description}
-          title={item.name}
-        />
+        <Choicebox.Item href={item.href} id={item.name} textValue={item.name}>
+          <item.logo />
+          <Choicebox.Label>{item.name}</Choicebox.Label>
+          <Choicebox.Description>{item.description}</Choicebox.Description>
+        </Choicebox.Item>
       )}
     </Choicebox>
   )

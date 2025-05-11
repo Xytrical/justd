@@ -1,3 +1,5 @@
+import { titleCase } from "usemods"
+
 export function title(title: string) {
   const minorWords = [
     "and",
@@ -77,4 +79,10 @@ export function extractImports(code: string) {
   const importRegex = /^(import\s+(?:\{[^}]*}|[^;]+)\s*from\s*['"][^'"]+['"]\s*;?)$/gm
   const matches = code.match(importRegex)
   return matches ? matches.join("\n") : ""
+}
+
+export const openInV0Url = (blockName: string) => {
+  const title = titleCase(blockName.replace(/-/g, " "))
+  const url = `https://intentui.com/r/block/${blockName}`
+  return `https://v0.dev/chat/api/open?title=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`
 }

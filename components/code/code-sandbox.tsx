@@ -5,6 +5,7 @@ import React, { useState } from "react"
 import generated from "@/__registry__/generated"
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { CopyButton, CopyMotionButton } from "@/components/code/copy-button"
+import { PullRegistry } from "@/components/code/pull-registry"
 import { Loader } from "@/components/ui/loader"
 import { Tabs } from "@/components/ui/tabs"
 import { copyToClipboard } from "@/resources/lib/copy"
@@ -139,10 +140,12 @@ export function CodeSandbox({ isIframe = true, classNames, source, src }: Props)
 interface TabListProps {
   src?: string
   code?: string
+  hasRegistry?: boolean
+  blockDemo?: string
   copyButton?: boolean
 }
 
-export const TabsList = ({ src, code, copyButton }: TabListProps) => {
+export const TabsList = ({ hasRegistry, src, code, blockDemo, copyButton }: TabListProps) => {
   return (
     <div className="group relative">
       <Tabs.List>
@@ -155,6 +158,13 @@ export const TabsList = ({ src, code, copyButton }: TabListProps) => {
           </Tabs.Tab>
         )}
       </Tabs.List>
+      {hasRegistry && (
+        <PullRegistry
+          className="-top-0.5 absolute right-0"
+          processedSourceCode={code as string}
+          blockDemo={blockDemo as string}
+        />
+      )}
       {copyButton && <CopyMotionButton text={code!} />}
     </div>
   )

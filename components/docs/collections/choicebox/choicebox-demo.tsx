@@ -5,16 +5,16 @@ import { Choicebox } from "@/components/ui/choicebox"
 export default function ChoiceboxDemo() {
   return (
     <Choicebox aria-label="Select items" selectionMode="multiple">
-      <Choicebox.Item title="Basic" description="Just the essentials to get started." />
-      <Choicebox.Item title="Standard" description="A step up with more features and support." />
-      <Choicebox.Item title="Premium" description="Advanced options for growing needs." />
-      <Choicebox.Item title="Deluxe" description="Top-tier features for maximum performance." />
+      <Choicebox.Item label="Basic" description="Just the essentials to get started." />
+      <Choicebox.Item label="Standard" description="A step up with more features and support." />
+      <Choicebox.Item label="Premium" description="Advanced options for growing needs." />
+      <Choicebox.Item label="Deluxe" description="Top-tier features for maximum performance." />
       <Choicebox.Item
-        title="Ultimate"
+        label="Ultimate"
         description="All-inclusive plan with every feature available."
       />
       <Choicebox.Item
-        title="Enterprise"
+        label="Enterprise"
         description="Custom solutions for large-scale operations."
       />
     </Choicebox>

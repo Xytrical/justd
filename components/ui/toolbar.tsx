@@ -5,10 +5,10 @@ import { createContext, useContext } from "react"
 import type { GroupProps, SeparatorProps, ToolbarProps } from "react-aria-components"
 import { Group, Toolbar as ToolbarPrimitive, composeRenderProps } from "react-aria-components"
 
+import { Separator } from "@/components/ui/separator"
+import { Toggle, type ToggleProps } from "@/components/ui/toggle"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
-import { Separator } from "./separator"
-import { Toggle, type ToggleProps } from "./toggle"
 
 const ToolbarContext = createContext<{ orientation?: ToolbarProps["orientation"] }>({
   orientation: "horizontal",

@@ -2,6 +2,16 @@
 
 import React from "react"
 
+import { Button } from "@/components/ui/button"
+import {
+  DropdownDescription,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSection,
+} from "@/components/ui/dropdown"
+import { Description, FieldError, FieldGroup, Input, Label } from "@/components/ui/field"
+import { ListBox } from "@/components/ui/list-box"
+import { PopoverContent, type PopoverContentProps } from "@/components/ui/popover"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconChevronLgDown, IconX } from "@intentui/icons"
 import type {
@@ -17,11 +27,6 @@ import {
   ComboBox as ComboboxPrimitive,
   useSlottedContext,
 } from "react-aria-components"
-import { Button } from "./button"
-import { DropdownItem, DropdownLabel, DropdownSection } from "./dropdown"
-import { Description, FieldError, FieldGroup, Input, Label } from "./field"
-import { ListBox } from "./list-box"
-import { PopoverContent, type PopoverContentProps } from "./popover"
 
 interface ComboBoxProps<T extends object> extends Omit<ComboboxPrimitiveProps<T>, "children"> {
   label?: string
@@ -123,14 +128,16 @@ const ComboBoxClearButton = () => {
   )
 }
 
+const ComboBoxSection = DropdownSection
 const ComboBoxOption = DropdownItem
 const ComboBoxLabel = DropdownLabel
-const ComboBoxSection = DropdownSection
+const ComboBoxDescription = DropdownDescription
 
 ComboBox.Input = ComboBoxInput
 ComboBox.List = ComboBoxList
 ComboBox.Option = ComboBoxOption
 ComboBox.Label = ComboBoxLabel
+ComboBox.Description = ComboBoxDescription
 ComboBox.Section = ComboBoxSection
 
 export type { ComboBoxProps, ComboBoxListProps }

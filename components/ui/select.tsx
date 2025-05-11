@@ -1,4 +1,14 @@
 "use client"
+import {
+  DropdownDescription,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSection,
+  DropdownSeparator,
+} from "@/components/ui/dropdown"
+import { Description, FieldError, Label } from "@/components/ui/field"
+import { ListBox } from "@/components/ui/list-box"
+import { PopoverContent, type PopoverContentProps } from "@/components/ui/popover"
 import { composeTailwindRenderProps, focusStyles } from "@/lib/primitive"
 import { IconChevronLgDown } from "@intentui/icons"
 import type {
@@ -14,16 +24,6 @@ import {
   composeRenderProps,
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
-import {
-  DropdownItem,
-  DropdownItemDetails,
-  DropdownLabel,
-  DropdownSection,
-  DropdownSeparator,
-} from "./dropdown"
-import { Description, FieldError, Label } from "./field"
-import { ListBox } from "./list-box"
-import { PopoverContent, type PopoverContentProps } from "./popover"
 
 const selectTriggerStyles = tv({
   extend: focusStyles,
@@ -136,10 +136,10 @@ const SelectTrigger = ({ className, ...props }: SelectTriggerProps) => {
 const SelectSection = DropdownSection
 const SelectSeparator = DropdownSeparator
 const SelectLabel = DropdownLabel
-const SelectOptionDetails = DropdownItemDetails
+const SelectDescription = DropdownDescription
 const SelectOption = DropdownItem
 
-Select.OptionDetails = SelectOptionDetails
+Select.Description = SelectDescription
 Select.Option = SelectOption
 Select.Label = SelectLabel
 Select.Separator = SelectSeparator

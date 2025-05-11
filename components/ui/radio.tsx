@@ -8,8 +8,8 @@ import type {
 import { RadioGroup as RadioGroupPrimitive, Radio as RadioPrimitive } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { Description, FieldError, Label } from "@/components/ui/field"
 import { composeTailwindRenderProps } from "@/lib/primitive"
-import { Description, FieldError, Label } from "./field"
 
 interface RadioGroupProps extends Omit<RadioGroupPrimitiveProps, "children"> {
   label?: string
@@ -52,7 +52,7 @@ const radioStyles = tv({
     },
     isFocused: {
       true: [
-        "border-ring bg-primary/20 ring-4 ring-primary/20",
+        "border-ring bg-primary/20 ring-4 ring-ring/20",
         "group-invalid:border-danger/70 group-invalid:bg-danger/20 group-invalid:ring-danger/20",
       ],
     },

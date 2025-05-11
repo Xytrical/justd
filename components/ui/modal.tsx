@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog"
+} from "@/components/ui/dialog"
 
 const Modal = (props: DialogTriggerProps) => {
   return <DialogTriggerPrimitive {...props} />

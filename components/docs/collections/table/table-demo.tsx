@@ -1,54 +1,51 @@
 "use client"
-
-import { Card } from "@/components/ui/card"
 import { Menu } from "@/components/ui/menu"
 import { Table } from "@/components/ui/table"
 import { IconDotsVertical } from "@intentui/icons"
 import { NumberFormatter } from "@internationalized/number"
 
 export default function TableDemo() {
-  const formatter = new NumberFormatter("en-US", { style: "currency", currency: "USD" })
-
-  const priceFormat = (price: number) => formatter.format(price)
   return (
-    <Card className="py-0">
-      <Table aria-label="Products">
-        <Table.Header>
-          <Table.Column className="w-0">#</Table.Column>
-          <Table.Column isRowHeader>Name</Table.Column>
-          <Table.Column>Category</Table.Column>
-          <Table.Column>Price</Table.Column>
-          <Table.Column>Stock</Table.Column>
-          <Table.Column />
-        </Table.Header>
-        <Table.Body items={products}>
-          {(item) => (
-            <Table.Row id={item.id}>
-              <Table.Cell>{item.id}</Table.Cell>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.category}</Table.Cell>
-              <Table.Cell>{priceFormat(item.price)}</Table.Cell>
-              <Table.Cell>{item.stock}</Table.Cell>
-              <Table.Cell>
-                <div className="flex justify-end">
-                  <Menu>
-                    <Menu.Trigger>
-                      <IconDotsVertical />
-                    </Menu.Trigger>
-                    <Menu.Content aria-label="Actions" placement="left top">
-                      <Menu.Item>View</Menu.Item>
-                      <Menu.Item>Edit</Menu.Item>
-                      <Menu.Separator />
-                      <Menu.Item isDanger>Delete</Menu.Item>
-                    </Menu.Content>
-                  </Menu>
-                </div>
-              </Table.Cell>
-            </Table.Row>
-          )}
-        </Table.Body>
-      </Table>
-    </Card>
+    <Table selectionMode="multiple" aria-label="Products">
+      <Table.Header>
+        <Table.Column className="w-0">#</Table.Column>
+        <Table.Column isRowHeader>Name</Table.Column>
+        <Table.Column>Category</Table.Column>
+        <Table.Column>Price</Table.Column>
+        <Table.Column>Stock</Table.Column>
+        <Table.Column />
+      </Table.Header>
+      <Table.Body items={products}>
+        {(item) => (
+          <Table.Row id={item.id}>
+            <Table.Cell>{item.id}</Table.Cell>
+            <Table.Cell>{item.name}</Table.Cell>
+            <Table.Cell>{item.category}</Table.Cell>
+            <Table.Cell>
+              {new NumberFormatter("en-US", { style: "currency", currency: "USD" }).format(
+                item.price,
+              )}
+            </Table.Cell>
+            <Table.Cell>{item.stock}</Table.Cell>
+            <Table.Cell>
+              <div className="flex justify-end">
+                <Menu>
+                  <Menu.Trigger className="size-6">
+                    <IconDotsVertical />
+                  </Menu.Trigger>
+                  <Menu.Content aria-label="Actions" placement="left top">
+                    <Menu.Item>View</Menu.Item>
+                    <Menu.Item>Edit</Menu.Item>
+                    <Menu.Separator />
+                    <Menu.Item isDanger>Delete</Menu.Item>
+                  </Menu.Content>
+                </Menu>
+              </div>
+            </Table.Cell>
+          </Table.Row>
+        )}
+      </Table.Body>
+    </Table>
   )
 }
 

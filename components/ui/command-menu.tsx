@@ -1,5 +1,8 @@
 "use client"
 
+import { DropdownKeyboard } from "@/components/ui/dropdown"
+import { Loader } from "@/components/ui/loader"
+import { Menu, type MenuSectionProps } from "@/components/ui/menu"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconSearch } from "@intentui/icons"
 import { createContext, use, useEffect } from "react"
@@ -29,9 +32,6 @@ import {
   useFilter,
 } from "react-aria-components"
 import { twMerge } from "tailwind-merge"
-import { DropdownKeyboard } from "./dropdown"
-import { Loader } from "./loader"
-import { Menu, type MenuSectionProps } from "./menu"
 
 interface CommandMenuProviderProps {
   isPending?: boolean

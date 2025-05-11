@@ -95,30 +95,9 @@ export function Navbar() {
                       items={premium}
                     >
                       {(item) => (
-                        <Menu.Item
-                          href={item.href}
-                          className="group items-start gap-x-3 **:data-[slot=icon]:size-4"
-                        >
-                          <div className="grid size-8 shrink-0 place-content-center rounded-md bg-secondary/40 ring-1 ring-fg/10">
-                            {item.icon}
-                          </div>
-                          <Menu.ItemDetails>
-                            <span className="font-medium sm:text-sm">
-                              {item.label}{" "}
-                              {item.badge && (
-                                <Badge
-                                  shape="square"
-                                  intent={item.id === 1 ? "warning" : "primary"}
-                                  className="ml-0.5 font-mono text-[0.65rem] uppercase"
-                                >
-                                  {item.badge}
-                                </Badge>
-                              )}
-                            </span>
-                            <span className="-mt-0.5 block text-muted-fg text-xs">
-                              {item.description}
-                            </span>
-                          </Menu.ItemDetails>
+                        <Menu.Item href={item.href}>
+                          <Menu.Label>{item.label}</Menu.Label>
+                          <Menu.Description>{item.description}</Menu.Description>
                         </Menu.Item>
                       )}
                     </Menu.Content>
@@ -297,21 +276,21 @@ const premium = [
     id: 1,
     label: "Premium Blocks",
     href: "https://blocks.intentui.com",
-    icon: <IconBrandIntentui />,
+    icon: IconBrandIntentui,
     description: "Pre-designed, ready-to-use React components for seamless integration.",
   },
   {
     id: 4,
     label: "Templates",
     href: "https://blocks.intentui.com/templates",
-    icon: <IconBrandIntentui />,
+    icon: IconBrandIntentui,
     description: "Pre-designed, ready-to-use React components for seamless integration.",
   },
   {
     id: 2,
     label: "Premium Starter Kit",
     href: "#",
-    icon: <IconWindowVisitFill />,
+    icon: IconWindowVisitFill,
     description:
       "Get started quickly with a complete React project setup, including authentication.",
     badge: "Coming soon",
@@ -320,7 +299,7 @@ const premium = [
     id: 3,
     label: "Figma",
     href: "#",
-    icon: <IconBrandFigma />,
+    icon: IconBrandFigma,
     description: "Enhance your Figma designs with Intent components.",
     badge: "Coming soon",
   },
