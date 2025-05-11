@@ -2,9 +2,9 @@
 
 import { createContext, use, useRef, useState } from "react"
 
+import type { MenuContentProps } from "@/components/ui/menu"
+import { Menu } from "@/components/ui/menu"
 import { twMerge } from "tailwind-merge"
-import type { MenuContentProps } from "./menu"
-import { Menu } from "./menu"
 
 interface ContextMenuTriggerContextType {
   buttonRef: React.RefObject<HTMLButtonElement | null>

@@ -5,10 +5,10 @@ import { GridList, GridListItem, Text, composeRenderProps } from "react-aria-com
 import type { VariantProps } from "tailwind-variants"
 import { tv } from "tailwind-variants"
 
+import { Checkbox } from "@/components/ui/checkbox"
 import { focusStyles } from "@/lib/primitive"
 import { createContext, use } from "react"
 import { twJoin, twMerge } from "tailwind-merge"
-import { Checkbox } from "./checkbox"
 
 const choiceboxStyles = tv({
   base: "grid",

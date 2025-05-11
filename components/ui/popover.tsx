@@ -18,14 +18,12 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
-import { useMediaQuery } from "@/hooks/use-media-query"
-import { twMerge } from "tailwind-merge"
 import type {
   DialogBodyProps,
   DialogFooterProps,
   DialogHeaderProps,
   DialogTitleProps,
-} from "./dialog"
+} from "@/components/ui/dialog"
 import {
   Dialog,
   DialogBody,
@@ -35,7 +33,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog"
+} from "@/components/ui/dialog"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { twMerge } from "tailwind-merge"
 
 type PopoverProps = DialogTriggerProps
 const Popover = (props: PopoverProps) => {

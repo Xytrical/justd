@@ -32,7 +32,7 @@ export function Blocks() {
   return (
     <PageContainer>
       <div className="mask-b-from-100% md:mask-b-from-60% lg:mask-b-from-70% grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="[--card-spacing:theme(spacing.4)]">
+        <Card className="[--card-spacing:--spacing(4)]">
           <Card.Header title="Input" />
           <Card.Content>
             <div className="flex flex-col gap-y-4">
@@ -42,7 +42,7 @@ export function Blocks() {
             </div>
           </Card.Content>
         </Card>
-        <Card className="[--card-spacing:theme(spacing.4)]">
+        <Card className="[--card-spacing:--spacing(4)]">
           <Card.Header title="Pickers" />
           <Card.Content>
             <div className="flex flex-col gap-y-4">
@@ -52,7 +52,7 @@ export function Blocks() {
             </div>
           </Card.Content>
         </Card>
-        <Card className="[--card-spacing:theme(spacing.4)]">
+        <Card className="[--card-spacing:--spacing(4)]">
           <Card.Header title="Date and Time" />
           <Card.Content>
             <div className="flex flex-col gap-y-4">
@@ -66,7 +66,7 @@ export function Blocks() {
           </Card.Content>
         </Card>
         <div className="flex flex-col gap-y-4">
-          <Card className="[--card-spacing:theme(spacing.4)]">
+          <Card className="[--card-spacing:--spacing(4)]">
             <Card.Header title="Dialog" />
             <Card.Content>
               <div className="flex flex-col gap-y-4">
@@ -76,7 +76,7 @@ export function Blocks() {
               </div>
             </Card.Content>
           </Card>
-          <Card className="[--card-spacing:theme(spacing.4)]">
+          <Card className="[--card-spacing:--spacing(4)]">
             {/*<Card.Header title="Control" />*/}
             <Card.Content>
               <RadioGroup
@@ -115,7 +115,7 @@ export function Blocks() {
           </Card>
         </div>
         <div className="md:col-span-2">
-          <Card className="gap-y-0 [--card-spacing:theme(spacing.4)]">
+          <Card className="gap-y-0 [--card-spacing:--spacing(4)]">
             <Card.Header className="pb-2" title="Table" />
             <Card.Content>
               <Table aria-label="Products">

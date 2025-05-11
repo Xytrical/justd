@@ -24,10 +24,10 @@ import {
   useTableOptions,
 } from "react-aria-components"
 
+import { Checkbox } from "@/components/ui/checkbox"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { createContext, use } from "react"
 import { twJoin, twMerge } from "tailwind-merge"
-import { Checkbox } from "./checkbox"
 
 interface TableProps extends Omit<TablePrimitiveProps, "className"> {
   allowResize?: boolean

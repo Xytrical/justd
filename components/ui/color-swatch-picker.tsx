@@ -6,9 +6,9 @@ import {
   ColorSwatchPicker as ColorSwatchPickerPrimitive,
 } from "react-aria-components"
 
+import { ColorSwatch } from "@/components/ui/color-swatch"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
-import { ColorSwatch } from "./color-swatch"
 
 const ColorSwatchPicker = ({
   children,

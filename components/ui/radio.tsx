@@ -8,8 +8,8 @@ import type {
 import { RadioGroup as RadioGroupPrimitive, Radio as RadioPrimitive } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { Description, FieldError, Label } from "@/components/ui/field"
 import { composeTailwindRenderProps } from "@/lib/primitive"
-import { Description, FieldError, Label } from "./field"
 
 interface RadioGroupProps extends Omit<RadioGroupPrimitiveProps, "children"> {
   label?: string

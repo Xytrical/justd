@@ -13,9 +13,9 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { Description, FieldError, Label } from "@/components/ui/field"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
-import { Description, FieldError, Label } from "./field"
 
 interface CheckboxGroupProps extends CheckboxGroupPrimitiveProps {
   label?: string

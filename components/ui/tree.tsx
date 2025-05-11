@@ -11,9 +11,9 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { Checkbox } from "@/components/ui/checkbox"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twJoin, twMerge } from "tailwind-merge"
-import { Checkbox } from "./checkbox"
 
 const Tree = <T extends object>({ className, ...props }: TreeProps<T>) => {
   return (

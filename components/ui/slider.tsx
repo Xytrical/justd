@@ -14,10 +14,10 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
+import { Description, Label } from "@/components/ui/field"
+import { Tooltip } from "@/components/ui/tooltip"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twJoin, twMerge } from "tailwind-merge"
-import { Description, Label } from "./field"
-import { Tooltip } from "./tooltip"
 
 const sliderStyles = tv({
   base: "group relative flex touch-none select-none flex-col",

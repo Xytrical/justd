@@ -10,9 +10,9 @@ import {
 import type { ListBoxItemProps, ListBoxProps, ListBoxSectionProps } from "react-aria-components"
 import { ListBox, ListBoxItem, ListBoxSection, Separator } from "react-aria-components"
 
+import { buttonStyles } from "@/components/ui/button"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { twMerge } from "tailwind-merge"
-import { buttonStyles } from "./button"
 
 type PaginationProps = React.ComponentProps<"nav">
 const Pagination = ({ className, ref, ...props }: PaginationProps) => (
