@@ -5,20 +5,12 @@ import React, { useState } from "react"
 import generated from "@/__registry__/generated"
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { TabsList } from "@/components/code/code-sandbox"
-import { IconBrandV0 } from "@/components/icons/icon-brand-v0"
-import { Button, buttonStyles } from "@/components/ui/button"
-import { Link } from "@/components/ui/link"
 import { Loader } from "@/components/ui/loader"
 import { Tabs } from "@/components/ui/tabs"
-import { Tooltip } from "@/components/ui/tooltip"
-import { copyToClipboard } from "@/resources/lib/copy"
 import { createFetchRegistryFile } from "@/resources/lib/fetch-registry"
-import { openInV0Url } from "@/resources/lib/utils"
 import type { RegistryItem } from "@/resources/types"
-import { IconDuplicate, IconTerminal } from "@intentui/icons"
 import { Group } from "react-aria-components"
 import { twMerge } from "tailwind-merge"
-import { PullRegistry } from "@/components/code/pull-registry";
 
 const registry = generated as Record<string, RegistryItem>
 
@@ -90,7 +82,13 @@ export const DocHow = ({
       {...divProps}
     >
       <Tabs aria-label="Packages">
-        <TabsList copyButton={false} hasRegistry blockDemo={blockDemo} code={processedSourceCode as string} src={src} />
+        <TabsList
+          copyButton={false}
+          hasRegistry
+          blockDemo={blockDemo}
+          code={processedSourceCode as string}
+          src={src}
+        />
         <Tabs.Panel className="w-full" id="preview">
           <div
             className={twMerge(

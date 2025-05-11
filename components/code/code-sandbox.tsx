@@ -5,6 +5,7 @@ import React, { useState } from "react"
 import generated from "@/__registry__/generated"
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { CopyButton, CopyMotionButton } from "@/components/code/copy-button"
+import { PullRegistry } from "@/components/code/pull-registry"
 import { Loader } from "@/components/ui/loader"
 import { Tabs } from "@/components/ui/tabs"
 import { copyToClipboard } from "@/resources/lib/copy"
@@ -12,7 +13,6 @@ import type { RegistryItem } from "@/resources/types"
 import { IconBrandCss, IconBrandReactjs, IconFile, IconWindowVisitFill } from "@intentui/icons"
 import { Tab } from "react-aria-components"
 import { twMerge } from "tailwind-merge"
-import { PullRegistry } from "@/components/code/pull-registry";
 
 interface Props {
   source: Record<string, string>
@@ -160,7 +160,7 @@ export const TabsList = ({ hasRegistry, src, code, blockDemo, copyButton }: TabL
       </Tabs.List>
       {hasRegistry && (
         <PullRegistry
-          className='-top-0.5 absolute right-0'
+          className="-top-0.5 absolute right-0"
           processedSourceCode={code as string}
           blockDemo={blockDemo as string}
         />

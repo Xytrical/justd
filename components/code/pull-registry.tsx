@@ -1,21 +1,21 @@
-'use client'
+"use client"
 
-import { Tooltip } from "@/components/ui/tooltip";
-import { Button, buttonStyles } from "@/components/ui/button";
-import { copyToClipboard } from "@/resources/lib/copy";
-import { IconDuplicate, IconTerminal } from "@intentui/icons";
-import { Link } from "@/components/ui/link";
-import { openInV0Url } from "@/resources/lib/utils";
-import { IconBrandV0 } from "@/components/icons/icon-brand-v0";
-import { twMerge } from "tailwind-merge";
+import { IconBrandV0 } from "@/components/icons/icon-brand-v0"
+import { Button, buttonStyles } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
+import { Tooltip } from "@/components/ui/tooltip"
+import { copyToClipboard } from "@/resources/lib/copy"
+import { openInV0Url } from "@/resources/lib/utils"
+import { IconDuplicate, IconTerminal } from "@intentui/icons"
+import { twMerge } from "tailwind-merge"
 
 interface PullRegistryProps {
-  processedSourceCode: string | null;
-  blockDemo: string;
-  className?: string;
+  processedSourceCode: string | null
+  blockDemo: string
+  className?: string
 }
 
-export function PullRegistry({className, processedSourceCode, blockDemo}: PullRegistryProps) {
+export function PullRegistry({ className, processedSourceCode, blockDemo }: PullRegistryProps) {
   return (
     <div className={twMerge("flex items-center gap-x-1", className)}>
       <Tooltip>
@@ -55,5 +55,5 @@ export function PullRegistry({className, processedSourceCode, blockDemo}: PullRe
         <Tooltip.Content>Open in V0</Tooltip.Content>
       </Tooltip>
     </div>
-  );
+  )
 }
