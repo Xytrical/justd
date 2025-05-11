@@ -1,5 +1,6 @@
 "use client"
 
+import { Description, FieldError, FieldGroup, Label } from "@/components/ui/field"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import {
   DateField as DateFieldPrimitive,
@@ -11,7 +12,6 @@ import {
   type ValidationResult,
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
-import { Description, FieldError, FieldGroup, Label } from "./field"
 
 interface DateFieldProps<T extends DateValue> extends DateFieldPrimitiveProps<T> {
   label?: string

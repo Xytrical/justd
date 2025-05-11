@@ -6,7 +6,7 @@ import {
   ColorWheelTrack,
 } from "react-aria-components"
 
-import { ColorThumb } from "./color-thumb"
+import { ColorThumb } from "@/components/ui/color-thumb"
 
 type ColorWheelProps = Omit<ColorWheelPrimitiveProps, "outerRadius" | "innerRadius">
 

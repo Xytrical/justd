@@ -38,7 +38,6 @@ export const DocHow = ({
   ...props
 }: HowProps) => {
   const [rawSourceCode, setRawSourceCode] = useState<string | null>(null)
-
   /*
    * Prepend the `demo/` prefix to the provided `toUse` prop
    * to construct the registry key dynamically.
@@ -50,6 +49,8 @@ export const DocHow = ({
    * This ensures that the correct component is loaded via React.lazy.
    */
   const Component = registry[registryKey]?.component
+
+  const blockDemo = toUse.split("/").pop() ?? ""
 
   const processedSourceCode = React.useMemo(() => {
     if (!rawSourceCode) return null
@@ -81,7 +82,13 @@ export const DocHow = ({
       {...divProps}
     >
       <Tabs aria-label="Packages">
-        <TabsList copyButton={copyButton} code={processedSourceCode as string} src={src} />
+        <TabsList
+          copyButton={false}
+          hasRegistry
+          blockDemo={blockDemo}
+          code={processedSourceCode as string}
+          src={src}
+        />
         <Tabs.Panel className="w-full" id="preview">
           <div
             className={twMerge(

@@ -37,7 +37,7 @@ export function DocComposed({
             className="**:[[slot=description]]:line-clamp-2"
             key={item._file?.path}
             href={`/docs/${item._file?.path.replace(".mdx", "")}`}
-            title={item.title}
+            label={item.title}
             description={item.description}
           />
         ))}

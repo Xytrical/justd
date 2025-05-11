@@ -2,6 +2,8 @@
 
 import React from "react"
 
+import { badgeIntents, badgeShapes, badgeStyles } from "@/components/ui/badge"
+import { Description, Label } from "@/components/ui/field"
 import { composeTailwindRenderProps } from "@/lib/primitive"
 import { IconX } from "@intentui/icons"
 import type {
@@ -18,8 +20,6 @@ import {
 } from "react-aria-components"
 import { twJoin, twMerge } from "tailwind-merge"
 import { tv } from "tailwind-variants"
-import { badgeIntents, badgeShapes, badgeStyles } from "./badge"
-import { Description, Label } from "./field"
 
 const intents = {
   primary: {

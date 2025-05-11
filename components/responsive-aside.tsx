@@ -46,7 +46,7 @@ export function ResponsiveAside({
           <ButtonPrimitive
             onPress={() => setOpenAside(true)}
             aria-label="Search docs"
-            className="-ml-2 p-2 outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="-ml-2 p-2 outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-ring"
           >
             <IconSidebarFill className="size-5" />
           </ButtonPrimitive>

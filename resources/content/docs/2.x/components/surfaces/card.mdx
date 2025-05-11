@@ -26,25 +26,24 @@ You can add actions to your card, which will be aligned to the right. This examp
 <How isCenter={false} toUse="surfaces/card/card-action-demo"/>
 
 ## With Table
-Check out the lowdown with all the deets laid out.
+When you place a table inside a card, The table gutter inherits the padding from its parent card to ensure visual consistency.
 <How isCenter={false} withNoPadding toUse="surfaces/card/card-table-demo"/>
+
+For table docs, check out the [Table](/docs/components/collections/table) docs.
 
 ## Section Title
 Sometimes, you may only need a card header without wrapping container itself. Of course, you need don't want the default padding, right? So I have prop called `withoutPadding` to help you out.
 ```
 <CardHeader
-  className='mb-6'
   title="List Daemons"
   description="List of daemons to use in your sites."
 />
 ```
-
-For table docs, check out the [Table](/docs/components/collections/table) docs.
 
 ## Adjust Padding
 
 The padding for all sections of the card—header, content, and footer—is controlled by a CSS variable defined on the card’s parent container. To update the padding for the entire card, simply set the variable via a class on the parent like this:
 
 ```
-<Card className='[--card-spacing:theme(spacing.4)]'>
+<Card className='[--card-spacing:--spacing(2)'/>
 ```

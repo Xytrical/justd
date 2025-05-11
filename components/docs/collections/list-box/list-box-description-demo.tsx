@@ -5,7 +5,7 @@ import { useState } from "react"
 import { ListBox } from "@/components/ui/list-box"
 import type { Selection } from "react-aria-components"
 
-export default function ListBoxItemDetailsDemo() {
+export default function ListBoxDescriptionDemo() {
   const [selected, setSelected] = useState<Selection>(new Set([1]))
   return (
     <ListBox
@@ -13,10 +13,12 @@ export default function ListBoxItemDetailsDemo() {
       onSelectionChange={setSelected}
       items={roles}
       aria-label="Bands"
+      className="max-w-60"
     >
       {(item) => (
-        <ListBox.Item id={item.id}>
-          <ListBox.ItemDetails label={item.name} description={item.description} />
+        <ListBox.Item id={item.id} textValue={item.name}>
+          <ListBox.Label>{item.name}</ListBox.Label>
+          <ListBox.Description>{item.description}</ListBox.Description>
         </ListBox.Item>
       )}
     </ListBox>

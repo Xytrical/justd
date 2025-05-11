@@ -1,5 +1,6 @@
 "use client"
 
+import { Button, type ButtonProps } from "@/components/ui/button"
 import { AnimatePresence, motion } from "motion/react"
 import { use } from "react"
 import type {
@@ -20,7 +21,6 @@ import {
   Text,
 } from "react-aria-components"
 import { twJoin, twMerge } from "tailwind-merge"
-import { Button, type ButtonProps } from "./button"
 
 const DrawerRoot = motion.create(ModalPrimitive)
 const DrawerOverlay = motion.create(ModalOverlay)
