@@ -12,7 +12,7 @@
     "cdc": "bun run resources/scripts/check-duplicated-classes.ts",
     "prepare": "husky",
     "build:old-registry": "rm -rf public/registry && bun run resources/scripts/build-old-registry.ts",
-    "build:registry": "bun run resources/scripts/build-registry.ts && npx shadcn build",
+    "build:registry": "bun run resources/scripts/build-registry.ts && npx shadcn build && bun run resources/scripts/extract-components-from-registry.ts",
     "dev": "next dev --turbopack",
     "build": "next build",
     "format": "biome lint --fix && biome check --write",
