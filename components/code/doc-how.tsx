@@ -50,7 +50,7 @@ export const DocHow = ({
    */
   const Component = registry[registryKey]?.component
 
-  const blockDemo = toUse.split("/").pop()
+  const blockDemo = toUse.split("/").pop() ?? ""
 
   const processedSourceCode = React.useMemo(() => {
     if (!rawSourceCode) return null
