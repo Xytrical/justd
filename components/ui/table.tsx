@@ -154,14 +154,29 @@ const TableHeader = <T extends object>({
   columns,
   ...props
 }: TableHeaderProps<T>) => {
+  const { bleed } = useTableContext()
   const { selectionBehavior, selectionMode, allowsDragging } = useTableOptions()
   return (
     <TableHeaderPrimitive data-slot="table-header" ref={ref} {...props}>
       {allowsDragging && (
-        <Column className="w-0 max-w-8 px-(--gutter) first:pl-(--edge-padding) last:pr-(--edge-padding)" />
+        <Column
+          className={twMerge(
+            "w-0 max-w-8 px-(--gutter)",
+            !bleed
+              ? "sm:last:pr-1 sm:first:pl-1"
+              : "first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))",
+          )}
+        />
       )}
       {selectionBehavior === "toggle" && (
-        <Column className="w-0 max-w-8 px-(--gutter) first:pl-(--edge-padding) last:pr-(--edge-padding)">
+        <Column
+          className={twMerge(
+            "w-0 max-w-8 px-(--gutter)",
+            !bleed
+              ? "sm:last:pr-1 sm:first:pl-1"
+              : "first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))",
+          )}
+        >
           {selectionMode === "multiple" && <Checkbox slot="selection" />}
         </Column>
       )}

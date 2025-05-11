@@ -6,7 +6,7 @@ import { NumberFormatter } from "@internationalized/number"
 
 export default function TableDemo() {
   return (
-    <Table aria-label="Products">
+    <Table selectionMode="multiple" aria-label="Products">
       <Table.Header>
         <Table.Column className="w-0">#</Table.Column>
         <Table.Column isRowHeader>Name</Table.Column>

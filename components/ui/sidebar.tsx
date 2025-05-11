@@ -31,7 +31,7 @@ import {
 import { twJoin, twMerge } from "tailwind-merge"
 import { tv } from "tailwind-variants"
 
-const SIDEBAR_COOKIE_NAME = "sidebar:state"
+const SIDEBAR_COOKIE_NAME = "sidebar-state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 type SidebarContextProps = {
   state: "expanded" | "collapsed"
