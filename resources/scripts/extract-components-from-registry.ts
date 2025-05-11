@@ -33,7 +33,7 @@ async function filterAndWriteComponents() {
     const componentItems = jsonData.items.filter((item) => item.type === "registry:component")
 
     await write(outputFile, JSON.stringify(componentItems, null, 2))
-    console.log(`Successfully filtered components and wrote to ${outputFile}`)
+    console.info(`Successfully filtered components and wrote to ${outputFile}`)
   } catch (error) {
     console.error("An error occurred:", error)
   }
