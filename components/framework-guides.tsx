@@ -11,7 +11,7 @@ const IconBrandTanstack = (props: React.ComponentProps<"svg">) => (
 
 export const IconBrandVite = (props: React.ComponentProps<"svg">) => (
   <svg
-className="size-4"
+    className="size-4"
     data-slot="icon"
     {...props}
     viewBox="0 0 40 40"

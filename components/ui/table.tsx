@@ -152,12 +152,18 @@ const TableHeader = <T extends object>({
   children,
   ref,
   columns,
+  className,
   ...props
 }: TableHeaderProps<T>) => {
   const { bleed } = useTableContext()
   const { selectionBehavior, selectionMode, allowsDragging } = useTableOptions()
   return (
-    <TableHeaderPrimitive data-slot="table-header" ref={ref} {...props}>
+    <TableHeaderPrimitive
+      data-slot="table-header"
+      className={composeTailwindRenderProps(className, "border-b")}
+      ref={ref}
+      {...props}
+    >
       {allowsDragging && (
         <Column
           className={twMerge(
@@ -207,7 +213,7 @@ const TableRow = <T extends object>({
       className={composeTailwindRenderProps(
         className,
         twJoin(
-          "group focus-visible:-outline-offset-2 relative cursor-default border-t selected:bg-(--table-selected-bg) text-muted-fg dragging:outline outline-blue-500 ring-primary selected:hover:bg-(--table-selected-bg)/70 focus-visible:outline dark:selected:hover:bg-[color-mix(in_oklab,var(--color-primary)_30%,black_70%)]",
+          "group focus-visible:-outline-offset-2 relative cursor-default border-b selected:bg-(--table-selected-bg) text-muted-fg dragging:outline outline-blue-500 ring-primary selected:hover:bg-(--table-selected-bg)/70 focus-visible:outline dark:selected:hover:bg-[color-mix(in_oklab,var(--color-primary)_30%,black_70%)]",
           ((props.href && !props.isDisabled) || props.onAction) &&
             "cursor-pointer hover:bg-secondary/50 hover:text-secondary-fg",
         ),
