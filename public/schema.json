@@ -32,5 +32,5 @@
       "description": "Programming language of the project"
     }
   },
-  "required": ["ui", "utils", "css", "alias", "language"]
+  "required": ["ui", "lib", "css", "alias", "language"]
 }
