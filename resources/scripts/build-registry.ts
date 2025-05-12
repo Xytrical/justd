@@ -160,9 +160,15 @@ const extractExternalDependencies = (content: string): string[] => {
       !importPath.startsWith(".") &&
       !importPath.startsWith("@/") &&
       !importPath.startsWith("node:") &&
-      !["react", "react-dom", "clsx", "tailwind-merge", "next", "next/image", "embla-carousel-react"].includes(
-        importPath,
-      )
+      ![
+        "react",
+        "react-dom",
+        "clsx",
+        "tailwind-merge",
+        "next",
+        "next/image",
+        "embla-carousel-react",
+      ].includes(importPath)
     ) {
       dependencies.add(importPath === "motion/react" ? "motion" : importPath)
     }
