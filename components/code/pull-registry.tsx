@@ -6,8 +6,9 @@ import { Link } from "@/components/ui/link"
 import { Tooltip } from "@/components/ui/tooltip"
 import { copyToClipboard } from "@/resources/lib/copy"
 import { openInV0Url } from "@/resources/lib/utils"
-import { IconDuplicate, IconTerminal } from "@intentui/icons"
+import { IconCheck, IconDuplicate, IconTerminal } from "@intentui/icons"
 import { twMerge } from "tailwind-merge"
+import { useState } from "react";
 
 interface PullRegistryProps {
   processedSourceCode: string | null
@@ -16,27 +17,36 @@ interface PullRegistryProps {
 }
 
 export function PullRegistry({ className, processedSourceCode, blockDemo }: PullRegistryProps) {
+  const [copy, setCopy] = useState({ code: false, command: false })
+
+  const handleCopy = (key: "code" | "command", value: string) => {
+    copyToClipboard(value).then(() => {
+      setCopy((prev) => ({ ...prev, [key]: true }))
+      setTimeout(() => setCopy((prev) => ({ ...prev, [key]: false })), 2000)
+    })
+  }
+
   return (
     <div className={twMerge("flex items-center gap-x-1", className)}>
       <Tooltip>
         <Button
-          onPress={() => copyToClipboard(processedSourceCode as string)}
+          onPress={() => handleCopy("code", processedSourceCode as string)}
           intent="plain"
           className="size-7 rounded-xs"
           size="square-petite"
         >
-          <IconDuplicate />
+          {copy.code ? <IconCheck /> : <IconDuplicate />}
         </Button>
         <Tooltip.Content>Copy code</Tooltip.Content>
       </Tooltip>
       <Tooltip>
         <Button
-          onPress={() => copyToClipboard(`npx intentui@latest add -b ${blockDemo}`)}
+          onPress={() => handleCopy("command", `npx intentui@latest add -b ${blockDemo}`)}
           intent="plain"
           className="size-7 rounded-xs"
           size="square-petite"
         >
-          <IconTerminal />
+          {copy.command ? <IconCheck /> : <IconTerminal />}
         </Button>
         <Tooltip.Content>Copy registry command</Tooltip.Content>
       </Tooltip>
