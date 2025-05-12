@@ -7,8 +7,8 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { copyToClipboard } from "@/resources/lib/copy"
 import { openInV0Url } from "@/resources/lib/utils"
 import { IconCheck, IconDuplicate, IconTerminal } from "@intentui/icons"
+import { useState } from "react"
 import { twMerge } from "tailwind-merge"
-import { useState } from "react";
 
 interface PullRegistryProps {
   processedSourceCode: string | null

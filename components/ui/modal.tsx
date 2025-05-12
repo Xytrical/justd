@@ -1,14 +1,5 @@
 "use client"
 
-import type { DialogProps, DialogTriggerProps, ModalOverlayProps } from "react-aria-components"
-import {
-  DialogTrigger as DialogTriggerPrimitive,
-  ModalOverlay,
-  Modal as ModalPrimitive,
-  composeRenderProps,
-} from "react-aria-components"
-import { type VariantProps, tv } from "tailwind-variants"
-
 import {
   Dialog,
   DialogBody,
@@ -20,6 +11,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import type { DialogProps, DialogTriggerProps, ModalOverlayProps } from "react-aria-components"
+import {
+  DialogTrigger as DialogTriggerPrimitive,
+  ModalOverlay,
+  Modal as ModalPrimitive,
+  composeRenderProps,
+} from "react-aria-components"
+import { type VariantProps, tv } from "tailwind-variants"
 
 const Modal = (props: DialogTriggerProps) => {
   return <DialogTriggerPrimitive {...props} />

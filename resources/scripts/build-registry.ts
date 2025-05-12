@@ -181,7 +181,8 @@ const extractInternalDependencyPaths = (
   currentFilePath: string,
   projectRoot: string,
 ): string[] => {
-  const importRegex = /import .* from ['"]([^'"]+)['"]/g
+  const importRegex = /import[\s\S]*?from\s+['"]([^'"]+)['"]/g
+
   const internalImportsRaw = new Set<string>()
   let match: RegExpExecArray | null
 
