@@ -1,12 +1,9 @@
 "use client"
 
-import { IconBrandV0 } from "@/components/icons/icon-brand-v0"
-import { Button, buttonStyles } from "@/components/ui/button"
-import { Link } from "@/components/ui/link"
+import { Button } from "@/components/ui/button"
 import { Tooltip } from "@/components/ui/tooltip"
 import { copyToClipboard } from "@/resources/lib/copy"
-import { openInV0Url } from "@/resources/lib/utils"
-import { IconCheck, IconDuplicate, IconTerminal } from "@intentui/icons"
+import { IconCheck, IconDuplicate } from "@intentui/icons"
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
 
@@ -39,6 +36,7 @@ export function PullRegistry({ className, processedSourceCode, blockDemo }: Pull
         </Button>
         <Tooltip.Content>Copy code</Tooltip.Content>
       </Tooltip>
+      {/*
       <Tooltip>
         <Button
           onPress={() => handleCopy("command", `npx intentui@latest add -b ${blockDemo}`)}
@@ -64,6 +62,7 @@ export function PullRegistry({ className, processedSourceCode, blockDemo }: Pull
         </Link>
         <Tooltip.Content>Open in V0</Tooltip.Content>
       </Tooltip>
+      */}
     </div>
   )
 }
