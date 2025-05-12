@@ -9,7 +9,7 @@ const Separator = ({ className, ...props }: SeparatorProps) => {
       {...props}
       className={twMerge(
         "shrink-0 bg-border forced-colors:bg-[ButtonBorder]",
-        props.orientation === "horizontal" ? "h-px w-full" : "w-px",
+        "orientation-horizontal:h-px orientation-horizontal:w-full orientation-vertical:w-px",
         className,
       )}
     />
