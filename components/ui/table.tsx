@@ -166,7 +166,7 @@ const TableHeader = <T extends object>({
     >
       {allowsDragging && (
         <Column
-          data-slot='table-column'
+          data-slot="table-column"
           className={twMerge(
             "w-0 max-w-8 px-(--gutter)",
             !bleed
@@ -177,7 +177,7 @@ const TableHeader = <T extends object>({
       )}
       {selectionBehavior === "toggle" && (
         <Column
-          data-slot='table-column'
+          data-slot="table-column"
           className={twMerge(
             "w-0 max-w-8 px-(--gutter)",
             !bleed
