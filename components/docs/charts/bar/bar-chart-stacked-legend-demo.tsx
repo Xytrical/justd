@@ -45,7 +45,7 @@ export default function BarChartStackedLegendDemo() {
         description="Revenue breakdown every 2 weeks (Jan - Dec 2024)"
       />
       <Card.Content>
-        <Chart config={chartConfig}>
+        <Chart className="aspect-[20/15] sm:aspect-[17/7]" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis

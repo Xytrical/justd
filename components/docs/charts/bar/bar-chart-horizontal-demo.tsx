@@ -5,13 +5,12 @@ import { Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "@/co
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 const performanceData = [
-  { dataCenter: "New York", uptime: 99.9 },
-  { dataCenter: "San Francisco", uptime: 97.5 },
-  { dataCenter: "Singapore", uptime: 98.7 },
-  { dataCenter: "London", uptime: 95.3 },
-  { dataCenter: "Tokyo", uptime: 94.8 },
-  { dataCenter: "Sydney", uptime: 99.9 },
-  { dataCenter: "Seoul", uptime: 97.5 },
+  { dataCenter: "NY", uptime: 99.9 },
+  { dataCenter: "SF", uptime: 97.5 },
+  { dataCenter: "L", uptime: 95.3 },
+  { dataCenter: "T", uptime: 94.8 },
+  { dataCenter: "Syd", uptime: 99.9 },
+  { dataCenter: "S", uptime: 97.5 },
 ]
 
 const chartConfig = {
@@ -29,7 +28,7 @@ export default function BarChartHorizontalDemo() {
         description="Uptime percentage by region for Q1 2024"
       />
       <Card.Content>
-        <Chart config={chartConfig}>
+        <Chart className="aspect-[20/12] sm:aspect-[17/5]" config={chartConfig}>
           <BarChart
             accessibilityLayer
             data={performanceData}

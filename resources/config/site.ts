@@ -12,6 +12,13 @@ export const siteConfig = {
   discord: "https://discord.gg/DYmVJ66JUD",
   repo: "https://github.com/irsyadadl/intentui",
   currentVersion: "2.x",
+  cli: {
+    version: "beta",
+    command: "@intentui/cli",
+  },
+  get cliCommand() {
+    return `${this.cli.command}@${this.cli.version}`
+  },
 }
 
 export type SiteConfig = typeof siteConfig

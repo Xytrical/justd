@@ -47,7 +47,7 @@ export default function BarChartLabelDemo() {
         description="Satisfaction scores by category"
       />
       <Card.Content>
-        <Chart config={chartConfig}>
+        <Chart className="h-[250px] w-full" config={chartConfig}>
           <BarChart
             accessibilityLayer
             data={surveyData}

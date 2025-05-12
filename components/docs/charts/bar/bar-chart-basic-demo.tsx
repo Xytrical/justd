@@ -35,7 +35,7 @@ export default function BarChartBasicDemo() {
         className="items-center pb-0"
       />
       <Card.Content>
-        <Chart config={salesConfig}>
+        <Chart className="aspect-[20/15] sm:aspect-[17/7]" config={salesConfig}>
           <BarChart accessibilityLayer data={salesData}>
             <CartesianGrid vertical={false} />
             <XAxis dataKey="period" tickLine={false} tickMargin={10} axisLine={false} />

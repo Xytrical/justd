@@ -2,8 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { Tooltip } from "@/components/ui/tooltip"
+import { siteConfig } from "@/resources/config/site"
 import { copyToClipboard } from "@/resources/lib/copy"
-import { IconCheck, IconDuplicate } from "@intentui/icons"
+import { IconCheck, IconDuplicate, IconTerminal } from "@intentui/icons"
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
 
@@ -36,10 +37,9 @@ export function PullRegistry({ className, processedSourceCode, blockDemo }: Pull
         </Button>
         <Tooltip.Content>Copy code</Tooltip.Content>
       </Tooltip>
-      {/*
       <Tooltip>
         <Button
-          onPress={() => handleCopy("command", `npx intentui@latest add -b ${blockDemo}`)}
+          onPress={() => handleCopy("command", `npx ${siteConfig.cliCommand} add -b ${blockDemo}`)}
           intent="plain"
           className="size-7 rounded-xs"
           size="square-petite"
@@ -48,6 +48,7 @@ export function PullRegistry({ className, processedSourceCode, blockDemo }: Pull
         </Button>
         <Tooltip.Content>Copy registry command</Tooltip.Content>
       </Tooltip>
+      {/*
       <Tooltip>
         <Link
           href={openInV0Url(blockDemo as string)}

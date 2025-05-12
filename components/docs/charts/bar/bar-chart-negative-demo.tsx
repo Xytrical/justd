@@ -30,7 +30,7 @@ export default function BarChartNegativeDemo() {
     <Card>
       <Card.Header title="Monthly Profit and Loss" description="January - December 2024" />
       <Card.Content>
-        <Chart config={chartConfig}>
+        <Chart className="aspect-[15/15] sm:aspect-[17/7]" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <ChartTooltip

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Link } from "@/components/ui/link"
 import { Menu } from "@/components/ui/menu"
 import { composeTailwindRenderProps } from "@/lib/primitive"
+import { siteConfig } from "@/resources/config/site"
 import { copyToClipboard } from "@/resources/lib/copy"
 import { IconCheck, IconDuplicate } from "@intentui/icons"
 import { Group } from "react-aria-components"
@@ -25,6 +26,7 @@ export interface InstallationProps {
   }
 }
 
+const whatCommand = siteConfig.cliCommand
 export function Installation({ className, ...props }: InstallationProps) {
   const {
     options = {
@@ -94,9 +96,9 @@ export function Installation({ className, ...props }: InstallationProps) {
           code={
             props.command ||
             (options.isInit
-              ? "npx @intentui/cli@latest init"
+              ? `npx ${whatCommand} init`
               : options.isComponent
-                ? `npx @intentui/cli@latest add ${items[0]}`
+                ? `npx ${whatCommand} add ${items[0]}`
                 : `${pkgManager.name} ${pkgManager.action} ${items.join(" ")}`)
           }
         />
@@ -106,13 +108,13 @@ export function Installation({ className, ...props }: InstallationProps) {
           <CopyButton
             isCopied={isCopied}
             setIsCopied={setIsCopied}
-            text={`npx @intentui/cli@latest add ${items[0]}`}
+            text={`npx ${whatCommand} add ${items[0]}`}
           />
         ) : options.isInit ? (
           <CopyButton
             isCopied={isCopied}
             setIsCopied={setIsCopied}
-            text="npx @intentui/cli@latest init"
+            text={`npx ${whatCommand} init`}
           />
         ) : (
           <ChoosePkgManager
