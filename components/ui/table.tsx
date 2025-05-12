@@ -166,6 +166,7 @@ const TableHeader = <T extends object>({
     >
       {allowsDragging && (
         <Column
+          data-slot='table-column'
           className={twMerge(
             "w-0 max-w-8 px-(--gutter)",
             !bleed
@@ -176,6 +177,7 @@ const TableHeader = <T extends object>({
       )}
       {selectionBehavior === "toggle" && (
         <Column
+          data-slot='table-column'
           className={twMerge(
             "w-0 max-w-8 px-(--gutter)",
             !bleed
@@ -213,7 +215,7 @@ const TableRow = <T extends object>({
       className={composeTailwindRenderProps(
         className,
         twJoin(
-          "group focus-visible:-outline-offset-2 relative cursor-default border-b last:border-b-0 selected:bg-(--table-selected-bg) text-muted-fg dragging:outline outline-blue-500 ring-primary selected:hover:bg-(--table-selected-bg)/70 focus-visible:outline dark:selected:hover:bg-[color-mix(in_oklab,var(--color-primary)_30%,black_70%)]",
+          "group focus-visible:-outline-offset-2 relative cursor-default border-b selected:bg-(--table-selected-bg) text-muted-fg dragging:outline outline-blue-500 ring-primary last:border-b-0 selected:hover:bg-(--table-selected-bg)/70 focus-visible:outline dark:selected:hover:bg-[color-mix(in_oklab,var(--color-primary)_30%,black_70%)]",
           ((props.href && !props.isDisabled) || props.onAction) &&
             "cursor-pointer hover:bg-secondary/50 hover:text-secondary-fg",
         ),
