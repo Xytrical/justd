@@ -6,7 +6,11 @@
       "type": "string",
       "description": "Path to the UI components directory"
     },
-    "utils": {
+    "lib": {
+      "type": "string",
+      "description": "Path to the utilities directory"
+    },
+    "hooks": {
       "type": "string",
       "description": "Path to the utilities directory"
     },
