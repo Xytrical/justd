@@ -1,9 +1,12 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { IconBrandV0 } from "@/components/icons/icon-brand-v0"
+import { Button, buttonStyles } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
 import { Tooltip } from "@/components/ui/tooltip"
 import { siteConfig } from "@/resources/config/site"
 import { copyToClipboard } from "@/resources/lib/copy"
+import { openInV0Url } from "@/resources/lib/utils"
 import { IconCheck, IconDuplicate, IconTerminal } from "@intentui/icons"
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
@@ -48,7 +51,6 @@ export function PullRegistry({ className, processedSourceCode, blockDemo }: Pull
         </Button>
         <Tooltip.Content>Copy registry command</Tooltip.Content>
       </Tooltip>
-      {/*
       <Tooltip>
         <Link
           href={openInV0Url(blockDemo as string)}
@@ -63,7 +65,6 @@ export function PullRegistry({ className, processedSourceCode, blockDemo }: Pull
         </Link>
         <Tooltip.Content>Open in V0</Tooltip.Content>
       </Tooltip>
-      */}
     </div>
   )
 }
