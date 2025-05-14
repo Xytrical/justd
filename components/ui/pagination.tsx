@@ -160,7 +160,7 @@ const PaginationItem = ({
             intent: isCurrent ? "primary" : intent,
             size,
             className: twMerge(
-              "cursor-pointer font-normal tabular-nums disabled:cursor-default disabled:opacity-100 focus-visible:border-primary focus-visible:bg-primary/10 focus-visible:ring-4 focus-visible:ring-ring/20",
+              "cursor-pointer font-normal min-w-10 tabular-nums disabled:cursor-default disabled:opacity-100 focus-visible:border-primary focus-visible:bg-primary/10 focus-visible:ring-4 focus-visible:ring-ring/20",
               className,
             ),
           }),
