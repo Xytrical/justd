@@ -580,7 +580,7 @@ const SidebarDisclosure = ({ className, ref, ...props }: SidebarDisclosureProps)
       data-sidebar-disclosure="true"
       className={composeTailwindRenderProps(
         className,
-        twMerge(state === "expanded" ? "px-2.5" : "col-span-full"),
+        state === "expanded" ? "px-2.5" : "col-span-full",
       )}
       {...props}
     />
