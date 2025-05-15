@@ -152,7 +152,7 @@ const CommandMenuSearch = ({ className, placeholder, ...props }: CommandMenuSear
       {escapeButton && (
         <Button
           onPress={() => state?.close()}
-          className="hidden cursor-pointer rounded border text-current/90 hover:bg-muted lg:inline lg:px-1.5 lg:py-0.5 lg:text-xs"
+          className="hidden cursor-default rounded border text-current/90 hover:bg-muted lg:inline lg:px-1.5 lg:py-0.5 lg:text-xs"
         >
           Esc
         </Button>

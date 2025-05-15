@@ -60,7 +60,7 @@ export function CodeBlock({ source }: Props) {
                 <Tab
                   className={(values) =>
                     twMerge(
-                      "flex cursor-pointer items-center gap-x-1.5 whitespace-nowrap px-3 py-2.5 font-mono text-muted-fg text-xs tracking-tight outline-hidden",
+                      "flex cursor-default items-center gap-x-1.5 whitespace-nowrap px-3 py-2.5 font-mono text-muted-fg text-xs tracking-tight outline-hidden",
                       "**:data-[slot=icon]:-ml-0.5 border-transparent border-x first:border-l-0 **:data-[slot=icon]:size-4 **:data-[slot=icon]:shrink-0",
                       (values.isSelected || values.isFocused || values.isFocusVisible) &&
                         "border-input bg-secondary text-secondary-fg dark:bg-muted",

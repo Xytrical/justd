@@ -129,7 +129,7 @@ export function ColorGenerator() {
                   textValue={colorValue}
                   onAction={() => handleCopy(colorValue, shade)}
                   key={colorValue?.toString()}
-                  className="group relative inset-shadow-white/15 inset-shadow-xs flex h-20 w-1/7 min-w-10 cursor-pointer items-end justify-center gap-x-2 rounded-lg p-2 font-mono text-xs ring-1 ring-white/10 ring-inset focus:outline-hidden focus:ring-white/25 *:data-[slot=icon]:absolute *:data-[slot=icon]:top-3 *:data-[slot=icon]:mx-auto *:data-[slot=icon]:hidden *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:opacity-90 *:data-[slot=icon]:group-focus-visible:block *:data-[slot=icon]:group-hover:block sm:w-full"
+                  className="group relative inset-shadow-white/15 inset-shadow-xs flex h-20 w-1/7 min-w-10 cursor-default items-end justify-center gap-x-2 rounded-lg p-2 font-mono text-xs ring-1 ring-white/10 ring-inset focus:outline-hidden focus:ring-white/25 *:data-[slot=icon]:absolute *:data-[slot=icon]:top-3 *:data-[slot=icon]:mx-auto *:data-[slot=icon]:hidden *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:opacity-90 *:data-[slot=icon]:group-focus-visible:block *:data-[slot=icon]:group-hover:block sm:w-full"
                   style={{
                     color: getTextColor(colorValue),
                     backgroundColor: colorValue,

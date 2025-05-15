@@ -82,7 +82,7 @@ const choiceboxItemStyles = tv({
     "[--choicebox-selected-hovered:color-mix(in_oklab,var(--color-primary)_15%,white_85%)]",
     "dark:[--choicebox-selected-hovered:color-mix(in_oklab,var(--color-primary)_25%,black_75%)]",
     "dark:[--choicebox-fg:color-mix(in_oklab,var(--color-primary)_45%,white_55%)] dark:[--choicebox:color-mix(in_oklab,var(--color-primary)_20%,black_70%)]",
-    "inset-ring inset-ring-border cursor-pointer rounded-lg p-4 **:data-[slot=label]:font-medium",
+    "inset-ring inset-ring-border cursor-default rounded-lg p-4 **:data-[slot=label]:font-medium",
     "**:data-[slot=avatar]:*:mr-2 **:data-[slot=avatar]:*:size-5 **:data-[slot=avatar]:size-5 **:data-[slot=avatar]:shrink-0",
     "**:data-[slot=icon]:mr-2 **:data-[slot=icon]:size-4 **:data-[slot=icon]:shrink-0",
     "grid grid-cols-[auto_1fr_1.5rem_0.5rem_auto] supports-[grid-template-columns:subgrid]:grid-cols-subgrid",
@@ -100,7 +100,7 @@ const choiceboxItemStyles = tv({
       ],
     },
     isDisabled: {
-      true: "z-10 cursor-default opacity-50 **:data-[slot=label]:text-muted-fg forced-colors:text-[GrayText] **:[[slot=description]]:text-muted-fg/70",
+      true: "z-10 opacity-50 **:data-[slot=label]:text-muted-fg forced-colors:text-[GrayText] **:[[slot=description]]:text-muted-fg/70",
     },
   },
 })

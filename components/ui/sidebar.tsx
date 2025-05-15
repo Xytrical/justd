@@ -403,7 +403,7 @@ const SidebarSection = ({ className, ...props }: SidebarSectionProps) => {
 
 const sidebarItemStyles = tv({
   base: [
-    "group/sidebar-item relative col-span-full cursor-pointer overflow-hidden rounded-lg px-[calc(var(--spacing)*2.3)] py-[calc(var(--spacing)*1.3)] text-sidebar-fg/70 focus-visible:outline-hidden sm:text-sm/6",
+    "group/sidebar-item relative col-span-full cursor-default overflow-hidden rounded-lg px-[calc(var(--spacing)*2.3)] py-[calc(var(--spacing)*1.3)] text-sidebar-fg/70 focus-visible:outline-hidden sm:text-sm/6",
     "**:data-[slot=menu-trigger]:-mr-1 **:data-[slot=menu-trigger]:absolute **:data-[slot=menu-trigger]:right-0 **:data-[slot=menu-trigger]:flex **:data-[slot=menu-trigger]:h-full **:data-[slot=menu-trigger]:w-[calc(var(--sidebar-width)-90%)] **:data-[slot=menu-trigger]:items-center **:data-[slot=menu-trigger]:justify-end **:data-[slot=menu-trigger]:pr-2.5 **:data-[slot=menu-trigger]:opacity-0 **:data-[slot=menu-trigger]:pressed:opacity-100 pressed:**:data-[slot=menu-trigger]:opacity-100 **:data-[slot=menu-trigger]:has-data-focus:opacity-100 **:data-[slot=menu-trigger]:focus-visible:opacity-100 hover:**:data-[slot=menu-trigger]:opacity-100",
     "**:data-[slot=avatar]:*:size-4 **:data-[slot=avatar]:size-4 **:data-[slot=icon]:size-4 **:data-[slot=avatar]:shrink-0 **:data-[slot=icon]:shrink-0",
     "in-data-[sidebar-intent=fleet]:rounded-none",
@@ -421,7 +421,7 @@ const sidebarItemStyles = tv({
       true: "bg-(--sidebar-accent) text-sidebar-fg **:data-[slot=menu-trigger]:flex",
     },
     isDisabled: {
-      true: "cursor-default opacity-50",
+      true: "opacity-50",
     },
   },
 })
@@ -589,7 +589,7 @@ const SidebarDisclosure = ({ className, ref, ...props }: SidebarDisclosureProps)
 
 const sidebarDisclosureTrigger = tv({
   base: [
-    "group relative flex w-full cursor-pointer items-center overflow-hidden rounded-lg px-[calc(var(--spacing)*2.3)] py-[calc(var(--spacing)*1.3)] text-sidebar-fg/70 outline-hidden sm:text-sm/6",
+    "group relative flex w-full cursor-default items-center overflow-hidden rounded-lg px-[calc(var(--spacing)*2.3)] py-[calc(var(--spacing)*1.3)] text-sidebar-fg/70 outline-hidden sm:text-sm/6",
     "in-data-[sidebar-intent=fleet]:rounded-none in-data-[sidebar-intent=fleet]:py-2 in-data-[sidebar-intent=fleet]:**:data-[slot=chevron]:hidden",
   ],
   variants: {
@@ -601,7 +601,7 @@ const sidebarDisclosureTrigger = tv({
       true: "bg-(--sidebar-accent) text-sidebar-fg",
     },
     isDisabled: {
-      true: "cursor-default opacity-50",
+      true: "opacity-50",
     },
   },
 })

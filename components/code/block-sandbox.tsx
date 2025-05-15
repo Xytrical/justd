@@ -165,7 +165,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
                 <Tab
                   className={({ isSelected }) =>
                     twMerge(
-                      "cursor-pointer rounded-sm px-2.5 py-1.5 outline-hidden",
+                      "cursor-default rounded-sm px-2.5 py-1.5 outline-hidden",
                       isSelected && "bg-primary text-primary-fg",
                     )
                   }
@@ -176,7 +176,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
                 <Tab
                   className={({ isSelected }) =>
                     twMerge(
-                      "cursor-pointer rounded-sm px-2.5 py-1.5 outline-hidden",
+                      "cursor-default rounded-sm px-2.5 py-1.5 outline-hidden",
                       isSelected && "bg-primary text-primary-fg",
                     )
                   }

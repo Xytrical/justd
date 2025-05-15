@@ -111,7 +111,7 @@ const TableColumn = ({ isResizable = false, className, ...props }: TableColumnPr
         className,
         twJoin(
           "text-left font-medium text-muted-fg",
-          "relative allows-sorting:cursor-pointer outline-hidden data-dragging:cursor-grabbing",
+          "relative allows-sorting:cursor-default outline-hidden data-dragging:cursor-grabbing",
           "px-(--gutter) py-(--gutter-y)",
           !bleed
             ? "sm:last:pr-1 sm:first:pl-1"
@@ -235,7 +235,7 @@ const TableRow = <T extends object>({
             (props.href || props.onAction || selectionMode === "multiple") &&
               isFocusVisibleWithin &&
               "bg-(--table-selected-bg)/50 selected:bg-(--table-selected-bg)/50 text-fg",
-            isDisabled && "cursor-default opacity-50",
+            isDisabled && "opacity-50",
             className,
           ),
       )}
