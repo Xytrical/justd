@@ -223,7 +223,7 @@ const NavbarItem = ({ className, isCurrent, ...props }: NavbarItemProps) => {
       className={composeTailwindRenderProps(
         className,
         twJoin(
-          "*:data-[slot=icon]:-mx-0.5 relative flex cursor-default items-center gap-x-2 px-2 text-muted-fg no-underline outline-hidden transition-colors md:text-sm forced-colors:transform-none forced-colors:outline-0 forced-colors:disabled:text-[GrayText]",
+          "*:data-[slot=icon]:-mx-0.5 relative flex cursor-pointer items-center gap-x-2 px-2 text-muted-fg no-underline outline-hidden transition-colors md:text-sm forced-colors:transform-none forced-colors:outline-0 forced-colors:disabled:text-[GrayText]",
           "pressed:text-fg hover:text-fg focus:text-fg focus-visible:outline-1 focus-visible:outline-primary",
           "**:data-[slot=chevron]:size-4 **:data-[slot=chevron]:transition-transform",
           "*:data-[slot=icon]:size-4 *:data-[slot=icon]:shrink-0 pressed:**:data-[slot=chevron]:rotate-180",
