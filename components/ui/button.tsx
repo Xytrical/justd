@@ -51,11 +51,10 @@ const buttonStyles = tv({
       circle: "rounded-full",
     },
     isDisabled: {
-      false: "cursor-pointer",
-      true: "inset-ring-0 cursor-default opacity-50 forced-colors:text-[GrayText]",
+      true: "inset-ring-0 opacity-50 forced-colors:text-[GrayText]",
     },
     isPending: {
-      true: "cursor-default opacity-50",
+      true: "opacity-50",
     },
   },
   defaultVariants: {
