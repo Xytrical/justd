@@ -1,14 +1,15 @@
 "use client"
 
 import { IconChevronLgDown, IconHamburger } from "@intentui/icons"
-import type {
-  CellProps,
-  ColumnProps,
-  ColumnResizerProps,
-  TableHeaderProps as HeaderProps,
-  RowProps,
-  TableBodyProps,
-  TableProps as TablePrimitiveProps,
+import {
+  type CellProps,
+  type ColumnProps,
+  type ColumnResizerProps,
+  type TableHeaderProps as HeaderProps,
+  type RowProps,
+  type TableBodyProps,
+  type TableProps as TablePrimitiveProps,
+  composeRenderProps,
 } from "react-aria-components"
 import {
   Button,
@@ -45,7 +46,7 @@ const useTableContext = () => use(TableContext)
 const Root = (props: TableProps) => {
   return (
     <TablePrimitive
-      className="w-full min-w-full caption-bottom text-sm outline-hidden [--table-selected-bg:color-mix(in_oklab,var(--color-primary)_5%,white_90%)] dark:[--table-selected-bg:color-mix(in_oklab,var(--color-primary)_25%,black_70%)]"
+      className="w-full min-w-full caption-bottom text-sm outline-hidden [--table-selected-bg:var(--color-secondary)]/50"
       {...props}
     />
   )
@@ -212,13 +213,31 @@ const TableRow = <T extends object>({
       data-slot="table-row"
       id={id}
       {...props}
-      className={composeTailwindRenderProps(
+      className={composeRenderProps(
         className,
-        twJoin(
-          "group focus-visible:-outline-offset-2 relative cursor-default border-b selected:bg-(--table-selected-bg) text-muted-fg dragging:outline outline-blue-500 ring-primary last:border-b-0 selected:hover:bg-(--table-selected-bg)/70 focus-visible:outline dark:selected:hover:bg-[color-mix(in_oklab,var(--color-primary)_30%,black_70%)]",
-          ((props.href && !props.isDisabled) || props.onAction) &&
-            "cursor-pointer hover:bg-secondary/50 hover:text-secondary-fg",
-        ),
+        (
+          className,
+          {
+            isSelected,
+            isFocusVisible,
+            selectionMode,
+            isFocusVisibleWithin,
+            isDragging,
+            isDisabled,
+          },
+        ) =>
+          twMerge(
+            "group relative cursor-default border-b text-muted-fg outline-transparent ring-primary last:border-b-0 ",
+            (props.href || props.onAction || selectionMode) === "multiple" &&
+              "hover:bg-(--table-selected-bg) hover:text-fg",
+            isFocusVisible && "-outline-offset-2 outline outline-blue-500",
+            isFocusVisibleWithin &&
+              "bg-(--table-selected-bg)/50 selected:bg-(--table-selected-bg)/50",
+            isDragging && "outline outline-blue-500",
+            isSelected && "bg-(--table-selected-bg) text-fg hover:bg-(--table-selected-bg)/50",
+            isDisabled && "opacity-50",
+            className,
+          ),
       )}
     >
       {allowsDragging && (
@@ -250,7 +269,7 @@ const TableCell = ({ className, ...props }: CellProps) => {
       className={composeTailwindRenderProps(
         className,
         twJoin(
-          "group px-(--gutter) py-(--gutter-y) align-middle outline-hidden",
+          "group px-(--gutter) py-(--gutter-y) align-middle outline-hidden focus:text-fg",
           !bleed
             ? "sm:last:pr-1 sm:first:pl-1"
             : "first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))",
