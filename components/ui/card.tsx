@@ -72,7 +72,7 @@ const CardContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
     <div
       data-slot="card-content"
       className={twMerge(
-        "[--fg-spacing:calc(var(--card-spacing)+--spacing(4))] sm:[--fg-spacing:var(--card-spacing)]",
+        "[--fg-spacing:calc(var(--card-spacing)+--spacing(4))] has-[table]:border-t sm:[--fg-spacing:var(--card-spacing)]",
         "px-(--card-spacing) [--lg-spacing:var(--card-spacing)] group-has-[table]/card:px-0 sm:[--lg-spacing:calc(var(--card-spacing)/2)]",
         "**:data-[slot=table-cell]:last:pr-(--lg-spacing) **:data-[slot=table-cell]:first:pl-(--fg-spacing)",
         "**:data-[slot=table-column]:last:pr-(--lg-spacing) **:data-[slot=table-column]:first:pl-(--fg-spacing)",

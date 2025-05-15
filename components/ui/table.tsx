@@ -228,14 +228,14 @@ const TableRow = <T extends object>({
         ) =>
           twMerge(
             "group relative cursor-default border-b text-muted-fg outline-transparent ring-primary last:border-b-0 ",
-            (props.href || props.onAction || selectionMode) === "multiple" &&
-              "hover:bg-(--table-selected-bg) hover:text-fg",
-            isFocusVisible && "-outline-offset-2 outline outline-blue-500",
-            isFocusVisibleWithin &&
-              "bg-(--table-selected-bg)/50 selected:bg-(--table-selected-bg)/50",
             isDragging && "outline outline-blue-500",
             isSelected && "bg-(--table-selected-bg) text-fg hover:bg-(--table-selected-bg)/50",
-            isDisabled && "opacity-50",
+            (props.href || props.onAction || selectionMode === "multiple") &&
+              "hover:bg-(--table-selected-bg) hover:text-fg",
+            (props.href || props.onAction || selectionMode === "multiple") &&
+              isFocusVisibleWithin &&
+              "bg-(--table-selected-bg)/50 selected:bg-(--table-selected-bg)/50 text-fg",
+            isDisabled && "cursor-default opacity-50",
             className,
           ),
       )}
@@ -269,7 +269,7 @@ const TableCell = ({ className, ...props }: CellProps) => {
       className={composeTailwindRenderProps(
         className,
         twJoin(
-          "group px-(--gutter) py-(--gutter-y) align-middle outline-hidden focus:text-fg",
+          "group px-(--gutter) py-(--gutter-y) align-middle outline-hidden group-has-data-focus-visible-within:text-fg",
           !bleed
             ? "sm:last:pr-1 sm:first:pl-1"
             : "first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))",

@@ -21,16 +21,16 @@ The CLI is highly flexible and can automatically detect whether you already have
 Once you’ve set up Intent, you can start adding components easily by running the `add` command:
 <Installation options={{ isComponent: true, noText: true }} items={['combo-box']} />
 
-## Diff
-If you think your Intent setup might be outdated, don’t worry. You can check for changes by running the `diff` command:
-<Installation options={{isExecutor: true}} command='npx @intentui/cli@latest diff' items={['']} />
+[//]: # (## Diff)
+[//]: # (If you think your Intent setup might be outdated, don’t worry. You can check for changes by running the `diff` command:)
+[//]: # (<Installation options={{isExecutor: true}} command='npx @intentui/cli@latest diff' items={['']} />)
 
 This will display the components that differ from your installed versions and provide a list so you can quickly choose which components to update.
 
 ## Alias
-If you’re tired of typing `npx @intentui/cli@latest`, you can create an alias for the CLI by adding the following line to your `.bashrc` or `.zshrc` file:
+If you’re tired of typing `npx @intentui/cli@beta`, you can create an alias for the CLI by adding the following line to your `.bashrc` or `.zshrc` file:
 ```
-alias intentui='npx @intentui/cli@latest'
+alias intentui='npx @intentui/cli@beta'
 ```
 Then you can run the CLI using the `intentui` command:
 ```
