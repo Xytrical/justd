@@ -73,8 +73,7 @@ const DropdownSection = <T extends object>({ className, ...props }: DropdownSect
 type DropdownItemProps = ListBoxItemProps
 
 const DropdownItem = ({ className, ...props }: DropdownItemProps) => {
-  const textValue =
-    props.textValue || (typeof props.children === "string" ? props.children : undefined)
+  const textValue = typeof props.children === "string" ? props.children : undefined
   return (
     <ListBoxItemPrimitive
       textValue={textValue}

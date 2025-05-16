@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import { createContext, use } from "react"
 
 import { badgeIntents, badgeShapes, badgeStyles } from "@/components/ui/badge"
 import { Description, Label } from "@/components/ui/field"
@@ -85,7 +85,7 @@ type TagGroupContextValue = {
   shape: Shape
 }
 
-const TagGroupContext = React.createContext<TagGroupContextValue>({
+const TagGroupContext = createContext<TagGroupContextValue>({
   intent: "primary",
   shape: "square",
 })
@@ -130,8 +130,9 @@ const TagList = <T extends object>({ className, ...props }: TagListProps<T>) => 
 }
 
 const tagStyles = tv({
-  base: [badgeStyles.base, "cursor-default outline-hidden"],
+  base: [badgeStyles.base, "outline-hidden"],
   variants: {
+    isLink: { true: "cursor-pointer", false: "cursor-default" },
     isFocusVisible: { true: "inset-ring inset-ring-current/10" },
     isDisabled: { true: "opacity-50" },
     allowsRemoving: { true: "pr-1" },
@@ -145,7 +146,7 @@ interface TagProps extends TagPrimitiveProps {
 
 const Tag = ({ className, intent, shape, ...props }: TagProps) => {
   const textValue = typeof props.children === "string" ? props.children : undefined
-  const groupContext = React.useContext(TagGroupContext)
+  const groupContext = use(TagGroupContext)
 
   return (
     <TagPrimitive
@@ -157,6 +158,7 @@ const Tag = ({ className, intent, shape, ...props }: TagProps) => {
 
         return tagStyles({
           ...renderProps,
+          isLink: "href" in props,
           className: twJoin([
             intents[finalIntent]?.base,
             badgeShapes[finalShape],

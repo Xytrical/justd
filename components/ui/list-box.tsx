@@ -28,8 +28,7 @@ const ListBox = <T extends object>({ className, ...props }: ListBoxProps<T>) => 
 )
 
 const ListBoxItem = <T extends object>({ children, className, ...props }: ListBoxItemProps<T>) => {
-  const textValue = props.textValue || (typeof children === "string" ? children : undefined)
-
+  const textValue = typeof children === "string" ? children : undefined
   return (
     <ListBoxItemPrimitive
       textValue={textValue}
