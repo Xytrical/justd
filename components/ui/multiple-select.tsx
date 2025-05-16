@@ -203,7 +203,7 @@ const MultipleSelect = <T extends object>({
                 }}
               >
                 <ListBox
-                  className="max-h-80 border-0 shadow-0"
+                  className="min-w-[inherit] max-h-[inherit] border-0 shadow-0"
                   renderEmptyState={() =>
                     renderEmptyState ? (
                       renderEmptyState(inputValue)
