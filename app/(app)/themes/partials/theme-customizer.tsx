@@ -12,7 +12,7 @@ import { twMerge } from "tailwind-merge"
 
 interface ColorSelectProps extends React.ComponentProps<typeof Select> {
   selectedKey: string
-  onSelectionChange: (key: Key) => void
+  onSelectionChange: (key: Key | null) => void
   label: string
   placeholder: string
   filterKeys?: string[]
@@ -85,11 +85,11 @@ type ThemeCustomizerProps = {
 }
 
 export function ThemeCustomizer({ selectedColors, setSelectedColors }: ThemeCustomizerProps) {
-  const handleSelectionChange = (type: keyof typeof selectedColors) => (key: Key) => {
+  const handleSelectionChange = (type: keyof typeof selectedColors) => (key: Key | null) => {
     if (type === "primary") {
-      setSelectedColors((prev) => ({ ...prev, accent: key.toString() }))
+      setSelectedColors((prev) => ({ ...prev, accent: key?.toString()! }))
     }
-    setSelectedColors((prev) => ({ ...prev, [type]: key.toString() }))
+    setSelectedColors((prev) => ({ ...prev, [type]: key?.toString() }))
   }
 
   const getFilteredColors = (excludedGray: string) => {

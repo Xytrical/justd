@@ -15,7 +15,7 @@ export const movies = [
 ]
 
 export default function SelectControlledDemo() {
-  const [movie, setMovie] = useState<Key>("")
+  const [movie, setMovie] = useState<Key | null>("")
   return (
     <>
       <Select

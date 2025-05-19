@@ -29,7 +29,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export default function BarChartControlledDemo() {
-  const [activeChart, setActiveChart] = useState<Key>("sales")
+  const [activeChart, setActiveChart] = useState<Key | null>("sales")
 
   const total = useMemo(
     () => ({

@@ -57,7 +57,7 @@ const config = {
 
 export default function PieChartControlledDemo() {
   const id = "pie-interactive"
-  const [activeMonth, setActiveMonth] = useState<Key>(data[0]!.month)
+  const [activeMonth, setActiveMonth] = useState<Key | null>(data[0]!.month)
 
   const activeIndex = useMemo(
     () => data.findIndex((item) => item.month === activeMonth),
