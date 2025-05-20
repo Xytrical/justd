@@ -33,16 +33,16 @@ export default function CarouselDApiDemo() {
 
   return (
     <Carousel setApi={setApi} className="w-full max-w-sm">
-      <Carousel.Content items={Array.from({ length: 10 }, (_, id) => ({ id: id + 1 }))}>
-        {({ id }) => (
-          <Carousel.Item id={id}>
+      <Carousel.Content>
+        {Array.from({ length: 10 }, (_, id) => ({ id: id + 1 })).map(({ id }) => (
+          <Carousel.Item key={id}>
             <Card>
               <Card.Content className="flex aspect-square items-center justify-center p-6">
                 <span className="font-semibold text-4xl">{id}</span>
               </Card.Content>
             </Card>
           </Carousel.Item>
-        )}
+        ))}
       </Carousel.Content>
       <div className="mt-4 flex items-center justify-between">
         <div className="flex gap-1 py-2 text-center text-muted-fg text-sm">

@@ -4,13 +4,10 @@ import { createContext, use, useCallback, useEffect, useState } from "react"
 
 import { IconChevronLgLeft, IconChevronLgRight } from "@intentui/icons"
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react"
-import { ListBox, ListBoxItem, ListBoxSection } from "react-aria-components"
-
-import type { ListBoxItemProps, ListBoxSectionProps } from "react-aria-components"
 
 import { Button, type ButtonProps } from "@/components/ui/button"
 import { composeTailwindRenderProps } from "@/lib/primitive"
-import { twJoin, twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -149,18 +146,12 @@ const Carousel = ({
   )
 }
 
-const CarouselContent = <T extends object>({ className, ...props }: ListBoxSectionProps<T>) => {
+const CarouselContent = ({ className, ...props }: React.ComponentProps<"div">) => {
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <ListBox
-      layout={orientation === "vertical" ? "stack" : "grid"}
-      aria-label="Slides"
-      orientation={orientation}
-      ref={carouselRef}
-      className="overflow-hidden"
-    >
-      <ListBoxSection
+    <div aria-label="Slides" ref={carouselRef} className="overflow-hidden">
+      <div
         className={twMerge(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
@@ -168,23 +159,21 @@ const CarouselContent = <T extends object>({ className, ...props }: ListBoxSecti
         )}
         {...props}
       />
-    </ListBox>
+    </div>
   )
 }
 
-const CarouselItem = ({ className, ...props }: ListBoxItemProps) => {
+const CarouselItem = ({ className, ...props }: React.ComponentProps<"div">) => {
   const { orientation } = useCarousel()
 
   return (
-    <ListBoxItem
+    <div
       aria-label={`Slide ${props.id}`}
       aria-roledescription="slide"
-      className={composeTailwindRenderProps(
+      className={twMerge(
+        "xd24r group relative min-w-0 shrink-0 grow-0 basis-full focus:outline-hidden focus-visible:outline-hidden",
+        orientation === "horizontal" ? "pl-4" : "pt-4",
         className,
-        twJoin(
-          "xd24r group relative min-w-0 shrink-0 grow-0 basis-full focus:outline-hidden focus-visible:outline-hidden",
-          orientation === "horizontal" ? "pl-4" : "pt-4",
-        ),
       )}
       {...props}
     />

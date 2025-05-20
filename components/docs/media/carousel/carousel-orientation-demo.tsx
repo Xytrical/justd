@@ -1,14 +1,12 @@
-"use client"
-
 import { Card } from "@/components/ui/card"
 import { Carousel } from "@/components/ui/carousel"
 
 export default function CarouselOrientationDemo() {
   return (
     <Carousel orientation="vertical" className="relative w-full max-w-xs">
-      <Carousel.Content items={items} className="h-64 snap-y py-4">
-        {(item) => (
-          <Carousel.Item className="basis-1/2 snap-center pt-1 md:basis-1/3">
+      <Carousel.Content className="h-64 snap-y py-4">
+        {items.map((item) => (
+          <Carousel.Item key={item.id} className="basis-1/2 snap-center pt-1 md:basis-1/3">
             <Card>
               <Card.Header>
                 <Card.Title>{item.title}</Card.Title>
@@ -16,7 +14,7 @@ export default function CarouselOrientationDemo() {
               </Card.Header>
             </Card>
           </Carousel.Item>
-        )}
+        ))}
       </Carousel.Content>
 
       <Carousel.Handler>

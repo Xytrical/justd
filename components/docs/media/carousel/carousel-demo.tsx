@@ -1,5 +1,3 @@
-"use client"
-
 import { Carousel } from "@/components/ui/carousel"
 import Image from "next/image"
 

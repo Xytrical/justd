@@ -20,9 +20,9 @@ export default function CarouselAutoplayDemo() {
       }}
       className="w-full max-w-xs"
     >
-      <Carousel.Content items={items}>
-        {(item) => (
-          <Carousel.Item id={item.id}>
+      <Carousel.Content>
+        {items.map((item) => (
+          <Carousel.Item key={item.id}>
             <div className="p-1">
               <Card>
                 <Card.Header>
@@ -32,7 +32,7 @@ export default function CarouselAutoplayDemo() {
               </Card>
             </div>
           </Carousel.Item>
-        )}
+        ))}
       </Carousel.Content>
 
       <Carousel.Handler>
