@@ -2,7 +2,14 @@
 import { CommandMenu } from "@/components/ui/command-menu"
 import results from "@/resources/components-search.json"
 import type { Component, Grouped } from "@/resources/scripts/generate-search"
-import { IconColorPalette, IconColors, IconHashtag, IconHome, IconNotes, IconPackage, } from "@intentui/icons"
+import {
+  IconColorPalette,
+  IconColors,
+  IconHashtag,
+  IconHome,
+  IconNotes,
+  IconPackage,
+} from "@intentui/icons"
 import { useRouter } from "next/navigation"
 
 const docs = [results[0], results[1], results[2]] as Grouped[]
@@ -79,7 +86,7 @@ export function CommandPalette({ openCmd, setOpen }: OpenCloseProps) {
                 <CommandMenu.Item
                   key={item.slug}
                   id={item.slug.split("/").pop()}
-                  textValue={item.title}
+                  textValue={`${component.subsection} ${item.title} ${item.slug.split("/").pop()}`}
                   onAction={() => {
                     router.push(item.slug, { scroll: false })
                     if (setOpen) {
