@@ -21,12 +21,7 @@ export function CommandPalette() {
   const router = useRouter()
   return (
     <>
-      <CommandMenu
-        classNames={{ content: "dark:bg-overlay/80 dark:backdrop-blur-2xl" }}
-        shortcut="k"
-        isOpen={isOpen}
-        onOpenChange={setIsOpen}
-      >
+      <CommandMenu shortcut="k" isOpen={isOpen} onOpenChange={setIsOpen}>
         <CommandMenu.Search placeholder="Search components..." />
         <CommandMenu.List>
           <CommandMenu.Section aria-label="Pages">
