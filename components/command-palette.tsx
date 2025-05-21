@@ -2,26 +2,22 @@
 import { CommandMenu } from "@/components/ui/command-menu"
 import results from "@/resources/components-search.json"
 import type { Component, Grouped } from "@/resources/scripts/generate-search"
-import {
-  IconColorPalette,
-  IconColors,
-  IconHashtag,
-  IconHome,
-  IconNotes,
-  IconPackage,
-} from "@intentui/icons"
+import { IconColorPalette, IconColors, IconHashtag, IconHome, IconNotes, IconPackage, } from "@intentui/icons"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
 
 const docs = [results[0], results[1], results[2]] as Grouped[]
 const components = results[3] as any
 
-export function CommandPalette() {
-  const [isOpen, setIsOpen] = useState(false)
+export interface OpenCloseProps {
+  openCmd: boolean
+  setOpen?: (isOpen: boolean) => void
+}
+
+export function CommandPalette({ openCmd, setOpen }: OpenCloseProps) {
   const router = useRouter()
   return (
     <>
-      <CommandMenu shortcut="k" isOpen={isOpen} onOpenChange={setIsOpen}>
+      <CommandMenu shortcut="k" isOpen={openCmd} onOpenChange={setOpen}>
         <CommandMenu.Search placeholder="Search components..." />
         <CommandMenu.List>
           <CommandMenu.Section aria-label="Pages">
@@ -60,7 +56,9 @@ export function CommandPalette() {
                   textValue={item.title}
                   onAction={() => {
                     router.push(item.slug, { scroll: false })
-                    setIsOpen(false)
+                    if (setOpen) {
+                      setOpen(false)
+                    }
                   }}
                 >
                   <IconHashtag />
@@ -84,7 +82,9 @@ export function CommandPalette() {
                   textValue={item.title}
                   onAction={() => {
                     router.push(item.slug, { scroll: false })
-                    setIsOpen(false)
+                    if (setOpen) {
+                      setOpen(false)
+                    }
                   }}
                 >
                   <IconHashtag />
