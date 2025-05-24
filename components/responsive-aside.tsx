@@ -18,9 +18,9 @@ import { usePathname } from "next/navigation"
 import React, { useEffect, useState } from "react"
 
 import { menus } from "@/app/(home)/partials/navbar"
+import { buttonStyles } from "@/components/ui/button"
 import { Menu } from "@/components/ui/menu"
 import { Separator } from "@/components/ui/separator"
-import { composeTailwindRenderProps } from "@/lib/primitive"
 import { siteConfig } from "@/resources/config/site"
 import { Button as ButtonPrimitive } from "react-aria-components"
 import { Aside } from "./aside"
@@ -65,13 +65,7 @@ export function ResponsiveAside({
           </ButtonPrimitive>
 
           <ThemeSwitcher intent="plain" shape="circle" />
-          <LinkIcon
-            aria-label="Open Intent Blocks"
-            href="https://blocks.intentui.com/templates"
-            target="_blank"
-          >
-            <IconBrandIntentui />
-          </LinkIcon>
+
           <LinkIcon
             aria-label="Open Intent X / Twitter"
             href={siteConfig.links.twitter}
@@ -91,7 +85,7 @@ export function ResponsiveAside({
             <IconBrandGithub />
           </LinkIcon>
           <Separator orientation="vertical" className="mx-1 h-5" />
-          <Menu>
+          <Menu respectScreen={false}>
             <ButtonPrimitive
               aria-label="Open menu"
               className="p-2 pressed:text-fg text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
@@ -142,10 +136,11 @@ function LinkIcon({ className, ...props }: React.ComponentProps<typeof Link>) {
   return (
     <Link
       {...props}
-      className={composeTailwindRenderProps(
-        className,
-        "p-1.5 pressed:text-fg text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500",
-      )}
+      className={buttonStyles({
+        intent: "plain",
+        size: "square-petite",
+        shape: "circle",
+      })}
     />
   )
 }

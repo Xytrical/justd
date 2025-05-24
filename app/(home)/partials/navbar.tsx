@@ -33,8 +33,15 @@ export function Navbar() {
       <CommandPalette setOpen={setOpen} openCmd={open} />
       <PageContainer className="flex items-center justify-between py-4">
         <div className="flex items-center">
-          <Link href="/" className="mr-4 p-2" aria-label="Goto homepage">
-            <IconBrandIntentui className="size-5 text-white" />
+          <Link
+            href="/"
+            className="-ml-3 mr-2 flex items-center gap-x-2 p-2 font-medium"
+            aria-label="Goto homepage"
+          >
+            <IconBrandIntentui className="size-7 text-white" />
+            <span className="hidden sm:inline">
+              <span>Intent</span> <span className="text-muted-fg">UI</span>
+            </span>
           </Link>
           <div className="hidden items-center gap-x-1 lg:flex">
             {menus.map((menu) => (
@@ -56,13 +63,6 @@ export function Navbar() {
           >
             <IconSearch />
           </Button>
-          <Link
-            className="p-2 text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
-            href="https://blocks.intentui.com"
-            target="_blank"
-          >
-            <IconBrandIntentui />
-          </Link>
           <Link
             className="p-2 text-muted-fg outline-hidden hover:text-fg focus-visible:ring-2 focus-visible:ring-blue-500"
             href={siteConfig.links.twitter}

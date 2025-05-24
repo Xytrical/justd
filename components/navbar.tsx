@@ -44,8 +44,8 @@ export function Navbar() {
     <>
       <CommandPalette setOpen={setOpen} openCmd={open} />
       <LayoutGroup id={`navigation-${id}`}>
-        <div className="xnw2 sticky top-0 z-40 hidden overflow-hidden pb-0 lg:block">
-          <nav className="border-fg/10 border-b bg-bg py-2 dark:supports-backdrop-filter:bg-bg/60 dark:supports-backdrop-filter:backdrop-blur-3xl">
+        <div className="xnw2 sticky top-0 z-40 hidden overflow-hidden lg:block">
+          <nav className="border-fg/10 border-b bg-overlay py-1.5 dark:supports-backdrop-filter:bg-overlay/60 dark:supports-backdrop-filter:backdrop-blur-3xl">
             <PageContainer className="lg:px-8">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-x-6">
@@ -242,16 +242,6 @@ export function NavbarDropdown() {
               <Menu.Label>Tailwind CSS</Menu.Label>
             </Menu.Item>
           </Menu.Section>
-        </Menu.Content>
-      </Menu>
-      <Menu>
-        <Button intent="plain" className="group justify-between text-left sm:hidden">
-          {pathname.includes("/docs/") ? pathname.split("/")[2] : siteConfig.currentVersion}
-          <IconChevronLgDown className="size-3 duration-200 group-pressed:rotate-180" />
-        </Button>
-        <Menu.Content placement="bottom right" className="sm:min-w-10">
-          <Menu.Item href="/docs/1.x/getting-started/introduction">1.x</Menu.Item>
-          <Menu.Item href="/docs/2.x/getting-started/introduction">2.x</Menu.Item>
         </Menu.Content>
       </Menu>
     </div>
