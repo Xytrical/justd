@@ -27,7 +27,7 @@ export function CommandPalette({ openCmd, setOpen }: OpenCloseProps) {
       <CommandMenu shortcut="k" isOpen={openCmd} onOpenChange={setOpen}>
         <CommandMenu.Search placeholder="Search components..." />
         <CommandMenu.List>
-          <CommandMenu.Section aria-label="Pages">
+          <CommandMenu.Section className="hidden sm:grid" aria-label="Pages">
             <CommandMenu.Item textValue="Home" href="/">
               <IconHome />
               <CommandMenu.Label>Home</CommandMenu.Label>

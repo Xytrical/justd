@@ -1,11 +1,11 @@
 "use client"
 import { useId, useState } from "react"
 
+import { GithubLink } from "@/components/github-link"
 import { PageContainer } from "@/components/page-container"
 import { ResponsiveAside } from "@/components/responsive-aside"
 import { Badge } from "@/components/ui/badge"
 import { Button, buttonStyles } from "@/components/ui/button"
-import { Keyboard } from "@/components/ui/keyboard"
 import { Link } from "@/components/ui/link"
 import { Menu } from "@/components/ui/menu"
 import { Separator } from "@/components/ui/separator"
@@ -44,8 +44,8 @@ export function Navbar() {
     <>
       <CommandPalette setOpen={setOpen} openCmd={open} />
       <LayoutGroup id={`navigation-${id}`}>
-        <div className="xnw2 sticky top-0 z-40 hidden overflow-hidden pb-0 lg:block">
-          <nav className="border-fg/10 border-b bg-bg py-2 dark:supports-backdrop-filter:bg-bg/60 dark:supports-backdrop-filter:backdrop-blur-3xl">
+        <div className="xnw2 sticky top-0 z-40 hidden overflow-hidden lg:block">
+          <nav className="border-fg/10 border-b bg-overlay py-1.5 dark:supports-backdrop-filter:bg-overlay/60 dark:supports-backdrop-filter:backdrop-blur-3xl">
             <PageContainer className="lg:px-8">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-x-6">
@@ -85,7 +85,7 @@ export function Navbar() {
                   <NavLink href="/blocks">Blocks</NavLink>
                   <Menu>
                     <Menu.Trigger className="group flex cursor-default items-center gap-x-2 py-3 text-muted-fg text-sm tracking-tight outline-hidden focus-visible:text-fg">
-                      Premium Blocks
+                      Premium
                       <IconChevronLgDown className="size-3 duration-200 group-pressed:rotate-180" />
                     </Menu.Trigger>
                     <Menu.Content
@@ -107,25 +107,22 @@ export function Navbar() {
                   <>
                     <Button
                       onPress={() => setOpen((open: boolean) => !open)}
-                      size="small"
-                      intent="outline"
-                      className="h-9"
+                      size="square-petite"
+                      shape="circle"
+                      intent="plain"
                     >
                       <IconSearch />
-
-                      <span className="text-muted-fg">Search...</span>
-
-                      <Keyboard className="-mr-1" keys="⌘K" />
                     </Button>
-                    <ThemeSwitcher />
+                    <ThemeSwitcher intent="plain" shape="circle" />
 
                     <Link
                       aria-label="Join Discord"
                       className={buttonStyles({
-                        intent: "outline",
+                        intent: "plain",
+                        shape: "circle",
                         size: "square-petite",
                         className:
-                          "hover:border-indigo-500/20 hover:bg-indigo-600/10 **:data-[slot=icon]:text-indigo-500 hover:**:data-[slot=icon]:text-indigo-600",
+                          "**:data-[slot=icon]:text-indigo-500 hover:**:data-[slot=icon]:text-indigo-600",
                       })}
                       target="_blank"
                       href={siteConfig.discord}
@@ -135,7 +132,8 @@ export function Navbar() {
                     <Link
                       aria-label="Follow Update on X"
                       className={buttonStyles({
-                        intent: "outline",
+                        intent: "plain",
+                        shape: "circle",
                         size: "square-petite",
                         className: "**:data-[slot=icon]:text-fg",
                       })}
@@ -147,10 +145,10 @@ export function Navbar() {
                     <Link
                       aria-label="Follow Update on X"
                       className={buttonStyles({
-                        intent: "outline",
+                        intent: "plain",
                         size: "square-petite",
-                        className:
-                          "hover:border-blue-500/20 hover:bg-blue-600/10 **:data-[slot=icon]:text-fg",
+                        shape: "circle",
+                        className: "hover:border-blue-500/20**:data-[slot=icon]:text-fg",
                       })}
                       target="_blank"
                       href="https://dub.sh/NfSXJrL"
@@ -158,18 +156,7 @@ export function Navbar() {
                       <IconBrandIntentui />
                     </Link>
 
-                    <Link
-                      aria-label="Github Repository"
-                      className={buttonStyles({
-                        intent: "outline",
-                        size: "square-petite",
-                        className: "**:data-[slot=icon]:text-fg sm:text-xs",
-                      })}
-                      target="_blank"
-                      href={siteConfig.repo}
-                    >
-                      <IconBrandGithub />
-                    </Link>
+                    <GithubLink />
                   </>
                 </div>
               </div>
@@ -239,7 +226,7 @@ export function NavbarDropdown() {
             <Menu.Item href="https://x.com/intent/follow?screen_name=irsyadadl" target="_blank">
               <IconBrandX /> <Menu.Label>X / Twitter</Menu.Label>
             </Menu.Item>
-            <Menu.Item href="https://github.com/intentuilabs" target="_blank">
+            <Menu.Item href={siteConfig.links.github} target="_blank">
               <IconBrandGithub />
               <Menu.Label>Github</Menu.Label>
             </Menu.Item>
@@ -255,16 +242,6 @@ export function NavbarDropdown() {
               <Menu.Label>Tailwind CSS</Menu.Label>
             </Menu.Item>
           </Menu.Section>
-        </Menu.Content>
-      </Menu>
-      <Menu>
-        <Button intent="plain" className="group justify-between text-left sm:hidden">
-          {pathname.includes("/docs/") ? pathname.split("/")[2] : siteConfig.currentVersion}
-          <IconChevronLgDown className="size-3 duration-200 group-pressed:rotate-180" />
-        </Button>
-        <Menu.Content placement="bottom right" className="sm:min-w-10">
-          <Menu.Item href="/docs/1.x/getting-started/introduction">1.x</Menu.Item>
-          <Menu.Item href="/docs/2.x/getting-started/introduction">2.x</Menu.Item>
         </Menu.Content>
       </Menu>
     </div>
@@ -288,7 +265,7 @@ const premium = [
   },
   {
     id: 2,
-    label: "Premium Starter Kit",
+    label: "Premium Starter Kit / Coming soon",
     href: "#",
     icon: IconWindowVisitFill,
     description:
@@ -297,7 +274,7 @@ const premium = [
   },
   {
     id: 3,
-    label: "Figma",
+    label: "Figma / Coming soon",
     href: "#",
     icon: IconBrandFigma,
     description: "Enhance your Figma designs with Intent components.",
