@@ -41,7 +41,7 @@ export function ResponsiveAside({
   return (
     <>
       <CommandPalette setOpen={setOpenCmd} openCmd={openCmd} />
-      <nav className="sticky top-0 z-30 flex items-center justify-between border-b bg-bg px-4 py-2.5 shadow-xs lg:hidden">
+      <nav className="sticky top-0 z-30 flex items-center justify-between border-b bg-bg px-4 py-2 shadow-xs lg:hidden">
         <div className="flex items-center gap-x-2">
           <ButtonPrimitive
             onPress={() => setOpenAside(true)}
@@ -64,11 +64,7 @@ export function ResponsiveAside({
             <IconSearch />
           </ButtonPrimitive>
 
-          <ThemeSwitcher
-            className="pressed:bg-transparent px-0 hover:bg-transparent"
-            intent="plain"
-          />
-          <Separator orientation="vertical" className="mx-1 h-5" />
+          <ThemeSwitcher intent="plain" shape="circle" />
           <LinkIcon
             aria-label="Open Intent Blocks"
             href="https://blocks.intentui.com/templates"
