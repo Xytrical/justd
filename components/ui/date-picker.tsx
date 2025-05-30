@@ -34,11 +34,13 @@ const DatePickerOverlay = ({
   visibleDuration = { months: 1 },
   closeButton = true,
   pageBehavior = "visible",
+  placement = "bottom",
   range,
   ...props
 }: DatePickerOverlayProps) => {
   return (
     <Popover.Content
+      placement={placement}
       isDismissable={false}
       showArrow={false}
       className={twJoin(
@@ -73,7 +75,9 @@ const DatePickerIcon = () => (
   </Button>
 )
 
-interface DatePickerProps<T extends DateValue> extends DatePickerPrimitiveProps<T> {
+interface DatePickerProps<T extends DateValue>
+  extends DatePickerPrimitiveProps<T>,
+    Pick<DatePickerOverlayProps, "placement"> {
   label?: string
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
@@ -84,6 +88,7 @@ const DatePicker = <T extends DateValue>({
   className,
   description,
   errorMessage,
+  placement,
   ...props
 }: DatePickerProps<T>) => {
   return (
@@ -98,7 +103,7 @@ const DatePicker = <T extends DateValue>({
       </FieldGroup>
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
-      <DatePickerOverlay />
+      <DatePickerOverlay placement={placement} />
     </DatePickerPrimitive>
   )
 }
