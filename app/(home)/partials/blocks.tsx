@@ -115,10 +115,17 @@ export function Blocks() {
           </Card>
         </div>
         <div className="md:col-span-2">
-          <Card className="gap-y-0 [--card-spacing:--spacing(4)]">
-            <Card.Header className="pb-2" title="Table" />
+          <Card>
+            <Card.Header
+              title="Inventory"
+              description="A detailed list of products with their categories, pricing, and current stock levels."
+            />
             <Card.Content>
-              <Table aria-label="Products">
+              <Table
+                bleed
+                className="[--gutter:--spacing(6)] sm:[--gutter:--spacing(8)]"
+                aria-label="Products"
+              >
                 <Table.Header>
                   <Table.Column className="w-0">#</Table.Column>
                   <Table.Column isRowHeader>Name</Table.Column>
