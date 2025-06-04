@@ -3,15 +3,16 @@
 import type React from "react"
 
 import { useTheme } from "@/components/theme-provider"
+import { Badge } from "@/components/ui/badge"
+import { Select } from "@/components/ui/select"
 import colors from "@/resources/colors/colors.json"
 import { neutralColors } from "@/resources/lib/colors"
-import { cn } from "@/utils/classes"
 import type { Key } from "react-aria-components"
-import { Badge, Select } from "ui"
+import { twMerge } from "tailwind-merge"
 
 interface ColorSelectProps extends React.ComponentProps<typeof Select> {
   selectedKey: string
-  onSelectionChange: (key: Key) => void
+  onSelectionChange: (key: Key | null) => void
   label: string
   placeholder: string
   filterKeys?: string[]
@@ -42,14 +43,14 @@ const ColorSelect = ({
       <Select.List>
         {filteredKeys.map((key) => (
           <Select.Option
-            className="capitalize data-hovered:**:data-[slot=icon]:inset-ring-fg/30"
+            className="capitalize hover:**:data-[slot=icon]:inset-ring-fg/30"
             textValue={key}
             key={key}
             id={key}
           >
             <div
               data-slot="icon"
-              className={cn(
+              className={twMerge(
                 "inset-ring inset-ring-(--inset-ring-color)/15 size-4 rounded-sm dark:inset-ring-(--inset-ring-color)/5",
                 className,
               )}
@@ -84,11 +85,11 @@ type ThemeCustomizerProps = {
 }
 
 export function ThemeCustomizer({ selectedColors, setSelectedColors }: ThemeCustomizerProps) {
-  const handleSelectionChange = (type: keyof typeof selectedColors) => (key: Key) => {
+  const handleSelectionChange = (type: keyof typeof selectedColors) => (key: Key | null) => {
     if (type === "primary") {
-      setSelectedColors((prev) => ({ ...prev, accent: key.toString() }))
+      setSelectedColors((prev) => ({ ...prev, accent: key?.toString()! }))
     }
-    setSelectedColors((prev) => ({ ...prev, [type]: key.toString() }))
+    setSelectedColors((prev) => ({ ...prev, [type]: key?.toString() }))
   }
 
   const getFilteredColors = (excludedGray: string) => {

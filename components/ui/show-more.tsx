@@ -3,7 +3,7 @@
 import { Text, ToggleButton, composeRenderProps } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
-import { buttonStyles } from "./button"
+import { buttonStyles } from "@/components/ui/button"
 
 const showMoreStyles = tv({
   base: "text-sm leading-6 before:border-muted after:border-muted",
@@ -48,7 +48,7 @@ const ShowMore = ({
       {as === "button" ? (
         <ToggleButton
           {...props}
-          className={buttonStyles({ shape: "circle", appearance: "outline", size: "small" })}
+          className={buttonStyles({ shape: "circle", intent: "outline", size: "small" })}
         >
           {composeRenderProps(props.children, (children) => (
             <>{children}</>

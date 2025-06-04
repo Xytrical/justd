@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Description, Radio, RadioGroup } from "ui"
+import { Description } from "@/components/ui/field"
+import { Radio, RadioGroup } from "@/components/ui/radio"
 
 export default function RadioGroupControlledDemo() {
   const [selected, setSelected] = useState("")

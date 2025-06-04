@@ -1,4 +1,4 @@
-import { Tag, TagGroup, TagList } from "ui"
+import { Tag, TagGroup, TagList } from "@/components/ui/tag-group"
 
 export default function TagGroupAnatomy() {
   return (

@@ -9,12 +9,13 @@ import { SourceCode } from "@/components/code/source-code"
 import { DocComposed } from "@/components/doc-composed"
 import { DocNote } from "@/components/doc-note"
 import { Installation } from "@/components/installation"
-import { IconArrowUpRight } from "justd-icons"
+import { Link } from "@/components/ui/link"
+import { IconArrowUpRight } from "@intentui/icons"
 import Image from "next/image"
-import { Link } from "ui"
 
 import { BlockSandbox } from "@/components/code/block-sandbox"
 import { PlainCode, Pre } from "@/components/code/plain-code"
+import { FrameworkGuides } from "@/components/framework-guides"
 import type { MDXContent } from "mdx/types"
 import { DocHow } from "./code/doc-how"
 
@@ -40,10 +41,11 @@ export function Mdx({ code }: { code: MDXContent }) {
         Note: DocNote,
         Anatomy: Anatomy,
         Composed: DocComposed,
+        FrameworkGuides,
         Image,
         NewTab: (props: React.ComponentProps<typeof Link>) => (
           <Link
-            className="not-prose xd2432 text-blue-600 outline-hidden data-hovered:underline data-focus-visible:ring-1 dark:text-blue-400"
+            className="not-prose xd2432 text-blue-600 outline-hidden hover:underline focus-visible:ring-1 dark:text-blue-400"
             target="_blank"
             {...props}
           >
@@ -55,7 +57,7 @@ export function Mdx({ code }: { code: MDXContent }) {
         a: (props: React.ComponentProps<"a">) => (
           <a
             {...props}
-            className="not-prose xd2432 text-blue-600 outline-hidden focus-visible:ring-1 data-hovered:underline dark:text-blue-400"
+            className="not-prose xd2432 text-blue-600 outline-hidden hover:underline focus-visible:ring-1 dark:text-blue-400"
           />
         ),
         SourceCode: SourceCode,

@@ -1,6 +1,6 @@
 ---
 title: Toast
-description: Gives the vibe and easy access for a toast component. Toasts show quick, temporary alerts about actions, errors, or other events in an app.
+description: A non-intrusive, auto-dismissable notification component used to display brief status updates, alerts, or confirmation messages.
 order: 5
 published: true
 references: ["https://sonner.emilkowal.ski/toast"]
@@ -10,7 +10,7 @@ references: ["https://sonner.emilkowal.ski/toast"]
 The toast components are built on top of the [Sonner](https://sonner.emilkowal.ski/) library. Shoutout to [Emil Kowalski](https://github.com/emilkowalski) for creating this amazing library.
 
 
-<How toUse="statuses/toast-demo" />
+<How toUse="statuses/toast/toast-demo" />
 
 ## Installation
 <Installation options={{ isComponent: true }} items={['toast']}/>
@@ -39,7 +39,7 @@ And next, just use the `toast()` function to show a toast.
 <Composed components={['button', 'loader']}/>
 
 ## Manual Installation
-<Installation options={{ isManual: true }} items={['react-aria-components', 'sonner', 'justd-icons']}/>
+<Installation options={{ isManual: true }} items={['react-aria-components', 'sonner', '@intentui/icons']}/>
 <SourceCode toShow='toast'/>
 
 
@@ -58,25 +58,25 @@ When using this toast with Inertia.js, everything will work smoothly if your the
 
 To display a toast with a title and a description, the styling is automatically handled. The title will be bold and prominent if a description is included.
 
-<How toUse="statuses/toast-description-demo" />
+<How toUse="statuses/toast/toast-description-demo" />
 
 ## Positions
 
 The toast can be positioned in four different locations.
 
-<How toUse="statuses/toast-positions-demo" />
+<How toUse="statuses/toast/toast-positions-demo" />
 
 ## Status
 
 To show a warning or error toast, use the following approach.
 
-<How toUse="statuses/toast-status-demo" />
+<How toUse="statuses/toast/toast-status-demo" />
 
 ## Action
 
 To display a toast with an action, use the following method.
 
-<How toUse="statuses/toast-action-demo" />
+<How toUse="statuses/toast/toast-action-demo" />
 
 ## Expand
 Toast can be expanded to show more content.

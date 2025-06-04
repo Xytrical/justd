@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 
+import { Description } from "@/components/ui/field"
+import { GridList } from "@/components/ui/grid-list"
 import type { Selection } from "react-aria-components"
-import { Description, GridList } from "ui"
 
 export default function GridListControlledDemo() {
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]))

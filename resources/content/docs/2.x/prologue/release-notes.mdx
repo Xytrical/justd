@@ -1,12 +1,49 @@
 ---
 title: "Release Notes"
-description: "All releases made to Justd, detailing every update and enhancement introduced to the platform, providing a comprehensive overview of changes and improvements."
+description: "All releases made to Intent, detailing every update and enhancement introduced to the platform, providing a comprehensive overview of changes and improvements."
 order: 1
 published: true
 ---
 
 ## 2025
 This all changes are made on the 2025 release.
+
+## May 10 (v2.3.0)
+[Release 2.3.0](/blog/release-v-230)
+
+## May 06 (v2.2.1)
+- The `SidebarSection` prop has been renamed from `title` to `label`:
+```tsx
+ <SidebarSection title="Section 1" /> // [!code --]
+ <SidebarSection label="Section 1" /> // [!code ++]
+````
+
+- Large data sets are now better handled by the pickers.
+
+- The `Drawer.Content` prop `withNotch` has been renamed to `notch`:
+
+```tsx
+ <Drawer.Content withNotch={false} /> // [!code --]
+ <Drawer.Content notch={false} /> // [!code ++]
+```
+
+## March 08
+- Remove `focusButtonStyles` from `primitive.tsx`
+- Add underline to `Link` when it hovered.
+
+## March 07
+- Upgrade RAC to latest version
+- Add searchable select to [select](https://intentui.com/select)
+- Remove `intent` props from container
+- Add `constrained` prop to container
+- Remove `intent` and `shape` props from skeleton
+- Add `soft` prop to skeleton
+- Add `tailwindcss-react-aria-components` to dependencies
+
+## March 03
+- Remove appearance prop from `Button` and `Toggle`
+- Update some related components
+- Add select month and year to date picker and calendar
 
 ## January 28
 - Change `slot` to `segment` on `Carousel.Button`
@@ -21,9 +58,9 @@ This all changes are made on the 2025 release.
 ## January 17
 - [Release v2.0.1](/blog/release-v201)
 
-Below is a list of all the releases that have been made to Justd
+Below is a list of all the releases that have been made to Intent
 
-If you don't see the release you're looking for, please run `npx justd-cli@latest diff` to see the changes. Not sure? Look at this [installation page](/docs/2.x/getting-started/installation#diff).
+If you don't see the release you're looking for, please run `npx @intentui/cli@latest diff` to see the changes. Not sure? Look at this [installation page](/docs/2.x/getting-started/installation#diff).
 ## 2024
 This all changes are made on the 2024 release.
 
@@ -56,7 +93,7 @@ Please read all the release notes on [Release v2](/blog/release-v2)
 ## October 31
 - Improvement to [Badge](/docs/2.x/components/statuses/badge)
 - Improvement to [Disclosure](/docs/2.x/components/navigation/disclosure)
-- A lot of improvements to Justd CLI (when this was written, the version v1.2.16)
+- A lot of improvements to Intent CLI (when this was written, the version v1.2.16)
 - Add Toggle password visibility to [TextField](/docs/2.x/components/forms/text-field)
 
 ## October 27
@@ -133,7 +170,7 @@ import {type ClassValue, clsx} from 'clsx'
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
 ```
-If you're using initial setup (`npx justd-cli@latest init`), do not worry about this. It will be automatically added to your project.
+If you're using initial setup (`npx @intentui/cli@latest init`), do not worry about this. It will be automatically added to your project.
 
 ## September 19
 - Feel free to change your theme [here](/themes)
@@ -167,7 +204,7 @@ Remove framer motion from [Tabs](/docs/2.x/components/navigation/tabs), [Progres
 - Add color when plain Button pressed
 - Make command menu better ring
 - Make calendar better looking
-- Add information to cli `npx justd-cli@latest help`
+- Add information to cli `npx @intentui/cli@latest help`
 
 ## August 13
 - Range Calendar is now stand-alone component
@@ -219,7 +256,7 @@ Remove framer motion from [Tabs](/docs/2.x/components/navigation/tabs), [Progres
 - Refactor [Select](/docs/2.x/components/pickers/select) component
 - Refactor [Combobox](/docs/2.x/components/pickers/combo-box) component
 - Refactor Installation section in the docs
-- All repo like starter kit can be found [https://github.com/justdlabs](https://github.com/justdlabs).
+- All repo like starter kit can be found [https://github.com/intentuilabs](https://github.com/intentuilabs).
 - Version of CLI is now **v0.1.37**.
 - Added new component [Command](/docs/2.x/components/controls/command-menu)
 - Added new component [Accordion](/docs/2.x/components/collections/accordion)
@@ -233,7 +270,6 @@ Remove framer motion from [Tabs](/docs/2.x/components/navigation/tabs), [Progres
 
 ## July 27
 - Remove clear button from [Select](/docs/2.x/components/pickers/select)
-- Fix grid to use regular HTML div [Grid](/docs/2.x/components/surfaces/grid)
 
 ## July 25
 - Add [Toolbar](/docs/2.x/components/controls/toolbar) component
@@ -243,7 +279,7 @@ Remove framer motion from [Tabs](/docs/2.x/components/navigation/tabs), [Progres
 ## July 18
 - New component [Carousel](/docs/2.x/components/media/carousel)
 - New component [Choicebox](/docs/2.x/components/collections/choicebox)
-- Move CLI from `@irsyadadl/d` to `justd-cli`
+- Move CLI from `@irsyadadl/d` to `@intentui/cli`
 
 ## July 16
 - Add [Grid List](/docs/2.x/components/collections/grid-list) component
@@ -251,7 +287,6 @@ Remove framer motion from [Tabs](/docs/2.x/components/navigation/tabs), [Progres
 - Rename PaginationContent to PaginationList [Docs](/docs/2.x/components/navigation/pagination)
 - Style up that [text field's suffix](/docs/2.x/components/forms/text-field#suffix-with-button) and prefix when there's a button chillin' inside.
 - Note revamped
-- Add [Grid](/docs/2.x/components/surfaces/grid) component
 - Add [VisuallyHidden](/docs/2.x/components/utilities/visually-hidden) component
 
 ## July 11

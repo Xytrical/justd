@@ -1,4 +1,4 @@
-import { GridList } from "ui"
+import { GridList } from "@/components/ui/grid-list"
 
 export default function GridListAnatomy() {
   return (

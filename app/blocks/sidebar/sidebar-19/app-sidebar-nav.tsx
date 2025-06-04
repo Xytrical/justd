@@ -1,5 +1,10 @@
 "use client"
 
+import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
+import { SearchField } from "@/components/ui/search-field"
+import { SidebarNav, SidebarTrigger } from "@/components/ui/sidebar"
 import {
   IconCommandRegular,
   IconDashboard,
@@ -7,8 +12,7 @@ import {
   IconLogout,
   IconMic,
   IconSettings,
-} from "justd-icons"
-import { Avatar, Button, Menu, SearchField, SidebarNav, SidebarTrigger } from "ui"
+} from "@intentui/icons"
 
 export default function AppSidebarNav() {
   return (
@@ -16,7 +20,7 @@ export default function AppSidebarNav() {
       <SidebarTrigger />
       <div className="mx-auto flex items-center gap-x-2 sm:min-w-120">
         <SearchField className="w-full" />
-        <Button size="square-petite" className="size-10" appearance="plain">
+        <Button size="square-petite" className="size-10" intent="plain">
           <IconMic />
         </Button>
       </div>

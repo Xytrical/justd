@@ -1,5 +1,5 @@
 import { Button } from 'ui'
-import { IconMoon, IconSun } from 'justd-icons'
+import { IconMoon, IconSun } from '@intentui/icons'
 import { Theme, useTheme } from '@/components/theme-provider'
 
 export function ThemeSwitcher() {
@@ -14,7 +14,7 @@ export function ThemeSwitcher() {
 
   return (
     <Button
-      appearance="outline"
+      intent="outline"
       size="square-petite"
       aria-label="Switch theme"
       onPress={switchTheme}

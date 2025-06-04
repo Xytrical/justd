@@ -1,6 +1,11 @@
 "use client"
 
-import { Button, Checkbox, Form, Link, Popover, TextField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Form } from "@/components/ui/form"
+import { Link } from "@/components/ui/link"
+import { Popover } from "@/components/ui/popover"
+import { TextField } from "@/components/ui/text-field"
 
 export default function PopoverCustomClose() {
   return (

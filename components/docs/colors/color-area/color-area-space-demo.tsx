@@ -1,6 +1,7 @@
 "use client"
 
-import { ColorArea, ColorThumb } from "ui"
+import { ColorArea } from "@/components/ui/color-area"
+import { ColorThumb } from "@/components/ui/color-thumb"
 
 export default function ColorAreaSpaceDemo() {
   return (

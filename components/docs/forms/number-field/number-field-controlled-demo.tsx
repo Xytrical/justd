@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Description, NumberField } from "ui"
+import { Description } from "@/components/ui/field"
+import { NumberField } from "@/components/ui/number-field"
 
 export default function NumberFieldControlledDemo() {
   const [number, setNumber] = useState(1280)

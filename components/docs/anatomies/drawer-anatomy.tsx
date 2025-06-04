@@ -1,4 +1,5 @@
-import { Button, Drawer } from "ui"
+import { Button } from "@/components/ui/button"
+import { Drawer } from "@/components/ui/drawer"
 
 export default function DrawerAnatomy() {
   return (

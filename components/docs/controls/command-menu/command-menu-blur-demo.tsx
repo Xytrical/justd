@@ -2,14 +2,17 @@
 
 import { useState } from "react"
 
-import { IconBill, IconCube, IconGear, IconHome, IconNotes, IconShield } from "justd-icons"
-import { Avatar, Button, CommandMenu } from "ui"
+import { IconBill, IconCube, IconGear, IconHome, IconNotes, IconShield } from "@intentui/icons"
+
+import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { CommandMenu } from "@/components/ui/command-menu"
 
 export default function CommandMenuBlurDemo() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button appearance="outline" onPress={() => setIsOpen(true)}>
+      <Button intent="outline" onPress={() => setIsOpen(true)}>
         Open
       </Button>
       <CommandMenu isBlurred isOpen={isOpen} onOpenChange={setIsOpen}>

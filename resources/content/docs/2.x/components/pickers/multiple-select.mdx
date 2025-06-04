@@ -1,7 +1,8 @@
 ---
 title: Multiple Select
-description: Multiple select lets you pick more than one option from a list. It's like checking off items on your to-do list just click, click, click, and you're good to go!
+description: A flexible dropdown input that enables users to select multiple options, ideal for tagging, categorization, and filtering tasks.
 order: 3
+status: alpha
 published: true
 references: ["https://react-spectrum.adobe.com/react-aria/ComboBox.html#props", "https://react-spectrum.adobe.com/react-aria/TagGroup.html#props"]
 ---
@@ -18,7 +19,7 @@ The basic multiple select component lets you select multiple options from a list
 <Composed components={['field', 'list-box', 'popover', 'tag-group', 'visually-hidden']} />
 
 ## Manual Installation
-<Installation options={{ isManual: true }} items={['react-aria-components', 'react-aria', 'justd-icons']} />
+<Installation options={{ isManual: true }} items={['react-aria-components', 'react-aria', '@intentui/icons']} />
 
 <SourceCode toShow='multiple-select' />
 
@@ -41,6 +42,10 @@ Customize the tag field’s shape using the `shape` prop.
 This component lets you select tags dynamically, updating the list with callbacks on add and remove. It displays selected tags with Tag components and logs each action.
 <How toUse="pickers/multiple-select/multiple-select-controlled-demo" />
 
+## Max Items
+You can limit the number of selected items using the `maxItems` prop.
+<How toUse="pickers/multiple-select/multiple-select-max-items-demo" />
+
 ## Invalid
 When the component is invalid, it displays an error message.
 <How toUse="pickers/multiple-select/multiple-select-invalid-demo" />
@@ -52,16 +57,19 @@ When the component is disabled, it prevents the user from adding or removing tag
 ## Props
 Here's the fixed table:
 
-| Prop           | Type                        | Default   | Description                                  |
-|----------------|-----------------------------|-----------|----------------------------------------------|
-| label          | string                      | -         | The label of the tag field                   |
-| description    | string                      | -         | The description of the tag field             |
-| placeholder    | string                      | -         | The placeholder of the tag field             |
-| className      | string                      | -         | The class name of the tag field              |
-| name           | string                      | -         | The name of the tag field                    |
-| list           | ListData                    | -         | The list of tags                             |
-| onItemInserted | (tag: TagItemProps) => void | -         | The callback function when a tag is inserted |
-| onItemCleared  | (tag: TagItemProps) => void | -         | The callback function when a tag is cleared  |
-| isDisabled     | boolean                     | -         | The disabled state of the tag field          |
-| intent         | string                      | 'primary' | 'primary', 'secondary'                       |
-| shape          | string                      | 'square'  | 'square', 'circle'                           |
+| Prop              | Type             | Default   | Description                                  |
+|-------------------|------------------|-----------|----------------------------------------------|
+| label             | string           | -         | The label of the multiple select             |
+| description       | string           | -         | The description of the multiple select       |
+| placeholder       | string           | -         | The placeholder of the multiple select       |
+| className         | string           | -         | The class name of the multiple select        |
+| name              | string           | -         | The name of the  multiple select             |
+| items             | array of objects | -         | The list of multiple select items (options)  |
+| selectedKeys      | Selection        | -         | The selected keys of the multiple select     |
+| onSelectionChange | function         | -         | The callback function for selection          |
+| maxItems          | number           | -         | The max number of items that can be selected |
+| isDisabled        | boolean          | -         | The disabled state of the multiple select    |
+| isInvalid         | boolean          | -         | The invalid state of the multiple select     |
+| errorMessage      | string           | -         | The error message if invalid                 |
+| intent            | string           | 'primary' | 'primary', 'secondary'                       |
+| shape             | string           | 'square'  | 'square', 'circle'                           |

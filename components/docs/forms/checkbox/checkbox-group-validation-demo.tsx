@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, Checkbox, CheckboxGroup, Form } from "ui"
+import { Button } from "@/components/ui/button"
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"
+import { Form } from "@/components/ui/form"
 
 export default function CheckboxValidationDemo() {
   return (

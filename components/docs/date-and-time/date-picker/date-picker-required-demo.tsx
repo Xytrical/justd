@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, DatePicker, Form } from "ui"
+import { Button } from "@/components/ui/button"
+import { DatePicker } from "@/components/ui/date-picker"
+import { Form } from "@/components/ui/form"
 
 export default function DatePickerRequiredDemo() {
   return (

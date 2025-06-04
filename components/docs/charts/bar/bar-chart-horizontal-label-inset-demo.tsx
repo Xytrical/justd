@@ -1,8 +1,8 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import { Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Bar, BarChart, Rectangle, XAxis, YAxis } from "recharts"
-import type { ChartConfig } from "ui"
-import { Card, Chart, ChartTooltip, ChartTooltipContent } from "ui"
 
 const chartData = [
   {
@@ -67,7 +67,7 @@ export default function BarChartHorizontalLabelInsetDemo() {
         <Card.Description>Since Aug 17, 2014</Card.Description>
       </Card.Header>
       <Card.Content>
-        <Chart config={chartConfig} className="aspect-[15/11] sm:aspect-[17/11]">
+        <Chart config={chartConfig} className="aspect-[15/15] sm:aspect-[17/7]">
           <BarChart
             accessibilityLayer
             data={chartData}

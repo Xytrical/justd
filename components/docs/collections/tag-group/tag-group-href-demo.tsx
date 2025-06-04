@@ -1,6 +1,6 @@
 "use client"
 
-import { Tag, TagGroup, TagList } from "ui"
+import { Tag, TagGroup, TagList } from "@/components/ui/tag-group"
 
 const articles = [
   { name: "React Tutorial", url: "#" },

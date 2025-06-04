@@ -1,7 +1,8 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import { Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { CartesianGrid, LabelList, Line, LineChart } from "recharts"
-import { Card, Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "ui"
 
 const chartData = [
   { platform: "Instagram", users: 275, fill: "var(--color-instagram)" },

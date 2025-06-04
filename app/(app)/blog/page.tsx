@@ -1,7 +1,9 @@
 import { Header } from "@/components/header"
+import { Avatar } from "@/components/ui/avatar"
+import { Card } from "@/components/ui/card"
+import { Container } from "@/components/ui/container"
 import dayjs from "dayjs"
 import Link from "next/link"
-import { Avatar, Card, Container } from "ui"
 import { blog } from "#site/content"
 
 export default function Page() {

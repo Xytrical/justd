@@ -6,7 +6,7 @@ import generated from "@/__registry__/generated"
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { CopyMotionButton } from "@/components/code/copy-button"
 import { createFetchRegistryFile } from "@/resources/lib/fetch-registry"
-import { IconBrandReactjs } from "justd-icons"
+import { IconBrandReactjs } from "@intentui/icons"
 
 type RegistryItem = {
   component: React.LazyExoticComponent<any>
@@ -23,7 +23,7 @@ type SourceCodeProps = {
   ext?: string
 }
 
-const fetchRegistryFile = createFetchRegistryFile("/registry/ui")
+const fetchRegistryFile = createFetchRegistryFile("/r")
 
 export const SourceCode = ({ toShow, ...props }: SourceCodeProps) => {
   const [rawSourceCode, setRawSourceCode] = useState<string | null>(null)
@@ -46,7 +46,7 @@ export const SourceCode = ({ toShow, ...props }: SourceCodeProps) => {
   }, [rawSourceCode])
 
   React.useEffect(() => {
-    fetchRegistryFile(toShow).then(setRawSourceCode)
+    fetchRegistryFile(`ui-${toShow}`).then(setRawSourceCode)
   }, [toShow])
 
   if (!Component) {
@@ -62,7 +62,7 @@ export const SourceCode = ({ toShow, ...props }: SourceCodeProps) => {
         <p className="-mt-2 mb-4">
           {props.message
             ? props.message
-            : "And next, you can copy the code below and paste it into your component folder."}
+            : "You can copy the code below and paste it into your component folder."}
         </p>
         {props.title && <figcaption data-rehype-pretty-code-title="">{props.title}</figcaption>}
         <div className="mb-1 flex items-center justify-between">

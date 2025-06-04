@@ -1,4 +1,4 @@
-import { ComboBox } from "ui"
+import { ComboBox } from "@/components/ui/combo-box"
 
 export default function ComboBoxAnatomy() {
   return (

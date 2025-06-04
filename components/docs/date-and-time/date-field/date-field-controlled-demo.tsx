@@ -5,7 +5,8 @@ import { useState } from "react"
 import type { CalendarDate } from "@internationalized/date"
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date"
 import { useDateFormatter } from "@react-aria/i18n"
-import { DateField } from "ui"
+
+import { DateField } from "@/components/ui/date-field"
 
 export default function DateFieldControlledDemo() {
   const now = today(getLocalTimeZone())

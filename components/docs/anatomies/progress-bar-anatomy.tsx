@@ -1,4 +1,4 @@
-import { ProgressBar } from "ui"
+import { ProgressBar } from "@/components/ui/progress-bar"
 
 export default function ProgressBarAnatomy() {
   return (

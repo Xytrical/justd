@@ -2,8 +2,16 @@
 
 import { useState } from "react"
 
-import { IconCreditCard, IconCube, IconGear, IconHome2, IconNotes, IconShield } from "justd-icons"
-import { CommandMenu } from "ui"
+import {
+  IconCreditCard,
+  IconCube,
+  IconGear,
+  IconHome2,
+  IconNotes,
+  IconShield,
+} from "@intentui/icons"
+
+import { CommandMenu } from "@/components/ui/command-menu"
 
 export default function CommandMenuTriggerByKeyboardDemo() {
   const [isOpen, setIsOpen] = useState(false)

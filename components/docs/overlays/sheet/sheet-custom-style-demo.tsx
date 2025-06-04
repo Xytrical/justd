@@ -1,6 +1,10 @@
 "use client"
 
-import { Button, Form, Note, Sheet, TextField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Note } from "@/components/ui/note"
+import { Sheet } from "@/components/ui/sheet"
+import { TextField } from "@/components/ui/text-field"
 
 export default function SheetCustomStyleDemo() {
   return (

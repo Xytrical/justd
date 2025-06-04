@@ -1,6 +1,6 @@
 ---
 title: "Color Picker"
-description: A Color Picker keeps color values in sync across React Aria color components. It makes building color pickers with custom layouts a breeze through composition.
+description: A versatile UI component that provides multiple ways to choose colors, including sliders, swatches, and manual input.
 order: 1
 published: true
 references: ["https://react-spectrum.adobe.com/react-aria/ColorPicker.html"]
@@ -17,7 +17,7 @@ The basic color picker allows users to select a color.
 <Composed components={['color-area', 'color-field', 'color-slider', 'color-swatch', 'field', 'popover']}/>
 
 ## Manual Installation
-<Installation options={{isManual: true}} items={['react-aria-components', 'justd-icons']}/>
+<Installation options={{isManual: true}} items={['react-aria-components', '@intentui/icons']}/>
 <SourceCode toShow='color-picker'/>
 
 ## Anatomy
@@ -30,6 +30,10 @@ Enable users to select the format of the color value (e.g., RGB, HSL).
 ## Combination
 Combine both swatch and selection format options in the color picker.
 <How className='min-w-40' toUse="colors/color-picker/color-picker-combination-demo" />
+
+## Eye Dropper
+Add an eye dropper button to the color picker to allow users to select a color from the screen.
+<How className='min-w-40' toUse="colors/color-picker/color-picker-eye-dropper-demo" />
 
 ## Label
 Add a label to the color picker for better accessibility and user guidance.

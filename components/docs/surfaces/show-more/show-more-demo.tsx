@@ -1,8 +1,7 @@
 "use client"
-
-import { cn } from "@/utils/classes"
-import { IconChevronLgDown } from "justd-icons"
-import { ShowMore } from "ui"
+import { ShowMore } from "@/components/ui/show-more"
+import { IconChevronLgDown } from "@intentui/icons"
+import { twMerge } from "tailwind-merge"
 
 export default function ShowMoreDemo() {
   return (
@@ -12,7 +11,7 @@ export default function ShowMoreDemo() {
           <>
             Show {isSelected ? "less" : "more"}
             <IconChevronLgDown
-              className={cn(
+              className={twMerge(
                 isSelected ? "rotate-180" : "",
                 "size-4 transition-transform duration-200",
               )}

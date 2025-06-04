@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 
+import { Description } from "@/components/ui/field"
+import { Tag, TagGroup, TagList } from "@/components/ui/tag-group"
 import type { Selection } from "react-aria-components"
-import { Description, Tag, TagGroup, TagList } from "ui"
 
 const fruitList = [
   { id: "1", name: "Apple", available: false },

@@ -1,4 +1,5 @@
-import { Button, Sheet } from "ui"
+import { Button } from "@/components/ui/button"
+import { Sheet } from "@/components/ui/sheet"
 
 export default function SheetAnatomy() {
   return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { Select } from "ui"
+import { Select } from "@/components/ui/select"
 
 export const movies = [
   { id: 1, title: "Inception" },

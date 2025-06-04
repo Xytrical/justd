@@ -3,17 +3,16 @@
 import type React from "react"
 import { useRef, useState } from "react"
 
-import * as icons from "justd-icons"
-import { IconDownload } from "justd-icons"
+import { Menu } from "@/components/ui/menu"
+import * as icons from "@intentui/icons"
+import { IconDownload } from "@intentui/icons"
 import { useSearchParams } from "next/navigation"
 import { ListBox, ListBoxItem } from "react-aria-components"
 import * as ReactDOMServer from "react-dom/server"
 import { toast } from "sonner"
-import { Menu } from "ui"
 import { copyToClipboard } from "usemods"
 
 import { aliasLookup } from "@/app/(app)/icons/partials/aliases"
-import { cn } from "@/utils/classes"
 import { Controller } from "./controller"
 import { box, item } from "./styles"
 
@@ -89,7 +88,7 @@ export function IconListItem({ name, Icon }: IconListItemProps) {
       className={item()}
       textValue={name}
     >
-      <Icon className={cn(selectedSize)} key={name} />
+      <Icon className={selectedSize} key={name} />
       <Menu isOpen={isSelected} onOpenChange={setSelected}>
         <Menu.Content
           triggerRef={triggerRef}
@@ -137,7 +136,7 @@ const downloadSvg = (IconComponent: React.ComponentType, fileName: string) => {
   link.download = `${fileName}.svg`
   document.body.appendChild(link)
   link.click()
-  document.body.removeChild(link)
+  document.body?.removeChild(link)
 
   URL.revokeObjectURL(url)
 }

@@ -1,14 +1,14 @@
 "use client"
 
-import { IconCircleExclamation } from "justd-icons"
+import { IconCircleExclamation } from "@intentui/icons"
 import { motion } from "motion/react"
 import {
   Meter as MeterPrimitive,
   type MeterProps as MeterPrimitiveProps,
 } from "react-aria-components"
 
-import { Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
+import { Label } from "@/components/ui/field"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 
 interface MeterProps extends MeterPrimitiveProps {
   label?: string

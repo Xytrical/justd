@@ -1,6 +1,6 @@
 ---
 title: "Sidebar"
-description: "Sidebar is a component that helps you organize your content and navigation."
+description: A collapsible panel for navigation or additional content, typically positioned on the side of the screen.
 order: 1
 published: true
 references: ["https://react-spectrum.adobe.com/react-aria/Link.html#props", "https://react-spectrum.adobe.com/react-aria/Disclosure.html#props"]
@@ -25,7 +25,7 @@ The sidebar is a versatile component designed to organize your site's content an
 <Composed components={['badge', 'tooltip', 'sheet', 'button']} />
 
 ## Manual Installation
-<Installation options={{ isManual: true }} items={['react-aria-components', 'justd-icons']}/>
+<Installation options={{ isManual: true }} items={['react-aria-components', '@intentui/icons']}/>
 <SourceCode toShow={'sidebar'}/>
 
 ## Anatomy
@@ -109,14 +109,14 @@ The sidebar’s initial state can be controlled using the `defaultOpen` prop. Fo
 ```
 
 ## Sidebar Section
-The sidebar section is a container for sidebar items. It accepts a `title` prop, which will be displayed as a heading.
+The sidebar section is a container for sidebar items. It accepts a `label` prop, which will be displayed as a heading.
 ```
 <SidebarSection>
   <SidebarItem isCurrent href="#">
     <SidebarLabel>Item 1</SidebarLabel>
   </SidebarItem>
 </SidebarSection>
-<SidebarSection title="Other Section">
+<SidebarSection label="Other Section">
   <SidebarItem isCurrent href="#">
     <SidebarLabel>Item 1</SidebarLabel>
   </SidebarItem>
@@ -299,7 +299,7 @@ The sidebar has two sides, left and right. You can set the side of the sidebar b
   }} />
 
 ## Put Anything
-This is justd sidebar, so you can put anything you want in it. You can use the `SidebarContent` component to wrap your content. Let's try to add a range-calendar and search-field to the sidebar. <NewTab href='/blocks/sidebar/sidebar-17'/>
+You can put anything you want in it. You can use the `SidebarContent` component to wrap your content. Let's try to add a range-calendar and search-field to the sidebar. <NewTab href='/blocks/sidebar/sidebar-17'/>
 <EditorText
   source={{
     'app-sidebar.tsx': 'blocks/sidebar/sidebar-17/app-sidebar',

@@ -1,11 +1,11 @@
 "use client"
-
-import { Modal, buttonStyles } from "ui"
+import { Button } from "@/components/ui/button"
+import { Modal } from "@/components/ui/modal"
 
 export default function AlertDialogDemo() {
   return (
     <Modal>
-      <Modal.Trigger className={buttonStyles({ intent: "danger" })}>Delete</Modal.Trigger>
+      <Button intent="danger">Delete</Button>
       <Modal.Content role="alertdialog">
         <Modal.Header>
           <Modal.Title>Delete file</Modal.Title>
@@ -14,10 +14,8 @@ export default function AlertDialogDemo() {
           </Modal.Description>
         </Modal.Header>
         <Modal.Footer>
-          <Modal.Close appearance="outline">Cancel</Modal.Close>
-          <Modal.Close appearance="solid" intent="danger">
-            Continue
-          </Modal.Close>
+          <Modal.Close>Cancel</Modal.Close>
+          <Button intent="danger">Continue</Button>
         </Modal.Footer>
       </Modal.Content>
     </Modal>

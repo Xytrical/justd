@@ -6,10 +6,11 @@ import type {
 } from "react-aria-components"
 import { ColorField as ColorFieldPrimitive } from "react-aria-components"
 
-import { ColorPicker } from "./color-picker"
-import { ColorSwatch } from "./color-swatch"
-import { Description, FieldError, FieldGroup, Input, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
+import { ColorPicker } from "@/components/ui/color-picker"
+import { ColorSwatch } from "@/components/ui/color-swatch"
+import { Description, FieldError, FieldGroup, Input, Label } from "@/components/ui/field"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { twJoin } from "tailwind-merge"
 
 interface ColorFieldProps extends ColorFieldPrimitiveProps {
   label?: string
@@ -46,16 +47,20 @@ const ColorField = ({
     >
       {label && <Label>{label}</Label>}
       <FieldGroup data-loading={isLoading ? "true" : undefined}>
-        {prefix ? (
-          <span data-slot="prefix" className="atrs">
-            {prefix}
-          </span>
-        ) : null}
-        <div className="flex w-full items-center">
+        {prefix && typeof prefix === "string" ? (
+          <span className="ml-2 text-muted-fg">{prefix}</span>
+        ) : (
+          prefix
+        )}
+        <div className={twJoin("flex w-full items-center", prefix && "ml-6")}>
           {value && (
-            <span className="ml-2">
+            <span className="ml-1">
               {enableColorPicker ? (
-                <ColorPicker onChange={props.onChange} defaultValue={value} />
+                <ColorPicker
+                  className="*:[button]:size-8 *:[button]:rounded-sm *:[button]:ring-0"
+                  onChange={props.onChange}
+                  defaultValue={value}
+                />
               ) : (
                 <ColorSwatch className="size-6" color={value.toString("hex")} />
               )}
@@ -64,11 +69,11 @@ const ColorField = ({
 
           <Input placeholder={placeholder} />
         </div>
-        {suffix ? (
-          <span data-slot="suffix" className="atrs ml-auto">
-            {suffix}
-          </span>
-        ) : null}
+        {suffix && typeof suffix === "string" ? (
+          <span className="mr-2 text-muted-fg">{suffix}</span>
+        ) : (
+          suffix
+        )}
       </FieldGroup>
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>

@@ -2,10 +2,9 @@
 
 import { use } from "react"
 
+import { IconBulletFill } from "@intentui/icons"
 import { OTPInput, OTPInputContext } from "input-otp"
-import { IconBulletFill } from "justd-icons"
-
-import { cn } from "@/utils/classes"
+import { twMerge } from "tailwind-merge"
 
 type InputOTOPProps = React.ComponentProps<typeof OTPInput>
 const InputOTP = ({
@@ -19,15 +18,18 @@ const InputOTP = ({
     data-1p-ignore
     ref={ref}
     autoFocus={autoFocus}
-    containerClassName={cn("flex items-center gap-2 has-disabled:opacity-50", containerClassName)}
-    className={cn("mt-auto h-[2.5rem] bg-red-500 disabled:cursor-not-allowed", className)}
+    containerClassName={twMerge(
+      "flex items-center gap-2 has-disabled:opacity-50",
+      containerClassName,
+    )}
+    className={twMerge("mt-auto h-[2.5rem] bg-red-500 disabled:cursor-not-allowed", className)}
     {...props}
   />
 )
 
 type InputOTPGroupProps = React.ComponentProps<"div">
 const InputOTPGroup = ({ className, ref, ...props }: InputOTPGroupProps) => (
-  <div ref={ref} className={cn("flex items-center gap-x-1.5", className)} {...props} />
+  <div ref={ref} className={twMerge("flex items-center gap-x-1.5", className)} {...props} />
 )
 
 interface InputOTPSlotProps extends React.ComponentProps<"div"> {
@@ -47,7 +49,7 @@ const InputOTPSlot = ({ index, className, ref, ...props }: InputOTPSlotProps) =>
   return (
     <div
       ref={ref}
-      className={cn(
+      className={twMerge(
         "relative flex size-10 items-center justify-center rounded-md border border-input text-sm tabular-nums transition-all",
         isActive && "z-10 border-ring/70 ring-4 ring-ring/20",
         className,

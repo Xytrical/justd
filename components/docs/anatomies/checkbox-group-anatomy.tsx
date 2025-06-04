@@ -1,4 +1,4 @@
-import { Checkbox, CheckboxGroup } from "ui"
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"
 
 export default function CheckboxGroupAnatomy() {
   return (

@@ -2,7 +2,17 @@
 
 import { createContext, use } from "react"
 
-import { IconBulletFill, IconCheck, IconChevronLgRight } from "justd-icons"
+import {
+  DropdownDescription,
+  DropdownKeyboard,
+  DropdownLabel,
+  DropdownSeparator,
+  dropdownItemStyles,
+  dropdownSectionStyles,
+} from "@/components/ui/dropdown"
+import { PopoverContent } from "@/components/ui/popover"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { IconBulletFill, IconCheck, IconChevronLgRight } from "@intentui/icons"
 import type {
   ButtonProps,
   MenuItemProps as MenuItemPrimitiveProps,
@@ -22,19 +32,8 @@ import {
   SubmenuTrigger as SubmenuTriggerPrimitive,
   composeRenderProps,
 } from "react-aria-components"
+import { twMerge } from "tailwind-merge"
 import type { VariantProps } from "tailwind-variants"
-import { tv } from "tailwind-variants"
-
-import { cn } from "@/utils/classes"
-import {
-  DropdownItemDetails,
-  DropdownKeyboard,
-  DropdownLabel,
-  DropdownSeparator,
-  dropdownItemStyles,
-  dropdownSectionStyles,
-} from "./dropdown"
-import { Popover } from "./popover"
 
 interface MenuContextProps {
   respectScreen: boolean
@@ -60,25 +59,21 @@ const MenuSubMenu = ({ delay = 0, ...props }) => (
   </SubmenuTriggerPrimitive>
 )
 
-const menuStyles = tv({
-  slots: {
-    menu: "grid max-h-[calc(var(--visual-viewport-height)-10rem)] grid-cols-[auto_1fr] overflow-auto rounded-xl p-1 outline-hidden [clip-path:inset(0_0_0_0_round_calc(var(--radius-lg)-2px))] sm:max-h-[inherit] *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1",
-    popover: "z-50 p-0 shadow-xs outline-hidden sm:min-w-40",
-    trigger: [
-      "relative inline text-left outline-hidden data-focus-visible:ring-1 data-focus-visible:ring-primary",
-    ],
-  },
-})
-
-const { menu, popover, trigger } = menuStyles()
-
 interface MenuTriggerProps extends ButtonProps {
   className?: string
   ref?: React.Ref<HTMLButtonElement>
 }
 
 const MenuTrigger = ({ className, ref, ...props }: MenuTriggerProps) => (
-  <Button ref={ref} data-slot="menu-trigger" className={trigger({ className })} {...props}>
+  <Button
+    ref={ref}
+    data-slot="menu-trigger"
+    className={composeTailwindRenderProps(
+      className,
+      "relative inline text-left outline-hidden focus-visible:ring-1 focus-visible:ring-primary",
+    )}
+    {...props}
+  >
     {(values) => (
       <>{typeof props.children === "function" ? props.children(values) : props.children}</>
     )}
@@ -86,7 +81,17 @@ const MenuTrigger = ({ className, ref, ...props }: MenuTriggerProps) => (
 )
 
 interface MenuContentProps<T>
-  extends Omit<PopoverProps, "children" | "style">,
+  extends Pick<
+      PopoverProps,
+      | "placement"
+      | "offset"
+      | "crossOffset"
+      | "arrowBoundaryOffset"
+      | "triggerRef"
+      | "isOpen"
+      | "onOpenChange"
+      | "shouldFlip"
+    >,
     MenuPrimitiveProps<T> {
   className?: string
   popoverClassName?: string
@@ -98,20 +103,37 @@ const MenuContent = <T extends object>({
   className,
   showArrow = false,
   popoverClassName,
+  respectScreen = true,
   ...props
 }: MenuContentProps<T>) => {
-  const { respectScreen } = use(MenuContext)
+  const { respectScreen: respectScreenContext } = use(MenuContext)
+  const respectScreenInternal = respectScreenContext ?? respectScreen
   return (
-    <Popover.Content
-      respectScreen={respectScreen}
+    <PopoverContent
+      isOpen={props.isOpen}
+      onOpenChange={props.onOpenChange}
+      shouldFlip={props.shouldFlip}
+      respectScreen={respectScreenInternal}
       showArrow={showArrow}
-      className={popover({
-        className: popoverClassName,
-      })}
-      {...props}
+      offset={props.offset}
+      placement={props.placement}
+      crossOffset={props.crossOffset}
+      triggerRef={props.triggerRef}
+      arrowBoundaryOffset={props.arrowBoundaryOffset}
+      className={composeTailwindRenderProps(
+        popoverClassName,
+        "z-50 p-0 shadow-xs outline-hidden sm:min-w-40",
+      )}
     >
-      <MenuPrimitive className={menu({ className })} {...props} />
-    </Popover.Content>
+      <MenuPrimitive
+        data-slot="menu-content"
+        className={composeTailwindRenderProps(
+          className,
+          "grid max-h-[calc(var(--visual-viewport-height)-10rem)] grid-cols-[auto_1fr] overflow-auto rounded-xl p-1 outline-hidden [clip-path:inset(0_0_0_0_round_calc(var(--radius-lg)-2px))] sm:max-h-[inherit] *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1",
+        )}
+        {...props}
+      />
+    </PopoverContent>
   )
 }
 
@@ -127,7 +149,7 @@ const MenuItem = ({ className, isDanger = false, children, ...props }: MenuItemP
         dropdownItemStyles({
           ...renderProps,
           className: renderProps.hasSubmenu
-            ? cn([
+            ? twMerge([
                 "data-open:data-danger:bg-danger/10 data-open:data-danger:text-danger",
                 "data-open:bg-accent data-open:text-accent-fg data-open:*:data-[slot=icon]:text-accent-fg data-open:*:[.text-muted-fg]:text-accent-fg",
                 className,
@@ -174,7 +196,7 @@ export interface MenuHeaderProps extends React.ComponentProps<typeof Header> {
 
 const MenuHeader = ({ className, separator = false, ...props }: MenuHeaderProps) => (
   <Header
-    className={cn(
+    className={twMerge(
       "col-span-full px-2.5 py-2 font-semibold text-base sm:text-sm",
       separator && "-mx-1 mb-1 border-b sm:px-3 sm:pb-[0.625rem]",
       className,
@@ -200,9 +222,9 @@ const MenuSection = <T extends object>({ className, ref, ...props }: MenuSection
 }
 
 const MenuSeparator = DropdownSeparator
-const MenuItemDetails = DropdownItemDetails
 const MenuKeyboard = DropdownKeyboard
 const MenuLabel = DropdownLabel
+const MenuDescription = DropdownDescription
 
 Menu.Keyboard = MenuKeyboard
 Menu.Content = MenuContent
@@ -210,8 +232,8 @@ Menu.Header = MenuHeader
 Menu.Item = MenuItem
 Menu.Section = MenuSection
 Menu.Separator = MenuSeparator
-Menu.ItemDetails = MenuItemDetails
 Menu.Label = MenuLabel
+Menu.Description = MenuDescription
 Menu.Trigger = MenuTrigger
 Menu.Submenu = MenuSubMenu
 

@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Description, TextField } from "ui"
+import { Description } from "@/components/ui/field"
+import { TextField } from "@/components/ui/text-field"
 
 export default function TextFieldControlledDemo() {
   const [value, setValue] = useState("")

@@ -1,4 +1,4 @@
-import { NumberField } from "ui"
+import { NumberField } from "@/components/ui/number-field"
 
 export default function TextFieldAnatomy() {
   return <NumberField label="Cookies" />

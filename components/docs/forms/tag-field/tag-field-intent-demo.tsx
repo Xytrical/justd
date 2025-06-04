@@ -1,7 +1,7 @@
 "use client"
 
+import { TagField } from "@/components/ui/tag-field"
 import { useListData } from "react-stately"
-import { TagField } from "ui"
 
 export default function TagFieldIntentDemo() {
   const selectedItems = useListData({

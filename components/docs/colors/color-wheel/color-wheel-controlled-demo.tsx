@@ -3,8 +3,8 @@
 import { useState } from "react"
 
 import { ControlledValues } from "@/components/docs/colors/controlled-values"
+import { ColorWheel } from "@/components/ui/color-wheel"
 import { parseColor } from "@react-stately/color"
-import { ColorWheel } from "ui"
 
 export default function ColorWheelControlledDemo() {
   const [color, setColor] = useState(parseColor("hsl(0, 100%, 50%)"))

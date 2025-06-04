@@ -1,6 +1,7 @@
 "use client"
 
-import { DescriptionList, Heading } from "ui"
+import { DescriptionList } from "@/components/ui/description-list"
+import { Heading } from "@/components/ui/heading"
 
 export default function DescriptionListHeadingDemo() {
   return (

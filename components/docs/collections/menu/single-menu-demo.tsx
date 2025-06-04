@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
 import type { Placement } from "@react-types/overlays"
 import type { Selection } from "react-aria-components"
-import { Button, Menu } from "ui"
 
 export const placements = [
   "bottom",
@@ -35,7 +36,7 @@ export default function SingleMenuDemo() {
   const [selected, setSelected] = useState<Selection>(new Set(["bottom"]))
   return (
     <Menu>
-      <Button appearance="outline">Placement</Button>
+      <Button intent="outline">Placement</Button>
       <Menu.Content
         placement={Array.from(selected)[0] as Placement}
         selectionMode="single"

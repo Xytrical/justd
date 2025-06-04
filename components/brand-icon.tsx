@@ -5,7 +5,7 @@ import {
   IconBrandTailwindcss,
   IconBrandTypescript,
   IconFile,
-} from "justd-icons"
+} from "@intentui/icons"
 
 export const BrandIcon = ({ label }: { label: string }) => {
   const ext = label.toLowerCase()

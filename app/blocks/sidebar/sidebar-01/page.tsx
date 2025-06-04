@@ -1,4 +1,5 @@
-import { Heading, SidebarInset, SidebarProvider } from "ui"
+import { Heading } from "@/components/ui/heading"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import AppSidebarNav from "../app-sidebar-nav"
 import AppSidebar from "./app-sidebar"
 

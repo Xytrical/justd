@@ -1,12 +1,11 @@
 "use client"
-
-import { cn } from "@/utils/classes"
-import { IconChevronLgRight } from "justd-icons"
+import { Link } from "@/components/ui/link"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { IconChevronLgRight } from "@intentui/icons"
 import { createContext, use } from "react"
 import type { BreadcrumbProps, BreadcrumbsProps, LinkProps } from "react-aria-components"
 import { Breadcrumb, Breadcrumbs as BreadcrumbsPrimitive } from "react-aria-components"
-import { Link } from "./link"
-import { composeTailwindRenderProps } from "./primitive"
+import { twMerge } from "tailwind-merge"
 
 type BreadcrumbsContextProps = { separator?: "chevron" | "slash" | boolean }
 const BreadcrumbsProvider = createContext<BreadcrumbsContextProps>({
@@ -19,7 +18,7 @@ const Breadcrumbs = <T extends object>({
 }: BreadcrumbsProps<T> & BreadcrumbsContextProps) => {
   return (
     <BreadcrumbsProvider value={{ separator: props.separator }}>
-      <BreadcrumbsPrimitive {...props} className={cn("flex items-center gap-2", className)} />
+      <BreadcrumbsPrimitive {...props} className={twMerge("flex items-center gap-2", className)} />
     </BreadcrumbsProvider>
   )
 }
@@ -67,4 +66,4 @@ const Separator = ({
 Breadcrumbs.Item = BreadcrumbsItem
 
 export type { BreadcrumbsProps, BreadcrumbsItemProps }
-export { Breadcrumbs }
+export { Breadcrumbs, BreadcrumbsItem }

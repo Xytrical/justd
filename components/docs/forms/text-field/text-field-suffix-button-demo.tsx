@@ -2,8 +2,10 @@
 
 import { useState } from "react"
 
-import { IconPlus } from "justd-icons"
-import { Button, Modal, TextField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Modal } from "@/components/ui/modal"
+import { TextField } from "@/components/ui/text-field"
+import { IconPlus } from "@intentui/icons"
 
 export default function TextFieldSuffixButtonDemo() {
   const [open, setOpen] = useState(false)
@@ -20,14 +22,14 @@ export default function TextFieldSuffixButtonDemo() {
           <TextField label="Email" placeholder="Email" type="email" />
         </Modal.Body>
         <Modal.Footer>
-          <Modal.Close appearance="outline">Cancel</Modal.Close>
+          <Modal.Close intent="outline">Cancel</Modal.Close>
           <Button onPress={close}>Continue</Button>
         </Modal.Footer>
       </Modal.Content>
       <TextField
         label="Username"
         suffix={
-          <Button aria-label="New user" onPress={() => setOpen(true)} appearance="outline">
+          <Button aria-label="New user" onPress={() => setOpen(true)} intent="outline">
             <IconPlus />
           </Button>
         }

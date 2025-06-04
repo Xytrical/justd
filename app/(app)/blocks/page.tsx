@@ -1,6 +1,5 @@
 import { BlockSandbox } from "@/components/code/block-sandbox"
 import { Header } from "@/components/header"
-import { Container } from "ui"
 
 export const metadata = {
   title: "Blocks",
@@ -15,7 +14,7 @@ export default function Page() {
         Blo
         <span className="text-muted-fg">cks</span>
       </Header>
-      <Container className="space-y-16 py-6 sm:py-16">
+      <div className="mx-auto max-w-(--breakpoint-2xl) space-y-16 px-4 py-6 sm:px-6">
         <div className="flex flex-col gap-1">
           <BlockSandbox
             {...{
@@ -29,16 +28,16 @@ export default function Page() {
               folders: {
                 components: {
                   ui: {
-                    "badge.tsx": "ui/badge",
-                    "link.tsx": "ui/link",
-                    "avatar.tsx": "ui/avatar",
-                    "menu.tsx": "ui/menu",
-                    "separator.tsx": "ui/separator",
-                    "sheet.tsx": "ui/sheet",
-                    "tooltip.tsx": "ui/tooltip",
-                    "primitive.tsx": "ui/primitive",
-                    "button.tsx": "ui/button",
-                    "sidebar.tsx": "ui/sidebar",
+                    "badge.tsx": "ui-badge",
+                    "link.tsx": "ui-link",
+                    "avatar.tsx": "ui-avatar",
+                    "menu.tsx": "ui-menu",
+                    "separator.tsx": "ui-separator",
+                    "sheet.tsx": "ui-sheet",
+                    "tooltip.tsx": "ui-tooltip",
+                    "primitive.tsx": "ui-primitive",
+                    "button.tsx": "ui-button",
+                    "sidebar.tsx": "ui-sidebar",
                   },
                   "app-sidebar-nav.tsx": "blocks/sidebar/app-sidebar-nav",
                   "app-sidebar.tsx": "blocks/sidebar/sidebar-01/app-sidebar",
@@ -63,16 +62,16 @@ export default function Page() {
               folders: {
                 components: {
                   ui: {
-                    "badge.tsx": "ui/badge",
-                    "link.tsx": "ui/link",
-                    "avatar.tsx": "ui/avatar",
-                    "menu.tsx": "ui/menu",
-                    "separator.tsx": "ui/separator",
-                    "sheet.tsx": "ui/sheet",
-                    "tooltip.tsx": "ui/tooltip",
-                    "primitive.tsx": "ui/primitive",
-                    "button.tsx": "ui/button",
-                    "sidebar.tsx": "ui/sidebar",
+                    "badge.tsx": "ui-badge",
+                    "link.tsx": "ui-link",
+                    "avatar.tsx": "ui-avatar",
+                    "menu.tsx": "ui-menu",
+                    "separator.tsx": "ui-separator",
+                    "sheet.tsx": "ui-sheet",
+                    "tooltip.tsx": "ui-tooltip",
+                    "primitive.tsx": "ui-primitive",
+                    "button.tsx": "ui-button",
+                    "sidebar.tsx": "ui-sidebar",
                   },
                   "app-sidebar.tsx": "blocks/sidebar/app-sidebar",
                   "app-sidebar-nav.tsx": "blocks/sidebar/app-sidebar-nav",
@@ -98,16 +97,16 @@ export default function Page() {
               folders: {
                 components: {
                   ui: {
-                    "badge.tsx": "ui/badge",
-                    "link.tsx": "ui/link",
-                    "avatar.tsx": "ui/avatar",
-                    "menu.tsx": "ui/menu",
-                    "separator.tsx": "ui/separator",
-                    "sheet.tsx": "ui/sheet",
-                    "tooltip.tsx": "ui/tooltip",
-                    "primitive.tsx": "ui/primitive",
-                    "button.tsx": "ui/button",
-                    "sidebar.tsx": "ui/sidebar",
+                    "badge.tsx": "ui-badge",
+                    "link.tsx": "ui-link",
+                    "avatar.tsx": "ui-avatar",
+                    "menu.tsx": "ui-menu",
+                    "separator.tsx": "ui-separator",
+                    "sheet.tsx": "ui-sheet",
+                    "tooltip.tsx": "ui-tooltip",
+                    "primitive.tsx": "ui-primitive",
+                    "button.tsx": "ui-button",
+                    "sidebar.tsx": "ui-sidebar",
                   },
                   "app-sidebar-nav.tsx": "blocks/sidebar/app-sidebar-nav",
                   "app-sidebar.tsx": "blocks/sidebar/app-sidebar",
@@ -132,13 +131,13 @@ export default function Page() {
               folders: {
                 components: {
                   ui: {
-                    "primitive.tsx": "ui/primitive",
-                    "avatar.tsx": "ui/avatar",
-                    "menu.tsx": "ui/menu",
-                    "button.tsx": "ui/button",
-                    "sheet.tsx": "ui/sheet",
-                    "separator.tsx": "ui/separator",
-                    "navbar.tsx": "ui/navbar",
+                    "primitive.tsx": "ui-primitive",
+                    "avatar.tsx": "ui-avatar",
+                    "menu.tsx": "ui-menu",
+                    "button.tsx": "ui-button",
+                    "sheet.tsx": "ui-sheet",
+                    "separator.tsx": "ui-separator",
+                    "navbar.tsx": "ui-navbar",
                   },
                   "app-navbar.tsx": "blocks/navbar/navbar-00/app-navbar",
                   "theme-switcher.tsx": "blocks/theme-switcher",
@@ -164,13 +163,13 @@ export default function Page() {
               folders: {
                 components: {
                   ui: {
-                    "primitive.tsx": "ui/primitive",
-                    "avatar.tsx": "ui/avatar",
-                    "menu.tsx": "ui/menu",
-                    "button.tsx": "ui/button",
-                    "sheet.tsx": "ui/sheet",
-                    "separator.tsx": "ui/separator",
-                    "navbar.tsx": "ui/navbar",
+                    "primitive.tsx": "ui-primitive",
+                    "avatar.tsx": "ui-avatar",
+                    "menu.tsx": "ui-menu",
+                    "button.tsx": "ui-button",
+                    "sheet.tsx": "ui-sheet",
+                    "separator.tsx": "ui-separator",
+                    "navbar.tsx": "ui-navbar",
                   },
                   "theme-switcher.tsx": "blocks/theme-switcher",
                   "app-navbar.tsx": "blocks/navbar/navbar-03/app-navbar",
@@ -195,13 +194,13 @@ export default function Page() {
               folders: {
                 components: {
                   ui: {
-                    "primitive.tsx": "ui/primitive",
-                    "avatar.tsx": "ui/avatar",
-                    "menu.tsx": "ui/menu",
-                    "button.tsx": "ui/button",
-                    "sheet.tsx": "ui/sheet",
-                    "separator.tsx": "ui/separator",
-                    "navbar.tsx": "ui/navbar",
+                    "primitive.tsx": "ui-primitive",
+                    "avatar.tsx": "ui-avatar",
+                    "menu.tsx": "ui-menu",
+                    "button.tsx": "ui-button",
+                    "sheet.tsx": "ui-sheet",
+                    "separator.tsx": "ui-separator",
+                    "navbar.tsx": "ui-navbar",
                   },
                   "theme-switcher.tsx": "blocks/theme-switcher",
                   "app-navbar.tsx": "blocks/navbar/navbar-02/app-navbar",
@@ -215,7 +214,7 @@ export default function Page() {
             }}
           />
         </div>
-      </Container>
+      </div>
     </div>
   )
 }

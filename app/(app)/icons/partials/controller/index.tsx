@@ -1,10 +1,10 @@
 import { useState } from "react"
 
-import { useQueryString } from "hooks/use-query-string"
-import { IconBullet, IconBulletFill } from "justd-icons"
+import { Button } from "@/components/ui/button"
+import { IconBullet, IconBulletFill } from "@intentui/icons"
 import { usePathname, useRouter } from "next/navigation"
-import { Button } from "ui"
 
+import { useQueryString } from "@/resources/hooks/use-query-string"
 import type { SearchParamsProps } from "../icons-list"
 import { InstallIcon } from "./install-icon"
 import { Search } from "./search"
@@ -36,7 +36,7 @@ export function Controller({ searchParams }: SearchParamsProps) {
             <Search />
             <Button
               aria-label={`Change filter to ${isSelected === "solid" ? "regular" : "solid"}`}
-              appearance="outline"
+              intent="outline"
               className="size-10"
               size="square-petite"
               onPress={() => onFilter(isSelected === "solid" ? "regular" : "solid")}

@@ -1,13 +1,12 @@
 "use client"
 
-import { Drawer, buttonStyles } from "ui"
+import { buttonStyles } from "@/components/ui/button"
+import { Drawer } from "@/components/ui/drawer"
 
 export default function DrawerStickyDemo() {
   return (
     <Drawer>
-      <Drawer.Trigger className={buttonStyles({ shape: "circle", appearance: "outline" })}>
-        Open
-      </Drawer.Trigger>
+      <Drawer.Trigger className={buttonStyles({ intent: "outline" })}>Open</Drawer.Trigger>
       <Drawer.Content>
         <Drawer.Header>The Beatles</Drawer.Header>
         <Drawer.Body>

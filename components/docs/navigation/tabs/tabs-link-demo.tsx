@@ -1,12 +1,12 @@
 "use client"
 
-import { Tabs } from "ui"
+import { Tabs } from "@/components/ui/tabs"
 
 const navs = [
   { url: "/", label: "Home" },
   { url: "/themes", label: "Themes" },
   { url: "/colors", label: "Colors" },
-  { url: "https://getjustd.com/icons", label: "Icons" },
+  { url: "https://intentui.com/icons", label: "Icons" },
   { url: "https://irsyad.co/templates", label: "Templates" },
 ]
 

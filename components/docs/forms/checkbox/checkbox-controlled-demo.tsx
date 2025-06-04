@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Checkbox, Description } from "ui"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Description } from "@/components/ui/field"
 
 export default function CheckboxControlledDemo() {
   const [selected, setSelection] = useState(false)

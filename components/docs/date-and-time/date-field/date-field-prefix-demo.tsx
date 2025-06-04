@@ -1,7 +1,10 @@
 "use client"
 
-import { IconCalendar2 } from "justd-icons"
-import { Button, DateField, Form } from "ui"
+import { IconCalendar2 } from "@intentui/icons"
+
+import { Button } from "@/components/ui/button"
+import { DateField } from "@/components/ui/date-field"
+import { Form } from "@/components/ui/form"
 
 export default function DateFieldPrefixDemo() {
   return (

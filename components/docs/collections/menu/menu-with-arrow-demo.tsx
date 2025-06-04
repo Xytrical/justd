@@ -1,7 +1,8 @@
 "use client"
 
-import { IconHashtag, IconHeadphones, IconLogout, IconPlus, IconSettings } from "justd-icons"
-import { Avatar, Menu } from "ui"
+import { Avatar } from "@/components/ui/avatar"
+import { Menu } from "@/components/ui/menu"
+import { IconHashtag, IconHeadphones, IconLogout, IconPlus, IconSettings } from "@intentui/icons"
 
 export default function MenuWithArrowDemo() {
   return (

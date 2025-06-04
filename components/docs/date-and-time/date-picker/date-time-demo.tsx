@@ -3,7 +3,8 @@
 import { useState } from "react"
 
 import { getLocalTimeZone, now, parseZonedDateTime } from "@internationalized/date"
-import { DatePicker } from "ui"
+
+import { DatePicker } from "@/components/ui/date-picker"
 
 export default function DateTimeDemo() {
   const today = parseZonedDateTime(now(getLocalTimeZone()).toString())

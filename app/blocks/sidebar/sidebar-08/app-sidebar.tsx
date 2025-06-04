@@ -1,5 +1,19 @@
 "use client"
 
+import { Avatar } from "@/components/ui/avatar"
+import { Link } from "@/components/ui/link"
+import { Menu } from "@/components/ui/menu"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarItem,
+  SidebarLabel,
+  SidebarLink,
+  SidebarSection,
+  SidebarSectionGroup,
+} from "@/components/ui/sidebar"
 import {
   IconArchive2,
   IconBrandApple,
@@ -15,21 +29,7 @@ import {
   IconShield,
   IconTrash,
   IconUpload,
-} from "justd-icons"
-import {
-  Avatar,
-  Link,
-  Menu,
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarItem,
-  SidebarLabel,
-  SidebarLink,
-  SidebarSection,
-  SidebarSectionGroup,
-} from "ui"
+} from "@intentui/icons"
 
 export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -56,15 +56,15 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
               <SidebarLabel>Blog</SidebarLabel>
             </SidebarItem>
           </SidebarSection>
-          <SidebarSection title="Last 5 Articles">
+          <SidebarSection label="Last 5 Articles">
             {articles.map((item) => (
               <SidebarItem key={item.href}>
-                {({ isCollapsed, isHovered }) => (
+                {({ isCollapsed }) => (
                   <>
                     <SidebarLink href="#discount">
                       <SidebarLabel>{item.label}</SidebarLabel>
                     </SidebarLink>
-                    {!isCollapsed && isHovered && (
+                    {!isCollapsed && (
                       <Menu>
                         <Menu.Trigger aria-label="Manage">
                           <IconDotsHorizontal />

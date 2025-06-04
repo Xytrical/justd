@@ -6,54 +6,22 @@ import {
   IconChevronWallLeft,
   IconChevronWallRight,
   IconDotsHorizontal,
-} from "justd-icons"
+} from "@intentui/icons"
 import type { ListBoxItemProps, ListBoxProps, ListBoxSectionProps } from "react-aria-components"
-import {
-  ListBox,
-  ListBoxItem,
-  ListBoxSection,
-  Separator,
-  composeRenderProps,
-} from "react-aria-components"
+import { ListBox, ListBoxItem, ListBoxSection, Separator } from "react-aria-components"
 
-import { cn } from "@/utils/classes"
-import { tv } from "tailwind-variants"
-import { buttonStyles } from "./button"
+import { buttonStyles } from "@/components/ui/button"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { twMerge } from "tailwind-merge"
 
-const paginationStyles = tv({
-  slots: {
-    pagination: "mx-auto flex w-full justify-center gap-[5px]",
-    section: "flex h-9 gap-[5px]",
-    list: "flex flex-row items-center gap-[5px]",
-    itemButton:
-      "cursor-pointer font-normal text-fg data-focus-visible:border-primary data-focus-visible:bg-primary/10 data-focus-visible:ring-4 data-focus-visible:ring-primary/20",
-    itemLabel: "grid h-9 place-content-center px-3.5 tabular-nums",
-    itemSeparator: "grid h-9 place-content-center",
-    itemEllipsis:
-      "flex size-9 items-center justify-center rounded-lg border border-transparent data-focus-visible:border-primary data-focus-visible:bg-primary/10 data-focused:outline-hidden data-focus-visible:ring-4 data-focus-visible:ring-primary/20",
-    itemEllipsisIcon: "flex size-9 items-center justify-center",
-    defaultItem:
-      "cursor-pointer font-normal tabular-nums disabled:cursor-default disabled:opacity-100 data-focus-visible:border-primary data-focus-visible:bg-primary/10 data-focus-visible:ring-4 data-focus-visible:ring-primary/20",
-    itemSeparatorLine: "h-5 w-[1.5px] shrink-0 rotate-[14deg] bg-secondary-fg/40",
-  },
-})
-
-const {
-  pagination,
-  section,
-  list,
-  itemButton,
-  itemLabel,
-  itemSeparator,
-  itemEllipsis,
-  itemEllipsisIcon,
-  defaultItem,
-  itemSeparatorLine,
-} = paginationStyles()
-
-type PagginationProps = React.ComponentProps<"nav">
-const Pagination = ({ className, ref, ...props }: PagginationProps) => (
-  <nav aria-label="pagination" ref={ref} className={pagination({ className })} {...props} />
+type PaginationProps = React.ComponentProps<"nav">
+const Pagination = ({ className, ref, ...props }: PaginationProps) => (
+  <nav
+    aria-label="pagination"
+    ref={ref}
+    className={twMerge("mx-auto flex w-full justify-center gap-[5px]", className)}
+    {...props}
+  />
 )
 
 interface PaginationSectionProps<T> extends ListBoxSectionProps<T> {
@@ -64,7 +32,7 @@ const PaginationSection = <T extends object>({
   ref,
   ...props
 }: PaginationSectionProps<T>) => (
-  <ListBoxSection ref={ref} {...props} className={section({ className })} />
+  <ListBoxSection ref={ref} {...props} className={twMerge("flex h-9 gap-[5px]", className)} />
 )
 
 interface PaginationListProps<T> extends ListBoxProps<T> {
@@ -77,7 +45,7 @@ const PaginationList = <T extends object>({ className, ref, ...props }: Paginati
       orientation="horizontal"
       aria-label={props["aria-label"] || "Pagination"}
       layout="grid"
-      className={composeRenderProps(className, (className) => list({ className }))}
+      className={composeTailwindRenderProps(className, "flex flex-row items-center gap-[5px]")}
       {...props}
     />
   )
@@ -96,10 +64,9 @@ const renderListItem = (
 interface PaginationItemProps extends ListBoxItemProps {
   children?: React.ReactNode
   className?: string
-  intent?: "primary" | "secondary"
+  intent?: "primary" | "secondary" | "outline" | "plain"
   size?: "medium" | "large" | "square-petite" | "extra-small" | "small"
   shape?: "square" | "circle"
-  appearance?: "solid" | "outline" | "plain"
   isCurrent?: boolean
   segment?: "label" | "separator" | "ellipsis" | "default" | "last" | "first" | "previous" | "next"
 }
@@ -107,8 +74,7 @@ interface PaginationItemProps extends ListBoxItemProps {
 const PaginationItem = ({
   segment = "default",
   size = "small",
-  appearance = "outline",
-  intent,
+  intent = "outline",
   className,
   isCurrent,
   children,
@@ -127,14 +93,14 @@ const PaginationItem = ({
         textValue: segment,
         "aria-current": isCurrent ? "page" : undefined,
         isDisabled: isCurrent,
-        className: cn(
-          buttonStyles({
-            appearance: "outline",
-            size: "small",
-            className: itemButton(),
-          }),
-          className,
-        ),
+        className: buttonStyles({
+          intent: "outline",
+          size: "small",
+          className: twMerge(
+            "cursor-default font-normal text-fg focus-visible:border-primary focus-visible:bg-primary/10 focus-visible:ring-4 focus-visible:ring-ring/20",
+            className,
+          ),
+        }),
         ...props,
       },
       indicator,
@@ -145,7 +111,7 @@ const PaginationItem = ({
       return renderListItem(
         {
           textValue: textValue,
-          className: itemLabel({ className }),
+          className: twMerge("grid h-9 place-content-center px-3.5 tabular-nums", className),
           ...props,
         },
         children,
@@ -154,19 +120,25 @@ const PaginationItem = ({
       return renderListItem(
         {
           textValue: "Separator",
-          className: itemSeparator({ className }),
+          className: twMerge("grid h-9 place-content-center", className),
           ...props,
         },
-        <Separator orientation="vertical" className={itemSeparatorLine()} />,
+        <Separator
+          orientation="vertical"
+          className="h-5 w-[1.5px] shrink-0 rotate-[14deg] bg-secondary-fg/40"
+        />,
       )
     case "ellipsis":
       return renderListItem(
         {
           textValue: "More pages",
-          className: itemEllipsis({ className }),
+          className: twMerge(
+            "flex size-9 items-center justify-center rounded-lg border border-transparent focus:outline-hidden focus-visible:border-primary focus-visible:bg-primary/10 focus-visible:ring-4 focus-visible:ring-ring/20",
+            className,
+          ),
           ...props,
         },
-        <span aria-hidden className={itemEllipsisIcon({ className })}>
+        <span aria-hidden className={twMerge("flex size-9 items-center justify-center", className)}>
           <IconDotsHorizontal />
         </span>,
       )
@@ -184,15 +156,14 @@ const PaginationItem = ({
           textValue: textValue,
           "aria-current": isCurrent ? "page" : undefined,
           isDisabled: isCurrent,
-          className: cn(
-            buttonStyles({
-              intent: isCurrent ? "primary" : intent,
-              appearance: isCurrent ? "solid" : appearance,
-              size,
-              className: defaultItem({ className }),
-            }),
-            className,
-          ),
+          className: buttonStyles({
+            intent: isCurrent ? "primary" : intent,
+            size,
+            className: twMerge(
+              "cursor-default font-normal min-w-10 tabular-nums disabled:cursor-default disabled:opacity-100 focus-visible:border-primary focus-visible:bg-primary/10 focus-visible:ring-4 focus-visible:ring-ring/20",
+              className,
+            ),
+          }),
           ...props,
         },
         children,
@@ -204,5 +175,5 @@ Pagination.Item = PaginationItem
 Pagination.List = PaginationList
 Pagination.Section = PaginationSection
 
-export type { PagginationProps, PaginationListProps, PaginationSectionProps, PaginationItemProps }
+export type { PaginationProps, PaginationListProps, PaginationSectionProps, PaginationItemProps }
 export { Pagination }

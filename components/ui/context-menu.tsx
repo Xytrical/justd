@@ -2,11 +2,9 @@
 
 import { createContext, use, useRef, useState } from "react"
 
-import { tv } from "tailwind-variants"
-
-import type { MenuContentProps } from "./menu"
-import { Menu } from "./menu"
-import { focusButtonStyles } from "./primitive"
+import type { MenuContentProps } from "@/components/ui/menu"
+import { Menu } from "@/components/ui/menu"
+import { twMerge } from "tailwind-merge"
 
 interface ContextMenuTriggerContextType {
   buttonRef: React.RefObject<HTMLButtonElement | null>
@@ -38,7 +36,6 @@ const ContextMenu = ({ children }: ContextMenuProps) => {
     crossOffset: number
   } | null>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
-
   return (
     <ContextMenuTriggerContext.Provider
       value={{ buttonRef, contextMenuOffset, setContextMenuOffset }}
@@ -47,17 +44,6 @@ const ContextMenu = ({ children }: ContextMenuProps) => {
     </ContextMenuTriggerContext.Provider>
   )
 }
-
-const contextMenuTriggerStyles = tv({
-  extend: focusButtonStyles,
-  base: "cursor-default data-focused:outline-hidden",
-  variants: {
-    isDisabled: {
-      false: "forced-colors:data-disabled:text-[GrayText]",
-      true: "cursor-default opacity-60 forced-colors:data-disabled:text-[GrayText]",
-    },
-  },
-})
 
 type ContextMenuTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -74,7 +60,10 @@ const ContextMenuTrigger = ({ className, ...props }: ContextMenuTriggerProps) =>
   }
   return (
     <button
-      className={contextMenuTriggerStyles({ isDisabled: props.disabled, className })}
+      className={twMerge(
+        "cursor-default focus:outline-hidden disabled:opacity-60 disabled:forced-colors:disabled:text-[GrayText]",
+        className,
+      )}
       ref={buttonRef}
       aria-haspopup="menu"
       onContextMenu={onContextMenu}
@@ -107,7 +96,7 @@ const ContextMenuContent = <T extends object>(props: ContextMenuContentProps<T>)
 
 const ContextMenuItem = Menu.Item
 const ContextMenuSeparator = Menu.Separator
-const ContextMenuItemDetails = Menu.ItemDetails
+const ContextMenuDescription = Menu.Description
 const ContextMenuSection = Menu.Section
 const ContextMenuHeader = Menu.Header
 const ContextMenuKeyboard = Menu.Keyboard
@@ -118,7 +107,7 @@ ContextMenu.Content = ContextMenuContent
 ContextMenu.Item = ContextMenuItem
 ContextMenu.Label = ContextMenuLabel
 ContextMenu.Separator = ContextMenuSeparator
-ContextMenu.ItemDetails = ContextMenuItemDetails
+ContextMenu.Description = ContextMenuDescription
 ContextMenu.Section = ContextMenuSection
 ContextMenu.Header = ContextMenuHeader
 ContextMenu.Keyboard = ContextMenuKeyboard

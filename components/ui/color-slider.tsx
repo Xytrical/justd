@@ -9,8 +9,8 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
-import { ColorThumb } from "./color-thumb"
-import { Label } from "./field"
+import { ColorThumb } from "@/components/ui/color-thumb"
+import { Label } from "@/components/ui/field"
 
 const trackStyles = tv({
   base: "group col-span-2 rounded-lg",
@@ -31,7 +31,7 @@ interface ColorSliderProps extends ColorSliderPrimitiveProps {
 }
 
 const colorSliderStyles = tv({
-  base: "group relative gap-2",
+  base: "group relative",
   variants: {
     orientation: {
       horizontal: "grid min-w-56 grid-cols-[1fr_auto]",

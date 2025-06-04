@@ -1,6 +1,6 @@
 # Code of Conduct
 
-The Justd code of conduct is inspired by the Laravel and Ruby code of conduct. Any violations of this code may be reported to Irsyad (irsyad@parsinta.com):
+The Intent code of conduct is inspired by the Laravel and Ruby code of conduct. Any violations of this code may be reported to Irsyad (irsyad@parsinta.com):
 
 - Participants will respect and be tolerant of differing views and opinions.
 - Participants must ensure that their language and actions remain professional and free of personal attacks or disparaging remarks.

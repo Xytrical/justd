@@ -4,26 +4,14 @@ import { createContext, useContext } from "react"
 
 import type { GroupProps, SeparatorProps, ToolbarProps } from "react-aria-components"
 import { Group, Toolbar as ToolbarPrimitive, composeRenderProps } from "react-aria-components"
-import { tv } from "tailwind-variants"
 
-import { cn } from "@/utils/classes"
-import { composeTailwindRenderProps } from "./primitive"
-import { Separator } from "./separator"
-import { Toggle, type ToggleProps } from "./toggle"
+import { Separator } from "@/components/ui/separator"
+import { Toggle, type ToggleProps } from "@/components/ui/toggle"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { twMerge } from "tailwind-merge"
 
 const ToolbarContext = createContext<{ orientation?: ToolbarProps["orientation"] }>({
   orientation: "horizontal",
-})
-
-const toolbarStyles = tv({
-  base: "group flex gap-2",
-  variants: {
-    orientation: {
-      horizontal:
-        "flex-row [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-      vertical: "flex-col items-start",
-    },
-  },
 })
 
 const Toolbar = ({ orientation = "horizontal", className, ...props }: ToolbarProps) => {
@@ -32,8 +20,13 @@ const Toolbar = ({ orientation = "horizontal", className, ...props }: ToolbarPro
       <ToolbarPrimitive
         orientation={orientation}
         {...props}
-        className={composeRenderProps(className, (className, renderProps) =>
-          toolbarStyles({ ...renderProps, className }),
+        className={composeRenderProps(className, (className, { orientation }) =>
+          twMerge(
+            "group flex flex-row gap-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            orientation === "horizontal"
+              ? "flex-row [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              : "flex-col items-start",
+          ),
         )}
       />
     </ToolbarContext.Provider>
@@ -73,7 +66,7 @@ const ToolbarSeparator = ({ className, ...props }: ToolbarSeparatorProps) => {
   return (
     <Separator
       orientation={effectiveOrientation}
-      className={cn(effectiveOrientation === "vertical" ? "mx-1.5" : "my-1.5 w-9", className)}
+      className={twMerge(effectiveOrientation === "vertical" ? "mx-1.5" : "my-1.5 w-9", className)}
       {...props}
     />
   )

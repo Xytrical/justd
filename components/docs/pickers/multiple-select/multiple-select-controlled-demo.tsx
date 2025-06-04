@@ -1,8 +1,9 @@
 "use client"
 
-import { useListData } from "react-stately"
-import type { SelectedKey } from "ui"
-import { Description, MultipleSelect } from "ui"
+import { Description } from "@/components/ui/field"
+import { MultipleSelect } from "@/components/ui/multiple-select"
+import { useState } from "react"
+import type { Selection } from "react-aria-components"
 
 const tags = [
   { id: 1, name: "Travel" },
@@ -13,33 +14,28 @@ const tags = [
 ]
 
 export default function MultipleSelectControlledDemo() {
-  const selectedItems = useListData<SelectedKey>({
-    initialItems: [],
-  })
+  const [selectedItems, setSelectedItems] = useState<Selection>(new Set([2, 4]))
 
   return (
     <>
       <MultipleSelect
         className="max-w-xs"
-        onItemInserted={(key) => console.info("onItemInserted", key)}
-        onItemCleared={(key) => console.info("onItemCleared", key)}
         label="Select tags"
-        selectedItems={selectedItems}
+        selectedKeys={selectedItems}
+        onSelectionChange={setSelectedItems}
         items={tags}
-        tag={(item) => <MultipleSelect.Tag textValue={item.name}>{item.name}</MultipleSelect.Tag>}
       >
         {(item) => {
           return (
-            <MultipleSelect.Option id={item.id} textValue={item.name}>
+            <MultipleSelect.Item id={item.id} textValue={item.name}>
               {item.name}
-            </MultipleSelect.Option>
+            </MultipleSelect.Item>
           )
         }}
       </MultipleSelect>
-      {selectedItems.items.length > 0 && (
+      {[...selectedItems].length > 0 && (
         <Description className="mt-2 block max-w-xs text-muted-fg [&>strong]:text-fg">
-          You have selected:{" "}
-          <strong>{selectedItems.items.map((item) => item.name).join(", ")}</strong>
+          You have selected: <strong>{[...selectedItems]}</strong>
         </Description>
       )}
     </>

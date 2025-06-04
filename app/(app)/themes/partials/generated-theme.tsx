@@ -1,9 +1,12 @@
-import { cn } from "@/utils/classes"
+import { twMerge } from "tailwind-merge"
 
 export function GeneratedTheme({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div>
-      <div className={cn("grid max-h-48 gap-4 overflow-y-auto lg:gap-6", className)} {...props}>
+      <div
+        className={twMerge("grid max-h-48 gap-4 overflow-y-auto lg:gap-6", className)}
+        {...props}
+      >
         <div className="sticky inset-x-0 top-0 h-10 w-full bg-linear-to-b from-5% from-bg to-transparent" />
         <div className="-mt-12 -mb-12 flex flex-col gap-y-6">
           <ColorBox>

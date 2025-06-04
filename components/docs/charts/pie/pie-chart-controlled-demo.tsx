@@ -2,18 +2,18 @@
 
 import { useMemo, useState } from "react"
 
-import type { Key } from "react-aria-components"
-import { Label, Pie, PieChart, Sector } from "recharts"
-import type { PieSectorDataItem } from "recharts/types/polar/Pie"
+import { Card } from "@/components/ui/card"
 import {
-  Card,
   Chart,
   type ChartConfig,
   ChartStyle,
   ChartTooltip,
   ChartTooltipContent,
-  Select,
-} from "ui"
+} from "@/components/ui/chart"
+import { Select } from "@/components/ui/select"
+import type { Key } from "react-aria-components"
+import { Label, Pie, PieChart, Sector } from "recharts"
+import type { PieSectorDataItem } from "recharts/types/polar/Pie"
 
 const data = [
   { month: "january", sales: 3186, fill: "var(--color-january)" },
@@ -57,7 +57,7 @@ const config = {
 
 export default function PieChartControlledDemo() {
   const id = "pie-interactive"
-  const [activeMonth, setActiveMonth] = useState<Key>(data[0]!.month)
+  const [activeMonth, setActiveMonth] = useState<Key | null>(data[0]!.month)
 
   const activeIndex = useMemo(
     () => data.findIndex((item) => item.month === activeMonth),
@@ -68,35 +68,32 @@ export default function PieChartControlledDemo() {
   return (
     <Card data-chart={id} className="flex flex-col">
       <ChartStyle id={id} config={config} />
-      <Card.Header className="flex-row items-start space-y-0 pb-0">
-        <div className="grid w-full gap-1">
-          <Card.Title className="capitalize">{activeMonth}</Card.Title>
-          <Card.Description>
-            The total sales for the month is{" "}
-            <strong className="font-semibold">{data[activeIndex]?.sales.toLocaleString()}</strong>
-          </Card.Description>
-        </div>
-        <Select selectedKey={activeMonth} onSelectionChange={setActiveMonth}>
-          <Select.Trigger
-            className="ml-auto h-8 w-[130px] rounded-lg px-2"
-            aria-label="Select a value"
-          />
-          <Select.List className="rounded-xl">
-            {months.map((key) => {
-              const _config = config[key as keyof typeof config]
+      <Card.Header>
+        <Card.Title className="capitalize">{activeMonth}</Card.Title>
+        <Card.Description>
+          The total sales for the month is{" "}
+          <strong className="font-semibold">{data[activeIndex]?.sales.toLocaleString()}</strong>
+        </Card.Description>
+        <Card.Action>
+          <Select selectedKey={activeMonth} onSelectionChange={setActiveMonth}>
+            <Select.Trigger />
+            <Select.List aria-label="Options" className="sm:min-w-40" placement="bottom end">
+              {months.map((key) => {
+                const _config = config[key as keyof typeof config]
 
-              if (!_config) {
-                return null
-              }
+                if (!_config) {
+                  return null
+                }
 
-              return (
-                <Select.Option key={key} id={key}>
-                  <div className="flex items-center gap-2 text-xs">{_config?.label}</div>
-                </Select.Option>
-              )
-            })}
-          </Select.List>
-        </Select>
+                return (
+                  <Select.Option key={key} id={key}>
+                    {_config?.label}
+                  </Select.Option>
+                )
+              })}
+            </Select.List>
+          </Select>
+        </Card.Action>
       </Card.Header>
       <Card.Content className="flex flex-1 justify-center pb-0">
         <Chart id={id} config={config} className="mx-auto aspect-square w-full max-w-[315px]">

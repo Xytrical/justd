@@ -1,5 +1,5 @@
-import { Button } from "ui"
-import { IconMoon, IconSun } from "justd-icons"
+import { Button } from "@/components/ui/button"
+import { IconMoon, IconSun } from "@intentui/icons"
 import { useTheme } from "@/providers/theme-provider"
 
 interface Props {
@@ -10,7 +10,7 @@ export function ThemeSwitcher({ appearance = "plain" }: Props) {
   const { theme, setTheme } = useTheme()
   return (
     <Button
-      appearance={appearance}
+      intent={appearance}
       size="square-petite"
       aria-label="Switch theme"
       onPress={() => setTheme(theme === "light" ? "dark" : "light")}

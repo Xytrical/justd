@@ -16,11 +16,10 @@ import {
   Tabs as TabsPrimitive,
   composeRenderProps,
 } from "react-aria-components"
-import { twJoin } from "tailwind-merge"
+import { twJoin, twMerge } from "tailwind-merge"
 import { tv } from "tailwind-variants"
 
-import { cn } from "@/utils/classes"
-import { composeTailwindRenderProps } from "./primitive"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 
 const tabsStyles = tv({
   base: "group/tabs flex gap-4 forced-color-adjust-none",
@@ -80,7 +79,7 @@ const TabList = <T extends object>({ className, ref, ...props }: TabListProps<T>
 
 const tabStyles = tv({
   base: [
-    "relative flex cursor-default items-center whitespace-nowrap rounded-full font-medium text-sm outline-hidden transition data-hovered:text-fg *:data-[slot=icon]:mr-2 *:data-[slot=icon]:size-4",
+    "relative flex cursor-default items-center whitespace-nowrap rounded-full font-medium text-sm outline-hidden transition hover:text-fg *:data-[slot=icon]:mr-2 *:data-[slot=icon]:size-4",
     "group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:py-0 group-data-[orientation=vertical]/tabs:pr-2 group-data-[orientation=vertical]/tabs:pl-4",
     "group-data-[orientation=horizontal]/tabs:pb-3",
   ],
@@ -117,7 +116,7 @@ const Tab = ({ children, ref, ...props }: TabProps) => {
           {isSelected && (
             <motion.span
               data-slot="selected-indicator"
-              className={cn(
+              className={twMerge(
                 "absolute rounded bg-fg",
                 // horizontal
                 "group-data-[orientation=horizontal]/tabs:-bottom-px group-data-[orientation=horizontal]/tabs:inset-x-0 group-data-[orientation=horizontal]/tabs:h-0.5 group-data-[orientation=horizontal]/tabs:w-full",
@@ -144,7 +143,7 @@ const TabPanel = ({ className, ref, ...props }: TabPanelProps) => {
       ref={ref}
       className={composeTailwindRenderProps(
         className,
-        "flex-1 text-fg text-sm data-focus-visible:outline-hidden",
+        "flex-1 text-fg text-sm focus-visible:outline-hidden",
       )}
     />
   )

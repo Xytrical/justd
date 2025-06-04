@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, Form, SearchField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { SearchField } from "@/components/ui/search-field"
 
 export default function SearchFieldValidationDemo() {
   return (

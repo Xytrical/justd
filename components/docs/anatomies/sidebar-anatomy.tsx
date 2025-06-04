@@ -1,5 +1,5 @@
+import { Menu } from "@/components/ui/menu"
 import {
-  Menu,
   Sidebar,
   SidebarContent,
   SidebarDisclosure,
@@ -15,7 +15,7 @@ import {
   SidebarRail,
   SidebarSection,
   SidebarSeparator,
-} from "ui"
+} from "@/components/ui/sidebar"
 
 export default function SidebarAnatomy() {
   return (

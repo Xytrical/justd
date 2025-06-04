@@ -1,8 +1,9 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import { Chart, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import type { ChartConfig } from "@/components/ui/chart"
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
-import type { ChartConfig } from "ui"
-import { Card, Chart, ChartTooltip, ChartTooltipContent } from "ui"
 
 const salesData = Array.from({ length: 24 }, (_, index) => {
   const date = new Date(new Date().getFullYear() - 1, index)
@@ -26,10 +27,10 @@ export default function AreaChartBasicDemo() {
       <Card.Header
         title="Revenue Trends"
         description="Monthly revenue for the last 24 months"
-        className="items-center pb-0"
+        className="items-center"
       />
       <Card.Content>
-        <Chart config={salesConfig}>
+        <Chart className="max-h-[250px] w-full" config={salesConfig}>
           <AreaChart
             accessibilityLayer
             data={salesData}

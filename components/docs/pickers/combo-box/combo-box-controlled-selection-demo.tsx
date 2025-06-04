@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 
+import { ComboBox } from "@/components/ui/combo-box"
+import { Description } from "@/components/ui/field"
 import type { Key } from "react-aria-components"
-import { ComboBox, Description } from "ui"
 
 export default function ComboBoxControlledSelectionDemo() {
   const [country, setCountry] = useState<Key | null>(null)

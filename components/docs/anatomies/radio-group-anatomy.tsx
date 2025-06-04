@@ -1,4 +1,4 @@
-import { Radio, RadioGroup } from "ui"
+import { Radio, RadioGroup } from "@/components/ui/radio"
 
 export default function RadioGroupAnatomy() {
   return (

@@ -1,7 +1,8 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import { Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import { Card, Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "ui"
 
 const chartData = Array.from({ length: 12 }, (_, i) => {
   const months = [
@@ -50,7 +51,7 @@ export default function BarChartMultipleDemo() {
         className="items-center pb-4"
       />
       <Card.Content>
-        <Chart config={chartConfig} className="max-h-[250px] w-full">
+        <Chart config={chartConfig} className="max-h-[300px] w-full">
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} />

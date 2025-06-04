@@ -1,6 +1,6 @@
 ---
 title: "Select"
-description: "Select a start and end date, perfect for booking a vacation or setting periods efficiently, streamlining the process of defining time spans with ease."
+description: A customizable dropdown menu that lets users choose a single option from a predefined list, optimized for accessibility and usability.
 order: 2
 published: true
 references: ["https://react-spectrum.adobe.com/react-aria/Select.html#props"]
@@ -19,20 +19,20 @@ A select component displays a dropdown list of options, allowing users to pick o
 
 ## Manual Installation
 
-<Installation options={{ isManual: true }} items={['react-aria-components', 'justd-icons']}/>
+<Installation options={{ isManual: true }} items={['react-aria-components', '@intentui/icons']}/>
 
 <SourceCode toShow='select'/>
 
 ## Anatomy
 <Anatomy show='select-anatomy'/>
 
-## Select Item Details
-If you need to provide more information about an item, use the `SelectItemDetails` component to display additional details.
-<How minW72 toUse="pickers/select/select-item-details-demo" />
-
 ## Section
 A select component can display items grouped together in sections.
 <How minW72 toUse="pickers/select/select-section-demo" />
+
+## Searchable Select
+Sometimes, you may need to search for an item in a select component. Here's how you can do it.
+<How minW72 toUse="pickers/select/select-searchable-demo" />
 
 ## Select with Icon
 A select component can display items grouped together in sections.
@@ -59,6 +59,10 @@ When the `children` option is a string, `Select.Label` will automatically wrap i
   <Select.Label>Discord</Select.Label>
 </Select.Option>
 ```
+
+## Details description
+If you need to provide more information about an option, use the `Select.Description` component to display additional details.
+<How minW72 toUse="pickers/select/select-detail-description-demo" />
 
 ## Disabled
 When the select component is disabled, it cannot be interacted with.

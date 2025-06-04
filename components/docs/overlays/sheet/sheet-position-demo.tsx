@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Button, Sheet } from "ui"
+import { Button } from "@/components/ui/button"
+import { Sheet } from "@/components/ui/sheet"
 import { titleCase } from "usemods"
 
 type Side = "left" | "right" | "top" | "bottom"
@@ -21,7 +22,7 @@ export default function SheetPositionDemo() {
     <>
       <div className="grid grid-cols-2 gap-2">
         {sides.map((side, idx) => (
-          <Button appearance="outline" onPress={() => pressHandler(side, true)} key={idx}>
+          <Button intent="outline" onPress={() => pressHandler(side, true)} key={idx}>
             {titleCase(side)}
           </Button>
         ))}

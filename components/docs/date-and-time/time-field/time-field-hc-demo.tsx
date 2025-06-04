@@ -3,8 +3,9 @@
 import { useState } from "react"
 
 import { OptionPreview } from "@/components/docs/outside/option-preview"
+import { Switch } from "@/components/ui/switch"
+import { TimeField } from "@/components/ui/time-field"
 import { Time } from "@internationalized/date"
-import { Switch, TimeField } from "ui"
 
 export default function TimeFieldHcDemo() {
   const [hc, setHc] = useState<12 | 24>(24)

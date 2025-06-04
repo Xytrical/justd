@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Description, Switch } from "ui"
+import { Description } from "@/components/ui/field"
+import { Switch } from "@/components/ui/switch"
 
 export default function SwitchControlledDemo() {
   const [darkMode, setDarkMode] = useState(false)

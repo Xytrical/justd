@@ -1,6 +1,9 @@
 "use client"
 
-import { Button, Form, Modal, TextField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Modal } from "@/components/ui/modal"
+import { TextField } from "@/components/ui/text-field"
 
 export default function ModalBlurDemo() {
   return (

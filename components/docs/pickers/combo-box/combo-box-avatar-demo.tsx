@@ -1,10 +1,11 @@
 "use client"
 
-import { Avatar, ComboBox } from "ui"
+import { Avatar } from "@/components/ui/avatar"
+import { ComboBox } from "@/components/ui/combo-box"
 
 export default function ComboBoxAvatarDemo() {
   return (
-    <ComboBox className="min-w-xs" placeholder="Select a user" label="Users" isRequired>
+    <ComboBox placeholder="Select a user" label="Users" isRequired>
       <ComboBox.Input />
       <ComboBox.List items={users}>
         {(item) => (

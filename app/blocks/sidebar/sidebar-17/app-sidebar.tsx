@@ -1,11 +1,9 @@
 "use client"
 
-import { parseDate } from "@internationalized/date"
-import { IconBrandApple } from "justd-icons"
+import { Link } from "@/components/ui/link"
+import { RangeCalendar } from "@/components/ui/range-calendar"
+import { SearchField } from "@/components/ui/search-field"
 import {
-  Link,
-  RangeCalendar,
-  SearchField,
   Sidebar,
   SidebarContent,
   SidebarHeader,
@@ -14,7 +12,9 @@ import {
   SidebarSection,
   SidebarSectionGroup,
   useSidebar,
-} from "ui"
+} from "@/components/ui/sidebar"
+import { IconBrandApple } from "@intentui/icons"
+import { parseDate } from "@internationalized/date"
 
 export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const { state } = useSidebar()

@@ -14,6 +14,10 @@ delete-me.txt
 .pnp.js
 .yarn/install-state.gz
 
+
+/public/r
+registry.json
+
 # testing
 /coverage
 

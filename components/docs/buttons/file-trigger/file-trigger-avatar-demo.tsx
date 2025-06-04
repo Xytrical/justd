@@ -2,10 +2,12 @@
 
 import { useState } from "react"
 
+import { Avatar } from "@/components/ui/avatar"
+import { DropZone } from "@/components/ui/drop-zone"
+import { FileTrigger } from "@/components/ui/file-trigger"
 import type { DropEvent } from "@react-types/shared"
 import { isFileDropItem } from "react-aria-components"
 import { twJoin } from "tailwind-merge"
-import { Avatar, DropZone, FileTrigger } from "ui"
 
 export default function FileTriggerAvatarDemo() {
   const [droppedImage, setDroppedImage] = useState<string | undefined>(undefined)

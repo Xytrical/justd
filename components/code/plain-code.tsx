@@ -1,9 +1,9 @@
 "use client"
+import { buttonStyles } from "@/components/ui/button"
 import { ScrollArea, ScrollBar, ScrollViewport } from "@/components/ui/scroll-area"
 import { useCopyButton } from "@/resources/lib/copy"
-import { cn } from "@/utils/classes"
+import { IconCheck, IconDuplicate } from "@intentui/icons"
 import type { ScrollAreaViewportProps } from "@radix-ui/react-scroll-area"
-import { IconCheck, IconDuplicate } from "justd-icons"
 import {
   type ButtonHTMLAttributes,
   type HTMLAttributes,
@@ -12,7 +12,7 @@ import {
   useCallback,
   useRef,
 } from "react"
-import { buttonStyles } from "ui"
+import { twMerge } from "tailwind-merge"
 
 export type PreProps = HTMLAttributes<HTMLElement> & {
   ref?: React.Ref<HTMLElement>
@@ -44,7 +44,7 @@ export const Pre = ({ className, ref, ...props }: React.ComponentProps<"pre">) =
   return (
     <pre
       ref={ref}
-      className={cn("w-full p-4 leading-relaxed focus-visible:outline-hidden", className)}
+      className={twMerge("w-full p-4 leading-relaxed focus-visible:outline-hidden", className)}
       {...props}
     >
       {props.children}
@@ -80,7 +80,7 @@ export const PlainCode = ({
     <figure
       ref={ref}
       {...props}
-      className={cn(
+      className={twMerge(
         "not-prose group relative my-6 max-w-4xl overflow-hidden rounded-lg border bg-secondary/50 text-sm",
         keepBackground && "bg-white dark:bg-zinc-950!",
         className,
@@ -108,13 +108,13 @@ export const PlainCode = ({
         </div>
       ) : (
         allowCopy && (
-          <CopyButton className="absolute top-2 right-2 z-[2] backdrop-blur-md" onCopy={onCopy} />
+          <CopyButton className="absolute top-0 right-0 z-[2] backdrop-blur-md" onCopy={onCopy} />
         )
       )}
       <ScrollArea ref={areaRef} className="w-full" dir="ltr">
         <ScrollViewport
           {...viewportProps}
-          className={cn("max-h-[600px]", viewportProps?.className)}
+          className={twMerge("max-h-[600px]", viewportProps?.className)}
         >
           {props.children}
         </ScrollViewport>
@@ -136,23 +136,22 @@ function CopyButton({
   return (
     <button
       type="button"
-      className={cn(
+      className={twMerge(
         buttonStyles({
           size: "square-petite",
-          appearance: "plain",
+          intent: "plain",
+          className: twMerge(
+            "transition-opacity hover:bg-transparent group-hover:opacity-100",
+            !checked && "opacity-0",
+            className,
+          ),
         }),
-        "transition-opacity group-hover:opacity-100",
-        !checked && "opacity-0",
-        className,
       )}
       aria-label="Copy Text"
       onClick={onClick}
       {...props}
     >
-      <IconCheck className={cn("size-3.5 transition-transform", !checked && "scale-0")} />
-      <IconDuplicate
-        className={cn("absolute size-3.5 transition-transform", checked && "scale-0")}
-      />
+      {checked ? <IconCheck /> : <IconDuplicate />}
     </button>
   )
 }

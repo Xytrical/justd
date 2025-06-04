@@ -5,11 +5,12 @@ import React, { useState } from "react"
 import generated from "@/__registry__/generated"
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { TabsList } from "@/components/code/code-sandbox"
+import { Loader } from "@/components/ui/loader"
+import { Tabs } from "@/components/ui/tabs"
 import { createFetchRegistryFile } from "@/resources/lib/fetch-registry"
 import type { RegistryItem } from "@/resources/types"
-import { cn } from "@/utils/classes"
 import { Group } from "react-aria-components"
-import { Loader, Tabs } from "ui"
+import { twMerge } from "tailwind-merge"
 
 const registry = generated as Record<string, RegistryItem>
 
@@ -24,7 +25,7 @@ type HowProps = {
   src?: string
 }
 
-const fetchRegistryFile = createFetchRegistryFile("/registry/demo")
+const fetchRegistryFile = createFetchRegistryFile("/r")
 
 export const DocHow = ({
   toUse,
@@ -37,7 +38,6 @@ export const DocHow = ({
   ...props
 }: HowProps) => {
   const [rawSourceCode, setRawSourceCode] = useState<string | null>(null)
-
   /*
    * Prepend the `demo/` prefix to the provided `toUse` prop
    * to construct the registry key dynamically.
@@ -49,6 +49,8 @@ export const DocHow = ({
    * This ensures that the correct component is loaded via React.lazy.
    */
   const Component = registry[registryKey]?.component
+
+  const blockDemo = toUse.split("/").pop() ?? ""
 
   const processedSourceCode = React.useMemo(() => {
     if (!rawSourceCode) return null
@@ -63,7 +65,8 @@ export const DocHow = ({
   }, [rawSourceCode])
 
   React.useEffect(() => {
-    fetchRegistryFile(toUse).then(setRawSourceCode)
+    const name = `block-${toUse?.split("/").pop()}`
+    fetchRegistryFile(name).then(setRawSourceCode)
   }, [toUse])
 
   if (!Component) {
@@ -74,15 +77,24 @@ export const DocHow = ({
   }
   const divProps = { ...props } as React.HTMLProps<HTMLDivElement>
   return (
-    <div className={cn("not-prose forced-color-adjust-non relative my-4", className)} {...divProps}>
-      <Tabs className="group" aria-label="Packages">
-        <TabsList copyButton={copyButton} code={processedSourceCode as string} src={src} />
+    <div
+      className={twMerge("not-prose group/how forced-color-adjust-non relative my-4", className)}
+      {...divProps}
+    >
+      <Tabs aria-label="Packages">
+        <TabsList
+          copyButton={false}
+          hasRegistry
+          blockDemo={blockDemo}
+          code={processedSourceCode as string}
+          src={src}
+        />
         <Tabs.Panel className="w-full" id="preview">
           <div
-            className={cn(
+            className={twMerge(
               !withNoPadding && "relative gap-4 rounded-lg border bg-bg p-6 dark:bg-secondary/40",
               isCenter &&
-                "preview flex min-h-56 items-center justify-center overflow-x-auto py-6 sm:py-24 lg:min-h-110",
+                "preview flex min-h-56 items-center justify-center overflow-x-auto py-6 sm:py-24 lg:min-h-96",
             )}
           >
             <React.Suspense
@@ -93,7 +105,7 @@ export const DocHow = ({
                 </div>
               }
             >
-              <div className={cn(minW72 && "min-w-72", "not-prose", className)}>
+              <div className={twMerge(minW72 && "min-w-72", "not-prose", className)}>
                 <Component />
               </div>
             </React.Suspense>

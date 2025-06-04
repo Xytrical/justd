@@ -1,4 +1,4 @@
-import { Popover } from "ui"
+import { Popover } from "@/components/ui/popover"
 
 export default function PopoverAnatomy() {
   return (

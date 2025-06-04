@@ -1,6 +1,6 @@
 "use client"
 
-import { Switch } from "ui"
+import { Switch } from "@/components/ui/switch"
 
 export default function SwitchUncontrolledDemo() {
   return (

@@ -1,6 +1,7 @@
 "use client"
 
-import { Link, buttonStyles } from "ui"
+import { buttonStyles } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
 
 export default function ButtonLinkDemo() {
   return (

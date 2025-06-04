@@ -1,8 +1,15 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import {
+  Chart,
+  type ChartConfig,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
-import type { ChartConfig } from "ui"
-import { Card, Chart, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "ui"
 
 const salesData = Array.from({ length: 24 }, (_, index) => {
   const date = new Date(new Date().getFullYear() - 1, index)

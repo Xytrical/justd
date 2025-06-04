@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
 import colors from "@/resources/colors/colors.json"
 import { getTextColor } from "@/resources/lib/colors"
+import { IconCheck, IconChevronLgDown, IconDuplicate } from "@intentui/icons"
 import { formatHex, formatHsl, formatRgb, oklch, parse } from "culori"
-import { IconCheck, IconChevronLgDown, IconDuplicate } from "justd-icons"
 import type { Selection } from "react-aria-components"
 import { ListBox, ListBoxItem } from "react-aria-components"
 import { toast } from "sonner"
 import { twJoin } from "tailwind-merge"
-import { Button, Menu } from "ui"
 
 export const isOklch = (color: string | undefined): boolean => color?.startsWith("oklch(") ?? false
 
@@ -79,7 +80,7 @@ export function ColorItem({ color }: { color: keyof typeof colors }) {
             textValue={colorValue}
             onAction={() => handleCopy(colorValue, shade)}
             key={colorValue?.toString()}
-            className="group relative inset-shadow-white/15 inset-shadow-xs flex h-20 w-1/7 min-w-10 cursor-pointer items-end justify-center gap-x-2 rounded-lg p-2 font-mono text-xs ring-1 ring-white/10 ring-inset focus:outline-hidden data-focused:ring-white/25 *:data-[slot=icon]:absolute *:data-[slot=icon]:top-3 *:data-[slot=icon]:mx-auto *:data-[slot=icon]:hidden *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:opacity-90 *:data-[slot=icon]:group-data-focus-visible:block *:data-[slot=icon]:group-data-hovered:block sm:w-full"
+            className="group relative inset-shadow-white/15 inset-shadow-xs flex h-20 w-1/7 min-w-10 cursor-default items-end justify-center gap-x-2 rounded-lg p-2 font-mono text-xs ring-1 ring-white/10 ring-inset focus:outline-hidden focus:ring-white/25 *:data-[slot=icon]:absolute *:data-[slot=icon]:top-3 *:data-[slot=icon]:mx-auto *:data-[slot=icon]:hidden *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:opacity-90 *:data-[slot=icon]:group-focus-visible:block *:data-[slot=icon]:group-hover:block sm:w-full"
             style={{
               color: getTextColor(colorValue),
               backgroundColor: colorValue,
@@ -102,7 +103,7 @@ interface SelectedFormatProps {
 export function SelectFormat({ selected, setSelected }: SelectedFormatProps) {
   return (
     <Menu>
-      <Button appearance="outline" className="w-32 justify-between font-mono uppercase">
+      <Button intent="outline" className="w-32 justify-between font-mono uppercase">
         {[...selected].join(", ")}
         <IconChevronLgDown className="ml-1" />
       </Button>

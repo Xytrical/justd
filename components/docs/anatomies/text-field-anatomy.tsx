@@ -1,4 +1,4 @@
-import { TextField } from "ui"
+import { TextField } from "@/components/ui/text-field"
 
 export default function TextFieldAnatomy() {
   return (

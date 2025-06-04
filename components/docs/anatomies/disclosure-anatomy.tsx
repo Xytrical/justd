@@ -1,4 +1,4 @@
-import { Disclosure, DisclosurePanel, DisclosureTrigger } from "ui"
+import { Disclosure, DisclosurePanel, DisclosureTrigger } from "@/components/ui/disclosure"
 
 export default function DisclosureAnatomy() {
   return (

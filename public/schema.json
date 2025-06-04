@@ -6,7 +6,11 @@
       "type": "string",
       "description": "Path to the UI components directory"
     },
-    "utils": {
+    "lib": {
+      "type": "string",
+      "description": "Path to the utilities directory"
+    },
+    "hooks": {
       "type": "string",
       "description": "Path to the utilities directory"
     },
@@ -28,5 +32,5 @@
       "description": "Programming language of the project"
     }
   },
-  "required": ["ui", "utils", "css", "alias", "language"]
+  "required": ["ui", "lib", "css", "alias", "language"]
 }

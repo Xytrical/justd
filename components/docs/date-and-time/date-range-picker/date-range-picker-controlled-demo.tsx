@@ -4,7 +4,8 @@ import { useState } from "react"
 
 import { getLocalTimeZone, today } from "@internationalized/date"
 import { useDateFormatter } from "@react-aria/i18n"
-import { DateRangePicker } from "ui"
+
+import { DateRangePicker } from "@/components/ui/date-range-picker"
 
 export default function DateRangePickerControlledDemo() {
   const now = today(getLocalTimeZone())

@@ -1,6 +1,6 @@
 "use client"
 
-import { IconChevronDown, IconChevronUp, IconMinus, IconPlus } from "justd-icons"
+import { IconChevronDown, IconChevronUp, IconMinus, IconPlus } from "@intentui/icons"
 import {
   Button,
   type ButtonProps,
@@ -10,31 +10,22 @@ import {
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 
-import { useMediaQuery } from "@/utils/use-media-query"
-import { Description, FieldError, FieldGroup, Input, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
+import { Description, FieldError, FieldGroup, Input, Label } from "@/components/ui/field"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { twMerge } from "tailwind-merge"
 
 const fieldBorderStyles = tv({
-  base: "group-data-focused:border-primary/70 forced-colors:border-[Highlight]",
+  base: "group-focus:border-primary/70 forced-colors:border-[Highlight]",
   variants: {
     isInvalid: {
-      true: "group-data-focused:border-danger/70 forced-colors:border-[Mark]",
+      true: "group-focus:border-danger/70 forced-colors:border-[Mark]",
     },
     isDisabled: {
-      true: "group-data-focused:border-input/70",
+      true: "group-focus:border-input/70",
     },
   },
 })
-
-const numberFieldStyles = tv({
-  slots: {
-    base: "group flex flex-col gap-y-1.5",
-    stepperButton:
-      "h-10 cursor-default px-3 text-muted-fg data-pressed:bg-primary data-pressed:text-primary-fg group-data-disabled:bg-secondary/70 forced-colors:group-data-disabled:text-[GrayText]",
-  },
-})
-
-const { base, stepperButton } = numberFieldStyles()
 
 interface NumberFieldProps extends NumberFieldPrimitiveProps {
   label?: string
@@ -53,22 +44,28 @@ const NumberField = ({
 }: NumberFieldProps) => {
   const isMobile = useMediaQuery("(max-width: 768px)")
   return (
-    <NumberFieldPrimitive {...props} className={composeTailwindRenderProps(className, base())}>
+    <NumberFieldPrimitive
+      {...props}
+      className={composeTailwindRenderProps(className, "group flex flex-col gap-y-1.5")}
+    >
       {label && <Label>{label}</Label>}
-      <FieldGroup className="overflow-hidden">
+      <FieldGroup
+        className={twMerge(
+          "overflow-hidden",
+          isMobile && "**:[button]:h-10 **:[button]:rounded-none **:[button]:px-2",
+        )}
+      >
         {(renderProps) => (
           <>
-            {isMobile ? <StepperButton slot="decrement" className="border-r" /> : null}
-            <Input className="tabular-nums" placeholder={placeholder} />
-            <div
-              className={fieldBorderStyles({
-                ...renderProps,
-                className: "grid h-10 place-content-center border-s",
-              })}
-            >
-              {isMobile ? (
-                <StepperButton slot="increment" />
-              ) : (
+            {isMobile ? <StepperButton className="border-r" slot="decrement" /> : null}
+            <Input className="px-13 tabular-nums md:px-2.5" placeholder={placeholder} />
+            {!isMobile ? (
+              <div
+                className={fieldBorderStyles({
+                  ...renderProps,
+                  className: "grid h-10 place-content-center sm:border-s",
+                })}
+              >
                 <div className="flex h-full flex-col">
                   <StepperButton slot="increment" emblemType="chevron" className="h-5 px-1" />
                   <div
@@ -79,8 +76,10 @@ const NumberField = ({
                   />
                   <StepperButton slot="decrement" emblemType="chevron" className="h-5 px-1" />
                 </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              <StepperButton className="border-l" slot="increment" />
+            )}
           </>
         )}
       </FieldGroup>
@@ -115,7 +114,14 @@ const StepperButton = ({
       <IconMinus />
     )
   return (
-    <Button className={stepperButton({ className })} slot={slot} {...props}>
+    <Button
+      className={composeTailwindRenderProps(
+        className,
+        "h-10 cursor-default pressed:text-primary-fg text-muted-fg group-disabled:bg-secondary/70 sm:pressed:bg-primary forced-colors:group-disabled:text-[GrayText]",
+      )}
+      slot={slot}
+      {...props}
+    >
       {icon}
     </Button>
   )

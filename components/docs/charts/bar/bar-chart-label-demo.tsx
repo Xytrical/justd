@@ -1,7 +1,8 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import { Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
-import { Card, Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "ui"
 
 const surveyData = [
   { category: "Customer Support", satisfaction: 85 },
@@ -46,7 +47,7 @@ export default function BarChartLabelDemo() {
         description="Satisfaction scores by category"
       />
       <Card.Content>
-        <Chart config={chartConfig}>
+        <Chart className="h-[250px] w-full" config={chartConfig}>
           <BarChart
             accessibilityLayer
             data={surveyData}

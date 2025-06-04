@@ -1,8 +1,11 @@
 "use client"
 
-import React from "react"
+import { createContext, use } from "react"
 
-import { IconX } from "justd-icons"
+import { badgeIntents, badgeShapes, badgeStyles } from "@/components/ui/badge"
+import { Description, Label } from "@/components/ui/field"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { IconX } from "@intentui/icons"
 import type {
   TagGroupProps as TagGroupPrimitiveProps,
   TagListProps,
@@ -15,62 +18,58 @@ import {
   Tag as TagPrimitive,
   composeRenderProps,
 } from "react-aria-components"
+import { twJoin, twMerge } from "tailwind-merge"
 import { tv } from "tailwind-variants"
-
-import { cn } from "@/utils/classes"
-import { badgeIntents, badgeShapes, badgeStyles } from "./badge"
-import { Description, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
 
 const intents = {
   primary: {
     base: [
       badgeIntents.primary,
-      "**:[[slot=remove]]:data-hovered:bg-primary **:[[slot=remove]]:data-hovered:text-primary-fg",
+      "**:[[slot=remove]]:hover:bg-primary **:[[slot=remove]]:hover:text-primary-fg",
     ],
     selected: [
-      "bg-primary dark:data-hovered:bg-primary dark:bg-primary data-hovered:bg-primary text-primary-fg dark:text-primary-fg data-hovered:text-primary-fg",
-      "**:[[slot=remove]]:data-hovered:bg-primary-fg/50 **:[[slot=remove]]:data-hovered:text-primary",
+      "bg-primary dark:hover:bg-primary dark:bg-primary hover:bg-primary text-primary-fg dark:text-primary-fg hover:text-primary-fg",
+      "**:[[slot=remove]]:hover:bg-primary-fg/50 **:[[slot=remove]]:hover:text-primary",
     ],
   },
   secondary: {
     base: [
       badgeIntents.secondary,
-      "**:[[slot=remove]]:data-hovered:bg-fg **:[[slot=remove]]:data-hovered:text-bg",
+      "**:[[slot=remove]]:hover:bg-fg **:[[slot=remove]]:hover:text-bg",
     ],
     selected: [
       "bg-fg text-bg dark:bg-fg/90 dark:text-secondary",
-      "**:[[slot=remove]]:data-hovered:bg-secondary/30 **:[[slot=remove]]:data-hovered:text-secondary",
+      "**:[[slot=remove]]:hover:bg-secondary/30 **:[[slot=remove]]:hover:text-secondary",
     ],
   },
   success: {
     base: [
       badgeIntents.success,
-      "**:[[slot=remove]]:data-hovered:bg-success **:[[slot=remove]]:data-hovered:text-success-fg",
+      "**:[[slot=remove]]:hover:bg-success **:[[slot=remove]]:hover:text-success-fg",
     ],
     selected: [
-      "bg-success dark:bg-success dark:text-success-fg dark:data-hovered:bg-success data-hovered:bg-success text-success-fg data-hovered:text-success-fg",
-      "**:[[slot=remove]]:data-hovered:bg-success-fg/30 **:[[slot=remove]]:data-hovered:text-success-fg",
+      "bg-success dark:bg-success dark:text-success-fg dark:hover:bg-success hover:bg-success text-success-fg hover:text-success-fg",
+      "**:[[slot=remove]]:hover:bg-success-fg/30 **:[[slot=remove]]:hover:text-success-fg",
     ],
   },
   warning: {
     base: [
       badgeIntents.warning,
-      "**:[[slot=remove]]:data-hovered:bg-warning **:[[slot=remove]]:data-hovered:text-warning-fg",
+      "**:[[slot=remove]]:hover:bg-warning **:[[slot=remove]]:hover:text-warning-fg",
     ],
     selected: [
-      "bg-warning dark:data-hovered:bg-warning dark:bg-warning dark:text-bg data-hovered:bg-warning text-warning-fg data-hovered:text-warning-fg",
-      "**:[[slot=remove]]:data-hovered:bg-warning-fg/30 **:[[slot=remove]]:data-hovered:text-warning-fg",
+      "bg-warning dark:hover:bg-warning dark:bg-warning dark:text-bg hover:bg-warning text-warning-fg hover:text-warning-fg",
+      "**:[[slot=remove]]:hover:bg-warning-fg/30 **:[[slot=remove]]:hover:text-warning-fg",
     ],
   },
   danger: {
     base: [
       badgeIntents.danger,
-      "**:[[slot=remove]]:data-hovered:bg-danger **:[[slot=remove]]:data-hovered:text-danger-fg",
+      "**:[[slot=remove]]:hover:bg-danger **:[[slot=remove]]:hover:text-danger-fg",
     ],
     selected: [
-      "bg-danger dark:bg-danger dark:data-hovered:bg-danger/90 data-hovered:bg-danger text-danger-fg data-hovered:text-danger-fg",
-      "**:[[slot=remove]]:data-hovered:bg-danger-fg/30 **:[[slot=remove]]:data-hovered:text-danger-fg",
+      "bg-danger dark:bg-danger dark:hover:bg-danger/90 hover:bg-danger text-danger-fg hover:text-danger-fg",
+      "**:[[slot=remove]]:hover:bg-danger-fg/30 **:[[slot=remove]]:hover:text-danger-fg",
     ],
   },
 }
@@ -86,7 +85,7 @@ type TagGroupContextValue = {
   shape: Shape
 }
 
-const TagGroupContext = React.createContext<TagGroupContextValue>({
+const TagGroupContext = createContext<TagGroupContextValue>({
   intent: "primary",
   shape: "square",
 })
@@ -100,11 +99,11 @@ interface TagGroupProps extends TagGroupPrimitiveProps {
   ref?: React.RefObject<HTMLDivElement>
 }
 
-const TagGroup = ({ children, ref, ...props }: TagGroupProps) => {
+const TagGroup = ({ children, ref, className, ...props }: TagGroupProps) => {
   return (
     <TagGroupPrimitive
       ref={ref}
-      className={cn("flex flex-col flex-wrap", props.className)}
+      className={twMerge("flex flex-col flex-wrap", className)}
       {...props}
     >
       <TagGroupContext.Provider
@@ -125,16 +124,17 @@ const TagList = <T extends object>({ className, ...props }: TagListProps<T>) => 
   return (
     <TagListPrimitive
       {...props}
-      className={composeTailwindRenderProps(className, "flex flex-wrap gap-2")}
+      className={composeTailwindRenderProps(className, "flex flex-wrap gap-1.5")}
     />
   )
 }
 
 const tagStyles = tv({
-  base: [badgeStyles.base, "cursor-pointer outline-hidden"],
+  base: [badgeStyles.base, "outline-hidden"],
   variants: {
+    isLink: { true: "cursor-pointer", false: "cursor-default" },
     isFocusVisible: { true: "inset-ring inset-ring-current/10" },
-    isDisabled: { true: "cursor-default opacity-50" },
+    isDisabled: { true: "opacity-50" },
     allowsRemoving: { true: "pr-1" },
   },
 })
@@ -146,7 +146,7 @@ interface TagProps extends TagPrimitiveProps {
 
 const Tag = ({ className, intent, shape, ...props }: TagProps) => {
   const textValue = typeof props.children === "string" ? props.children : undefined
-  const groupContext = React.useContext(TagGroupContext)
+  const groupContext = use(TagGroupContext)
 
   return (
     <TagPrimitive
@@ -158,7 +158,8 @@ const Tag = ({ className, intent, shape, ...props }: TagProps) => {
 
         return tagStyles({
           ...renderProps,
-          className: cn([
+          isLink: "href" in props,
+          className: twJoin([
             intents[finalIntent]?.base,
             badgeShapes[finalShape],
             renderProps.isSelected ? intents[finalIntent].selected : undefined,

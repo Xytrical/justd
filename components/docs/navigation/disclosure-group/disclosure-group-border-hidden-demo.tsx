@@ -1,14 +1,19 @@
 "use client"
 
 import {
+  Disclosure,
+  DisclosureGroup,
+  DisclosurePanel,
+  DisclosureTrigger,
+} from "@/components/ui/disclosure"
+import {
   IconBell,
   IconCreditCard,
   IconDownload,
   IconSettings,
   IconShield,
   IconSupport,
-} from "justd-icons"
-import { Disclosure, DisclosureGroup, DisclosurePanel, DisclosureTrigger } from "ui"
+} from "@intentui/icons"
 
 export default function DisclosureGroupBorderHiddenDemo() {
   return (

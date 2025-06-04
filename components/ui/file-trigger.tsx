@@ -1,40 +1,38 @@
 "use client"
 
-import { IconCamera, IconFolder, IconPaperclip45 } from "justd-icons"
+import { IconCamera, IconFolder, IconPaperclip45 } from "@intentui/icons"
 import {
   FileTrigger as FileTriggerPrimitive,
   type FileTriggerProps as FileTriggerPrimitiveProps,
 } from "react-aria-components"
 
-import { Button } from "./button"
+import { Button, type buttonStyles } from "@/components/ui/button"
+import type { VariantProps } from "tailwind-variants"
 
-interface FileTriggerProps extends FileTriggerPrimitiveProps {
+interface FileTriggerProps extends FileTriggerPrimitiveProps, VariantProps<typeof buttonStyles> {
   withIcon?: boolean
   isDisabled?: boolean
-  intent?: "primary" | "secondary" | "danger" | "warning"
-  size?: "medium" | "large" | "square-petite" | "extra-small" | "small"
-  shape?: "square" | "circle"
-  appearance?: "solid" | "outline" | "plain"
   ref?: React.RefObject<HTMLInputElement>
+  className?: string
 }
 
 const FileTrigger = ({
-  intent = "primary",
-  appearance = "outline",
+  intent = "outline",
   size = "medium",
   shape = "square",
   withIcon = true,
   ref,
+  className,
   ...props
 }: FileTriggerProps) => {
   return (
     <FileTriggerPrimitive ref={ref} {...props}>
       <Button
+        className={className}
         isDisabled={props.isDisabled}
         intent={intent}
         size={size}
         shape={shape}
-        appearance={appearance}
       >
         {withIcon &&
           (props.defaultCamera ? (

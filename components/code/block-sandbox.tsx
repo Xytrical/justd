@@ -8,26 +8,10 @@ import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { CopyButton } from "@/components/code/copy-button"
 import { IconDevicePhone } from "@/components/icon-device"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/resizable"
-import quotes from "@/resources/json/quotes.json"
-import type { RegistryItem } from "@/resources/types"
-import { cn } from "@/utils/classes"
+import { Button, buttonStyles } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
+import { Separator } from "@/components/ui/separator"
 import {
-  IconCube,
-  IconDeviceDesktop2,
-  IconFolderFill,
-  IconFolderOpenFill,
-  IconFullscreen,
-  IconLayoutAlignBottom,
-  IconLayoutAlignLeft,
-  IconLayoutAlignTop,
-  IconX,
-} from "justd-icons"
-import { type Key, Tab, TabList, ToggleButtonGroup } from "react-aria-components"
-import type { ImperativePanelHandle } from "react-resizable-panels"
-import {
-  Button,
-  Link,
-  Separator,
   Sidebar,
   SidebarContent,
   SidebarDisclosure,
@@ -40,14 +24,33 @@ import {
   SidebarLabel,
   SidebarNav,
   SidebarProvider,
-  Tabs,
-  Toggle,
-  buttonStyles,
-} from "ui"
+} from "@/components/ui/sidebar"
+import { Tabs } from "@/components/ui/tabs"
+import { Toggle } from "@/components/ui/toggle"
+import quotes from "@/resources/json/quotes.json"
+import type { RegistryItem } from "@/resources/types"
+import {
+  IconCube,
+  IconDeviceDesktop2,
+  IconFolderFill,
+  IconFolderOpenFill,
+  IconFullscreen,
+  IconLayoutAlignBottom,
+  IconLayoutAlignLeft,
+  IconLayoutAlignTop,
+  IconX,
+} from "@intentui/icons"
+import { type Key, Tab, TabList, ToggleButtonGroup } from "react-aria-components"
+import type { ImperativePanelHandle } from "react-resizable-panels"
+import { twMerge } from "tailwind-merge"
 
 const registry = generated as Record<string, RegistryItem>
 interface FolderStructure {
-  [key: string]: string | FolderStructure
+  components: {
+    ui?: Record<string, string>
+    [key: string]: any
+  }
+  [key: string]: any
 }
 
 type Props = {
@@ -71,7 +74,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
 
   useEffect(() => {
     if (!registryKey) return
-    fetchCode(registryKey).then((fetchedCode) => {
+    fetchCode(registryKey, folders).then((fetchedCode) => {
       const updatedCode = fetchedCode
         .replace(
           /import\s+AppSidebarNav\s+from\s+["']..\/app-sidebar-nav["']/g,
@@ -91,7 +94,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
         )
       setCode(updatedCode)
     })
-  }, [registryKey])
+  }, [registryKey, folders])
 
   const renderTree = useCallback(
     (tree: FolderStructure, nestedLevel = 1) =>
@@ -161,8 +164,8 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
               <TabList className="flex items-center text-xs">
                 <Tab
                   className={({ isSelected }) =>
-                    cn(
-                      "cursor-pointer rounded-sm px-2.5 py-1.5 outline-hidden",
+                    twMerge(
+                      "cursor-default rounded-sm px-2.5 py-1.5 outline-hidden",
                       isSelected && "bg-primary text-primary-fg",
                     )
                   }
@@ -172,8 +175,8 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
                 </Tab>
                 <Tab
                   className={({ isSelected }) =>
-                    cn(
-                      "cursor-pointer rounded-sm px-2.5 py-1.5 outline-hidden",
+                    twMerge(
+                      "cursor-default rounded-sm px-2.5 py-1.5 outline-hidden",
                       isSelected && "bg-primary text-primary-fg",
                     )
                   }
@@ -209,7 +212,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
                 <Link
                   href={fullscreen}
                   target="_blank"
-                  className={buttonStyles({ appearance: "plain", size: "square-petite" })}
+                  className={buttonStyles({ intent: "plain", size: "square-petite" })}
                   aria-label="Open in fullscreen"
                 >
                   <IconFullscreen />
@@ -254,7 +257,7 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
                     href="/docs/2.x/components/layouts/sidebar"
                   >
                     <IconFolderFill className="size-4.5" />
-                    <SidebarLabel className="font-medium text-sm">getjustd.com</SidebarLabel>
+                    <SidebarLabel className="font-medium text-sm">intentui.com</SidebarLabel>
                   </Link>
                 </SidebarHeader>
                 <SidebarContent className="pb-10">{renderTree(folders)}</SidebarContent>
@@ -273,15 +276,15 @@ function Component({ folders, fullscreen, isIframe = false, title, ...props }: P
 */
                       `)
                     }}
-                    className="-mr-2 data-hovered:bg-transparent data-hovered:**:data-[slot=icon]:rotate-90 **:data-[slot=icon]:text-muted-fg **:data-[slot=icon]:duration-200"
+                    className="-mr-2 hover:bg-transparent **:data-[slot=icon]:text-muted-fg **:data-[slot=icon]:duration-200 hover:**:data-[slot=icon]:rotate-90"
                     size="square-petite"
-                    appearance="plain"
+                    intent="plain"
                   >
                     <IconX />
                   </Button>
                   <CopyButton
                     alwaysVisible
-                    className="text-zinc-600 data-hovered:text-zinc-70 dark:text-zinc-400 dark:data-hovered:text-zinc-50"
+                    className="text-zinc-600 hover:text-zinc-70 dark:text-zinc-400 dark:hover:text-zinc-50"
                     text={code}
                   />
                 </SidebarNav>
@@ -315,16 +318,19 @@ function DisclosureGroup(props: {
 const ToggleDevice = (props: React.ComponentProps<typeof Toggle>) => {
   return (
     <Toggle
-      appearance="plain"
+      intent="plain"
       size="square-petite"
-      className="relative size-7.5 data-hovered:bg-bg data-selected:bg-bg data-selected:*:data-[slot=icon]:fill-primary/20 data-hovered:*:data-[slot=icon]:text-primary data-selected:*:data-[slot=icon]:text-primary"
+      className="relative size-7.5 selected:bg-bg hover:bg-bg selected:*:data-[slot=icon]:fill-primary/20 selected:*:data-[slot=icon]:text-primary hover:*:data-[slot=icon]:text-primary"
       {...props}
     />
   )
 }
 
-const fetchCode = cache(async (registryKey: string) => {
-  const response = await fetch(`/registry/${registryKey}.json`)
+const fetchCode = cache(async (registryKey: string, folders: FolderStructure) => {
+  const uiValues = Object.values(folders.components?.ui ?? {})
+  const isUI = uiValues.includes(registryKey)
+
+  const response = await fetch(`${isUI ? "/r" : "/registry"}/${registryKey}.json`)
   const registryEntry = await response.json()
   return registryEntry?.files?.[0]?.content || ""
 })
@@ -333,7 +339,6 @@ const IframeComponent = ({ style, src, ...props }: React.ComponentPropsWithoutRe
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [isInView, setIsInView] = useState(false)
   const [height, setHeight] = useState("0px")
-
   useLayoutEffect(() => {
     const iframe = iframeRef.current
     if (!iframe) return

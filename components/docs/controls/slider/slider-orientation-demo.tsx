@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 
-import { Card, Description, Slider } from "ui"
+import { Card } from "@/components/ui/card"
+import { Description } from "@/components/ui/field"
+import { Slider } from "@/components/ui/slider"
 
 export default function SliderOrientationDemo() {
   const [equalizer, setEqualizer] = useState({

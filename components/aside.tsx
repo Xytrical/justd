@@ -1,13 +1,13 @@
 "use client"
 
-import { source } from "@/utils/source"
+import { Heading } from "@/components/ui/heading"
+import { Link, type LinkProps } from "@/components/ui/link"
+import { Separator } from "@/components/ui/separator"
+import { source } from "@/lib/source"
 import type { PageTree } from "fumadocs-core/server"
-import { Link } from "next-view-transitions"
-import type { LinkProps } from "next/link"
 import { usePathname } from "next/navigation"
 import React from "react"
 import { twMerge } from "tailwind-merge"
-import { Heading, Separator } from "ui"
 
 export interface SidebarItem {
   title: string
@@ -29,27 +29,26 @@ export function Aside() {
 
 interface AsideLinkProps extends LinkProps {
   isActive?: boolean
-  children: React.ReactNode
 }
 
 function AsideLink({ href, ...props }: AsideLinkProps) {
   const path = usePathname()
   const isActive = path === href
-  const ref = React.useRef<HTMLAnchorElement | null>(null)
+  const ref = React.useRef<HTMLAnchorElement>(null)
 
   React.useEffect(() => {
     if (isActive && ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth", block: "center" })
+      ref.current.scrollIntoView({ behavior: "instant", block: "center" })
     }
   }, [isActive])
   return (
     <Link
       {...props}
       href={href}
-      ref={ref}
+      ref={ref as any}
       className={twMerge(
         "-ml-3 mb-0.5 flex items-center justify-between rounded-lg px-3 py-1.5 text-base text-muted-fg sm:text-sm",
-        "data-focused:outline-hidden",
+        "focus:outline-hidden",
         "hover:bg-muted hover:text-secondary-fg",
         isActive && [
           "font-medium",
@@ -69,7 +68,7 @@ const SidebarComposed = ({
   if (node.type === "folder") {
     return (
       <div className="mb-6">
-        {!Number(node.name) && (
+        {!Number(node.name) && node.name !== "2.x" && (
           <Heading
             className="mb-2 flex items-center gap-x-2 font-medium text-base sm:text-sm"
             level={3}
@@ -78,9 +77,11 @@ const SidebarComposed = ({
           </Heading>
         )}
 
-        {node.children.map((child, index) => (
-          <SidebarComposed key={index} node={child} />
-        ))}
+        {node.children
+          .filter((i) => i.name !== "2.x")
+          .map((child, index) => (
+            <SidebarComposed key={index} node={child} />
+          ))}
       </div>
     )
   }

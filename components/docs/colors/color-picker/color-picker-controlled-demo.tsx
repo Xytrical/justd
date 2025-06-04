@@ -3,7 +3,8 @@
 import { useState } from "react"
 
 import { ControlledValues } from "@/components/docs/colors/controlled-values"
-import { ColorPicker, defaultColor } from "ui"
+import { ColorPicker } from "@/components/ui/color-picker"
+import { defaultColor } from "@/components/ui/color-swatch"
 
 export default function ColorPickerControlledDemo() {
   const [color, setColor] = useState(defaultColor)

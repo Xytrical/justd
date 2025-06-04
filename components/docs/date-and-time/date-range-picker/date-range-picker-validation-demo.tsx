@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, DateRangePicker, Form } from "ui"
+import { Button } from "@/components/ui/button"
+import { DateRangePicker } from "@/components/ui/date-range-picker"
+import { Form } from "@/components/ui/form"
 
 export default function DateRangePickerValidationDemo() {
   return (

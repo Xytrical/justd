@@ -1,7 +1,7 @@
 "use client"
 
 import { androidBrands } from "@/components/docs/collections/tag-group/tag-group-demo"
-import { Tag, TagGroup, TagList } from "ui"
+import { Tag, TagGroup, TagList } from "@/components/ui/tag-group"
 
 export default function TagGroupDisabledDemo() {
   return (

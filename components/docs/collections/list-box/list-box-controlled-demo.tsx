@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 
+import { Description } from "@/components/ui/field"
+import { ListBox } from "@/components/ui/list-box"
 import type { Selection } from "react-aria-components"
-import { Description, ListBox } from "ui"
 
 export default function ListBoxControlledDemo() {
   const [selected, setSelected] = useState<Selection>(new Set([1]))

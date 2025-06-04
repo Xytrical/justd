@@ -1,8 +1,9 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import type { ChartConfig } from "@/components/ui/chart"
+import { Chart } from "@/components/ui/chart"
 import { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts"
-import type { ChartConfig } from "ui"
-import { Card, Chart } from "ui"
 
 const chartData = [{ category: "Electronics", sales: 1260, fill: "var(--color-electronics)" }]
 

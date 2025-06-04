@@ -1,13 +1,15 @@
 "use client"
 
-import { Wrapper } from "@/app/(app)/(home)/partials/resources"
-import { Button, Modal, Popover } from "ui"
+import { Wrapper } from "@/app/(home)/partials/resources"
+import { Button } from "@/components/ui/button"
+import { Modal } from "@/components/ui/modal"
+import { Popover } from "@/components/ui/popover"
 
 export function PopoverOverlays() {
   return (
     <Wrapper>
       <Popover>
-        <Button appearance="outline">Forgot Password</Button>
+        <Button intent="outline">Forgot Password</Button>
         <Popover.Content className="max-w-[28rem]">
           <Popover.Header>
             <Popover.Title>Email</Popover.Title>
@@ -34,7 +36,7 @@ export function ModalOverlays() {
           </Modal.Header>
           <Modal.Footer>
             <Modal.Close>Later</Modal.Close>
-            <Modal.Close appearance="solid">Update Now</Modal.Close>
+            <Modal.Close intent="primary">Update Now</Modal.Close>
           </Modal.Footer>
         </Modal.Content>
       </Modal>

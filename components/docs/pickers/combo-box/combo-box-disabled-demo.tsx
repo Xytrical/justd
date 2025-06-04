@@ -1,6 +1,7 @@
 "use client"
 
-import { Avatar, ComboBox } from "ui"
+import { Avatar } from "@/components/ui/avatar"
+import { ComboBox } from "@/components/ui/combo-box"
 
 export default function ComboBoxDisabledDemo() {
   return (

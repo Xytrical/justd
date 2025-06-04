@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Button, Grid, Modal } from "ui"
+import { Button } from "@/components/ui/button"
+import { Modal } from "@/components/ui/modal"
 
 type Size = Pick<React.ComponentProps<typeof Modal.Content>, "size">["size"]
 const sizes: Size[] = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"]
@@ -16,15 +17,15 @@ export default function ModalSizeDemo() {
   }
   return (
     <>
-      <Grid columns={{ initial: 2, sm: 3, lg: 4 }} gap={2}>
+      <div className="grid gap-4 sm:grid-cols-4">
         {sizes.map((size, idx) => (
-          <Grid.Item key={idx}>
-            <Button appearance="outline" onPress={() => handlePress(size, true)}>
+          <div key={idx}>
+            <Button intent="outline" onPress={() => handlePress(size, true)}>
               Open {size}
             </Button>
-          </Grid.Item>
+          </div>
         ))}
-      </Grid>
+      </div>
 
       <Modal.Content isOpen={isOpen} onOpenChange={setIsOpen} size={modalSize}>
         <Modal.Header>
@@ -35,7 +36,7 @@ export default function ModalSizeDemo() {
           </Modal.Description>
         </Modal.Header>
         <Modal.Footer>
-          <Button appearance="outline" onPress={() => setIsOpen(false)}>
+          <Button intent="outline" onPress={() => setIsOpen(false)}>
             Close
           </Button>
           <Button onPress={() => setIsOpen(false)}>Confirm</Button>

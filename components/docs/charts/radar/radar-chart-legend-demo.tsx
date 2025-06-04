@@ -1,15 +1,15 @@
 "use client"
 
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
+import { Card } from "@/components/ui/card"
 import {
-  Card,
   Chart,
   type ChartConfig,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "ui"
+} from "@/components/ui/chart"
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
 
 const chartData = [
   { month: "Jan", sales: 186, expenses: 80 },

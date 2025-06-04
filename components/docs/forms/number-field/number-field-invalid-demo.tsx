@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, Form, NumberField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { NumberField } from "@/components/ui/number-field"
 
 export default function NumberFieldInvalidDemo() {
   return (

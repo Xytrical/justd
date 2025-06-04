@@ -1,7 +1,12 @@
 "use client"
 
-import { IconChevronRight } from "justd-icons"
-import { Disclosure, DisclosureGroup, DisclosurePanel, DisclosureTrigger } from "ui"
+import {
+  Disclosure,
+  DisclosureGroup,
+  DisclosurePanel,
+  DisclosureTrigger,
+} from "@/components/ui/disclosure"
+import { IconChevronRight } from "@intentui/icons"
 
 export default function DisclosureGroupNestedDemo() {
   return (

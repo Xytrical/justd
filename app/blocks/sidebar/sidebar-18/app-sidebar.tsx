@@ -1,7 +1,6 @@
 "use client"
 
 import { BrandIcon } from "@/components/brand-icon"
-import { IconFolderFill, IconFolderOpen } from "justd-icons"
 import {
   Sidebar,
   SidebarContent,
@@ -12,7 +11,8 @@ import {
   SidebarItem,
   SidebarLabel,
   SidebarRail,
-} from "ui"
+} from "@/components/ui/sidebar"
+import { IconFolderFill, IconFolderOpen } from "@intentui/icons"
 
 import { folders } from "./folders"
 import { SidebarHeader } from "./sidebar-header"

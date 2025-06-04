@@ -1,12 +1,14 @@
 "use client"
 
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
 import {
   IconDotsHorizontal,
   IconLayoutAlignLeft,
   IconLayoutAlignTop,
   IconWindowVisit,
-} from "justd-icons"
-import { Breadcrumbs, Button, Menu } from "ui"
+} from "@intentui/icons"
 
 export default function BreadcrumbsMenuDemo() {
   return (
@@ -15,7 +17,7 @@ export default function BreadcrumbsMenuDemo() {
 
       <Breadcrumbs.Item separator>
         <Menu>
-          <Button appearance="plain" size="square-petite" className="-mx-1 h-6">
+          <Button intent="plain" size="square-petite" className="-mx-1 h-6">
             <IconDotsHorizontal />
           </Button>
           <Menu.Content placement="bottom">

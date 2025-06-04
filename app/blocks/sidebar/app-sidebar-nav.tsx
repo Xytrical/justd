@@ -1,16 +1,20 @@
 "use client"
 
-import { Avatar, Breadcrumbs, Menu, Separator, SidebarNav, SidebarTrigger } from "ui"
+import { Avatar } from "@/components/ui/avatar"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { Menu } from "@/components/ui/menu"
+import { Separator } from "@/components/ui/separator"
+import { SidebarNav, SidebarTrigger } from "@/components/ui/sidebar"
 
+import { Switch } from "@/components/ui/switch"
 import {
   IconCommandRegular,
   IconDashboard,
-  IconDeviceDesktop,
   IconLogout,
   IconMoon,
   IconSettings,
   IconSun,
-} from "justd-icons"
+} from "@intentui/icons"
 import { useTheme } from "next-themes"
 
 export default function AppSidebarNav() {
@@ -19,7 +23,7 @@ export default function AppSidebarNav() {
       <span className="flex items-center gap-x-4">
         <SidebarTrigger className="-mx-2" />
         <Separator className="h-6" orientation="vertical" />
-        <Breadcrumbs className="@md:flex hidden">
+        <Breadcrumbs className="hidden md:flex">
           <Breadcrumbs.Item href="/blocks/sidebar/sidebar-01">Dashboard</Breadcrumbs.Item>
           <Breadcrumbs.Item>Newsletter</Breadcrumbs.Item>
         </Breadcrumbs>
@@ -30,7 +34,7 @@ export default function AppSidebarNav() {
 }
 
 function UserMenu() {
-  const { resolvedTheme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   return (
     <Menu>
       <Menu.Trigger className="ml-auto md:hidden" aria-label="Open Menu">
@@ -56,29 +60,18 @@ function UserMenu() {
           <IconCommandRegular />
           <Menu.Label>Command Menu</Menu.Label>
         </Menu.Item>
-        <Menu.Submenu>
-          <Menu.Item>
-            {resolvedTheme === "light" ? (
-              <IconSun />
-            ) : resolvedTheme === "dark" ? (
-              <IconMoon />
-            ) : (
-              <IconDeviceDesktop />
-            )}
-            <Menu.Label>Switch theme</Menu.Label>
-          </Menu.Item>
-          <Menu.Content>
-            <Menu.Item onAction={() => setTheme("system")}>
-              <IconDeviceDesktop /> System
-            </Menu.Item>
-            <Menu.Item onAction={() => setTheme("dark")}>
-              <IconMoon /> Dark
-            </Menu.Item>
-            <Menu.Item onAction={() => setTheme("light")}>
-              <IconSun /> Light
-            </Menu.Item>
-          </Menu.Content>
-        </Menu.Submenu>
+        <Menu.Item className="[&>[slot=label]+[data-slot=icon]]:right-4 [&>[slot=label]+[data-slot=icon]]:bottom-3">
+          {theme === "dark" ? <IconMoon /> : <IconSun />}
+          <Menu.Label>Theme</Menu.Label>
+          <span data-slot="icon">
+            <Switch
+              className="ml-auto"
+              isSelected={theme === "dark"}
+              onChange={(e) => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label="Toggle theme"
+            />
+          </span>
+        </Menu.Item>
         <Menu.Separator />
         <Menu.Item href="#contact-s">
           <Menu.Label>Contact Support</Menu.Label>

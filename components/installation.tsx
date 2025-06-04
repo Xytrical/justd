@@ -4,14 +4,14 @@ import React, { useState } from "react"
 
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { CopyButton } from "@/components/code/copy-button"
+import { Button } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
+import { Menu } from "@/components/ui/menu"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { siteConfig } from "@/resources/config/site"
 import { copyToClipboard } from "@/resources/lib/copy"
-import { useOpenPanel } from "@openpanel/nextjs"
+import { IconCheck, IconDuplicate } from "@intentui/icons"
 import { Group } from "react-aria-components"
-import { Link, Menu, composeTailwindRenderProps } from "ui"
-
-const manualText =
-  "Sometimes, using the CLI is the way to go, so make sure you install the necessary\n" +
-  "          dependencies for the components you want to use."
 
 export interface InstallationProps {
   items: string[]
@@ -26,8 +26,8 @@ export interface InstallationProps {
   }
 }
 
+const whatCommand = siteConfig.cliCommand
 export function Installation({ className, ...props }: InstallationProps) {
-  const op = useOpenPanel()
   const {
     options = {
       isExecutor: false,
@@ -58,7 +58,7 @@ export function Installation({ className, ...props }: InstallationProps) {
         <p>
           If you hit any issues, make sure you check out the installation guide{" "}
           <Link
-            className="not-prose xd2432 text-blue-600 data-hovered:underline dark:text-blue-400"
+            className="not-prose xd2432 text-blue-600 hover:underline dark:text-blue-400"
             intent="primary"
             href="/docs/2.x/getting-started/cli"
             target="_blank"
@@ -69,7 +69,12 @@ export function Installation({ className, ...props }: InstallationProps) {
           for more information.
         </p>
       )}
-      {options.isManual && <p>{manualText}</p>}
+      {options.isManual && (
+        <p>
+          Make sure you also install the <strong>composed components</strong> and the{" "}
+          <strong>required packages</strong> for the component to function properly.
+        </p>
+      )}
       <Group
         className={composeTailwindRenderProps(
           className,
@@ -91,44 +96,25 @@ export function Installation({ className, ...props }: InstallationProps) {
           code={
             props.command ||
             (options.isInit
-              ? "npx justd-cli@latest init"
+              ? `npx ${whatCommand} init`
               : options.isComponent
-                ? `npx justd-cli@latest add ${items[0]}`
+                ? `npx ${whatCommand} add ${items[0]}`
                 : `${pkgManager.name} ${pkgManager.action} ${items.join(" ")}`)
           }
         />
         {props.command ? (
-          <CopyButton
-            isCopied={isCopied}
-            setIsCopied={setIsCopied}
-            onPress={() => {
-              copyToClipboard(props.command as string).then(() => {
-                setIsCopied(true)
-                op.track("cli pressed", { copy: props.command })
-              })
-            }}
-          />
+          <CopyButton isCopied={isCopied} setIsCopied={setIsCopied} />
         ) : options.isComponent ? (
           <CopyButton
             isCopied={isCopied}
             setIsCopied={setIsCopied}
-            onPress={() => {
-              copyToClipboard(`npx justd-cli@latest add ${items[0]}`).then(() => {
-                setIsCopied(true)
-                op.track("cli pressed", { copy: `add ${items.join(" ")}` })
-              })
-            }}
+            text={`npx ${whatCommand} add ${items[0]}`}
           />
         ) : options.isInit ? (
           <CopyButton
             isCopied={isCopied}
             setIsCopied={setIsCopied}
-            onPress={() => {
-              copyToClipboard("npx justd-cli@latest init").then(() => {
-                setIsCopied(true)
-                op.track("cli pressed", { copy: "init" })
-              })
-            }}
+            text={`npx ${whatCommand} init`}
           />
         ) : (
           <ChoosePkgManager
@@ -167,8 +153,6 @@ function ChoosePkgManager({
   setIsCopied,
   setPkgManager,
 }: ChoosePkgManagerProps) {
-  const op = useOpenPanel()
-
   function handleAction(tool: string) {
     let selectedPkgManager: PkgManager = {
       name: "",
@@ -212,15 +196,18 @@ function ChoosePkgManager({
     const executor = isExecutor ? selectedPkgManager.executor : selectedPkgManager.name
     copyToClipboard(`${executor} ${selectedPkgManager.action} ${items.join(" ")}`).then(() => {
       setIsCopied(true)
-      op.track("cli pressed", {
-        copy: `${executor} ${selectedPkgManager.action} ${items.join(" ")}`,
-      })
     })
   }
 
   return (
     <Menu>
-      <CopyButton isCopied={isCopied} setIsCopied={setIsCopied} />
+      <Button
+        size="square-petite"
+        intent="plain"
+        className="pressed:bg-transparent hover:bg-transparent"
+      >
+        {isCopied ? <IconCheck /> : <IconDuplicate />}
+      </Button>
       <Menu.Content showArrow placement="bottom end">
         {[
           { name: "NPM", vendor: "npm" },

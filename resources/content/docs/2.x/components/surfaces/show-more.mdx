@@ -1,6 +1,6 @@
 ---
 title: "Show More"
-description: When you need to toggle visibility of additional content in a responsive and accessible manner, the ShowMore component provides the functionality.
+description: An expandable UI component that reveals hidden content on demand, optimizing space while maintaining accessibility.
 order: 4
 published: true
 references: ["https://react-spectrum.adobe.com/react-aria/ToggleButton.html#props"]
@@ -20,15 +20,16 @@ The `ShowMore` component is primarily used to encapsulate content that can be ex
 ## Anatomy
 Import the components and use them as shown below, adapting the structure to fit each component.
 ```
-import { IconChevronLgDown } from "justd-icons"
-import { cn, ShowMore } from "ui"
+import { IconChevronLgDown } from "@intentui/icons"
+import { ShowMore } from "@/components/ui/show-more"
+import { twMerge } from "tailwind-merge"
 
 <ShowMore>
   {({ isSelected }) => (
     <>
       Show {isSelected ? "less" : "more"}
       <IconChevronLgDown
-        className={cn(
+        className={twMerge(
           isSelected ? "rotate-180" : "",
           "size-4 transition-transform duration-200"
         )}

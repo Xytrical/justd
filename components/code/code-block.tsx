@@ -2,18 +2,18 @@
 
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { CopyButton } from "@/components/code/copy-button"
+import { Tabs } from "@/components/ui/tabs"
 import { copyToClipboard } from "@/resources/lib/copy"
-import { cn } from "@/utils/classes"
 import {
   IconBrackets2,
   IconBrandCss,
   IconBrandReactjs,
   IconBrandTypescript,
   IconFile,
-} from "justd-icons"
+} from "@intentui/icons"
 import { useEffect, useState } from "react"
 import { Tab } from "react-aria-components"
-import { Tabs } from "ui"
+import { twMerge } from "tailwind-merge"
 
 interface Props {
   source: Record<string, string>
@@ -59,8 +59,8 @@ export function CodeBlock({ source }: Props) {
               {Object.keys(contents).map((key) => (
                 <Tab
                   className={(values) =>
-                    cn(
-                      "flex cursor-pointer items-center gap-x-1.5 whitespace-nowrap px-3 py-2.5 font-mono text-muted-fg text-xs tracking-tight outline-hidden",
+                    twMerge(
+                      "flex cursor-default items-center gap-x-1.5 whitespace-nowrap px-3 py-2.5 font-mono text-muted-fg text-xs tracking-tight outline-hidden",
                       "**:data-[slot=icon]:-ml-0.5 border-transparent border-x first:border-l-0 **:data-[slot=icon]:size-4 **:data-[slot=icon]:shrink-0",
                       (values.isSelected || values.isFocused || values.isFocusVisible) &&
                         "border-input bg-secondary text-secondary-fg dark:bg-muted",

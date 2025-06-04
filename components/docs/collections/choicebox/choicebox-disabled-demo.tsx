@@ -1,6 +1,6 @@
 "use client"
 
-import { Choicebox } from "ui"
+import { Choicebox } from "@/components/ui/choicebox"
 
 export default function ChoiceboxDisabledDemo() {
   return (
@@ -15,22 +15,22 @@ export default function ChoiceboxDisabledDemo() {
 const packages = [
   {
     id: "sm",
-    title: "Small",
+    label: "Small",
     description: "Perfect for beginners. Basic resources for light projects.",
   },
   {
     id: "md",
-    title: "Medium",
+    label: "Medium",
     description: "Great for growing sites. More power and storage.",
   },
   {
     id: "lg",
-    title: "Large",
+    label: "Large",
     description: "Ideal for busy sites. Lots of resources and support.",
   },
   {
     id: "xl",
-    title: "Extra Large",
+    label: "Extra Large",
     description: "Max power for demanding applications. Top-tier performance.",
   },
 ]

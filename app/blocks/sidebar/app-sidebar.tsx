@@ -1,8 +1,7 @@
 "use client"
 
-import { IconBrandApple, IconCart, IconDashboard, IconGear, IconPackage } from "justd-icons"
+import { Link } from "@/components/ui/link"
 import {
-  Link,
   Sidebar,
   SidebarContent,
   SidebarHeader,
@@ -10,7 +9,8 @@ import {
   SidebarLabel,
   SidebarRail,
   SidebarSection,
-} from "ui"
+} from "@/components/ui/sidebar"
+import { IconBrandApple, IconCart, IconDashboard, IconGear, IconPackage } from "@intentui/icons"
 
 export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   return (

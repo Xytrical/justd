@@ -1,6 +1,6 @@
 "use client"
 
-import { Separator } from "ui"
+import { Separator } from "@/components/ui/separator"
 
 export default function SeparatorDemo() {
   return <Separator orientation="vertical" className="h-32" />

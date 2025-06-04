@@ -1,3 +1,7 @@
+import { Button } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
+import { Menu } from "@/components/ui/menu"
+import { SidebarHeader as Header, SidebarLabel, useSidebar } from "@/components/ui/sidebar"
 import {
   IconArrowDownLeft,
   IconArrowDownRight,
@@ -10,8 +14,7 @@ import {
   IconDotsVertical,
   IconFolderFill,
   IconMinus,
-} from "justd-icons"
-import { Button, SidebarHeader as Header, Link, Menu, SidebarLabel, useSidebar } from "ui"
+} from "@intentui/icons"
 
 export function SidebarHeader() {
   const { toggleSidebar } = useSidebar()
@@ -22,17 +25,17 @@ export function SidebarHeader() {
         href="/docs/2.x/components/layouts/sidebar"
       >
         <IconFolderFill className="size-4.5" />
-        <SidebarLabel className="font-medium text-sm">getjustd.com</SidebarLabel>
+        <SidebarLabel className="font-medium text-sm">intentui.com</SidebarLabel>
       </Link>
-      <div className="-mr-2 flex items-center gap-x-0.5 text-muted-fg **:[button]:text-muted-fg **:[button]:*:data-[slot=icon]:size-3.5 **:[button]:data-hovered:text-fg">
-        <Button className="size-7" size="square-petite" appearance="plain" aria-label="Collapse">
+      <div className="-mr-2 flex items-center gap-x-0.5 text-muted-fg **:[button]:text-muted-fg **:[button]:hover:text-fg **:[button]:*:data-[slot=icon]:size-3.5">
+        <Button className="size-7" size="square-petite" intent="plain" aria-label="Collapse">
           <IconArrowUp />
         </Button>
-        <Button className="size-7" size="square-petite" appearance="plain" aria-label="Shrink All">
+        <Button className="size-7" size="square-petite" intent="plain" aria-label="Shrink All">
           <IconArrowShrink />
         </Button>
         <Menu>
-          <Button className="size-7" size="square-petite" appearance="plain" aria-label="Options">
+          <Button className="size-7" size="square-petite" intent="plain" aria-label="Options">
             <IconDotsVertical />
           </Button>
           <Menu.Content className="sm:min-w-56">
@@ -51,7 +54,7 @@ export function SidebarHeader() {
               <Menu.Content defaultSelectedKeys={[2]}>
                 <Menu.Item id={1}>Members</Menu.Item>
                 <Menu.Item id={2}>Exclude Files</Menu.Item>
-                <Menu.Item id={3}>Scratchs and Consoles</Menu.Item>
+                <Menu.Item id={3}>Scratches and Consoles</Menu.Item>
                 <Menu.Item id={4}>Files Details</Menu.Item>
                 <Menu.Separator />
                 <Menu.Item id={5}>File Nesting</Menu.Item>
@@ -147,7 +150,7 @@ export function SidebarHeader() {
           onPress={toggleSidebar}
           className="size-7"
           size="square-petite"
-          appearance="plain"
+          intent="plain"
           aria-label="Minimize"
         >
           <IconMinus />

@@ -2,9 +2,8 @@
 
 import React, { useState } from "react"
 
-import { cn } from "@/utils/classes"
-
 import { codeToHtml } from "shiki"
+import { twMerge } from "tailwind-merge"
 
 export interface CodeHighlighterProps {
   plain?: boolean
@@ -54,7 +53,7 @@ export const CodeHighlighter = ({
   ) : (
     <div
       {...props}
-      className={cn(
+      className={twMerge(
         "not-prose overflow-auto font-mono text-sm leading-8 **:[pre]:outline-hidden",
         max96 && "max-h-96",
         !plain && "rounded-lg bg-shiki-bg px-4 py-2.5 ring-1 ring-border",

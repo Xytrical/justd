@@ -1,11 +1,11 @@
 "use client"
 
-import { IconBrandParsinta } from "justd-icons"
-import { Button } from "ui"
+import { Button } from "@/components/ui/button"
+import { IconBrandParsinta } from "@intentui/icons"
 
 export default function ButtonOnlyIconDemo() {
   return (
-    <Button size="square-petite" appearance="outline">
+    <Button size="square-petite" intent="outline">
       <IconBrandParsinta />
     </Button>
   )

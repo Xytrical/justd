@@ -1,10 +1,11 @@
 import { Header } from "@/components/header"
+import { PageContainer } from "@/components/page-container"
+import { Heading } from "@/components/ui/heading"
+import { Link } from "@/components/ui/link"
+import { source } from "@/lib/source"
 import { siteConfig } from "@/resources/config/site"
-import { source } from "@/utils/source"
-import { IconArrowRight, IconCube, IconPackage } from "justd-icons"
+import { IconArrowRight, IconCube, IconPackage } from "@intentui/icons"
 import type { Metadata } from "next"
-import { Link } from "next-view-transitions"
-import { Container, Heading } from "ui"
 
 export default function Page() {
   const components =
@@ -17,8 +18,8 @@ export default function Page() {
         <span className="text-fg tracking-tight">Comp</span>
         <span className="text-muted-fg tracking-tight">onents</span>
       </Header>
-      <div className="bg-muted/35 py-10 lg:py-16">
-        <Container>
+      <div className="bg-muted/35 py-4 lg:py-16">
+        <PageContainer>
           <div className="columns-1 gap-(--gap) [--gap:0.5rem] sm:columns-2 md:columns-3 lg:columns-4">
             {components.map((item: ComponentProps, index: number) => (
               <div
@@ -50,7 +51,7 @@ export default function Page() {
               </div>
             ))}
           </div>
-        </Container>
+        </PageContainer>
       </div>
     </div>
   )
@@ -60,17 +61,17 @@ export const metadata: Metadata = {
   title: "Components",
   description:
     "Over 50 accessible components, neatly grouped into sections. Guaranteed usability for all!",
-  metadataBase: new URL("https://getjustd.com"),
+  metadataBase: new URL("https://intentui.com"),
   applicationName: siteConfig.name,
   keywords: [
     "Components",
-    "Justd Components",
+    "Intent Components",
     "Tailwind CSS",
     "UI Components",
     "UI Kit",
     "UI Library",
     "UI Framework",
-    "Justd",
+    "Intent",
     "Next.js 15",
     "React Aria",
     "React Aria Components",
@@ -85,16 +86,16 @@ export const metadata: Metadata = {
     "Laravel Inertia UI Kit",
     "Laravel Inertia UI Library",
     "Laravel Inertia UI Framework",
-    "Laravel Inertia Justd",
-    "Laravel Justd",
-    "Justd Components",
-    "Justd UI Components",
-    "Justd UI Kit",
-    "Justd UI Library",
-    "Justd UI Framework",
-    "Justd Laravel Inertia",
-    "Justd Laravel",
-    "Justd Inertia",
+    "Laravel Inertia Intent",
+    "Laravel Intent",
+    "Intent Components",
+    "Intent UI Components",
+    "Intent UI Kit",
+    "Intent UI Library",
+    "Intent UI Framework",
+    "Intent Laravel Inertia",
+    "Intent Laravel",
+    "Intent Inertia",
   ],
 }
 

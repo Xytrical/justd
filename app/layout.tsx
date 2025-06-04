@@ -2,15 +2,11 @@ import type React from "react"
 
 import { Providers } from "@/components/providers"
 import { siteConfig } from "@/resources/config/site"
-import { cn } from "@/utils/classes"
 import "@/resources/styles/app.css"
-import { OpenPanelComponent } from "@openpanel/nextjs"
+import { Toast } from "@/components/ui/toast"
 import type { Metadata, Viewport } from "next"
-import { ViewTransitions } from "next-view-transitions"
-import { Geist_Mono } from "next/font/google"
 import localFont from "next/font/local"
 import { twJoin } from "tailwind-merge"
-import { Toast } from "ui"
 
 export default function RootLayout({
   children,
@@ -19,17 +15,17 @@ export default function RootLayout({
 }>) {
   const js = String.raw
   return (
-    <ViewTransitions>
-      <html
-        dir="ltr"
-        lang="en"
-        className={twJoin("scroll-smooth", fontSans.variable, fontMono.variable)}
-        suppressHydrationWarning
-      >
-        <head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: js`
+    <html
+      dir="ltr"
+      lang="en"
+      className={twJoin("scroll-smooth", fontSans.variable, fontMono.variable)}
+      suppressHydrationWarning
+    >
+      <head>
+        <script defer src="https://assets.onedollarstats.com/stonks.js" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: js`
               try {
                 _updateTheme(localStorage.currentTheme)
               } catch (_) {}
@@ -76,30 +72,21 @@ export default function RootLayout({
                 }
               }
             `,
-            }}
-          />
-        </head>
-        <body className={cn("min-h-screen font-sans antialiased")}>
-          <Providers>
-            <Toast />
-            <main>{children}</main>
-            {process.env.NODE_ENV === "production" && (
-              <OpenPanelComponent
-                clientSecret={process.env.ANALYTICS_CLIENT_SECRET as string}
-                clientId={process.env.ANALYTICS_CLIENT_ID as string}
-                trackScreenViews={true}
-                trackAttributes={true}
-              />
-            )}
-          </Providers>
-        </body>
-      </html>
-    </ViewTransitions>
+          }}
+        />
+      </head>
+      <body className="min-h-screen font-sans antialiased">
+        <Providers>
+          <Toast />
+          <main>{children}</main>
+        </Providers>
+      </body>
+    </html>
   )
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://getjustd.com"),
+  metadataBase: new URL("https://intentui.com"),
   title: {
     default: `${siteConfig.name}`,
     template: `%s / ${siteConfig.name}`,
@@ -107,7 +94,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
-    url: "https://getjustd.com",
+    url: "https://intentui.com",
     siteName: siteConfig.name,
   },
   description: siteConfig.description,
@@ -123,7 +110,7 @@ export const metadata: Metadata = {
     "UI Kit",
     "UI Library",
     "UI Framework",
-    "Justd",
+    "Intent",
     "React Aria",
     "React Aria Components",
     "Server Components",
@@ -137,16 +124,25 @@ export const metadata: Metadata = {
     "Laravel Inertia UI Kit",
     "Laravel Inertia UI Library",
     "Laravel Inertia UI Framework",
-    "Laravel Inertia Justd",
-    "Laravel Justd",
-    "Justd Components",
-    "Justd UI Components",
-    "Justd UI Kit",
-    "Justd UI Library",
-    "Justd UI Framework",
-    "Justd Laravel Inertia",
-    "Justd Laravel",
-    "Justd Inertia",
+    "Laravel Inertia Intent",
+    "Laravel Intent",
+    "Intent Components",
+    "Intent UI Components",
+    "Intent UI Kit",
+    "Intent UI Library",
+    "Intent UI Framework",
+    "Intent Laravel Inertia",
+    "Intent Laravel",
+    "Intent Inertia",
+    "Intent UI",
+    "Intent UI Components",
+    "Intent UI Components",
+    "Intent UI Kit",
+    "Intent UI Library",
+    "Intent UI Framework",
+    "Intent Laravel Inertia",
+    "Intent Laravel",
+    "Intent Inertia",
   ],
   manifest: "/manifest.json",
   authors: [
@@ -171,16 +167,12 @@ export const viewport: Viewport = {
 const fontSans = localFont({
   src: [
     { path: "./fonts/InterVariable.woff2", weight: "100 900", style: "normal" },
-    {
-      path: "./fonts/InterVariable-Italic.woff2",
-      weight: "100 900",
-      style: "italic",
-    },
+    { path: "./fonts/InterVariable-Italic.woff2", weight: "100 900", style: "italic" },
   ],
   variable: "--font-inter",
 })
 
-const fontMono = Geist_Mono({
+const fontMono = localFont({
+  src: [{ path: "./fonts/GeistMono[wght].woff2", weight: "100 900", style: "normal" }],
   variable: "--font-geist-mono",
-  subsets: ["latin"],
 })

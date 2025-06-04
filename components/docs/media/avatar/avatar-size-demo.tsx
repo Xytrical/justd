@@ -1,4 +1,4 @@
-import { Avatar } from "ui"
+import { Avatar } from "@/components/ui/avatar"
 
 const sizes = ["small", "medium", "large", "extra-large"] as const
 export default function AvatarSizeDemo() {

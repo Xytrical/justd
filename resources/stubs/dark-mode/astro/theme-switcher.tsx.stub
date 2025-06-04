@@ -1,9 +1,9 @@
 'use client'
 
-import { IconMoon, IconSun } from 'justd-icons'
+import { IconMoon, IconSun } from '@intentui/icons'
 import { useEffect, useState } from 'react'
-import { Button, cn } from 'ui'
-
+import { Button } from 'ui'
+import { twMerge } from 'tailwind-merge';
 export function ThemeSwitcher() {
 const [theme, setTheme] = useState('light')
 const [isMounted, setIsMounted] = useState(false)
@@ -34,19 +34,19 @@ const handleSwitchTheme = () => {
 
 return (
   <Button
-    appearance="outline"
+    intent="outline"
     size="square-petite"
     aria-label='Switch theme'
     onPress={handleSwitchTheme}
   >
     <IconSun
-      className={cn(
+      className={twMerge(
         'h-[1.2rem] w-[1.2rem] transition-all',
         theme === 'dark' ? 'opacity-0 scale-0 -rotate-90' : 'opacity-100 scale-100 rotate-0'
       )}
     />
     <IconMoon
-      className={cn(
+      className={twMerge(
         'absolute h-[1.2rem] w-[1.2rem] transition-all',
         theme === 'dark' ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-0 rotate-90'
       )}

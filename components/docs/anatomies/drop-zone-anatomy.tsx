@@ -1,4 +1,5 @@
-import { DropZone, Label } from "ui"
+import { DropZone } from "@/components/ui/drop-zone"
+import { Label } from "@/components/ui/field"
 
 export default function DropZoneAnatomy() {
   return (

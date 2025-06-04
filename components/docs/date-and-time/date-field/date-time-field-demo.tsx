@@ -3,7 +3,8 @@
 import { useState } from "react"
 
 import { getLocalTimeZone, now, parseZonedDateTime } from "@internationalized/date"
-import { DateField } from "ui"
+
+import { DateField } from "@/components/ui/date-field"
 
 export default function DateTimeFieldDemo() {
   const today = parseZonedDateTime(now(getLocalTimeZone()).toString())

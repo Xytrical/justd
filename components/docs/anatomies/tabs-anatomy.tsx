@@ -1,6 +1,4 @@
-"use client"
-
-import { Tabs } from "ui"
+import { Tabs } from "@/components/ui/tabs"
 
 export default function TabsAnatomy() {
   return (

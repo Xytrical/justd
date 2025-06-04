@@ -1,4 +1,5 @@
-import { Separator, Toggle, ToggleGroup } from "ui"
+import { Separator } from "@/components/ui/separator"
+import { Toggle, ToggleGroup } from "@/components/ui/toggle"
 
 export default function ToggleGroupSelectionModeDemo() {
   return (

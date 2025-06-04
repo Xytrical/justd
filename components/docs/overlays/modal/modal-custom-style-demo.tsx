@@ -1,6 +1,10 @@
 "use client"
 
-import { Button, Form, Modal, Note, TextField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Modal } from "@/components/ui/modal"
+import { Note } from "@/components/ui/note"
+import { TextField } from "@/components/ui/text-field"
 
 export default function ModalCustomStyleDemo() {
   return (

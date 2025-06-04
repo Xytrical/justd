@@ -2,22 +2,21 @@
 
 import { createContext, use, useCallback, useId, useMemo, useState } from "react"
 
-import { IconHamburger } from "justd-icons"
+import { Button, type ButtonProps } from "@/components/ui/button"
+import { Sheet } from "@/components/ui/sheet"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { IconHamburger } from "@intentui/icons"
 import { LayoutGroup, motion } from "motion/react"
 import type { LinkProps } from "react-aria-components"
-import { Link, composeRenderProps } from "react-aria-components"
-import { type VariantProps, tv } from "tailwind-variants"
-
-import { cn } from "@/utils/classes"
-import { useMediaQuery } from "@/utils/use-media-query"
-import { Button, type ButtonProps } from "./button"
-import { composeTailwindRenderProps } from "./primitive"
-import { Sheet } from "./sheet"
+import { Link } from "react-aria-components"
+import { twJoin, twMerge } from "tailwind-merge"
+import { tv } from "tailwind-variants"
 
 type NavbarOptions = {
   side?: "left" | "right"
   isSticky?: boolean
-  intent?: "navbar" | "floating" | "inset"
+  intent?: "navbar" | "float" | "inset"
 }
 
 type NavbarContextProps = {
@@ -43,17 +42,6 @@ interface NavbarProps extends React.ComponentProps<"header">, NavbarOptions {
   isOpen?: boolean
   onOpenChange?: (open: boolean) => void
 }
-
-const navbarStyles = tv({
-  base: "relative isolate flex w-full flex-col",
-  variants: {
-    intent: {
-      floating: "px-2.5 pt-2",
-      navbar: "",
-      inset: "min-h-svh bg-navbar dark:bg-bg",
-    },
-  },
-})
 
 const Navbar = ({
   children,
@@ -101,7 +89,13 @@ const Navbar = ({
     <NavbarContext value={contextValue}>
       <header
         data-navbar-intent={intent}
-        className={navbarStyles({ intent, className })}
+        className={twMerge(
+          "relative isolate flex w-full flex-col",
+          intent === "navbar" && "",
+          intent === "float" && "px-2.5 pt-2",
+          intent === "inset" && "min-h-svh bg-navbar dark:bg-bg",
+          className,
+        )}
         {...props}
       >
         {children}
@@ -120,7 +114,7 @@ const navStyles = tv({
       true: "sticky top-0 z-40",
     },
     intent: {
-      floating:
+      float:
         "mx-auto w-full max-w-7xl rounded-xl border bg-navbar text-navbar-fg md:px-4 2xl:max-w-(--breakpoint-2xl)",
       navbar: "border-b bg-navbar text-navbar-fg md:px-6",
       inset: [
@@ -132,7 +126,7 @@ const navStyles = tv({
 })
 
 interface NavbarNavProps extends React.ComponentProps<"div"> {
-  intent?: "navbar" | "floating" | "inset"
+  intent?: "navbar" | "float" | "inset"
   isSticky?: boolean
   side?: "left" | "right"
   useDefaultResponsive?: boolean
@@ -151,7 +145,7 @@ const NavbarNav = ({ useDefaultResponsive = true, className, ref, ...props }: Na
           classNames={{
             content: "text-fg [&>button]:hidden",
           }}
-          isFloat={intent === "floating"}
+          isFloat={intent === "float"}
         >
           <Sheet.Body className="px-2 md:px-4">{props.children}</Sheet.Body>
         </Sheet.Content>
@@ -180,7 +174,7 @@ const NavbarTrigger = ({ className, onPress, ref, ...props }: NavbarTriggerProps
     <Button
       ref={ref}
       data-navbar-trigger="true"
-      appearance="plain"
+      intent="plain"
       aria-label={props["aria-label"] || "Toggle Navbar"}
       size="square-petite"
       className={className}
@@ -203,7 +197,7 @@ const NavbarSection = ({ className, ...props }: React.ComponentProps<"div">) => 
     <LayoutGroup id={id}>
       <div
         data-navbar-section="true"
-        className={cn(
+        className={twMerge(
           "flex",
           isCompact ? "flex-col gap-y-4" : "flex-row items-center gap-x-3",
           className,
@@ -216,21 +210,6 @@ const NavbarSection = ({ className, ...props }: React.ComponentProps<"div">) => 
   )
 }
 
-const navItemStyles = tv({
-  base: [
-    "*:data-[slot=icon]:-mx-0.5 relative flex cursor-pointer items-center gap-x-2 px-2 text-muted-fg no-underline outline-hidden transition-colors md:text-sm forced-colors:transform-none forced-colors:outline-0 forced-colors:data-disabled:text-[GrayText]",
-    "data-focused:text-fg data-hovered:text-fg data-pressed:text-fg data-focus-visible:outline-1 data-focus-visible:outline-primary",
-    "**:data-[slot=chevron]:size-4 **:data-[slot=chevron]:transition-transform",
-    "data-pressed:**:data-[slot=chevron]:rotate-180 *:data-[slot=icon]:size-4 *:data-[slot=icon]:shrink-0",
-    "data-disabled:cursor-default data-disabled:opacity-50 data-disabled:forced-colors:text-[GrayText]",
-  ],
-  variants: {
-    isCurrent: {
-      true: "cursor-default text-navbar-fg",
-    },
-  },
-})
-
 interface NavbarItemProps extends LinkProps {
   isCurrent?: boolean
 }
@@ -241,8 +220,16 @@ const NavbarItem = ({ className, isCurrent, ...props }: NavbarItemProps) => {
     <Link
       data-navbar-item="true"
       aria-current={isCurrent ? "page" : undefined}
-      className={composeRenderProps(className, (className, ...renderProps) =>
-        navItemStyles({ ...renderProps, isCurrent, className }),
+      className={composeTailwindRenderProps(
+        className,
+        twJoin(
+          "*:data-[slot=icon]:-mx-0.5 relative flex cursor-pointer items-center gap-x-2 px-2 text-muted-fg no-underline outline-hidden transition-colors md:text-sm forced-colors:transform-none forced-colors:outline-0 forced-colors:disabled:text-[GrayText]",
+          "pressed:text-fg hover:text-fg focus:text-fg focus-visible:outline-1 focus-visible:outline-primary",
+          "**:data-[slot=chevron]:size-4 **:data-[slot=chevron]:transition-transform",
+          "*:data-[slot=icon]:size-4 *:data-[slot=icon]:shrink-0 pressed:**:data-[slot=chevron]:rotate-180",
+          "disabled:cursor-default disabled:opacity-50 disabled:forced-colors:text-[GrayText]",
+          isCurrent && "text-navbar-fg",
+        ),
       )}
       {...props}
     >
@@ -250,7 +237,7 @@ const NavbarItem = ({ className, isCurrent, ...props }: NavbarItemProps) => {
         <>
           {typeof props.children === "function" ? props.children(values) : props.children}
 
-          {(isCurrent || values.isCurrent) && !isCompact && intent !== "floating" && (
+          {(isCurrent || values.isCurrent) && !isCompact && intent !== "float" && (
             <motion.span
               layoutId="current-indicator"
               data-slot="current-indicator"
@@ -268,7 +255,7 @@ const NavbarLogo = ({ className, ...props }: LinkProps) => {
     <Link
       className={composeTailwindRenderProps(
         className,
-        "relative flex items-center gap-x-2 px-2 py-4 text-fg data-focus-visible:outline-1 data-focus-visible:outline-primary data-focused:outline-hidden md:mr-4 md:px-0 md:py-0",
+        "relative flex items-center gap-x-2 px-2 py-4 text-fg focus:outline-hidden focus-visible:outline-1 focus-visible:outline-primary md:mr-4 md:px-0 md:py-0",
       )}
       {...props}
     />
@@ -276,35 +263,36 @@ const NavbarLogo = ({ className, ...props }: LinkProps) => {
 }
 
 const NavbarFlex = ({ className, ref, ...props }: React.ComponentProps<"div">) => {
-  return <div ref={ref} className={cn("flex items-center gap-2 md:gap-3", className)} {...props} />
+  return (
+    <div ref={ref} className={twMerge("flex items-center gap-2 md:gap-3", className)} {...props} />
+  )
 }
 
-const compactStyles = tv({
-  base: "flex justify-between bg-navbar text-navbar-fg peer-has-[[data-navbar-intent=floating]]:border md:hidden",
-  variants: {
-    intent: {
-      floating: "h-12 rounded-lg border px-3.5",
-      inset: "h-14 border-b px-4",
-      navbar: "h-14 border-b px-4",
-    },
-  },
-})
-
-interface NavbarCompactProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof compactStyles> {
+interface NavbarCompactProps extends React.ComponentProps<"div">, Pick<NavbarOptions, "intent"> {
   ref?: React.RefObject<HTMLDivElement>
 }
 const NavbarCompact = ({ className, ref, ...props }: NavbarCompactProps) => {
   const { intent } = useNavbar()
-  return <div ref={ref} className={compactStyles({ intent, className })} {...props} />
+  return (
+    <div
+      ref={ref}
+      className={twMerge(
+        "flex justify-between bg-navbar text-navbar-fg peer-has-[[data-navbar-intent=float]]:border md:hidden",
+        intent === "float" && "h-12 rounded-lg border px-3.5",
+        intent === "inset" && "h-14 border-b px-4",
+        intent === "navbar" && "h-14 border-b px-4",
+        className,
+      )}
+      {...props}
+    />
+  )
 }
 
 const insetStyles = tv({
   base: "grow",
   variants: {
     intent: {
-      floating: "",
+      float: "",
       inset:
         "bg-bg md:rounded-lg md:shadow-xs md:ring-1 md:ring-fg/15 dark:bg-navbar md:dark:ring-border",
       navbar: "",
@@ -318,7 +306,7 @@ const NavbarInset = ({ className, ref, ...props }: React.ComponentProps<"div">) 
     <main
       ref={ref}
       data-navbar-intent={intent}
-      className={cn(
+      className={twMerge(
         "flex flex-1 flex-col",
         intent === "inset" && "bg-navbar pb-2 md:px-2 dark:bg-bg",
         className,

@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 
 import { CodeHighlighter } from "@/components/code/code-highlighter"
-import { CopyMotionButton } from "@/components/code/copy-button"
+import { CopyButton } from "@/components/code/copy-button"
 import { extractImports, extractJSX } from "@/resources/lib/utils"
 import { Group } from "react-aria-components"
 
@@ -37,7 +37,7 @@ export const Anatomy = ({ show, ...props }: AnatomyProps) => {
   }, [show])
   if (processedSourceCode) {
     return (
-      <section className="not-prose my-6">
+      <section className="not-prose group/how my-6">
         <p className="-mt-2 mb-4">
           {props.message
             ? props.message
@@ -47,7 +47,7 @@ export const Anatomy = ({ show, ...props }: AnatomyProps) => {
         {processedSourceCode && (
           <>
             <Group className="group relative">
-              <CopyMotionButton
+              <CopyButton
                 className="absolute top-2 right-1.5"
                 text={extractImports(processedSourceCode as string)}
               />
@@ -60,7 +60,7 @@ export const Anatomy = ({ show, ...props }: AnatomyProps) => {
               />
             </Group>
             <Group className="group relative mt-4">
-              <CopyMotionButton
+              <CopyButton
                 className="absolute top-2 right-1.5"
                 text={extractJSX(processedSourceCode as string) as any}
               />

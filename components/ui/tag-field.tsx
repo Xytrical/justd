@@ -5,26 +5,24 @@ import { useCallback, useState } from "react"
 import type { Key } from "react-aria-components"
 import { Group, TextField } from "react-aria-components"
 import type { ListData } from "react-stately"
-import { twJoin } from "tailwind-merge"
+import { twJoin, twMerge } from "tailwind-merge"
 import { tv } from "tailwind-variants"
 
-import { cn } from "@/utils/classes"
-import type { FieldProps } from "./field"
-import { Description, Input, Label } from "./field"
-import type { RestrictedIntent, TagGroupProps } from "./tag-group"
-import { Tag, TagGroup, TagList } from "./tag-group"
+import type { FieldProps } from "@/components/ui/field"
+import { Description, Input, Label } from "@/components/ui/field"
+import type { RestrictedIntent, TagGroupProps } from "@/components/ui/tag-group"
+import { Tag, TagGroup, TagList } from "@/components/ui/tag-group"
 
 const tagFieldsStyles = tv({
-  base: ["relative flex min-h-10 flex-row flex-wrap items-center transition"],
+  base: "relative flex min-h-10 flex-row flex-wrap items-center transition",
   variants: {
     appearance: {
       outline: [
         "rounded-lg border px-1 shadow-xs",
-        "has-[input[data-focused=true]]:border-ring/70",
-        "has-[input[data-invalid=true][data-focused=true]]:border-danger has-[input[data-invalid=true]]:border-danger has-[input[data-invalid=true]]:ring-danger/20",
-        "has-[input[data-focused=true]]:ring-4 has-[input[data-focused=true]]:ring-ring/20",
+        "has-[input[data-invalid=true][focus=true]]:border-danger has-[input[data-invalid=true]]:border-danger has-[input[data-invalid=true]]:ring-danger/20",
+        "has-[input[focus=true]]:border-ring/70 has-[input[focus=true]]:ring-4 has-[input[focus=true]]:ring-ring/20",
       ],
-      plain: ["has-[input[data-focused=true]]:border-transparent"],
+      plain: "has-[input[focus=true]]:border-transparent",
     },
   },
 })
@@ -141,7 +139,7 @@ const TagField = ({
   }, [list, onItemCleared])
 
   return (
-    <div className={cn("flex w-full flex-col gap-y-1.5", className)}>
+    <div className={twMerge("flex w-full flex-col gap-y-1.5", className)}>
       {props.label && <Label>{props.label}</Label>}
       <Group className={twJoin("flex flex-col", props.isDisabled && "opacity-50")}>
         <TagGroup

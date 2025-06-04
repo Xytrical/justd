@@ -1,4 +1,4 @@
-import { Table } from "ui"
+import { Table } from "@/components/ui/table"
 
 export default function TableAnatomy() {
   return (

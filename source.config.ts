@@ -13,13 +13,6 @@ export const { docs, meta } = defineDocs({
       status: z.string().optional(),
     }),
   },
-  meta: {
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      slug: z.string(),
-      description: z.string(),
-    }),
-  },
 })
 
 export const blog = defineCollections({

@@ -1,21 +1,21 @@
 "use client"
 
-import { IconAccessible, IconAccessibleFill } from "justd-icons"
-import { Toggle } from "ui"
+import { Toggle } from "@/components/ui/toggle"
+import { IconAccessible, IconAccessibleFill } from "@intentui/icons"
 
 export default function ToggleSizeDemo() {
   return (
     <div className="flex flex-wrap gap-2">
-      <Toggle appearance="outline" size="square-petite">
+      <Toggle intent="outline" size="square-petite">
         {({ isSelected }) => <>{isSelected ? <IconAccessibleFill /> : <IconAccessible />}</>}
       </Toggle>
-      <Toggle appearance="outline" size="small">
+      <Toggle intent="outline" size="small">
         {({ isSelected }) => <>{isSelected ? "Unpin" : "Pin"}</>}
       </Toggle>
-      <Toggle appearance="outline" size="medium">
+      <Toggle intent="outline" size="medium">
         {({ isSelected }) => <>{isSelected ? "Unpin" : "Pin"}</>}
       </Toggle>
-      <Toggle appearance="outline" size="large">
+      <Toggle intent="outline" size="large">
         {({ isSelected }) => <>{isSelected ? "Unpin" : "Pin"}</>}
       </Toggle>
     </div>

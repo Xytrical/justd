@@ -1,5 +1,25 @@
 "use client"
 
+import { Avatar } from "@/components/ui/avatar"
+import { Link } from "@/components/ui/link"
+import { Menu } from "@/components/ui/menu"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarDisclosure,
+  SidebarDisclosureGroup,
+  SidebarDisclosurePanel,
+  SidebarDisclosureTrigger,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarItem,
+  SidebarLabel,
+  SidebarLink,
+  SidebarRail,
+  SidebarSection,
+  SidebarSectionGroup,
+  useSidebar,
+} from "@/components/ui/sidebar"
 import {
   IconArchive,
   IconArrowDown,
@@ -10,7 +30,6 @@ import {
   IconChevronLgDown,
   IconCircleQuestionmark,
   IconClock,
-  IconCommandRegular,
   IconCreditCard,
   IconDashboard,
   IconDotsHorizontal,
@@ -26,28 +45,13 @@ import {
   IconShield,
   IconShoppingBag,
   IconTicket,
-} from "justd-icons"
-import {
-  Avatar,
-  Link,
-  Menu,
-  Sidebar,
-  SidebarContent,
-  SidebarDisclosure,
-  SidebarDisclosureGroup,
-  SidebarDisclosurePanel,
-  SidebarDisclosureTrigger,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarItem,
-  SidebarLabel,
-  SidebarLink,
-  SidebarRail,
-  SidebarSection,
-  SidebarSectionGroup,
-} from "ui"
+} from "@intentui/icons"
+import { useTheme } from "next-themes"
+import { twMerge } from "tailwind-merge"
 
 export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
+  const { theme, setTheme } = useTheme()
+  const { state } = useSidebar()
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -61,22 +65,22 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
       </SidebarHeader>
       <SidebarContent>
         <SidebarSectionGroup>
-          <SidebarSection title="Overview">
+          <SidebarSection label="Overview">
             <SidebarItem tooltip="Overview" isCurrent href="#">
               <IconDashboard />
               <SidebarLabel>Overview</SidebarLabel>
             </SidebarItem>
 
             <SidebarItem tooltip="Orders">
-              {({ isHovered, isCollapsed }) => (
+              {({ isCollapsed, isFocused }) => (
                 <>
                   <SidebarLink href="#">
                     <IconShoppingBag />
                     <SidebarLabel>Orders</SidebarLabel>
                   </SidebarLink>
-                  {!isCollapsed && isHovered && (
+                  {(!isCollapsed || isFocused) && (
                     <Menu>
-                      <Menu.Trigger aria-label="Manage">
+                      <Menu.Trigger data-slot="menu-trigger" aria-label="Manage">
                         <IconDotsHorizontal />
                       </Menu.Trigger>
                       <Menu.Content offset={0} placement="right top">
@@ -107,12 +111,12 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
               )}
             </SidebarItem>
             <SidebarItem tooltip="Products">
-              {({ isHovered, isCollapsed }) => (
+              {({ isCollapsed, isFocused }) => (
                 <>
                   <SidebarLink href="#">
                     <SidebarLabel>Products</SidebarLabel>
                   </SidebarLink>
-                  {!isCollapsed && isHovered && (
+                  {(!isCollapsed || isFocused) && (
                     <Menu>
                       <Menu.Trigger aria-label="Manage">
                         <IconDotsHorizontal />
@@ -199,7 +203,7 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
 
       <SidebarFooter>
         <Menu>
-          <Menu.Trigger className="group" aria-label="Profile" data-slot="menu-trigger">
+          <Menu.Trigger className="group" aria-label="Profile">
             <Avatar shape="square" src="/images/avatar/cobain.jpg" />
             <div className="in-data-[sidebar-collapsible=dock]:hidden text-sm">
               <SidebarLabel>Kurt Cobain</SidebarLabel>
@@ -210,7 +214,10 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
               className="absolute right-3 size-4 transition-transform group-pressed:rotate-180"
             />
           </Menu.Trigger>
-          <Menu.Content placement="bottom right" className="sm:min-w-(--trigger-width)">
+          <Menu.Content
+            placement="bottom right"
+            className={twMerge(state === "expanded" ? "sm:min-w-(--trigger-width)" : "sm:min-w-60")}
+          >
             <Menu.Section>
               <Menu.Header separator>
                 <span className="block">Kurt Cobain</span>
@@ -231,10 +238,6 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
               Security
             </Menu.Item>
             <Menu.Separator />
-            <Menu.Item>
-              <IconCommandRegular />
-              Command Menu
-            </Menu.Item>
 
             <Menu.Item href="#contact">
               <IconHeadphones />

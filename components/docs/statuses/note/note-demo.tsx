@@ -1,6 +1,6 @@
 "use client"
 
-import { Note } from "ui"
+import { Note } from "@/components/ui/note"
 
 export default function NoteDemo() {
   return (

@@ -1,5 +1,10 @@
 "use client"
 
+import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
+import { Navbar } from "@/components/ui/navbar"
+import { Separator } from "@/components/ui/separator"
 import {
   IconBrandApple,
   IconCommandRegular,
@@ -9,8 +14,7 @@ import {
   IconSettings,
   IconShield,
   IconShoppingBag,
-} from "justd-icons"
-import { Avatar, Button, Menu, Navbar, Separator } from "ui"
+} from "@intentui/icons"
 
 export default function AppNavbar() {
   return (
@@ -43,7 +47,7 @@ export default function AppNavbar() {
         </Navbar.Flex>
         <Navbar.Flex>
           <Navbar.Flex>
-            <Button appearance="plain" size="square-petite" aria-label="Your Bag">
+            <Button intent="plain" size="square-petite" aria-label="Your Bag">
               <IconShoppingBag />
             </Button>
           </Navbar.Flex>

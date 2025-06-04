@@ -1,11 +1,12 @@
 import { useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
+import { useQueryString } from "@/resources/hooks/use-query-string"
 import { title } from "@/resources/lib/utils"
-import { useQueryString } from "hooks/use-query-string"
-import { IconChevronLgDown } from "justd-icons"
+import { IconChevronLgDown } from "@intentui/icons"
 import { usePathname, useRouter } from "next/navigation"
 import type { Selection } from "react-aria-components"
-import { Button, Menu } from "ui"
 
 const sizes = [
   { id: "size-4", name: "Size 4" },
@@ -29,8 +30,8 @@ export function SelectSize() {
   return (
     <Menu aria-label="Select Icon Size">
       <Button
-        className="**:data-[slot=icon]:transition-transform [&[data-pressed]_[data-slot=icon]]:rotate-180"
-        appearance="outline"
+        className="**:data-[slot=icon]:transition-transform [&[pressed]_[data-slot=icon]]:rotate-180"
+        intent="outline"
       >
         <span className="inline sm:hidden">
           {title([...selectedSize].join(", ").replace("size-", " ")) || "5"}

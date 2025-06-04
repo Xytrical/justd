@@ -1,6 +1,6 @@
 "use client"
 
-import { DatePicker } from "ui"
+import { DatePicker } from "@/components/ui/date-picker"
 
 export default function DatePickerDemo() {
   return <DatePicker label="Event date" />

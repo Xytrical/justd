@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { Textarea } from "ui"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function TextareaControlledDemo() {
   const [value, setValue] = useState("")

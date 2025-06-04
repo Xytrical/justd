@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 
-import { Button, Form, Textarea } from "ui"
-
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea"
 export default function TextareaValidationDemo() {
   const [value, setValue] = useState("")
   return (

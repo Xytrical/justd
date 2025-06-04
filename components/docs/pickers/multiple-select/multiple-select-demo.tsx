@@ -1,23 +1,12 @@
 "use client"
 
-import { useListData } from "react-stately"
-import type { SelectedKey } from "ui"
-import { MultipleSelect } from "ui"
+import { MultipleSelect } from "@/components/ui/multiple-select"
 
 export default function MultipleSelectDemo() {
-  const selectedItems = useListData<SelectedKey>({
-    initialItems: [fruits[0], fruits[1]],
-  })
   return (
-    <MultipleSelect
-      className="max-w-xs"
-      label="Fruits"
-      selectedItems={selectedItems}
-      items={fruits}
-      tag={(item) => <MultipleSelect.Tag textValue={item.name}>{item.name}</MultipleSelect.Tag>}
-    >
+    <MultipleSelect className="max-w-xs" label="Fruits" items={fruits}>
       {(item) => {
-        return <MultipleSelect.Option textValue={item.name}>{item.name}</MultipleSelect.Option>
+        return <MultipleSelect.Item textValue={item.name}>{item.name}</MultipleSelect.Item>
       }}
     </MultipleSelect>
   )
@@ -44,4 +33,4 @@ const fruits = [
   { id: 18, name: "Tangerine" },
   { id: 19, name: "Ugli Fruit" },
   { id: 20, name: "Watermelon" },
-] as const satisfies SelectedKey[]
+]

@@ -5,12 +5,14 @@ import React, { useState } from "react"
 import generated from "@/__registry__/generated"
 import { CodeHighlighter } from "@/components/code/code-highlighter"
 import { CopyButton, CopyMotionButton } from "@/components/code/copy-button"
+import { PullRegistry } from "@/components/code/pull-registry"
+import { Loader } from "@/components/ui/loader"
+import { Tabs } from "@/components/ui/tabs"
 import { copyToClipboard } from "@/resources/lib/copy"
 import type { RegistryItem } from "@/resources/types"
-import { cn } from "@/utils/classes"
-import { IconBrandCss, IconBrandReactjs, IconFile, IconWindowVisitFill } from "justd-icons"
+import { IconBrandCss, IconBrandReactjs, IconFile, IconWindowVisitFill } from "@intentui/icons"
 import { Tab } from "react-aria-components"
-import { Loader, Tabs } from "ui"
+import { twMerge } from "tailwind-merge"
 
 interface Props {
   source: Record<string, string>
@@ -52,7 +54,7 @@ export function CodeSandbox({ isIframe = true, classNames, source, src }: Props)
       <TabsList src={src} />
       <Tabs.Panel
         id="preview"
-        className={cn("max-h-110 grow overflow-y-auto", classNames?.preview)}
+        className={twMerge("max-h-110 grow overflow-y-auto", classNames?.preview)}
       >
         <React.Suspense
           fallback={
@@ -82,8 +84,8 @@ export function CodeSandbox({ isIframe = true, classNames, source, src }: Props)
                 {Object.keys(rawSourceCode).map((key) => (
                   <Tab
                     className={(values) =>
-                      cn(
-                        "flex cursor-pointer items-center gap-x-1.5 whitespace-nowrap p-3 font-mono text-muted-fg text-xs tracking-tight",
+                      twMerge(
+                        "flex cursor-default items-center gap-x-1.5 whitespace-nowrap p-3 font-mono text-muted-fg text-xs tracking-tight",
                         "**:data-[slot=icon]:-ml-0.5 border-transparent border-x outline-hidden first:border-l-0 **:data-[slot=icon]:size-4 **:data-[slot=icon]:shrink-0",
                         (values.isSelected || values.isFocused || values.isFocusVisible) &&
                           "border-input bg-secondary text-secondary-fg dark:bg-muted",
@@ -138,10 +140,12 @@ export function CodeSandbox({ isIframe = true, classNames, source, src }: Props)
 interface TabListProps {
   src?: string
   code?: string
+  hasRegistry?: boolean
+  blockDemo?: string
   copyButton?: boolean
 }
 
-export const TabsList = ({ src, code, copyButton }: TabListProps) => {
+export const TabsList = ({ hasRegistry, src, code, blockDemo, copyButton }: TabListProps) => {
   return (
     <div className="group relative">
       <Tabs.List>
@@ -154,6 +158,13 @@ export const TabsList = ({ src, code, copyButton }: TabListProps) => {
           </Tabs.Tab>
         )}
       </Tabs.List>
+      {hasRegistry && (
+        <PullRegistry
+          className="-top-0.5 absolute right-0"
+          processedSourceCode={code as string}
+          blockDemo={blockDemo as string}
+        />
+      )}
       {copyButton && <CopyMotionButton text={code!} />}
     </div>
   )

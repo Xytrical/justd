@@ -5,6 +5,10 @@ order: 2
 published: true
 ---
 
+## Framework Guides
+You can choose from a list of frameworks to get started with Intent.
+<FrameworkGuides/>
+
 ## Installation via CLI
 Before executing the command, ensure that **tailwind** is installed. If not, follow the instructions [here](https://tailwindcss.com/docs/installation) for installation.
 
@@ -36,23 +40,17 @@ When you're run this command, it will ask a couple of questions. Like where's yo
 If it's all good, you will see the following:
 ```
 Not sure what to do next?
-Visit our documentation at: https://getjustd.com
+Visit our documentation at: https://intentui.com
 
 Now try to add some components to your project
-by running: npx justd-cli@latest add
-
-      _           _      _
-     | |_   _ ___| |_ __| |
-  _  | | | | / __| __/ _` |
- | |_| | |_| \__ \ || (_| |
-  \___/ \__,_|___/\__\__,_|
+by running: npx @intentui/cli@latest add
 ```
 
-### Justd Config
-After running the `init` command, a `.justd` file will appear in your project. This file holds your project's configuration, including settings for gray tones, paths, and more.
+### Intent Config
+After running the `init` command, a `intentui.json` file will appear in your project. This file holds your project's configuration, including settings for gray tones, paths, and more.
 ```
 {
-  "$schema": "https://getjustd.com/schema.json",
+  "$schema": "https://intentui.com/schema.json",
   "ui": "src/components/ui",
   "utils": "src/utils",
   "gray": "zinc",
@@ -117,71 +115,20 @@ This command will present a list of available components, which you can navigate
   ```
 
 ### Diff
-You can see the differences between your current setup and the new one by using the following command:
+Compare your current setup with the new one using the following command:
 
-<Installation options={{isExecutor: true}} command='npx justd-cli@latest diff' items={['']} />
+<Installation options={{isExecutor: true}} command='npx @intentui/cli@latest diff' items={['']} />
 
-You can see this [tweet](https://x.com/irsyadadl/status/1823355475020402781) if you're not sure.
+If you're unsure, check out [this tweet](https://x.com/irsyadadl/status/1823355475020402781).
 
-You can also doing a diff to specific components by using the following command:
-<Installation command='npx justd-cli@latest diff multiple-select menu modal' items={['']}/>
+To diff specific components, use:
 
-## Starter Kit
-Explore our range of starter kits designed to suit various project needs. Whether you're working with Next.js, Laravel, Vite, or other frameworks, we've got you covered.
-
-<Note intent='info'>
-    Got a starter kit for something else, like Remix or Astro? Consider submitting a [PR](https://github.com/justdlabs/next.js/issues/new) to help expand our list!
-</Note>
-
-### Vite
-For a simple and speedy setup with React Router 7 and Vite, try the [Vite Starter Kit](https://github.com/justdlabs/vite):
-
-```
-git clone https://github.com/justdlabs/vite.git my-app
-cd my-app
-bun i && bun run dev
-```
-
-### Laravel
-Start your Laravel journey with our [Laravel Starter Kit](https://github.com/justdlabs/laravel). Make sure you have [Composer](https://getcomposer.org/download/) installed. Follow these steps:
-
-```
-composer create-project justd/laravel app
-cd app
-npm i && npm run dev
-php artisan serve
-```
-
-Your Laravel project is now up and running!
-
-### Next.js
-Elevate your projects with the [Next.js Starter Kit](https://next.getjustd.com/). Fully loaded and ready to go:
-
-<Installation command='npx create-next-app@latest -e https://github.com/justdlabs/next.js project-name'/>
-
-### Remix
-Interested in Remix? Dive into the [Remix Starter Kit](https://remix.getjustd.com/), crafted by [José Miguel](https://github.com/m1guer). Here’s how to get started:
-
-<Installation command='npx create-remix@latest --template justdlabs/remix'/>
-
-### Tanstack Router
-The starter kit for Tanstack Router is available [here](https://github.com/justdlabs/tanstack-router). Start with this command:
-
-<Installation command='git clone https://github.com/justdlabs/tanstack-router.git tanstack-router-app'/>
-    After cloning the repository, navigate to the `tanstack-router-app` directory and run the following command to install the dependencies and start the development server:
-<Installation command='npm i && npm run dev'/>
-
-### Astro
-Looking for a production-ready Astro setup? Check out our [Astro Starter Kit](https://astro.getjustd.com/). Start with this command:
-
-<Installation command='npm create astro@latest -- --template justdlabs/astro'/>
-
-For more details, visit the [Astro repository](https://github.com/justdlabs/astro).
+<Installation command='npx @intentui/cli@latest diff multiple-select menu modal' items={['']}/>
 
 
 
 ## Formatter
-Justd utilizes the <NewTab href='https://biomejs.dev/'>Biome</NewTab> formatter for code formatting. To use the Biome formatter with Justd components, we recommend the following configuration:
+Intent utilizes the <NewTab href='https://biomejs.dev/'>Biome</NewTab> formatter for code formatting. To use the Biome formatter with Intent components, we recommend the following configuration:
 
 <CodeBlock
     source={{
@@ -191,33 +138,32 @@ Justd utilizes the <NewTab href='https://biomejs.dev/'>Biome</NewTab> formatter 
 ## Manual Installation
 To begin setting up the design system, start by installing these packages:
 
-<Installation options={{isManual: true}} items={['react-aria-components']} />
+<Installation options={{isManual: true}} items={['react-aria-components', 'tailwindcss-react-aria-components']} />
 
 Next, add **Tailwind Variant**, **Tailwind Merge**, and for utility functions:
 
 <Installation options={{isManual: true}} items={['tailwind-variants', 'tailwind-merge', 'clsx']} />
 
-Following that, include the **Tailwind Animate** for managing animations and **Justd Icons** for icons:
+Following that, include the **Tailwind Animate** for managing animations and **Intent Icons** for icons:
 
-<Installation options={{isManual: true}} items={['justd-icons', 'tailwindcss-animate']} />
+<Installation options={{isManual: true}} items={['@intentui/icons', 'tw-animate-css']} />
 
 ### Style and Primitive
-After installing the required packages, you can copy the CSS below into your global CSS file and move the primitives to your UI folder. Primitives serve as utilities for managing states, including `focusRing`, `focusStyles`, and `focusButtonStyles`. Additionally, there’s a hook called `useMediaQuery` and a function named `composeTailwindRenderProps`. Every component in Justd relies on helpers from this file, so it’s essential to include it!
+After installing the required packages, you can copy the CSS below into your global CSS file and move the primitives to your UI folder. Primitives serve as utilities for managing states, including `focusRing`, `focusStyles`, and `focusButtonStyles`.
 
 <CodeBlock
     source={{
         'app/globals.css': 'installation/main.css',
-        'ui/primitive.tsx': 'installation/primitive.tsx',
+        'lib/primitive.ts': 'installation/primitive.ts',
     }} />
 
 ### Classes and Hooks
 
-All components that use the `cn` function will import it from the `utils/classes.ts` file, which provides a `cn` function compatible with server components. Hooks are only used in specific components like the **Navbar**, **Sidebar**, **Popover**, and **Command Menu**. If you're using the **Justd CLI**, it will handle this automatically; otherwise, download the file below.
+Hooks are only used in specific components like the **Navbar**, **Sidebar**, **Popover**, and **Command Menu**. If you're using the **Intent CLI**, it will handle this automatically; otherwise, download the file below.
 
 <CodeBlock
     source={{
-        'utils/classes.ts': 'utils/classes.ts',
-        'utils/use-media-query.ts': 'utils/use-media-query.ts',
+        'hooks/use-media-query.ts': 'hooks/use-media-query.ts',
     }} />
 
 
@@ -225,7 +171,6 @@ All components that use the `cn` function will import it from the `utils/classes
 Indeed, it's efficient because the `index.ts` file in your UI folder serves as a hub. Even if the button and badge components are in separate files, you can import them together easily. First, create a `ui/index.ts` file:
 
 ```ts title="ui/index.ts"
-export * from "./primitive";
 export * from "./sidebar";
 export * from "./navbar";
 export * from "./tree";
@@ -308,7 +253,7 @@ For more information, refer to the [Tailwind documentation](https://tailwindcss.
 If you want your development environment to be more intelligent, you can follow instructions here at [Tailwind Variants](https://www.tailwind-variants.org/docs/getting-started#intellisense-setup-optional).
 
 ## Dark Mode
-Justd supports dark mode out of the box. Every framework has its own way of implementing dark mode. So you better check the docs list below:
+Intent supports dark mode out of the box. Every framework has its own way of implementing dark mode. So you better check the docs list below:
 - [Vite](/docs/dark-mode/vite)
 - [Inertia.js](/docs/dark-mode/inertia-js)
 - [Next.js](/docs/dark-mode/next-js)

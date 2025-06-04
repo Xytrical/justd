@@ -1,4 +1,4 @@
-import * as icons from "justd-icons"
+import * as icons from "@intentui/icons"
 
 /**
  * Common aliases for icons

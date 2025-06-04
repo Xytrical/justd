@@ -1,30 +1,18 @@
 "use client"
 
-import { useListData } from "react-stately"
-import type { SelectedKey } from "ui"
-import { MultipleSelect } from "ui"
+import { MultipleSelect } from "@/components/ui/multiple-select"
 
 export default function MultipleSelectShapeDemo() {
-  const selectedItems = useListData<SelectedKey>({
-    initialItems: [fruits[0]!],
-  })
   return (
-    <MultipleSelect
-      className="max-w-xs"
-      label="Fruits"
-      shape="circle"
-      selectedItems={selectedItems}
-      items={fruits}
-      tag={(item) => <MultipleSelect.Tag textValue={item.name}>{item.name}</MultipleSelect.Tag>}
-    >
+    <MultipleSelect className="max-w-xs" label="Fruits" shape="circle" items={fruits}>
       {(item) => {
-        return <MultipleSelect.Option textValue={item.name}>{item.name}</MultipleSelect.Option>
+        return <MultipleSelect.Item textValue={item.name}>{item.name}</MultipleSelect.Item>
       }}
     </MultipleSelect>
   )
 }
 
-const fruits: SelectedKey[] = [
+const fruits = [
   { id: 1, name: "Apple" },
   { id: 2, name: "Banana" },
   { id: 3, name: "Cherry" },

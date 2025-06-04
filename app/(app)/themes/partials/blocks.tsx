@@ -1,4 +1,3 @@
-import AppNavbar from "@/app/blocks/navbar/navbar-00/app-navbar"
 import AreaChartGradientDemo from "@/components/docs/charts/area/area-chart-gradient-demo"
 import BarChartMultipleDemo from "@/components/docs/charts/bar/bar-chart-multiple-demo"
 import PieChartDonutWithTextDemo from "@/components/docs/charts/pie/pie-chart-donut-with-text-demo"
@@ -8,48 +7,28 @@ import RangeCalendarControlledDemo from "@/components/docs/date-and-time/calenda
 import ModalDemo from "@/components/docs/overlays/modal/modal-demo"
 import PopoverDemo from "@/components/docs/overlays/popover/popover-demo"
 import { users } from "@/components/docs/pickers/combo-box/combo-box-avatar-demo"
-import { roles } from "@/components/docs/pickers/select/select-item-details-demo"
-import { IconDashboard } from "justd-icons"
-import {
-  Avatar,
-  Button,
-  Card,
-  Checkbox,
-  CheckboxGroup,
-  Choicebox,
-  ComboBox,
-  Link,
-  Radio,
-  RadioGroup,
-  Select,
-  Separator,
-  Switch,
-  TextField,
-  buttonStyles,
-} from "ui"
+import { roles } from "@/components/docs/pickers/select/select-details-description-demo"
+import { Avatar } from "@/components/ui/avatar"
+import { Button, buttonStyles } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"
+import { Choicebox } from "@/components/ui/choicebox"
+import { ComboBox } from "@/components/ui/combo-box"
+import { Link } from "@/components/ui/link"
+import { Radio, RadioGroup } from "@/components/ui/radio"
+import { Select } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { TextField } from "@/components/ui/text-field"
+import { IconDashboard } from "@intentui/icons"
 
 export function Blocks() {
   return (
     <div className="grid gap-1 **:data-[slot=card]:rounded-md">
-      <div className="-mx-2.5">
-        <AppNavbar className="-mt-1 *:data-navbar-nav:rounded-md" intent="floating" />
-      </div>
-      <div className="grid gap-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="mt-1 grid gap-1 sm:grid-cols-2 md:grid-cols-3">
         <Card className="flex flex-col items-center justify-center gap-y-6 p-6">
           <div className="grid grid-cols-2 gap-2">
             {Object.keys(buttonStyles.variants.intent).map((intent) => (
               <Button key={intent} intent={intent as keyof typeof buttonStyles.variants.intent}>
-                <IconDashboard /> Label
-              </Button>
-            ))}
-          </div>
-          <Separator className="mx-auto max-w-[16rem]" />
-          <div className="grid grid-cols-2 gap-2">
-            {Object.keys(buttonStyles.variants.appearance).map((appearance) => (
-              <Button
-                key={appearance}
-                appearance={appearance as keyof typeof buttonStyles.variants.appearance}
-              >
                 <IconDashboard /> Label
               </Button>
             ))}
@@ -93,7 +72,8 @@ export function Blocks() {
               <Select.List items={roles}>
                 {(item) => (
                   <Select.Option id={item.id} textValue={item.name}>
-                    <Select.OptionDetails label={item.name} description={item.description} />
+                    <Select.Label>{item.name}</Select.Label>
+                    <Select.Description>{item.description}</Select.Description>
                   </Select.Option>
                 )}
               </Select.List>
@@ -151,13 +131,13 @@ export function Blocks() {
           >
             <Choicebox.Item
               id="standard"
-              title="Standard"
+              label="Standard"
               description="Perfect for growing your team."
             />
-            <Choicebox.Item id="pro" title="Pro" description="Includes all advanced tools." />
+            <Choicebox.Item id="pro" label="Pro" description="Includes all advanced tools." />
             <Choicebox.Item
               id="enterprise"
-              title="Enterprise"
+              label="Enterprise"
               description="Custom solutions for large organizations."
             />
           </Choicebox>

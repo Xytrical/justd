@@ -1,12 +1,13 @@
 "use client"
 
-import { IconDashboard, IconSettings, IconShield } from "justd-icons"
-import { Button, Menu } from "ui"
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
+import { IconDashboard, IconSettings, IconShield } from "@intentui/icons"
 
 export default function MenuRespectScreenDemo() {
   return (
     <Menu respectScreen={false}>
-      <Button appearance="outline">Open</Button>
+      <Button intent="outline">Open</Button>
       <Menu.Content placement="bottom" className="min-w-48">
         <Menu.Item>
           <IconDashboard />

@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 
-import { IconPin, IconUnpin } from "justd-icons"
-import { Toggle } from "ui"
+import { Toggle } from "@/components/ui/toggle"
+import { IconPin, IconUnpin } from "@intentui/icons"
 
 export default function ToggleControlledDemo() {
   const [isSelected, setSelected] = useState(false)

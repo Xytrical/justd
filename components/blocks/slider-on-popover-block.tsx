@@ -2,8 +2,12 @@
 
 import { useRef, useState } from "react"
 
-import { IconAdjustment } from "justd-icons"
-import { Button, Description, Popover, Separator, Slider } from "ui"
+import { Button } from "@/components/ui/button"
+import { Description } from "@/components/ui/field"
+import { Popover } from "@/components/ui/popover"
+import { Separator } from "@/components/ui/separator"
+import { Slider } from "@/components/ui/slider"
+import { IconAdjustment } from "@intentui/icons"
 
 export function SliderOnPopoverBlock() {
   const [fontSize, setFontSize] = useState<number>(16)
@@ -19,7 +23,7 @@ export function SliderOnPopoverBlock() {
         onPress={() => setIsOpen(true)}
         aria-label="Slider on Popover"
         size="square-petite"
-        appearance="outline"
+        intent="outline"
       >
         <IconAdjustment />
       </Button>

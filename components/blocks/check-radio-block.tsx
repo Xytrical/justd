@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 
-import { Wrapper } from "@/app/(app)/(home)/partials/resources"
-import { Checkbox, CheckboxGroup, Radio, RadioGroup } from "ui"
+import { Wrapper } from "@/app/(home)/partials/resources"
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"
+import { Radio, RadioGroup } from "@/components/ui/radio"
 
 export function CheckRadioBlock() {
   const [selectedRadio, setSelectedRadio] = useState("lowSecurity")

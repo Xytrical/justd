@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorPicker } from "ui"
+import { ColorPicker } from "@/components/ui/color-picker"
 
 export default function ColorPickerAnatomy() {
   return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { ContextMenu } from "ui"
+import { ContextMenu } from "@/components/ui/context-menu"
 
 export default function ContextMenuDangerDemo() {
   return (

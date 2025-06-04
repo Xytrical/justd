@@ -1,15 +1,16 @@
 import React, { useState } from "react"
 
 import { SelectFormat, isOklch, toOklchString } from "@/app/(app)/colors/(colors)/color-item"
+import { ColorField } from "@/components/ui/color-field"
+import { Heading } from "@/components/ui/heading"
 import { getColorName, getTextColor } from "@/resources/lib/colors"
+import { IconCheck, IconDuplicate } from "@intentui/icons"
 import { type Color as RacColor, parseColor } from "@react-stately/color"
 import type { Color } from "culori"
 import { formatHex, formatHsl, formatRgb, interpolate, parse } from "culori"
-import { IconCheck, IconDuplicate } from "justd-icons"
 import { ListBox, ListBoxItem, type Selection } from "react-aria-components"
 import { toast } from "sonner"
 import { twJoin } from "tailwind-merge"
-import { ColorField, Heading } from "ui"
 
 export function ColorGenerator() {
   const [value, setValue] = useState(parseColor("#0D6DFD"))
@@ -92,7 +93,7 @@ export function ColorGenerator() {
             <div className="mb-7">
               <Heading level={2}>Generate</Heading>
               <p className="text-muted-fg text-sm">
-                Genereate your desired color by picking a shade from the color picker or by entering
+                Generate your desired color by picking a shade from the color picker or by entering
                 a hex code.
               </p>
             </div>
@@ -128,7 +129,7 @@ export function ColorGenerator() {
                   textValue={colorValue}
                   onAction={() => handleCopy(colorValue, shade)}
                   key={colorValue?.toString()}
-                  className="group relative inset-shadow-white/15 inset-shadow-xs flex h-20 w-1/7 min-w-10 cursor-pointer items-end justify-center gap-x-2 rounded-lg p-2 font-mono text-xs ring-1 ring-white/10 ring-inset focus:outline-hidden data-focused:ring-white/25 *:data-[slot=icon]:absolute *:data-[slot=icon]:top-3 *:data-[slot=icon]:mx-auto *:data-[slot=icon]:hidden *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:opacity-90 *:data-[slot=icon]:group-data-focus-visible:block *:data-[slot=icon]:group-data-hovered:block sm:w-full"
+                  className="group relative inset-shadow-white/15 inset-shadow-xs flex h-20 w-1/7 min-w-10 cursor-default items-end justify-center gap-x-2 rounded-lg p-2 font-mono text-xs ring-1 ring-white/10 ring-inset focus:outline-hidden focus:ring-white/25 *:data-[slot=icon]:absolute *:data-[slot=icon]:top-3 *:data-[slot=icon]:mx-auto *:data-[slot=icon]:hidden *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:opacity-90 *:data-[slot=icon]:group-focus-visible:block *:data-[slot=icon]:group-hover:block sm:w-full"
                   style={{
                     color: getTextColor(colorValue),
                     backgroundColor: colorValue,

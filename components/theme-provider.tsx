@@ -4,7 +4,7 @@ import { ThemeProvider as NextThemesProvider, type ThemeProviderProps, useTheme 
 
 const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
   return (
-    <NextThemesProvider enableSystem storageKey="justd-theme" {...props}>
+    <NextThemesProvider storageKey="intentui-theme" {...props}>
       {children}
     </NextThemesProvider>
   )

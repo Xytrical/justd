@@ -1,6 +1,6 @@
 "use client"
 
-import { NumberField } from "ui"
+import { NumberField } from "@/components/ui/number-field"
 
 export default function NumberFieldDemo() {
   return <NumberField label="Cookies" />

@@ -1,8 +1,15 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import {
+  Chart,
+  type ChartConfig,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import type { ChartConfig } from "ui"
-import { Card, Chart, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "ui"
 
 const chartData = [
   { month: "Jan", revenue: 3200, expenses: 2400 },
@@ -38,7 +45,7 @@ export default function BarChartStackedLegendDemo() {
         description="Revenue breakdown every 2 weeks (Jan - Dec 2024)"
       />
       <Card.Content>
-        <Chart config={chartConfig}>
+        <Chart className="aspect-[20/15] sm:aspect-[17/7]" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis

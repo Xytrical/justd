@@ -1,6 +1,6 @@
 ---
 title: "Table"
-description: Lay out your data grid-style, like setting dishes on a dinner table clear and organized, perfect for comparison and review.
+description: A high-performance, customizable table component for efficiently displaying large datasets.
 order: 5
 published: true
 references: ["https://react-spectrum.adobe.com/react-aria/Table.html#props"]
@@ -17,7 +17,7 @@ A table displays data in rows and columns, allowing navigation via directional k
 <Composed components={['checkbox']}/>
 
 ## Manual Installation
-<Installation options={{ isManual: true }} items={['react-aria-components', 'justd-icons']}/>
+<Installation options={{ isManual: true }} items={['react-aria-components', '@intentui/icons']}/>
 
 <SourceCode toShow='table'/>
 
@@ -46,3 +46,17 @@ To create a clickable link within a table row, use the `href` prop.
 ```jsx
 <TableRow href='/collections/table-demo'/>
 ```
+
+## Bleed
+Use the `bleed` prop to make the table stretch to the edges of its container. This is especially useful in layouts like sidebars, where you want the table to align with the container's outer padding.
+
+```tsx
+<Table bleed className="[--gutter:--spacing(6)] sm:[--gutter:--spacing(4)]" aria-label="..."/>
+```
+
+## With Card
+When placing a table inside a card, you can use bleed and adjust the `--spacing` variable to align with the card’s padding, allowing the table to span the full width.
+<How isCenter={false} withNoPadding toUse="surfaces/card/card-table-demo"/>
+
+
+See the full demo at [Sidebar 15](/blocks/sidebar/sidebar-15).

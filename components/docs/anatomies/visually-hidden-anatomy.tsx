@@ -1,4 +1,5 @@
-import { Label, VisuallyHidden } from "ui"
+import { Label } from "@/components/ui/field"
+import { VisuallyHidden } from "@/components/ui/visually-hidden"
 
 export default function VisuallyHiddenAnatomy() {
   return (

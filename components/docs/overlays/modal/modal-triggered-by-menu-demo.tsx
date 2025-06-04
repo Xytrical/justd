@@ -2,9 +2,12 @@
 
 import { useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import { Loader } from "@/components/ui/loader"
+import { Menu } from "@/components/ui/menu"
+import { Modal } from "@/components/ui/modal"
 import { wait } from "@/resources/lib/utils"
-import { IconBlock, IconChevronLgDown, IconTrash } from "justd-icons"
-import { Button, Loader, Menu, Modal } from "ui"
+import { IconBlock, IconChevronLgDown, IconTrash } from "@intentui/icons"
 
 export default function ModalTriggeredByMenuDemo() {
   const [state, setState] = useState<string | null>(null)
@@ -50,9 +53,9 @@ export default function ModalTriggeredByMenuDemo() {
   return (
     <>
       <Menu>
-        <Button appearance="outline" className="group">
+        <Button intent="outline" className="group">
           Actions...
-          <IconChevronLgDown className="decoration-200 transition-transform group-data-pressed:rotate-180" />
+          <IconChevronLgDown className="decoration-200 transition-transform group-pressed:rotate-180" />
         </Button>
         <Menu.Content placement="bottom">
           <Menu.Item onAction={() => setState("delete")}>

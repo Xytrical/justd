@@ -1,5 +1,5 @@
+import { Chart, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
-import { Chart, ChartTooltip, ChartTooltipContent } from "ui"
 
 export default function ChartAnatomy() {
   return (

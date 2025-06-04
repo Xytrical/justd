@@ -1,36 +1,36 @@
 "use client"
 import { useId, useState } from "react"
 
+import { GithubLink } from "@/components/github-link"
+import { PageContainer } from "@/components/page-container"
 import { ResponsiveAside } from "@/components/responsive-aside"
+import { Badge } from "@/components/ui/badge"
+import { Button, buttonStyles } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
+import { Menu } from "@/components/ui/menu"
+import { Separator } from "@/components/ui/separator"
+import { useMediaQuery } from "@/hooks/use-media-query"
 import { siteConfig } from "@/resources/config/site"
 import {
   IconBrandAdobe,
   IconBrandDiscord,
   IconBrandFigma,
   IconBrandGithub,
-  IconBrandJustd,
+  IconBrandIntentui,
   IconBrandTailwindcss,
   IconBrandX,
   IconChevronLgDown,
   IconColorPalette,
   IconColors,
   IconCube,
-  IconDuplicateFill,
   IconHome,
   IconNotepad,
   IconSearch,
   IconWindowVisit,
   IconWindowVisitFill,
-} from "justd-icons"
+} from "@intentui/icons"
 import { LayoutGroup } from "motion/react"
 import { usePathname } from "next/navigation"
-import { Badge, Button, Link, Menu, Separator, buttonStyles } from "ui"
-
-import { Banner } from "@/components/banner"
-import { IconBrandJustdBlocks } from "@/components/icons/icon-brand-justd-blocks"
-import { Keyboard } from "@/components/ui/keyboard"
-import { cn } from "@/utils/classes"
-import { useMediaQuery } from "@/utils/use-media-query"
 import { CommandPalette } from "./command-palette"
 import { NavLink } from "./nav-item"
 import { ThemeSwitcher } from "./theme-switcher"
@@ -43,13 +43,12 @@ export function Navbar() {
   return (
     <>
       <CommandPalette setOpen={setOpen} openCmd={open} />
-      <Banner />
       <LayoutGroup id={`navigation-${id}`}>
-        <div className="xnw2 sticky top-0 z-30 hidden overflow-hidden pb-0 lg:block">
-          <nav className="fg/10 border-b bg-bg py-2 dark:supports-backdrop-filter:bg-bg/60 dark:supports-backdrop-filter:backdrop-blur-3xl">
-            <div className="mx-auto max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8">
+        <div className="xnw2 sticky top-0 z-40 hidden overflow-hidden lg:block">
+          <nav className="border-fg/10 border-b bg-overlay py-1.5 dark:supports-backdrop-filter:bg-overlay/60 dark:supports-backdrop-filter:backdrop-blur-3xl">
+            <PageContainer className="lg:px-8">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-5">
+                <div className="flex items-center gap-x-6">
                   <NavbarDropdown />
                   <Separator orientation="vertical" className="-ml-4 mr-1 h-6" />
                   <NavLink isNextLink isActive={pathname === "/"} href="/">
@@ -75,52 +74,30 @@ export function Navbar() {
                     Components
                   </NavLink>
 
-                  <NavLink isNextLink isActive={pathname === "/themes"} href="/themes">
+                  <NavLink isNextLink href="/themes">
                     Themes
                   </NavLink>
 
-                  <NavLink target="_blank" href="https://blocks.getjustd.com">
-                    Blocks
-                  </NavLink>
+                  <NavLink href="/icons">Icons</NavLink>
+
+                  <NavLink href="/colors">Colors</NavLink>
+
+                  <NavLink href="/blocks">Blocks</NavLink>
                   <Menu>
-                    <Menu.Trigger
-                      className={cn(
-                        "group flex cursor-pointer items-center gap-x-2 py-3 text-muted-fg text-sm tracking-tight",
-                      )}
-                    >
-                      Ecosystem
-                      <IconChevronLgDown className="size-3 duration-200 group-data-pressed:rotate-180" />
+                    <Menu.Trigger className="group flex cursor-default items-center gap-x-2 py-3 text-muted-fg text-sm tracking-tight outline-hidden focus-visible:text-fg">
+                      Premium
+                      <IconChevronLgDown className="size-3 duration-200 group-pressed:rotate-180" />
                     </Menu.Trigger>
                     <Menu.Content
+                      offset={4}
                       className="sm:min-w-xs sm:max-w-min"
                       placement="bottom"
-                      items={ecosystemItems}
+                      items={premium}
                     >
                       {(item) => (
-                        <Menu.Item
-                          href={item.href}
-                          className="group items-start gap-x-3 **:data-[slot=icon]:size-4"
-                        >
-                          <div className="grid size-8 shrink-0 place-content-center rounded-md bg-secondary/40 ring-1 ring-fg/10">
-                            {item.icon}
-                          </div>
-                          <Menu.ItemDetails>
-                            <span className="font-medium sm:text-sm">
-                              {item.label}{" "}
-                              {item.badge && (
-                                <Badge
-                                  shape="square"
-                                  intent={item.id === 1 ? "warning" : "primary"}
-                                  className="ml-0.5 font-mono text-[0.65rem] uppercase"
-                                >
-                                  {item.badge}
-                                </Badge>
-                              )}
-                            </span>
-                            <span className="-mt-0.5 block text-muted-fg text-xs">
-                              {item.description}
-                            </span>
-                          </Menu.ItemDetails>
+                        <Menu.Item href={item.href}>
+                          <Menu.Label>{item.label}</Menu.Label>
+                          <Menu.Description>{item.description}</Menu.Description>
                         </Menu.Item>
                       )}
                     </Menu.Content>
@@ -130,25 +107,22 @@ export function Navbar() {
                   <>
                     <Button
                       onPress={() => setOpen((open: boolean) => !open)}
-                      size="small"
-                      appearance="outline"
-                      className="h-9"
+                      size="square-petite"
+                      shape="circle"
+                      intent="plain"
                     >
                       <IconSearch />
-
-                      <span className="text-muted-fg">Search...</span>
-
-                      <Keyboard className="-mr-1" keys="⌘K" />
                     </Button>
-                    <ThemeSwitcher />
+                    <ThemeSwitcher intent="plain" shape="circle" />
 
                     <Link
                       aria-label="Join Discord"
                       className={buttonStyles({
-                        appearance: "outline",
+                        intent: "plain",
+                        shape: "circle",
                         size: "square-petite",
                         className:
-                          "data-hovered:border-indigo-500/20 data-hovered:bg-indigo-600/10 data-hovered:**:data-[slot=icon]:text-indigo-600 **:data-[slot=icon]:text-indigo-500",
+                          "**:data-[slot=icon]:text-indigo-500 hover:**:data-[slot=icon]:text-indigo-600",
                       })}
                       target="_blank"
                       href={siteConfig.discord}
@@ -158,7 +132,8 @@ export function Navbar() {
                     <Link
                       aria-label="Follow Update on X"
                       className={buttonStyles({
-                        appearance: "outline",
+                        intent: "plain",
+                        shape: "circle",
                         size: "square-petite",
                         className: "**:data-[slot=icon]:text-fg",
                       })}
@@ -170,33 +145,22 @@ export function Navbar() {
                     <Link
                       aria-label="Follow Update on X"
                       className={buttonStyles({
-                        appearance: "outline",
+                        intent: "plain",
                         size: "square-petite",
-                        className:
-                          "data-hovered:border-blue-500/20 data-hovered:bg-blue-600/10 **:data-[slot=icon]:text-fg",
+                        shape: "circle",
+                        className: "hover:border-blue-500/20**:data-[slot=icon]:text-fg",
                       })}
                       target="_blank"
                       href="https://dub.sh/NfSXJrL"
                     >
-                      <IconBrandJustdBlocks />
+                      <IconBrandIntentui />
                     </Link>
 
-                    <Link
-                      aria-label="Github Repository"
-                      className={buttonStyles({
-                        appearance: "outline",
-                        size: "square-petite",
-                        className: "**:data-[slot=icon]:text-fg sm:text-xs",
-                      })}
-                      target="_blank"
-                      href={siteConfig.repo}
-                    >
-                      <IconBrandGithub />
-                    </Link>
+                    <GithubLink />
                   </>
                 </div>
               </div>
-            </div>
+            </PageContainer>
           </nav>
         </div>
       </LayoutGroup>
@@ -211,9 +175,9 @@ export function NavbarDropdown() {
   return (
     <div className="flex items-center gap-x-1">
       <Menu>
-        <Button aria-label={siteConfig.name} appearance="plain" className="-ml-1 group">
+        <Button aria-label={siteConfig.name} intent="plain" className="-ml-1 group">
           <span className="flex items-center gap-x-2">
-            <IconBrandJustd className="-ml-1 size-4.5" />
+            <IconBrandIntentui className="-ml-1 size-6" />
             <span className="font-mono text-base tracking-tight sm:text-sm">{siteConfig.name}</span>
             <Badge intent="secondary">
               {pathname.includes("/docs/") ? pathname.split("/")[2] : siteConfig.currentVersion}
@@ -221,15 +185,6 @@ export function NavbarDropdown() {
           </span>
         </Button>
         <Menu.Content placement="bottom" className="sm:min-w-64">
-          <Menu.Submenu title="Versions">
-            <Menu.Item>
-              <Menu.Label>Switch Version</Menu.Label>
-            </Menu.Item>
-            <Menu.Content>
-              <Menu.Item href="/docs/1.x/getting-started/introduction">1.x</Menu.Item>
-              <Menu.Item href="/docs/2.x/getting-started/introduction">2.x</Menu.Item>
-            </Menu.Content>
-          </Menu.Submenu>
           <Menu.Section title="Pages">
             <Menu.Item href="/">
               <IconHome />
@@ -251,12 +206,12 @@ export function NavbarDropdown() {
               <IconWindowVisit />
               <Menu.Label>Blocks</Menu.Label>
             </Menu.Item>
-            <Menu.Item target="_blank" href="https://blocks.getjustd.com">
-              <IconBrandJustdBlocks />
+            <Menu.Item target="_blank" href="https://blocks.intentui.com">
+              <IconBrandIntentui />
               <Menu.Label>Premium Blocks</Menu.Label>
             </Menu.Item>
             <Menu.Item href="/icons">
-              <IconBrandJustd />
+              <IconBrandIntentui />
               <Menu.Label>Icons</Menu.Label>
             </Menu.Item>
             <Menu.Item href="/blog">
@@ -271,7 +226,7 @@ export function NavbarDropdown() {
             <Menu.Item href="https://x.com/intent/follow?screen_name=irsyadadl" target="_blank">
               <IconBrandX /> <Menu.Label>X / Twitter</Menu.Label>
             </Menu.Item>
-            <Menu.Item href="https://github.com/justdlabs" target="_blank">
+            <Menu.Item href={siteConfig.links.github} target="_blank">
               <IconBrandGithub />
               <Menu.Label>Github</Menu.Label>
             </Menu.Item>
@@ -289,73 +244,40 @@ export function NavbarDropdown() {
           </Menu.Section>
         </Menu.Content>
       </Menu>
-      <Menu>
-        <Button appearance="plain" className="group justify-between text-left sm:hidden">
-          {pathname.includes("/docs/") ? pathname.split("/")[2] : siteConfig.currentVersion}
-          <IconChevronLgDown className="size-3 duration-200 group-pressed:rotate-180" />
-        </Button>
-        <Menu.Content placement="bottom right" className="sm:min-w-10">
-          <Menu.Item href="/docs/1.x/getting-started/introduction">1.x</Menu.Item>
-          <Menu.Item href="/docs/2.x/getting-started/introduction">2.x</Menu.Item>
-        </Menu.Content>
-      </Menu>
     </div>
   )
 }
-const ecosystemItems = [
+
+const premium = [
   {
     id: 1,
     label: "Premium Blocks",
-    href: "https://blocks.getjustd.com",
-    icon: <IconBrandJustdBlocks />,
+    href: "https://blocks.intentui.com",
+    icon: IconBrandIntentui,
     description: "Pre-designed, ready-to-use React components for seamless integration.",
-    badge: "15% off",
+  },
+  {
+    id: 4,
+    label: "Templates",
+    href: "https://blocks.intentui.com/templates",
+    icon: IconBrandIntentui,
+    description: "Pre-designed, ready-to-use React components for seamless integration.",
   },
   {
     id: 2,
-    label: "Premium Starter Kit",
+    label: "Premium Starter Kit / Coming soon",
     href: "#",
-    icon: <IconWindowVisitFill />,
+    icon: IconWindowVisitFill,
     description:
       "Get started quickly with a complete React project setup, including authentication.",
     badge: "Coming soon",
   },
   {
     id: 3,
-    label: "Figma",
+    label: "Figma / Coming soon",
     href: "#",
-    icon: <IconBrandFigma />,
-    description: "Enhance your Figma designs with Justd components.",
+    icon: IconBrandFigma,
+    description: "Enhance your Figma designs with Intent components.",
     badge: "Coming soon",
-  },
-  {
-    id: 4,
-    label: "Icons",
-    href: "/icons",
-    icon: <IconDuplicateFill />,
-    description:
-      "Justd Icons is a powerful open-source SVG icon library with over 1,191 symbols, and more added with every release.",
-  },
-  {
-    id: 5,
-    label: "Themes",
-    href: "/themes",
-    icon: <IconColorPalette />,
-    description: "Curated themes to easily create polished designs for your apps.",
-  },
-  {
-    id: 6,
-    label: "Colors",
-    href: "/colors",
-    icon: <IconColors />,
-    description: "Over 154 colors blending TailwindCSS vibes with HTML color names.",
-  },
-  {
-    id: 7,
-    label: "Basic Blocks",
-    href: "/blocks",
-    icon: <IconWindowVisit />,
-    description:
-      "Example guides demonstrating how to effectively use components in their entirety.",
   },
 ]

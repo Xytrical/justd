@@ -1,24 +1,13 @@
 "use client"
 
-import type { HTMLAttributes } from "react"
 import { createContext, use, useCallback, useEffect, useState } from "react"
 
+import { IconChevronLgLeft, IconChevronLgRight } from "@intentui/icons"
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react"
-import { IconChevronLgLeft, IconChevronLgRight } from "justd-icons"
-import {
-  ListBox,
-  ListBoxItem,
-  type ListBoxItemProps,
-  ListBoxSection,
-  type ListBoxSectionProps,
-  composeRenderProps,
-} from "react-aria-components"
 
-import { cn } from "@/utils/classes"
-import { tv } from "tailwind-variants"
-import type { ButtonProps } from "./button"
-import { Button } from "./button"
-import { composeTailwindRenderProps } from "./primitive"
+import { Button, type ButtonProps } from "@/components/ui/button"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { twMerge } from "tailwind-merge"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -53,7 +42,7 @@ interface CarouselRootProps {
   CarouselButton?: typeof CarouselButton
 }
 
-interface CarouselProps extends HTMLAttributes<HTMLDivElement>, CarouselRootProps {
+interface CarouselProps extends React.HTMLAttributes<HTMLDivElement>, CarouselRootProps {
   opts?: CarouselOptions
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
@@ -146,7 +135,7 @@ const Carousel = ({
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={cn("relative", className)}
+        className={twMerge("relative", className)}
         role="region"
         aria-roledescription="carousel"
         {...props}
@@ -157,51 +146,34 @@ const Carousel = ({
   )
 }
 
-const CarouselContent = <T extends object>({ className, ...props }: ListBoxSectionProps<T>) => {
+const CarouselContent = ({ className, ...props }: React.ComponentProps<"div">) => {
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <ListBox
-      layout={orientation === "vertical" ? "stack" : "grid"}
-      aria-label="Slides"
-      orientation={orientation}
-      ref={carouselRef}
-      className="overflow-hidden"
-    >
-      <ListBoxSection
-        className={cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className)}
+    <div aria-label="Slides" ref={carouselRef} className="overflow-hidden">
+      <div
+        className={twMerge(
+          "flex",
+          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          className,
+        )}
         {...props}
       />
-    </ListBox>
+    </div>
   )
 }
 
-const carouselItem = tv({
-  base: [
-    "xd24r min-w-0 shrink-0 grow-0 basis-full data-focus-visible:outline-hidden data-focused:outline-hidden",
-    "group relative",
-  ],
-  variants: {
-    orientation: {
-      horizontal: "pl-4",
-      vertical: "pt-4",
-    },
-  },
-})
-
-const CarouselItem = ({ className, ...props }: ListBoxItemProps) => {
+const CarouselItem = ({ className, ...props }: React.ComponentProps<"div">) => {
   const { orientation } = useCarousel()
 
   return (
-    <ListBoxItem
+    <div
       aria-label={`Slide ${props.id}`}
       aria-roledescription="slide"
-      className={composeRenderProps(className, (className, renderProps) =>
-        carouselItem({
-          ...renderProps,
-          orientation,
-          className,
-        }),
+      className={twMerge(
+        "xd24r group relative min-w-0 shrink-0 grow-0 basis-full focus:outline-hidden focus-visible:outline-hidden",
+        orientation === "horizontal" ? "pl-4" : "pt-4",
+        className,
       )}
       {...props}
     />
@@ -214,7 +186,7 @@ const CarouselHandler = ({ ref, className, ...props }: React.ComponentProps<"div
     <div
       data-slot="carousel-handler"
       ref={ref}
-      className={cn(
+      className={twMerge(
         "relative z-10 mt-6 flex items-center gap-x-2",
         orientation === "horizontal" ? "justify-end" : "justify-center",
         className,
@@ -227,8 +199,7 @@ const CarouselHandler = ({ ref, className, ...props }: React.ComponentProps<"div
 const CarouselButton = ({
   segment,
   className,
-  intent = "secondary",
-  appearance = "outline",
+  intent = "outline",
   shape = "circle",
   size = "square-petite",
   ref,
@@ -246,7 +217,6 @@ const CarouselButton = ({
       data-handler={segment}
       intent={intent}
       ref={ref}
-      appearance={appearance}
       size={size}
       shape={shape}
       className={composeTailwindRenderProps(
@@ -268,4 +238,4 @@ Carousel.Item = CarouselItem
 Carousel.Button = CarouselButton
 
 export type { CarouselApi }
-export { Carousel }
+export { Carousel, CarouselContent, CarouselHandler, CarouselItem, CarouselButton }

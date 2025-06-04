@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Description, SearchField } from "ui"
+import { Description } from "@/components/ui/field"
+import { SearchField } from "@/components/ui/search-field"
 
 export default function SearchFieldControlledDemo() {
   const [value, setValue] = useState("")

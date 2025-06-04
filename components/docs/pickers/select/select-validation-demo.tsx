@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, Form, Select } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Select } from "@/components/ui/select"
 
 const software = [
   { id: 1, name: "Adobe Photoshop" },

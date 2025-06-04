@@ -1,12 +1,13 @@
 "use client"
 
-import { IconDeviceDesktop2, IconMoon, IconSun } from "justd-icons"
+import { Button } from "@/components/ui/button"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { IconDeviceDesktop2, IconMoon, IconSun } from "@intentui/icons"
 import { useTheme } from "next-themes"
-import { Button, composeTailwindRenderProps } from "ui"
 
 export function ThemeSwitcher({
   shape = "square",
-  appearance = "outline",
+  intent = "outline",
   className,
   ...props
 }: React.ComponentProps<typeof Button>) {
@@ -20,7 +21,7 @@ export function ThemeSwitcher({
   return (
     <Button
       shape={shape}
-      appearance={appearance}
+      intent={intent}
       size="square-petite"
       className={composeTailwindRenderProps(className, "**:data-[slot=icon]:text-fg")}
       aria-label="Switch theme"

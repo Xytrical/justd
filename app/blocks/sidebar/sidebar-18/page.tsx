@@ -7,7 +7,7 @@ export default async function Page() {
         <CodeHighlighter
           lang="php"
           max96={false}
-          className="**:[pre]:px-8"
+          className="[--shiki-bg:transparent] **:[pre]:px-8"
           removeLastLine
           plain
           code={processedSourceCode}

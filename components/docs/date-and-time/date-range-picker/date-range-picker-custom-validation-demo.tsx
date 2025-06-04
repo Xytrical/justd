@@ -1,7 +1,9 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
+import { DateRangePicker } from "@/components/ui/date-range-picker"
+import { Form } from "@/components/ui/form"
 import { getLocalTimeZone, today } from "@internationalized/date"
-import { Button, DateRangePicker, Form } from "ui"
 
 export default function DateRangePickerCustomValidationDemo() {
   return (

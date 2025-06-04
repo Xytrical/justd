@@ -1,6 +1,11 @@
 "use client"
 
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
+import { Navbar } from "@/components/ui/navbar"
+import { Separator } from "@/components/ui/separator"
 import {
   IconBrandApple,
   IconCommandRegular,
@@ -11,8 +16,7 @@ import {
   IconSettings,
   IconShield,
   IconShoppingBag,
-} from "justd-icons"
-import { Avatar, Button, Menu, Navbar, Separator } from "ui"
+} from "@intentui/icons"
 
 export default function AppNavbar() {
   return (
@@ -33,13 +37,13 @@ export default function AppNavbar() {
         </Navbar.Section>
         <Navbar.Section className="ml-auto hidden sm:flex">
           <Navbar.Flex>
-            <Button appearance="plain" size="square-petite" aria-label="Search for products">
+            <Button intent="plain" size="square-petite" aria-label="Search for products">
               <IconSearch />
             </Button>
-            <Button appearance="plain" size="square-petite" aria-label="Your Bag">
+            <Button intent="plain" size="square-petite" aria-label="Your Bag">
               <IconShoppingBag />
             </Button>
-            <ThemeSwitcher appearance="plain" />
+            <ThemeSwitcher intent="plain" />
           </Navbar.Flex>
           <Separator orientation="vertical" className="mr-3 ml-1 h-6" />
           <UserMenu />
@@ -59,13 +63,13 @@ export default function AppNavbar() {
         </Navbar.Flex>
         <Navbar.Flex>
           <Navbar.Flex>
-            <Button appearance="plain" size="square-petite" aria-label="Search for products">
+            <Button intent="plain" size="square-petite" aria-label="Search for products">
               <IconSearch />
             </Button>
-            <Button appearance="plain" size="square-petite" aria-label="Your Bag">
+            <Button intent="plain" size="square-petite" aria-label="Your Bag">
               <IconShoppingBag />
             </Button>
-            <ThemeSwitcher appearance="plain" />
+            <ThemeSwitcher intent="plain" />
           </Navbar.Flex>
           <Separator orientation="vertical" className="mr-3 ml-1 h-6" />
           <UserMenu />

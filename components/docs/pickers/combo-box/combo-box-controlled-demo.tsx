@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { ComboBox, Description } from "ui"
+import { ComboBox } from "@/components/ui/combo-box"
+import { Description } from "@/components/ui/field"
 
 const sports = [
   { id: 1, name: "Football" },

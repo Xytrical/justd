@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, ColorField, Form } from "ui"
+import { Button } from "@/components/ui/button"
+import { ColorField } from "@/components/ui/color-field"
+import { Form } from "@/components/ui/form"
 
 export default function ColorFieldValidationDemo() {
   function submit(e: React.FormEvent) {

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { Disclosure, DisclosurePanel, DisclosureTrigger } from "ui"
+import { Disclosure, DisclosurePanel, DisclosureTrigger } from "@/components/ui/disclosure"
 
 export default function DisclosureControlledDemo() {
   const [expanded, setExpanded] = useState(false)

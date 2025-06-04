@@ -1,4 +1,4 @@
-import { Carousel } from "ui"
+import { Carousel } from "@/components/ui/carousel"
 
 export default function CarouselAnatomy() {
   return (

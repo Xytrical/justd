@@ -2,9 +2,11 @@
 
 import React, { useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import { Loader } from "@/components/ui/loader"
+import { Popover } from "@/components/ui/popover"
 import { wait } from "@/resources/lib/utils"
-import { IconCircleCheckFill, IconTrash } from "justd-icons"
-import { Button, Loader, Popover } from "ui"
+import { IconCircleCheckFill, IconTrash } from "@intentui/icons"
 
 export default function PopoverControlledDemo() {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,7 +40,7 @@ export default function PopoverControlledDemo() {
           </Popover.Description>
         </Popover.Header>
         <Popover.Footer>
-          <Button appearance="outline" onPress={() => setIsOpen(false)} className="mr-2">
+          <Button intent="outline" onPress={() => setIsOpen(false)} className="mr-2">
             Cancel
           </Button>
           <Button

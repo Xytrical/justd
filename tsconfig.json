@@ -23,14 +23,13 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "ui": ["./components/ui"],
-      "hooks/*": ["./resources/hooks/*"],
       "content-collections": ["./.content-collections/generated"],
       "#site/content": ["./.source"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.mjs"],
   "exclude": [
+    ".next",
     "node_modules",
     "resources/stubs",
     "resources/content/**/*.mdx",

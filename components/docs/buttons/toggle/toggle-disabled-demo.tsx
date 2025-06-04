@@ -1,7 +1,7 @@
 "use client"
 
-import { IconPin } from "justd-icons"
-import { Toggle } from "ui"
+import { Toggle } from "@/components/ui/toggle"
+import { IconPin } from "@intentui/icons"
 
 export default function ToggleDisabledDemo() {
   return (

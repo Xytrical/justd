@@ -1,7 +1,8 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import { Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Bar, BarChart, CartesianGrid, Cell, LabelList } from "recharts"
-import { Card, Chart, type ChartConfig, ChartTooltip, ChartTooltipContent } from "ui"
 
 const chartData = [
   { month: "Jan", profitLoss: 1200 },
@@ -29,7 +30,7 @@ export default function BarChartNegativeDemo() {
     <Card>
       <Card.Header title="Monthly Profit and Loss" description="January - December 2024" />
       <Card.Content>
-        <Chart config={chartConfig}>
+        <Chart className="aspect-[15/15] sm:aspect-[17/7]" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <ChartTooltip

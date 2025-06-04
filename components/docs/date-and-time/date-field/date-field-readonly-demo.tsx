@@ -1,7 +1,8 @@
 "use client"
 
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date"
-import { DateField } from "ui"
+
+import { DateField } from "@/components/ui/date-field"
 
 export default function DateFieldReadonlyDemo() {
   const now = today(getLocalTimeZone())

@@ -1,9 +1,12 @@
-import { Choicebox } from "ui"
+import { Choicebox } from "@/components/ui/choicebox"
 
 export default function AccordionAnatomy() {
   return (
     <Choicebox aria-label="Select items" selectionMode="multiple">
-      <Choicebox.Item title="..." description="..." />
+      <Choicebox.Item>
+        <Choicebox.Label />
+        <Choicebox.Description />
+      </Choicebox.Item>
     </Choicebox>
   )
 }

@@ -1,6 +1,7 @@
 "use client"
 
-import { Button, Modal } from "ui"
+import { Button } from "@/components/ui/button"
+import { Modal } from "@/components/ui/modal"
 
 export default function ModalCustomClassnamesDemo() {
   return (

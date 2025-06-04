@@ -1,10 +1,11 @@
+import { Separator } from "@/components/ui/separator"
+import { Toggle, ToggleGroup } from "@/components/ui/toggle"
 import {
   IconAlignmentCenter,
   IconAlignmentJustify,
   IconAlignmentLeft,
   IconAlignmentRight,
-} from "justd-icons"
-import { Separator, Toggle, ToggleGroup } from "ui"
+} from "@intentui/icons"
 
 export default function ToggleGroupSizingDemo() {
   return (

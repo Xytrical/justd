@@ -1,14 +1,13 @@
 "use client"
 
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { useScrollPosition } from "@/resources/hooks/use-scroll-position"
+import { IconAlignmentLeft } from "@intentui/icons"
+import type { TOCItemType, TableOfContents } from "fumadocs-core/server"
 import React, { Suspense, useEffect, useState } from "react"
-
-import { cn } from "@/utils/classes"
-import { useMediaQuery } from "@/utils/use-media-query"
 import { Heading } from "react-aria-components"
 import scrollIntoView from "scroll-into-view-if-needed"
-
-import type { TOCItemType, TableOfContents } from "fumadocs-core/server"
-import { useScrollPosition } from "hooks/use-scroll-position"
+import { twMerge } from "tailwind-merge"
 
 interface Props {
   className?: string
@@ -44,7 +43,7 @@ export function Toc({ className, items }: Props) {
   return (
     <aside
       ref={tocRef}
-      className={cn(
+      className={twMerge(
         "not-prose forced-color-adjust-none",
         "scrollbar-hidden xl:-mr-6 xl:sticky xl:top-[1.75rem] xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-12",
         "top-10",
@@ -59,8 +58,11 @@ export function Toc({ className, items }: Props) {
       <nav aria-labelledby="on-this-page-title" className="w-56">
         <Suspense>
           <>
-            <Heading level={2} className="mb-6 font-medium text-base text-fg leading-7 lg:text-lg">
-              On this page
+            <Heading
+              level={2}
+              className="mb-6 flex items-center gap-x-2 font-medium text-base text-fg leading-7 lg:text-sm"
+            >
+              <IconAlignmentLeft /> On this page
             </Heading>
             {items.length > 0 && (
               <ul className="flex flex-col gap-y-2.5">
@@ -86,7 +88,7 @@ function TocLink({
   return (
     <li key={item.url}>
       <a
-        className={cn(
+        className={twMerge(
           "block tracking-tight no-underline outline-hidden duration-200 focus-visible:text-fg focus-visible:outline-hidden lg:text-[0.885rem]",
           item.url.split("#")[1] === activeId
             ? "text-fg forced-colors:text-[Highlight]"
@@ -103,7 +105,7 @@ function TocLink({
   )
 }
 
-export function useActiveItem(itemIds: string[]) {
+function useActiveItem(itemIds: string[]) {
   const [activeId, setActiveId] = useState<string | null>(null)
 
   useEffect(() => {

@@ -6,11 +6,10 @@ import {
   type TimeValue,
   type ValidationResult,
 } from "react-aria-components"
-import { tv } from "tailwind-variants"
 
-import { DateInput } from "./date-field"
-import { Description, FieldError, FieldGroup, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
+import { DateInput } from "@/components/ui/date-field"
+import { Description, FieldError, FieldGroup, Label } from "@/components/ui/field"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 
 interface TimeFieldProps<T extends TimeValue> extends TimeFieldPrimitiveProps<T> {
   label?: string
@@ -19,10 +18,6 @@ interface TimeFieldProps<T extends TimeValue> extends TimeFieldPrimitiveProps<T>
   prefix?: React.ReactNode
   suffix?: React.ReactNode
 }
-
-const timeFieldStyles = tv({
-  base: "flex w-fit min-w-28 justify-around whitespace-nowrap p-2 sm:text-sm",
-})
 
 const TimeField = <T extends TimeValue>({
   prefix,
@@ -45,7 +40,7 @@ const TimeField = <T extends TimeValue>({
         ) : (
           prefix
         )}
-        <DateInput className={timeFieldStyles} />
+        <DateInput className="flex w-fit min-w-28 justify-around whitespace-nowrap p-2 sm:text-sm" />
         {suffix ? (
           typeof suffix === "string" ? (
             <span className="mr-2 text-muted-fg">{suffix}</span>

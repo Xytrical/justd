@@ -1,5 +1,7 @@
 "use client"
 
+import { buttonStyles } from "@/components/ui/button"
+import { Tooltip } from "@/components/ui/tooltip"
 import {
   IconFullscreen,
   IconGrid4,
@@ -10,8 +12,7 @@ import {
   IconLayoutColumnHorizontalHalf,
   IconLayoutColumnLeftside,
   IconLayoutColumnVerticalAdd,
-} from "justd-icons"
-import { Tooltip, buttonStyles } from "ui"
+} from "@intentui/icons"
 
 export default function TooltipDemo() {
   return (
@@ -19,7 +20,7 @@ export default function TooltipDemo() {
       <Tooltip.Trigger
         aria-label="Manage Layout"
         className={buttonStyles({
-          appearance: "outline",
+          intent: "outline",
           size: "square-petite",
         })}
       >

@@ -1,6 +1,8 @@
 "use client"
 
-import { Wrapper } from "@/app/(app)/(home)/partials/resources"
+import { Wrapper } from "@/app/(home)/partials/resources"
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
 import {
   IconBrandBluesky,
   IconBrandTelegram,
@@ -14,15 +16,14 @@ import {
   IconPersonAdd,
   IconPlus,
   IconSettings,
-} from "justd-icons"
-import { Button, Menu } from "ui"
+} from "@intentui/icons"
 
 export function Menus() {
   return (
     <Wrapper>
       <Menu>
-        <Button className="group" appearance="outline">
-          Account <IconChevronLgDown className="duration-300 group-data-pressed:rotate-180" />
+        <Button className="group" intent="outline">
+          Account <IconChevronLgDown className="duration-300 group-pressed:rotate-180" />
         </Button>
         <Menu.Content showArrow placement="bottom" className="min-w-64">
           <Menu.Section>

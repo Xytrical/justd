@@ -1,7 +1,7 @@
 "use client"
 
+import { Tabs } from "@/components/ui/tabs"
 import { Collection } from "react-aria-components"
-import { Tabs } from "ui"
 
 const tabs = [
   { id: 1, title: "Overview", content: "This is the overview tab content." },

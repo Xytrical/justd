@@ -2,8 +2,8 @@
 import type { ColorAreaProps } from "react-aria-components"
 import { ColorArea as ColorAreaPrimitive } from "react-aria-components"
 
-import { ColorThumb } from "./color-thumb"
-import { composeTailwindRenderProps } from "./primitive"
+import { ColorThumb } from "@/components/ui/color-thumb"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 
 const ColorArea = ({ className, ...props }: ColorAreaProps) => {
   return (

@@ -1,3 +1,4 @@
+import { Toggle, ToggleGroup } from "@/components/ui/toggle"
 import {
   IconBell,
   IconBellFill,
@@ -5,8 +6,7 @@ import {
   IconSun,
   IconTranslate,
   IconTranslateFill,
-} from "justd-icons"
-import { Toggle, ToggleGroup } from "ui"
+} from "@intentui/icons"
 
 export default function ToggleGroupOrientationDemo() {
   return (

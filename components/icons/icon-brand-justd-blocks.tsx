@@ -1,9 +1,10 @@
-import { cn } from "@/utils/classes"
+import { twMerge } from "tailwind-merge"
 
-export function IconBrandJustdBlocks({ className, ...props }: React.ComponentProps<"svg">) {
+export function IconBrandIntentui({ className, ...props }: React.ComponentProps<"svg">) {
   return (
     <svg
-      className={cn("size-4", className)}
+      data-slot="icon"
+      className={twMerge("size-4", className)}
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       height="24"

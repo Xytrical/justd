@@ -5,7 +5,8 @@
 */
 
 @import "tailwindcss";
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
+@plugin 'tailwindcss-react-aria-components';
 
 @theme {
   /* Recommended font is: Inter, Sathosi, Geist */
@@ -171,12 +172,9 @@
   ::file-selector-button {
     border-color: var(--border, currentColor);
   }
-}
 
-@layer base {
   * {
     font-feature-settings: "cv11", "ss01";
-    font-variation-settings: "opsz" 850;
     text-rendering: optimizeLegibility;
 
     /*

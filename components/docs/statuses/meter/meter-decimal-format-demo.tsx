@@ -1,6 +1,6 @@
 "use client"
 
-import { Meter } from "ui"
+import { Meter } from "@/components/ui/meter"
 
 export default function MeterDecimalFormatDemo() {
   return (

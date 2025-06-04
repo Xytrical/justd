@@ -3,8 +3,8 @@
 import { useState } from "react"
 
 import { ControlledValues } from "@/components/docs/colors/controlled-values"
+import { ColorSwatchPicker } from "@/components/ui/color-swatch-picker"
 import { parseColor } from "@react-stately/color"
-import { ColorSwatchPicker } from "ui"
 
 export default function ColorSwatchPickerDemo() {
   const [value, setValue] = useState(parseColor("#0d6efd"))

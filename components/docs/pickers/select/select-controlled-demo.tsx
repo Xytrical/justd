@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 
+import { Description } from "@/components/ui/field"
+import { Select } from "@/components/ui/select"
 import type { Key } from "react-aria-components"
-import { Description, Select } from "ui"
 
 export const movies = [
   { id: 1, title: "Inception" },
@@ -14,7 +15,7 @@ export const movies = [
 ]
 
 export default function SelectControlledDemo() {
-  const [movie, setMovie] = useState<Key>("")
+  const [movie, setMovie] = useState<Key | null>("")
   return (
     <>
       <Select

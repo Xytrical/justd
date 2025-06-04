@@ -3,7 +3,8 @@
 import { useState } from "react"
 
 import { ControlledValues } from "@/components/docs/colors/controlled-values"
-import { ColorSlider, defaultColor } from "ui"
+import { ColorSlider } from "@/components/ui/color-slider"
+import { defaultColor } from "@/components/ui/color-swatch"
 
 export default function ColorSliderControlledDemo() {
   const [value, setValue] = useState(defaultColor)

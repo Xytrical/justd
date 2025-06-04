@@ -1,4 +1,4 @@
-import { Note } from "ui"
+import { Note } from "@/components/ui/note"
 
 export default function NoteAnatomy() {
   return (

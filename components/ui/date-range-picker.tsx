@@ -7,12 +7,12 @@ import {
   type ValidationResult,
 } from "react-aria-components"
 
+import { DateInput } from "@/components/ui/date-field"
+import { DatePickerIcon, DatePickerOverlay } from "@/components/ui/date-picker"
+import { Description, FieldError, FieldGroup, Label } from "@/components/ui/field"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 import type { DateDuration } from "@internationalized/date"
 import type { Placement } from "@react-types/overlays"
-import { DateInput } from "./date-field"
-import { DatePickerIcon, DatePickerOverlay } from "./date-picker"
-import { Description, FieldError, FieldGroup, Label } from "./field"
-import { composeTailwindRenderProps } from "./primitive"
 
 interface DateRangePickerProps<T extends DateValue> extends DateRangePickerPrimitiveProps<T> {
   label?: string
@@ -45,11 +45,11 @@ const DateRangePicker = <T extends DateValue>({
         <DateInput slot="start" />
         <span
           aria-hidden="true"
-          className="text-fg group-data-disabled:text-muted-fg forced-colors:text-[ButtonText] forced-colors:group-data-disabled:text-[GrayText]"
+          className="text-fg group-disabled:text-muted-fg forced-colors:text-[ButtonText] forced-colors:group-disabled:text-[GrayText]"
         >
           –
         </span>
-        <DateInput slot="end" />
+        <DateInput className="pr-8" slot="end" />
         <DatePickerIcon />
       </FieldGroup>
       {description && <Description>{description}</Description>}

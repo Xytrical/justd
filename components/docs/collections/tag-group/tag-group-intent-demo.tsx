@@ -1,7 +1,7 @@
 "use client"
 
+import { Tag, TagGroup, TagList } from "@/components/ui/tag-group"
 import { useListData } from "react-stately"
-import { Tag, TagGroup, TagList } from "ui"
 
 const shoes = [
   { id: "1", name: "Nike", available: true },

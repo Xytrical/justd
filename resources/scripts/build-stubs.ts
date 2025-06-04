@@ -21,8 +21,6 @@ function getAllFiles(dir: string, basePath = ""): string[] {
 
 function buildStubs() {
   const files = getAllFiles(inputDir)
-  const tableData: { Stub: string; Output: string }[] = []
-
   for (const file of files) {
     const filePath = path.join(inputDir, file)
     const content = fs.readFileSync(filePath, "utf-8")
@@ -45,10 +43,7 @@ function buildStubs() {
     }
 
     fs.writeFileSync(outputFilePath, JSON.stringify(stubJson, null, 2))
-    tableData.push({ Stub: file, Output: outputFilePath })
   }
-
-  console.table(tableData)
 }
 
 buildStubs()

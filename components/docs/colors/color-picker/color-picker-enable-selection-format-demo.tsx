@@ -2,8 +2,12 @@
 
 import { useState } from "react"
 
+import { ColorArea } from "@/components/ui/color-area"
+import { ColorField } from "@/components/ui/color-field"
+import { ColorPicker } from "@/components/ui/color-picker"
+import { defaultColor } from "@/components/ui/color-swatch"
+import { Select } from "@/components/ui/select"
 import { type ColorSpace, getColorChannels } from "react-aria-components"
-import { ColorArea, ColorField, ColorPicker, Select, defaultColor } from "ui"
 
 export default function ColorPickerEnableSelectionFormatDemo() {
   const [color, setColor] = useState(defaultColor)

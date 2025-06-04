@@ -1,4 +1,4 @@
-import { Note } from "ui"
+import { Note } from "@/components/ui/note"
 
 const notes = ["info", "default", "warning", "danger", "success"] as const
 

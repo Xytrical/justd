@@ -1,7 +1,8 @@
 "use client"
 
+import { Card } from "@/components/ui/card"
+import { Chart, type ChartConfig, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 import { Pie, PieChart } from "recharts"
-import { Card, Chart, type ChartConfig, ChartLegend, ChartLegendContent } from "ui"
 
 const chartData = [
   { region: "tesla", visitors: 275, fill: "var(--color-tesla)" },

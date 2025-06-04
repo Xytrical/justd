@@ -1,19 +1,19 @@
 import { ListSites } from "@/app/(app)/showcase/partials/list-sites"
 import { Header } from "@/components/header"
+import { Container } from "@/components/ui/container"
 import { siteConfig } from "@/resources/config/site"
 import type { Metadata } from "next"
-import { Container } from "ui"
 
 export const metadata: Metadata = {
   title: "Showcase",
-  description: "A showcase of justd components, tools, and more.",
-  metadataBase: new URL("https://getjustd.com"),
+  description: "A showcase of Intent UI components, tools, and more.",
+  metadataBase: new URL("https://intentui.com"),
   applicationName: siteConfig.name,
 }
 
 export default async function Page() {
   const res = await fetch(
-    "https://raw.githubusercontent.com/justdlabs/showcase/refs/heads/main/sites.json",
+    "https://raw.githubusercontent.com/intentuilabs/showcase/refs/heads/main/sites.json",
     {
       next: { revalidate: 3600 },
     },

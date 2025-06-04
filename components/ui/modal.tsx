@@ -1,20 +1,33 @@
 "use client"
 
+import {
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogCloseIcon,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import type { DialogProps, DialogTriggerProps, ModalOverlayProps } from "react-aria-components"
 import {
-  DialogTrigger,
+  DialogTrigger as DialogTriggerPrimitive,
   ModalOverlay,
   Modal as ModalPrimitive,
   composeRenderProps,
 } from "react-aria-components"
 import { type VariantProps, tv } from "tailwind-variants"
 
-import { Dialog } from "./dialog"
+const Modal = (props: DialogTriggerProps) => {
+  return <DialogTriggerPrimitive {...props} />
+}
 
 const modalOverlayStyles = tv({
   base: [
     "fixed top-0 left-0 isolate z-50 h-(--visual-viewport-height) w-full",
-    "flex items-end justify-end bg-fg/15 text-center sm:items-center sm:justify-center dark:bg-bg/40",
+    "flex items-end justify-end bg-fg/15 text-center sm:block dark:bg-bg/40",
     "[--visual-viewport-vertical-padding:16px] sm:[--visual-viewport-vertical-padding:32px]",
   ],
   variants: {
@@ -33,6 +46,7 @@ const modalContentStyles = tv({
   base: [
     "max-h-full w-full rounded-t-2xl bg-overlay text-left align-middle text-overlay-fg shadow-lg ring-1 ring-fg/5",
     "overflow-hidden sm:rounded-2xl dark:ring-border",
+    "sm:-translate-x-1/2 sm:-translate-y-1/2 sm:fixed sm:top-1/2 sm:left-[50vw]",
   ],
   variants: {
     isEntering: {
@@ -62,10 +76,6 @@ const modalContentStyles = tv({
     size: "lg",
   },
 })
-
-const Modal = (props: DialogTriggerProps) => {
-  return <DialogTrigger {...props} />
-}
 
 interface ModalContentProps
   extends Omit<ModalOverlayProps, "className" | "children">,
@@ -118,7 +128,7 @@ const ModalContent = ({
           {(values) => (
             <>
               {typeof children === "function" ? children(values) : children}
-              {closeButton && <Dialog.CloseIndicator isDismissable={isDismissable} />}
+              {closeButton && <DialogCloseIcon isDismissable={isDismissable} />}
             </>
           )}
         </Dialog>
@@ -127,13 +137,13 @@ const ModalContent = ({
   )
 }
 
-const ModalTrigger = Dialog.Trigger
-const ModalHeader = Dialog.Header
-const ModalTitle = Dialog.Title
-const ModalDescription = Dialog.Description
-const ModalFooter = Dialog.Footer
-const ModalBody = Dialog.Body
-const ModalClose = Dialog.Close
+const ModalTrigger = DialogTrigger
+const ModalHeader = DialogHeader
+const ModalTitle = DialogTitle
+const ModalDescription = DialogDescription
+const ModalFooter = DialogFooter
+const ModalBody = DialogBody
+const ModalClose = DialogClose
 
 Modal.Trigger = ModalTrigger
 Modal.Header = ModalHeader

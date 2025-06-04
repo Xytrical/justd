@@ -1,11 +1,12 @@
 "use client"
 
-import { Button, Sheet } from "ui"
+import { Button } from "@/components/ui/button"
+import { Sheet } from "@/components/ui/sheet"
 
 export default function SheetFloatDemo() {
   return (
     <Sheet>
-      <Button appearance="outline">Float</Button>
+      <Button intent="outline">Float</Button>
       <Sheet.Content isFloat={false}>
         <Sheet.Header>
           <Sheet.Title>Not Floated</Sheet.Title>

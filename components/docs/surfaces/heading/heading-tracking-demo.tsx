@@ -1,6 +1,6 @@
 "use client"
 
-import { Heading } from "ui"
+import { Heading } from "@/components/ui/heading"
 
 export default function HeadingTrackingDemo() {
   return (

@@ -1,5 +1,5 @@
+import { source } from "@/lib/source"
 import { siteConfig } from "@/resources/config/site"
-import { source } from "@/utils/source"
 import type { MetadataRoute } from "next"
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: `${siteConfig.url}/charts`,
+      url: `${siteConfig.url}/blocks`,
       lastModified: new Date(),
     },
     //   @ts-ignore

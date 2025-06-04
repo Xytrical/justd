@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorSlider } from "ui"
+import { ColorSlider } from "@/components/ui/color-slider"
 
 export default function ColorSliderVerticalDemo() {
   return (

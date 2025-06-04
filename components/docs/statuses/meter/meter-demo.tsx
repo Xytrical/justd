@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 
-import { Meter } from "ui"
+import { Meter } from "@/components/ui/meter"
 
 export default function MeterDemo() {
   const [value, setValue] = useState(1)

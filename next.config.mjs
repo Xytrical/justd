@@ -5,10 +5,7 @@ const withMDX = createMDX()
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-  devIndicators: {
-    buildActivity: false,
-    appIsrStatus: false,
-  },
+  // devIndicators: false,
   experimental: {
     reactCompiler: true,
   },
@@ -39,8 +36,13 @@ const config = {
         permanent: true,
       },
       {
+        source: "/docs/2.x/components/charts/setup",
+        destination: "/docs/2.x/components/charts/area-chart",
+        permanent: true,
+      },
+      {
         source: "/docs/2.x/components/surfaces/chart",
-        destination: "/docs/2.x/components/charts/setup",
+        destination: "/docs/2.x/components/charts/area-chart",
         permanent: true,
       },
       {

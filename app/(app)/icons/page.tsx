@@ -1,26 +1,27 @@
 import { Suspense } from "react"
 
 import { Header } from "@/components/header"
+import { Loader } from "@/components/ui/loader"
 import { siteConfig } from "@/resources/config/site"
 import type { Metadata } from "next"
-import { Container, Loader } from "ui"
 
+import { PageContainer } from "@/components/page-container"
 import { IconsList } from "./partials/icons-list"
 
 export const metadata: Metadata = {
-  title: "Justd Icons",
+  title: "Intent Icons",
   description:
     " A library of beautifully crafted react icons, perfect for enhancing the visual appeal and user experience of your web applications. ",
-  metadataBase: new URL("https://getjustd.com"),
+  metadataBase: new URL("https://intentui.com"),
   applicationName: siteConfig.name,
   keywords: [
-    "Justd Icons",
+    "Intent Icons",
     "Tailwind CSS",
     "UI Components",
     "UI Kit",
     "UI Library",
     "UI Framework",
-    "Justd",
+    "Intent",
     "Next.js 15",
     "React Aria",
     "React Aria Components",
@@ -35,16 +36,16 @@ export const metadata: Metadata = {
     "Laravel Inertia UI Kit",
     "Laravel Inertia UI Library",
     "Laravel Inertia UI Framework",
-    "Laravel Inertia Justd",
-    "Laravel Justd",
-    "Justd Components",
-    "Justd UI Components",
-    "Justd UI Kit",
-    "Justd UI Library",
-    "Justd UI Framework",
-    "Justd Laravel Inertia",
-    "Justd Laravel",
-    "Justd Inertia",
+    "Laravel Inertia Intent",
+    "Laravel Intent",
+    "Intent Components",
+    "Intent UI Components",
+    "Intent UI Kit",
+    "Intent UI Library",
+    "Intent UI Framework",
+    "Intent Laravel Inertia",
+    "Intent Laravel",
+    "Intent Inertia",
   ],
   authors: [
     {
@@ -69,7 +70,7 @@ export default async function Page({
         Ico
         <span className="text-muted-fg">ns</span>
       </Header>
-      <Container className="py-4 sm:py-16">
+      <PageContainer className="py-4 sm:py-16">
         <Suspense
           fallback={
             <div className="flex min-h-96 items-center justify-center">
@@ -79,7 +80,7 @@ export default async function Page({
         >
           <IconsList searchParams={{ query, t }} />
         </Suspense>
-      </Container>
+      </PageContainer>
     </>
   )
 }

@@ -1,16 +1,15 @@
 "use client"
 
-import React from "react"
-
-import { IconChevronLgDown, IconHamburger } from "justd-icons"
-import type {
-  CellProps,
-  ColumnProps,
-  ColumnResizerProps,
-  TableHeaderProps as HeaderProps,
-  RowProps,
-  TableBodyProps,
-  TableProps as TablePrimitiveProps,
+import { IconChevronLgDown, IconHamburger } from "@intentui/icons"
+import {
+  type CellProps,
+  type ColumnProps,
+  type ColumnResizerProps,
+  type TableHeaderProps as HeaderProps,
+  type RowProps,
+  type TableBodyProps,
+  type TableProps as TablePrimitiveProps,
+  composeRenderProps,
 } from "react-aria-components"
 import {
   Button,
@@ -23,110 +22,78 @@ import {
   TableBody as TableBodyPrimitive,
   TableHeader as TableHeaderPrimitive,
   Table as TablePrimitive,
-  composeRenderProps,
   useTableOptions,
 } from "react-aria-components"
-import { tv } from "tailwind-variants"
 
-import { cn } from "@/utils/classes"
-import { Checkbox } from "./checkbox"
+import { Checkbox } from "@/components/ui/checkbox"
+import { composeTailwindRenderProps } from "@/lib/primitive"
+import { createContext, use } from "react"
+import { twJoin, twMerge } from "tailwind-merge"
 
-const table = tv({
-  slots: {
-    root: "table w-full min-w-full caption-bottom border-spacing-0 text-sm outline-hidden [--table-selected-bg:color-mix(in_oklab,var(--color-primary)_5%,white_90%)] **:data-drop-target:border **:data-drop-target:border-primary dark:[--table-selected-bg:color-mix(in_oklab,var(--color-primary)_25%,black_70%)]",
-    header: "x32 border-b",
-    row: "tr group relative cursor-default border-b bg-bg text-muted-fg outline-hidden ring-primary data-selected:data-hovered:bg-(--table-selected-bg)/70 data-selected:bg-(--table-selected-bg) data-focus-visible:ring-1 data-focused:ring-0 dark:data-selected:data-hovered:bg-[color-mix(in_oklab,var(--color-primary)_30%,black_70%)]",
-    cellIcon:
-      "grid size-[1.15rem] flex-none shrink-0 place-content-center rounded bg-secondary text-fg *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:transition-transform *:data-[slot=icon]:duration-200",
-    columnResizer: [
-      "absolute top-0 right-0 bottom-0 grid w-px touch-none place-content-center px-1 [&[data-resizing]>div]:bg-primary",
-      "&[data-resizable-direction=left]:cursor-e-resize &[data-resizable-direction=right]:cursor-w-resize data-[resizable-direction=both]:cursor-ew-resize",
-    ],
-  },
-})
-
-const { root, header, row, cellIcon, columnResizer } = table()
-
-interface TableProps extends TablePrimitiveProps {
-  className?: string
+interface TableProps extends Omit<TablePrimitiveProps, "className"> {
   allowResize?: boolean
+  className?: string
+  bleed?: boolean
+  ref?: React.Ref<HTMLTableElement>
 }
 
-const TableContext = React.createContext<TableProps>({
+const TableContext = createContext<TableProps>({
   allowResize: false,
 })
 
-const useTableContext = () => React.useContext(TableContext)
+const useTableContext = () => use(TableContext)
 
-const Table = ({ children, className, ...props }: TableProps) => (
-  <TableContext.Provider value={props}>
-    <div className="relative w-full overflow-auto">
-      {props.allowResize ? (
-        <ResizableTableContainer className="overflow-auto">
-          <TablePrimitive {...props} className={root({ className })}>
-            {children}
-          </TablePrimitive>
-        </ResizableTableContainer>
-      ) : (
-        <TablePrimitive {...props} className={root({ className })}>
-          {children}
-        </TablePrimitive>
-      )}
-    </div>
-  </TableContext.Provider>
-)
+const Root = (props: TableProps) => {
+  return (
+    <TablePrimitive
+      className="w-full min-w-full caption-bottom text-sm/6 outline-hidden [--table-selected-bg:var(--color-secondary)]/50"
+      {...props}
+    />
+  )
+}
+
+const Table = ({ allowResize, className, bleed, ref, ...props }: TableProps) => {
+  return (
+    <TableContext.Provider value={{ allowResize, bleed }}>
+      <div className="flow-root">
+        <div
+          className={twMerge(
+            "-mx-(--gutter) relative overflow-x-auto whitespace-nowrap [--gutter-y:--spacing(2)] has-data-[slot=table-resizable-container]:overflow-auto",
+            className,
+          )}
+        >
+          <div
+            className={twJoin("inline-block min-w-full align-middle", !bleed && "sm:px-(--gutter)")}
+          >
+            {allowResize ? (
+              <ResizableTableContainer data-slot="table-resizable-container">
+                <Root ref={ref} {...props} />
+              </ResizableTableContainer>
+            ) : (
+              <Root {...props} ref={ref} />
+            )}
+          </div>
+        </div>
+      </div>
+    </TableContext.Provider>
+  )
+}
 
 const ColumnResizer = ({ className, ...props }: ColumnResizerProps) => (
   <ColumnResizerPrimitive
     {...props}
-    className={composeRenderProps(className, (className, renderProps) =>
-      columnResizer({
-        ...renderProps,
-        className,
-      }),
+    className={composeTailwindRenderProps(
+      className,
+      "absolute top-0 right-0 bottom-0 grid w-px &[data-resizable-direction=left]:cursor-e-resize &[data-resizable-direction=right]:cursor-w-resize touch-none place-content-center px-1 data-[resizable-direction=both]:cursor-ew-resize [&[data-resizing]>div]:bg-primary",
     )}
   >
-    <div className="h-full w-px bg-border py-3" />
+    <div className="h-full w-px bg-border py-(--gutter-y)" />
   </ColumnResizerPrimitive>
 )
 
 const TableBody = <T extends object>(props: TableBodyProps<T>) => (
-  <TableBodyPrimitive
-    data-slot="table-body"
-    {...props}
-    className={cn("[&_.tr:last-child]:border-0")}
-  />
+  <TableBodyPrimitive data-slot="table-body" {...props} />
 )
-
-interface TableCellProps extends CellProps {
-  className?: string
-}
-
-const cellStyles = tv({
-  base: "group whitespace-nowrap px-3 py-3 outline-hidden",
-  variants: {
-    allowResize: {
-      true: "overflow-hidden truncate",
-    },
-  },
-})
-const TableCell = ({ children, className, ...props }: TableCellProps) => {
-  const { allowResize } = useTableContext()
-  return (
-    <Cell data-slot="table-cell" {...props} className={cellStyles({ allowResize, className })}>
-      {children}
-    </Cell>
-  )
-}
-
-const columnStyles = tv({
-  base: "relative allows-sorting:cursor-pointer whitespace-nowrap px-3 py-3 text-left font-medium outline-hidden data-dragging:cursor-grabbing [&:has([slot=selection])]:pr-0",
-  variants: {
-    isResizable: {
-      true: "overflow-hidden truncate",
-    },
-  },
-})
 
 interface TableColumnProps extends ColumnProps {
   className?: string
@@ -134,22 +101,37 @@ interface TableColumnProps extends ColumnProps {
 }
 
 const TableColumn = ({ isResizable = false, className, ...props }: TableColumnProps) => {
+  const { bleed } = useTableContext()
   return (
     <Column
       data-slot="table-column"
       {...props}
-      className={columnStyles({
-        isResizable,
+      className={composeTailwindRenderProps(
         className,
-      })}
+        twJoin(
+          "text-left font-medium text-muted-fg",
+          "relative allows-sorting:cursor-default outline-hidden data-dragging:cursor-grabbing",
+          "px-4 py-(--gutter-y) first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))",
+          !bleed && "sm:last:pr-1 sm:first:pl-1",
+          isResizable && "overflow-hidden truncate",
+        ),
+      )}
     >
-      {({ allowsSorting, sortDirection, isHovered }) => (
+      {(values) => (
         <div className="flex items-center gap-2 **:data-[slot=icon]:shrink-0">
           <>
-            {props.children as React.ReactNode}
-            {allowsSorting && (
-              <span className={cellIcon({ className: isHovered ? "bg-secondary-fg/10" : "" })}>
-                <IconChevronLgDown className={sortDirection === "ascending" ? "rotate-180" : ""} />
+            {typeof props.children === "function" ? props.children(values) : props.children}
+            {values.allowsSorting && (
+              <span
+                className={twMerge(
+                  "grid size-[1.15rem] flex-none shrink-0 place-content-center rounded bg-secondary text-fg *:data-[slot=icon]:size-3.5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:transition-transform *:data-[slot=icon]:duration-200",
+                  values.isHovered ? "bg-secondary-fg/10" : "",
+                  className,
+                )}
+              >
+                <IconChevronLgDown
+                  className={values.sortDirection === "ascending" ? "rotate-180" : ""}
+                />
               </span>
             )}
             {isResizable && <ColumnResizer />}
@@ -161,28 +143,42 @@ const TableColumn = ({ isResizable = false, className, ...props }: TableColumnPr
 }
 
 interface TableHeaderProps<T extends object> extends HeaderProps<T> {
-  className?: string
   ref?: React.Ref<HTMLTableSectionElement>
 }
 
 const TableHeader = <T extends object>({
   children,
   ref,
-  className,
   columns,
+  className,
   ...props
 }: TableHeaderProps<T>) => {
+  const { bleed } = useTableContext()
   const { selectionBehavior, selectionMode, allowsDragging } = useTableOptions()
   return (
     <TableHeaderPrimitive
       data-slot="table-header"
+      className={composeTailwindRenderProps(className, "border-b")}
       ref={ref}
-      className={header({ className })}
       {...props}
     >
-      {allowsDragging && <Column className="w-0" />}
+      {allowsDragging && (
+        <Column
+          data-slot="table-column"
+          className={twMerge(
+            "w-0 max-w-8 px-4 first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))",
+            !bleed && "sm:last:pr-1 sm:first:pl-1",
+          )}
+        />
+      )}
       {selectionBehavior === "toggle" && (
-        <Column className="w-0 pl-4">
+        <Column
+          data-slot="table-column"
+          className={twMerge(
+            "w-0 max-w-8 px-4 first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))",
+            !bleed && "sm:last:pr-1 sm:first:pl-1",
+          )}
+        >
           {selectionMode === "multiple" && <Checkbox slot="selection" />}
         </Column>
       )}
@@ -192,7 +188,6 @@ const TableHeader = <T extends object>({
 }
 
 interface TableRowProps<T extends object> extends RowProps<T> {
-  className?: string
   ref?: React.Ref<HTMLTableRowElement>
 }
 
@@ -211,37 +206,58 @@ const TableRow = <T extends object>({
       data-slot="table-row"
       id={id}
       {...props}
-      className={row({
-        className:
-          "href" in props
-            ? cn(
-                "cursor-pointer data-hovered:bg-secondary/50 data-hovered:text-secondary-fg",
-                className,
-              )
-            : "",
-      })}
+      className={composeRenderProps(
+        className,
+        (className, { isSelected, selectionMode, isFocusVisibleWithin, isDragging, isDisabled }) =>
+          twMerge(
+            "group relative cursor-default border-b text-muted-fg outline-transparent ring-primary last:border-b-0 ",
+            isDragging && "outline outline-blue-500",
+            isSelected && "bg-(--table-selected-bg) text-fg hover:bg-(--table-selected-bg)/50",
+            (props.href || props.onAction || selectionMode === "multiple") &&
+              "hover:bg-(--table-selected-bg) hover:text-fg",
+            (props.href || props.onAction || selectionMode === "multiple") &&
+              isFocusVisibleWithin &&
+              "bg-(--table-selected-bg)/50 selected:bg-(--table-selected-bg)/50 text-fg",
+            isDisabled && "opacity-50",
+            className,
+          ),
+      )}
     >
       {allowsDragging && (
-        <Cell className="group cursor-grab pr-0 ring-primary data-dragging:cursor-grabbing">
+        <TableCell className="cursor-grab dragging:cursor-grabbing ring-primary">
           <Button
-            className="relative bg-transparent py-1.5 pl-3.5 text-muted-fg data-pressed:text-fg"
             slot="drag"
+            className="grid place-content-center rounded-xs px-[calc(var(--gutter)/2)] outline-hidden focus-visible:ring focus-visible:ring-ring"
           >
             <IconHamburger />
           </Button>
-        </Cell>
+        </TableCell>
       )}
       {selectionBehavior === "toggle" && (
-        <Cell className="pl-4">
-          <span
-            aria-hidden
-            className="absolute inset-y-0 left-0 hidden h-full w-0.5 bg-primary group-data-selected:block"
-          />
+        <TableCell>
           <Checkbox slot="selection" />
-        </Cell>
+        </TableCell>
       )}
       <Collection items={columns}>{children}</Collection>
     </Row>
+  )
+}
+
+const TableCell = ({ className, ...props }: CellProps) => {
+  const { allowResize, bleed } = useTableContext()
+  return (
+    <Cell
+      data-slot="table-cell"
+      {...props}
+      className={composeTailwindRenderProps(
+        className,
+        twJoin(
+          "group px-4 py-(--gutter-y) align-middle outline-hidden first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2)) group-has-data-focus-visible-within:text-fg",
+          !bleed && "sm:last:pr-1 sm:first:pl-1",
+          allowResize && "overflow-hidden truncate",
+        ),
+      )}
+    />
   )
 }
 
@@ -251,5 +267,5 @@ Table.Column = TableColumn
 Table.Header = TableHeader
 Table.Row = TableRow
 
-export type { TableProps, TableBodyProps, TableCellProps, TableColumnProps, TableRowProps }
+export type { TableProps, TableColumnProps, TableRowProps }
 export { Table }

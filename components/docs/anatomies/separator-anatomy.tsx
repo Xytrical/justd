@@ -1,4 +1,4 @@
-import { Separator } from "ui"
+import { Separator } from "@/components/ui/separator"
 
 export default function SeparatorAnatomy() {
   return <Separator />

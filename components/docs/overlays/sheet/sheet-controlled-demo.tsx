@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 
-import { Button, Sheet, Textarea } from "ui"
+import { Button } from "@/components/ui/button"
+import { Sheet } from "@/components/ui/sheet"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function SheetControlledDemo() {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,7 +22,7 @@ export default function SheetControlledDemo() {
           <Textarea label="Your Feedback" placeholder="Type your feedback here..." />
         </Sheet.Body>
         <Sheet.Footer>
-          <Button appearance="outline" onPress={() => setIsOpen(false)}>
+          <Button intent="outline" onPress={() => setIsOpen(false)}>
             Close
           </Button>
           <Button intent="primary" onPress={() => setIsOpen(false)}>

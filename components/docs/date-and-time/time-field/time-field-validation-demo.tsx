@@ -1,6 +1,8 @@
 "use client"
 
-import { Button, Form, TimeField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { TimeField } from "@/components/ui/time-field"
 
 export default function TimeFieldValidationDemo() {
   return (

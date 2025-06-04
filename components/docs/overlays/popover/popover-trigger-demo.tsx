@@ -1,6 +1,8 @@
 "use client"
 
-import { Avatar, Button, Popover } from "ui"
+import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Popover } from "@/components/ui/popover"
 
 export default function PopoverTriggerDemo() {
   return (

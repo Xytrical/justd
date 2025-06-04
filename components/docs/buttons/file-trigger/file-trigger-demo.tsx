@@ -1,6 +1,6 @@
 "use client"
 
-import { FileTrigger } from "ui"
+import { FileTrigger } from "@/components/ui/file-trigger"
 
 export default function FileTriggerDemo() {
   return <FileTrigger />

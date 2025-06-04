@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 
-import { Description, FileTrigger } from "ui"
+import { Description } from "@/components/ui/field"
+import { FileTrigger } from "@/components/ui/file-trigger"
 
 export default function FileTriggerDemo() {
   const [file, setFile] = useState<string[] | null>(null)

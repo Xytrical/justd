@@ -1,4 +1,4 @@
-import { Toggle, ToggleGroup } from "ui"
+import { Toggle, ToggleGroup } from "@/components/ui/toggle"
 
 export default function ToggleGroupAnatomy() {
   return (

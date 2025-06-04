@@ -8,9 +8,9 @@ import {
   IconBrandAdobe,
   IconBrandFramer,
   IconBrandGithub,
-  IconBrandJustd,
+  IconBrandIntentui,
   IconChartBar,
-} from "justd-icons"
+} from "@intentui/icons"
 import { ListBox, ListBoxItem } from "react-aria-components"
 
 function getComponentName(url: string): string {
@@ -30,7 +30,7 @@ export function DocRefs({ references }: { references: string[] }) {
         break
       case url.includes("icons"):
         title = "Explore"
-        icon = IconBrandJustd
+        icon = IconBrandIntentui
         break
       case url.includes("recharts"):
         title = "Props"
@@ -78,7 +78,7 @@ export function DocRefs({ references }: { references: string[] }) {
         <ListBoxItem
           textValue={item.title}
           target="_blank"
-          className="flex items-center rounded-full bg-fg/5 px-4 py-2 font-mono text-xs uppercase ring-1 ring-fg/10 duration-200 data-hovered:bg-fg/10 data-hovered:ring-fg/15"
+          className="flex items-center rounded-full bg-fg/5 px-4 py-2 font-mono text-xs uppercase ring-1 ring-fg/10 duration-200 hover:bg-fg/10 hover:ring-fg/15"
           id={item.url}
           href={item.url}
         >

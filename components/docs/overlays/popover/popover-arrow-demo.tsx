@@ -1,12 +1,13 @@
 "use client"
 
-import { IconBell } from "justd-icons"
-import { Button, Popover } from "ui"
+import { Button } from "@/components/ui/button"
+import { Popover } from "@/components/ui/popover"
+import { IconBell } from "@intentui/icons"
 
 export default function PopoverArrowDemo() {
   return (
     <Popover>
-      <Button appearance="outline" size="square-petite">
+      <Button intent="outline" size="square-petite">
         <IconBell />
       </Button>
       <Popover.Content showArrow={false} className="p-4 sm:min-w-72">

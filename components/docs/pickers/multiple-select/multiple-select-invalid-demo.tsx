@@ -1,29 +1,22 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
+import { type FormEvent, useState } from "react"
 
-import type { Key } from "react-aria-components"
-import { useListData } from "react-stately"
-import type { SelectedKey } from "ui"
-import { Button, Form, MultipleSelect } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { MultipleSelect } from "@/components/ui/multiple-select"
+import type { Selection } from "react-aria-components"
 
 export default function MultipleSelectInvalidDemo() {
-  const [invalid, setInvalid] = useState(false)
-  const selectedItems = useListData<SelectedKey>({
-    initialItems: [],
-  })
+  const [invalid, setInvalid] = useState<boolean>(false)
+  const [selectedItems, setSelectedItems] = useState<Selection>(new Set([]))
 
-  function submit(e: React.FormEvent<HTMLFormElement>) {
-    if (selectedItems.items.length === 0) {
+  function submit(e: FormEvent<HTMLFormElement>) {
+    if ([...selectedItems].length === 0) {
       setInvalid(true)
       e.preventDefault()
       return
     }
-    setInvalid(false)
-  }
-
-  function onItemInserted(key: Key) {
     setInvalid(false)
   }
 
@@ -32,27 +25,22 @@ export default function MultipleSelectInvalidDemo() {
       <MultipleSelect
         className="max-w-xs"
         label="Fruits"
-        selectedItems={selectedItems}
+        selectedKeys={selectedItems}
+        onSelectionChange={setSelectedItems}
         items={fruits}
         isInvalid={invalid}
-        onItemInserted={onItemInserted}
-        tag={(item) => <MultipleSelect.Tag textValue={item.name}>{item.name}</MultipleSelect.Tag>}
+        errorMessage={invalid ? "Please select at least one fruit" : undefined}
       >
         {(item) => {
-          return <MultipleSelect.Option textValue={item.name}>{item.name}</MultipleSelect.Option>
+          return <MultipleSelect.Item textValue={item.name}>{item.name}</MultipleSelect.Item>
         }}
       </MultipleSelect>
-      {invalid && (
-        <div className="text-danger text-sm forced-colors:text-[Mark]">
-          Please fill out this field.
-        </div>
-      )}
       <Button type="submit">Submit</Button>
     </Form>
   )
 }
 
-const fruits: SelectedKey[] = [
+const fruits = [
   { id: 1, name: "Apple" },
   { id: 2, name: "Banana" },
   { id: 3, name: "Cherry" },

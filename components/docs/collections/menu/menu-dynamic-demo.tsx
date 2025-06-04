@@ -1,11 +1,12 @@
 "use client"
 
-import { Button, Menu } from "ui"
+import { Button } from "@/components/ui/button"
+import { Menu } from "@/components/ui/menu"
 
 export default function MenuDynamicDemo() {
   return (
     <Menu>
-      <Button appearance="outline">Open</Button>
+      <Button intent="outline">Open</Button>
       <Menu.Content placement="bottom" items={categories}>
         {(item) => (
           <Menu.Item id={item.slug}>

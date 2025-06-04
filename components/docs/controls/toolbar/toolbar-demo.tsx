@@ -23,23 +23,27 @@ import {
   IconUnderline,
   IconUnderlineFill,
   IconUndo,
-} from "justd-icons"
-import { Button, Checkbox, Menu, Toolbar } from "ui"
+} from "@intentui/icons"
+
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Menu } from "@/components/ui/menu"
+import { Toolbar } from "@/components/ui/toolbar"
 
 export default function ToolbarDemo() {
   return (
     <Toolbar aria-label="Toolbars">
       <Toolbar.Group aria-label="Text Formatting Options">
-        <Toolbar.Item defaultSelected aria-label="Bold" size="square-petite" appearance="outline">
+        <Toolbar.Item defaultSelected aria-label="Bold" size="square-petite" intent="outline">
           {({ isSelected }) => <>{isSelected ? <IconBoldFill /> : <IconBold />}</>}
         </Toolbar.Item>
-        <Toolbar.Item aria-label="Italic" size="square-petite" appearance="outline">
+        <Toolbar.Item aria-label="Italic" size="square-petite" intent="outline">
           {({ isSelected }) => <>{isSelected ? <IconItalicFill /> : <IconItalic />}</>}
         </Toolbar.Item>
-        <Toolbar.Item aria-label="Underline" size="square-petite" appearance="outline">
+        <Toolbar.Item aria-label="Underline" size="square-petite" intent="outline">
           {({ isSelected }) => <>{isSelected ? <IconUnderlineFill /> : <IconUnderline />}</>}
         </Toolbar.Item>
-        <Toolbar.Item aria-label="Strikethrough" size="square-petite" appearance="outline">
+        <Toolbar.Item aria-label="Strikethrough" size="square-petite" intent="outline">
           {({ isSelected }) => (
             <>{isSelected ? <IconStrikeThroughFill /> : <IconStrikeThrough />}</>
           )}
@@ -47,22 +51,22 @@ export default function ToolbarDemo() {
       </Toolbar.Group>
       <Toolbar.Separator />
       <Toolbar.Group aria-label="Alignment">
-        <Toolbar.Item aria-label="Align Left" size="square-petite" appearance="outline">
+        <Toolbar.Item aria-label="Align Left" size="square-petite" intent="outline">
           {({ isSelected }) => (
             <>{isSelected ? <IconAlignmentLeftFill /> : <IconAlignmentLeft />}</>
           )}
         </Toolbar.Item>
-        <Toolbar.Item aria-label="Align Center" appearance="outline">
+        <Toolbar.Item aria-label="Align Center" intent="outline">
           {({ isSelected }) => (
             <>{isSelected ? <IconAlignmentCenterFill /> : <IconAlignmentCenter />}</>
           )}
         </Toolbar.Item>
-        <Toolbar.Item aria-label="Align Right" appearance="outline">
+        <Toolbar.Item aria-label="Align Right" intent="outline">
           {({ isSelected }) => (
             <>{isSelected ? <IconAlignmentRightFill /> : <IconAlignmentRight />}</>
           )}
         </Toolbar.Item>
-        <Toolbar.Item aria-label="Align Justify" appearance="outline">
+        <Toolbar.Item aria-label="Align Justify" intent="outline">
           {({ isSelected }) => (
             <>{isSelected ? <IconAlignmentJustifyFill /> : <IconAlignmentJustify />}</>
           )}
@@ -72,7 +76,7 @@ export default function ToolbarDemo() {
       <Checkbox>Spell Check</Checkbox>
       <Toolbar.Group className="ml-auto">
         <Menu>
-          <Button aria-label="Other options" appearance="outline" size="small">
+          <Button aria-label="Other options" intent="outline" size="small">
             Options...
             <IconChevronDown />
           </Button>

@@ -1,11 +1,13 @@
 "use client"
 
-import { Button, Checkbox, CheckboxGroup, Sheet } from "ui"
+import { Button } from "@/components/ui/button"
+import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"
+import { Sheet } from "@/components/ui/sheet"
 
 export default function SheetControlledDemo() {
   return (
     <Sheet>
-      <Button appearance="outline">Notifications</Button>
+      <Button intent="outline">Notifications</Button>
       <Sheet.Content aria-label="Notifications">
         <Sheet.Header>
           <Sheet.Title>Manage Notifications</Sheet.Title>

@@ -1,6 +1,6 @@
 "use client"
 
-import { Pagination } from "ui"
+import { Pagination } from "@/components/ui/pagination"
 
 const pages = Array.from({ length: 6 }, (_, i) => ({ value: i + 1 }))
 export default function PaginationDynamicDemo() {

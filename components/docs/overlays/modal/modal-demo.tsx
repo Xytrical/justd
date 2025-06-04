@@ -1,11 +1,14 @@
 "use client"
 
-import { Button, Form, Modal, TextField } from "ui"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Modal } from "@/components/ui/modal"
+import { TextField } from "@/components/ui/text-field"
 
 export default function ModalDemo() {
   return (
     <Modal>
-      <Button>Turn on 2FA</Button>
+      <Button intent="outline">Turn on 2FA</Button>
       <Modal.Content>
         <Modal.Header>
           <Modal.Title>Nice! Let's beef up your account.</Modal.Title>
@@ -14,7 +17,7 @@ export default function ModalDemo() {
           </Modal.Description>
         </Modal.Header>
         <Form onSubmit={() => {}}>
-          <Modal.Body className="pb-1">
+          <Modal.Body>
             <TextField
               isRequired
               autoFocus

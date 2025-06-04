@@ -1,5 +1,7 @@
-import { IconBrandApple, IconSearch, IconShoppingBag } from "justd-icons"
-import { Button, Navbar, Separator } from "ui"
+import { Button } from "@/components/ui/button"
+import { Navbar } from "@/components/ui/navbar"
+import { Separator } from "@/components/ui/separator"
+import { IconBrandApple, IconSearch, IconShoppingBag } from "@intentui/icons"
 
 export default function NavbarAnatomy() {
   return (
@@ -22,10 +24,10 @@ export default function NavbarAnatomy() {
           </Navbar.Logo>
         </Navbar.Flex>
         <Navbar.Flex>
-          <Button appearance="plain" size="square-petite" aria-label="Search for products">
+          <Button intent="plain" size="square-petite" aria-label="Search for products">
             <IconSearch />
           </Button>
-          <Button appearance="plain" size="square-petite" aria-label="Your Bag">
+          <Button intent="plain" size="square-petite" aria-label="Your Bag">
             <IconShoppingBag />
           </Button>
         </Navbar.Flex>

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { Slider } from "ui"
+import { Slider } from "@/components/ui/slider"
 
 export default function SliderControlledDemo() {
   const [temperature, setTemperature] = useState<number>(31)

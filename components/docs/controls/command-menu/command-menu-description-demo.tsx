@@ -1,13 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Button, CommandMenu } from "ui"
+
+import { Button } from "@/components/ui/button"
+import { CommandMenu } from "@/components/ui/command-menu"
 
 export default function CommandMenuDescriptionDemo() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button appearance="outline" onPress={() => setIsOpen(true)}>
+      <Button intent="outline" onPress={() => setIsOpen(true)}>
         Open
       </Button>
       <CommandMenu escapeButton={false} isOpen={isOpen} onOpenChange={setIsOpen}>

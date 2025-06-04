@@ -1,19 +1,8 @@
 "use client"
 
+import { Avatar } from "@/components/ui/avatar"
+import { Link } from "@/components/ui/link"
 import {
-  IconBrandYoutube,
-  IconClock,
-  IconHome,
-  IconPeople,
-  IconPlay,
-  IconRotate2Left,
-  IconVideoPlaylist,
-  IconVideoRoll,
-  IconYes,
-} from "justd-icons"
-import {
-  Avatar,
-  Link,
   Sidebar,
   SidebarContent,
   SidebarDisclosure,
@@ -25,7 +14,18 @@ import {
   SidebarRail,
   SidebarSection,
   SidebarSeparator,
-} from "ui"
+} from "@/components/ui/sidebar"
+import {
+  IconBrandYoutube,
+  IconClock,
+  IconHome,
+  IconPeople,
+  IconPlay,
+  IconRotate2Left,
+  IconVideoPlaylist,
+  IconVideoRoll,
+  IconYes,
+} from "@intentui/icons"
 
 export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -55,7 +55,7 @@ export default function AppSidebar(props: React.ComponentProps<typeof Sidebar>) 
           </SidebarItem>
         </SidebarSection>
         <SidebarSeparator />
-        <SidebarSection title="You">
+        <SidebarSection label="You">
           <SidebarItem>
             <IconRotate2Left /> <SidebarLabel>History</SidebarLabel>
           </SidebarItem>

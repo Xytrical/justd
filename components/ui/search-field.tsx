@@ -1,16 +1,17 @@
 "use client"
 
-import { IconSearch, IconX } from "justd-icons"
-import {
-  SearchField as SearchFieldPrimitive,
-  type SearchFieldProps as SearchFieldPrimitiveProps,
-  type ValidationResult,
+import { IconSearch, IconX } from "@intentui/icons"
+import { SearchField as SearchFieldPrimitive } from "react-aria-components"
+
+import type {
+  SearchFieldProps as SearchFieldPrimitiveProps,
+  ValidationResult,
 } from "react-aria-components"
 
-import { Button } from "./button"
-import { Description, FieldError, FieldGroup, Input, Label } from "./field"
-import { Loader } from "./loader"
-import { composeTailwindRenderProps } from "./primitive"
+import { Button } from "@/components/ui/button"
+import { Description, FieldError, FieldGroup, Input, Label } from "@/components/ui/field"
+import { Loader } from "@/components/ui/loader"
+import { composeTailwindRenderProps } from "@/lib/primitive"
 
 interface SearchFieldProps extends SearchFieldPrimitiveProps {
   label?: string
@@ -43,8 +44,8 @@ const SearchField = ({
             <Input placeholder={placeholder ?? "Search..."} />
 
             <Button
-              appearance="plain"
-              className="size-8 text-muted-fg data-hovered:bg-transparent data-pressed:bg-transparent data-hovered:text-fg data-pressed:text-fg group-data-empty/search-field:invisible"
+              intent="plain"
+              className="size-8 pressed:bg-transparent pressed:text-fg text-muted-fg hover:bg-transparent hover:text-fg group-data-empty/search-field:invisible"
             >
               <IconX />
             </Button>
